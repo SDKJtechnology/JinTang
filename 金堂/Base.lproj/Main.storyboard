@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Oxj-VI-2Tx">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--金堂之家-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DynamicHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -98,7 +97,7 @@
         <!--社区-->
         <scene sceneID="tQM-45-MlF">
             <objects>
-                <viewController id="KPn-cY-GER" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="KPn-cY-GER" customClass="DynamicHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eLP-jM-Pbs"/>
                         <viewControllerLayoutGuide type="bottom" id="3ZJ-SF-d1L"/>
@@ -142,7 +141,7 @@
         <!--金堂圈-->
         <scene sceneID="8Zk-7S-DrM">
             <objects>
-                <viewController id="TCQ-0N-oQJ" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="TCQ-0N-oQJ" customClass="DynamicHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q3v-3F-prt"/>
                         <viewControllerLayoutGuide type="bottom" id="FCs-xu-WaQ"/>
@@ -186,7 +185,7 @@
         <!--聊天-->
         <scene sceneID="Xjg-tQ-fYM">
             <objects>
-                <viewController id="7Dz-n0-d9c" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="7Dz-n0-d9c" customClass="DynamicHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IKD-Iw-6AK"/>
                         <viewControllerLayoutGuide type="bottom" id="eze-Dl-U06"/>
@@ -230,7 +229,7 @@
         <!--发现-->
         <scene sceneID="nHh-ud-qr5">
             <objects>
-                <viewController id="78a-31-Z9N" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="78a-31-Z9N" customClass="DynamicHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="twm-tN-iq8"/>
                         <viewControllerLayoutGuide type="bottom" id="Ktu-e4-j2e"/>

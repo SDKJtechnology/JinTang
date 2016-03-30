@@ -6,13 +6,13 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "DynamicHomeController.h"
 
-@interface ViewController ()
+@interface DynamicHomeController ()
 
 @end
 
-@implementation ViewController
+@implementation DynamicHomeController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

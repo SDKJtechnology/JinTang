@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2C91CA8DC4700DE3965 /* main.m */; };
 		99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */; };
-		99B0D2D01CA8DC4700DE3965 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CF1CA8DC4700DE3965 /* ViewController.m */; };
+		99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */; };
 		99B0D2D31CA8DC4700DE3965 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D11CA8DC4700DE3965 /* Main.storyboard */; };
 		99B0D2D51CA8DC4700DE3965 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */; };
 		99B0D2D81CA8DC4700DE3965 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D61CA8DC4700DE3965 /* LaunchScreen.storyboard */; };
@@ -48,8 +48,8 @@
 		99B0D2C91CA8DC4700DE3965 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		99B0D2CE1CA8DC4700DE3965 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		99B0D2CF1CA8DC4700DE3965 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicHomeController.h; sourceTree = "<group>"; };
+		99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicHomeController.m; sourceTree = "<group>"; };
 		99B0D2D21CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99B0D2D71CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,6 +106,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7A2DDC171CAB7BFC0056F363 /* Dynamic(动态) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Dynamic(动态)";
+			path = "标签";
+			sourceTree = "<group>";
+		};
 		99B0D2BC1CA8DC4700DE3965 = {
 			isa = PBXGroup;
 			children = (
@@ -132,11 +140,12 @@
 		99B0D2C71CA8DC4700DE3965 /* 金堂 */ = {
 			isa = PBXGroup;
 			children = (
+				7A2DDC171CAB7BFC0056F363 /* Dynamic(动态) */,
 				99B0D2FB1CA9040600DE3965 /* 标签 */,
 				99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */,
 				99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */,
-				99B0D2CE1CA8DC4700DE3965 /* ViewController.h */,
-				99B0D2CF1CA8DC4700DE3965 /* ViewController.m */,
+				99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */,
+				99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */,
 				99B0D2D11CA8DC4700DE3965 /* Main.storyboard */,
 				99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */,
 				99B0D2D61CA8DC4700DE3965 /* LaunchScreen.storyboard */,
@@ -381,7 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99B0D2D01CA8DC4700DE3965 /* ViewController.m in Sources */,
+				99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
 				99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */,
 			);

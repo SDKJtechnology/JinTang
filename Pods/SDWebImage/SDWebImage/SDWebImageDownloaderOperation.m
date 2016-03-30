@@ -65,6 +65,8 @@ NSString *const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinis
     return self;
 }
 
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 - (void)start {
     @synchronized (self) {
         if (self.isCancelled) {
