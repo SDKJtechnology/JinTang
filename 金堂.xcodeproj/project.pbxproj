@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AF0BB8C1CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0BB851CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.m */; };
+		7AF0BB8D1CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0BB871CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.m */; };
+		7AF0BB8E1CAB952C006E9A4E /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0BB8A1CAB952C006E9A4E /* HTHorizontalSelectionList.m */; };
 		99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2C91CA8DC4700DE3965 /* main.m */; };
 		99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */; };
 		99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */; };
@@ -44,6 +47,13 @@
 
 /* Begin PBXFileReference section */
 		63FCEF84EADC805EF927E3C6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF0BB831CAB952C006E9A4E /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
+		7AF0BB841CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
+		7AF0BB851CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
+		7AF0BB861CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
+		7AF0BB871CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
+		7AF0BB891CAB952C006E9A4E /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
+		7AF0BB8A1CAB952C006E9A4E /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
 		99B0D2C51CA8DC4700DE3965 /* 金堂.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金堂.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B0D2C91CA8DC4700DE3965 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +124,29 @@
 			path = "标签";
 			sourceTree = "<group>";
 		};
+		7AF0BB881CAB952C006E9A4E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7AF0BB831CAB952C006E9A4E /* HTHorizontalSelectionListCell.h */,
+				7AF0BB841CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.h */,
+				7AF0BB851CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.m */,
+				7AF0BB861CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.h */,
+				7AF0BB871CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7AF0BB8B1CAB952C006E9A4E /* HTHorizontalSelectionList */ = {
+			isa = PBXGroup;
+			children = (
+				7AF0BB881CAB952C006E9A4E /* Cells */,
+				7AF0BB891CAB952C006E9A4E /* HTHorizontalSelectionList.h */,
+				7AF0BB8A1CAB952C006E9A4E /* HTHorizontalSelectionList.m */,
+			);
+			name = HTHorizontalSelectionList;
+			path = ../../../../../Volumes/DATA/File/SuccessProjcet/YunHouDemo/Source;
+			sourceTree = "<group>";
+		};
 		99B0D2BC1CA8DC4700DE3965 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +173,7 @@
 		99B0D2C71CA8DC4700DE3965 /* 金堂 */ = {
 			isa = PBXGroup;
 			children = (
+				7AF0BB8B1CAB952C006E9A4E /* HTHorizontalSelectionList */,
 				7A2DDC171CAB7BFC0056F363 /* Dynamic(动态) */,
 				99B0D2FB1CA9040600DE3965 /* 标签 */,
 				99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */,
@@ -391,7 +425,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */,
+				7AF0BB8D1CAB952C006E9A4E /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
+				7AF0BB8C1CAB952C006E9A4E /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
+				7AF0BB8E1CAB952C006E9A4E /* HTHorizontalSelectionList.m in Sources */,
 				99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,8 +7,15 @@
 //
 
 #import "DynamicHomeController.h"
+#import "HTHorizontalSelectionList.h"
 
-@interface DynamicHomeController ()
+@interface DynamicHomeController ()<HTHorizontalSelectionListDataSource,HTHorizontalSelectionListDelegate>
+{
+    NSArray *selectListData;//水平选择列表数据
+}
+
+@property (weak, nonatomic) IBOutlet UIScrollView *contentView;
+@property (weak, nonatomic) IBOutlet HTHorizontalSelectionList *selectList;//水平选择列表
 
 @end
 
@@ -16,8 +23,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"sdfsdfsdfsdf211521155145251\nsdfsdfsdfds6545645644654\n354s54654sd4fsd54");
+
+    selectListData = @[@"关注",@"热点",@"活动"];
+    
+    [self.selectList setSelectionIndicatorColor:[UIColor blackColor]];
+    [self.selectList setTitleFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:16] forState:UIControlStateNormal];
+    [self.selectList setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.selectList setSelectionIndicatorColor:[UIColor blueColor]];
+    self.selectList.delegate = self;
+    self.selectList.dataSource = self;
 }
 
+- (NSInteger)numberOfItemsInSelectionList:(HTHorizontalSelectionList *)selectionList
+{
+    return selectListData.count;
+}
+
+- (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index
+{
+    return selectListData[index];
+}
+
+- (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index
+{
+    
+}
 
 @end
