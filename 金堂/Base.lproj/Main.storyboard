@@ -17,10 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wi-Js-5oJ">
-                                <rect key="frame" x="0.0" y="94" width="320" height="425"/>
-                                <color key="backgroundColor" red="0.96391450160000003" green="1" blue="0.90744448010000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lg2-VZ-JL3" customClass="HTHorizontalSelectionList">
                                 <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,17 +28,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lg2-VZ-JL3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="11R-lL-DjA"/>
-                            <constraint firstAttribute="trailing" secondItem="5Wi-Js-5oJ" secondAttribute="trailing" id="E6n-pW-347"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Wi-Js-5oJ" secondAttribute="bottom" id="OIz-ca-Pxp"/>
                             <constraint firstItem="Lg2-VZ-JL3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Uml-5X-ayf"/>
                             <constraint firstAttribute="trailing" secondItem="Lg2-VZ-JL3" secondAttribute="trailing" id="hyY-5V-33d"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="top" secondItem="Lg2-VZ-JL3" secondAttribute="bottom" id="rqt-g0-qNJ"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wc5-sS-dT3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="金堂之家" id="6gi-p8-Z1p"/>
                     <connections>
-                        <outlet property="contentView" destination="5Wi-Js-5oJ" id="0gp-r7-Zop"/>
                         <outlet property="selectList" destination="Lg2-VZ-JL3" id="oqe-Nn-bWt"/>
                     </connections>
                 </viewController>

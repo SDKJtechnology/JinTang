@@ -10,6 +10,11 @@
 		7AA473E81CACC1FC0012C22C /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473E31CACC1FC0012C22C /* HTHorizontalSelectionListCustomViewCell.m */; };
 		7AA473E91CACC1FC0012C22C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473E51CACC1FC0012C22C /* HTHorizontalSelectionListLabelCell.m */; };
 		7AA473EA1CACC1FC0012C22C /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473E71CACC1FC0012C22C /* HTHorizontalSelectionList.m */; };
+		7AA473ED1CACD5480012C22C /* ModelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473EC1CACD5480012C22C /* ModelTableViewCell.m */; };
+		7AA473F11CACEE790012C22C /* DynamicOneImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */; };
+		7AA473F41CACEE9A0012C22C /* DynamicTwoImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */; };
+		7AA473F71CACEEB70012C22C /* DynamicNotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */; };
+		7AA473FA1CACFFA30012C22C /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F91CACFFA30012C22C /* DynamicModel.m */; };
 		99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2C91CA8DC4700DE3965 /* main.m */; };
 		99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */; };
 		99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */; };
@@ -54,12 +59,22 @@
 		7AA473E51CACC1FC0012C22C /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
 		7AA473E61CACC1FC0012C22C /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
 		7AA473E71CACC1FC0012C22C /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
+		7AA473EB1CACD5480012C22C /* ModelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTableViewCell.h; sourceTree = "<group>"; };
+		7AA473EC1CACD5480012C22C /* ModelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTableViewCell.m; sourceTree = "<group>"; };
+		7AA473EF1CACEE790012C22C /* DynamicOneImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicOneImageCell.h; sourceTree = "<group>"; };
+		7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicOneImageCell.m; sourceTree = "<group>"; };
+		7AA473F21CACEE9A0012C22C /* DynamicTwoImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTwoImageCell.h; sourceTree = "<group>"; };
+		7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTwoImageCell.m; sourceTree = "<group>"; };
+		7AA473F51CACEEB70012C22C /* DynamicNotImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNotImageCell.h; sourceTree = "<group>"; };
+		7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNotImageCell.m; sourceTree = "<group>"; };
+		7AA473F81CACFFA30012C22C /* DynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
+		7AA473F91CACFFA30012C22C /* DynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
 		99B0D2C51CA8DC4700DE3965 /* 金堂.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金堂.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B0D2C91CA8DC4700DE3965 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicHomeController.h; sourceTree = "<group>"; };
-		99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicHomeController.m; sourceTree = "<group>"; };
+		99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DynamicHomeController.h; path = ../DynamicHomeController.h; sourceTree = "<group>"; };
+		99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DynamicHomeController.m; path = ../DynamicHomeController.m; sourceTree = "<group>"; };
 		99B0D2D21CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99B0D2D71CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -119,6 +134,11 @@
 		7A2DDC171CAB7BFC0056F363 /* Dynamic(动态) */ = {
 			isa = PBXGroup;
 			children = (
+				7AA473EE1CACED470012C22C /* Cells */,
+				99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */,
+				99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */,
+				7AA473F81CACFFA30012C22C /* DynamicModel.h */,
+				7AA473F91CACFFA30012C22C /* DynamicModel.m */,
 			);
 			name = "Dynamic(动态)";
 			path = "标签";
@@ -144,6 +164,21 @@
 				7AA473E51CACC1FC0012C22C /* HTHorizontalSelectionListLabelCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7AA473EE1CACED470012C22C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7AA473EB1CACD5480012C22C /* ModelTableViewCell.h */,
+				7AA473EC1CACD5480012C22C /* ModelTableViewCell.m */,
+				7AA473F51CACEEB70012C22C /* DynamicNotImageCell.h */,
+				7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */,
+				7AA473EF1CACEE790012C22C /* DynamicOneImageCell.h */,
+				7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */,
+				7AA473F21CACEE9A0012C22C /* DynamicTwoImageCell.h */,
+				7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		99B0D2BC1CA8DC4700DE3965 = {
@@ -177,8 +212,6 @@
 				99B0D2FB1CA9040600DE3965 /* 标签 */,
 				99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */,
 				99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */,
-				99B0D2CE1CA8DC4700DE3965 /* DynamicHomeController.h */,
-				99B0D2CF1CA8DC4700DE3965 /* DynamicHomeController.m */,
 				99B0D2D11CA8DC4700DE3965 /* Main.storyboard */,
 				99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */,
 				99B0D2D61CA8DC4700DE3965 /* LaunchScreen.storyboard */,
@@ -424,8 +457,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				99B0D2D01CA8DC4700DE3965 /* DynamicHomeController.m in Sources */,
+				7AA473F71CACEEB70012C22C /* DynamicNotImageCell.m in Sources */,
 				7AA473E91CACC1FC0012C22C /* HTHorizontalSelectionListLabelCell.m in Sources */,
+				7AA473FA1CACFFA30012C22C /* DynamicModel.m in Sources */,
+				7AA473F11CACEE790012C22C /* DynamicOneImageCell.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
+				7AA473ED1CACD5480012C22C /* ModelTableViewCell.m in Sources */,
+				7AA473F41CACEE9A0012C22C /* DynamicTwoImageCell.m in Sources */,
 				7AA473E81CACC1FC0012C22C /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				7AA473EA1CACC1FC0012C22C /* HTHorizontalSelectionList.m in Sources */,
 				99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */,
