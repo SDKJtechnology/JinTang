@@ -14,35 +14,33 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wi-Js-5oJ">
-                                <rect key="frame" x="0.0" y="94" width="320" height="337"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="425"/>
+                                <color key="backgroundColor" red="0.96391450160000003" green="1" blue="0.90744448010000001" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lg2-VZ-JL3" customClass="HTHorizontalSelectionList">
                                 <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0MM-m2-l3C"/>
+                                    <constraint firstAttribute="height" constant="30" id="fKT-K3-pSq"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Lg2-VZ-JL3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="36r-oU-y6A"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Wi-Js-5oJ" secondAttribute="bottom" id="Cgn-3f-6x5"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="top" secondItem="Lg2-VZ-JL3" secondAttribute="bottom" id="JMG-YT-QhY"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="trailing" secondItem="Lg2-VZ-JL3" secondAttribute="trailing" id="OQF-Mp-72d"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Wi-Js-5oJ" secondAttribute="bottom" id="P3p-H8-eed"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iQ7-PR-P7x"/>
-                            <constraint firstAttribute="trailing" secondItem="5Wi-Js-5oJ" secondAttribute="trailing" id="jst-gV-ojz"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="top" secondItem="Lg2-VZ-JL3" secondAttribute="bottom" id="mZW-U4-Jcn"/>
-                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="leading" secondItem="Lg2-VZ-JL3" secondAttribute="leading" id="w0j-fq-pvW"/>
+                            <constraint firstItem="Lg2-VZ-JL3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="11R-lL-DjA"/>
+                            <constraint firstAttribute="trailing" secondItem="5Wi-Js-5oJ" secondAttribute="trailing" id="E6n-pW-347"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Wi-Js-5oJ" secondAttribute="bottom" id="OIz-ca-Pxp"/>
+                            <constraint firstItem="Lg2-VZ-JL3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Uml-5X-ayf"/>
+                            <constraint firstAttribute="trailing" secondItem="Lg2-VZ-JL3" secondAttribute="trailing" id="hyY-5V-33d"/>
+                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="top" secondItem="Lg2-VZ-JL3" secondAttribute="bottom" id="rqt-g0-qNJ"/>
+                            <constraint firstItem="5Wi-Js-5oJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wc5-sS-dT3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="金堂之家" id="6gi-p8-Z1p"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="5Wi-Js-5oJ" id="0gp-r7-Zop"/>
                         <outlet property="selectList" destination="Lg2-VZ-JL3" id="oqe-Nn-bWt"/>
@@ -131,16 +129,15 @@
                         <viewControllerLayoutGuide type="bottom" id="3ZJ-SF-d1L"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8kQ-JD-g2L">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="社区" id="B3E-xu-RPb"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z4V-8y-5y6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="1759"/>
+            <point key="canvasLocation" x="114" y="1769"/>
         </scene>
         <!--金堂圈-->
         <scene sceneID="rv8-xW-TRV">
@@ -175,12 +172,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FCs-xu-WaQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DGx-wj-tlC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="金堂圈" id="BT8-yB-ffe"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vs-jN-XaD" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,12 +215,11 @@
                         <viewControllerLayoutGuide type="bottom" id="eze-Dl-U06"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gjd-DG-Bya">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="聊天" id="sgG-K4-a9p"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMk-l5-k9q" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,12 +258,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Ktu-e4-j2e"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="b6G-bD-8B0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发现" id="8A4-JR-pje"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGY-pU-Vjx" sceneMemberID="firstResponder"/>
             </objects>
