@@ -8,10 +8,6 @@
 
 #import "DynamicNotImageCell.h"
 #import "XYString.h"
-#import <UIView+SDAutoLayout.h>
-
-#define CELL_Width self.contentView.frame.size.width
-const CGFloat margin = 15;
 
 @implementation DynamicNotImageCell
 
@@ -46,12 +42,12 @@ const CGFloat margin = 15;
     return self;
 }
 
-- (void)setDynamicModel:(DynamicModel *)dynamicModel
+- (void)setDynamicList:(DynamicList *)dynamicList
 {
-    self.titleLabel.text = dynamicModel.titleString;
-    self.nameLabel.text = dynamicModel.nameString;
-    self.countLabel.text = dynamicModel.countString;
-    self.timeLabel.text = dynamicModel.timeString;
+    self.titleLabel.text = dynamicList.title;
+    self.nameLabel.text = dynamicList.source;
+    self.countLabel.text = dynamicList.views_num;
+    self.timeLabel.text = dynamicList.push_at;
 }
 
 @end

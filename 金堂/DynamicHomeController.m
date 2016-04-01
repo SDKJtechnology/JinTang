@@ -11,7 +11,7 @@
 #import <UIView+SDAutoLayout.h>
 #import "DynamicNotImageCell.h"
 #import "DynamicModel.h"
-#import "DynamicDataModel.h"
+#import "DynamicNetworkingModel.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -42,7 +42,15 @@ static NSNumber *page;
 
     page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];
-    [DynamicDataModel getDynamicDataWithPage:page];
+    dynamicListData = [NSMutableArray array];
+    [DynamicNetworkingModel sharedObejct].dynamicListBlock = ^(id data)
+    {
+        UITableView *tableView = [self.contentView viewWithTag:100];
+        [dynamicListData addObjectsFromArray:data];
+        [tableView reloadData];
+        return YES;
+    };
+    [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page];
     
     self.selectList = [[HTHorizontalSelectionList alloc] init];
     self.selectList.frame = CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight);
@@ -113,12 +121,16 @@ static NSNumber *page;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ModelTableViewCell *cell = nil;
-    NSString *identifier = [DynamicNotImageCell identifierForModelAtRow:nil];
-    Class cellClass = NSClassFromString(identifier);
-    if (!cell){
-        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    if (tableView.tag == 100)
+    {
+        NSString *identifier = [DynamicNotImageCell identifierForModelAtRow:dynamicListData[indexPath.row]];
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        Class cellClass = NSClassFromString(identifier);
+        if (!cell){
+            cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        return cell;
     }
-    
     return cell;
 }
 
@@ -142,16 +154,16 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return 10;
+            return dynamicListData.count;
             break;
         case 101:
-            return 2;
+            return 0;
             break;
         case 102:
-            return 3;
+            return 0;
             break;
     }
-    return 2;
+    return 0;
 }
 
 #pragma mark UITableViewDelegate
@@ -160,12 +172,7 @@ static NSNumber *page;
     switch (tableView.tag) {
         case 100:
         {
-            DynamicModel *dynamicModel = [DynamicModel new];
-            dynamicModel.titleString = @"sjdjkfjkj深刻的话费卡收到回复开机萨哈夫跨时代妇科哈萨克奋斗哈舒服咖还是当付款哈时代";
-            dynamicModel.nameString = @"小李";
-            dynamicModel.countString = @"21阅读";
-            dynamicModel.timeString = @"2514241";
-            ((DynamicNotImageCell *)cell).dynamicModel = dynamicModel;
+            ((DynamicNotImageCell *)cell).dynamicList = dynamicListData[indexPath.row];
         }
             break;
         case 101:

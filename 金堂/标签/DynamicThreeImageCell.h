@@ -8,6 +8,6 @@
 
 #import "ModelTableViewCell.h"
 
-@interface DynamicTwoImageCell : ModelTableViewCell
+@interface DynamicThreeImageCell : ModelTableViewCell
 
 @end

@@ -7,7 +7,22 @@
 //
 
 #import "DynamicModel.h"
+#import "MJExtension.h"
 
 @implementation DynamicModel
+
+@end
+
+@implementation DynamicList
+
+
+@end
+
+@implementation DynamicData
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"list":@"DynamicList"};
+}
 
 @end

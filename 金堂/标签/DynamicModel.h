@@ -8,30 +8,54 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DynamicModel : NSObject
+@interface DynamicList : NSObject
 /**
  *  标题
  */
-@property (nonatomic, strong) NSString *titleString;
+@property (nonatomic, strong) NSString *title;
 /**
  *  发帖人昵称
  */
-@property (nonatomic, strong) NSString *nameString;
-/**
- *  发布时间
- */
-@property (nonatomic, strong) NSString *timeString;
+@property (nonatomic, strong) NSString *source;
 /**
  *  阅读人数
  */
-@property (nonatomic, strong) NSString *countString;
+@property (nonatomic, strong) NSString *views_num;
 /**
- *  图片链接
+ *  发布时间
  */
-@property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *push_at;
 /**
- *  多图片数组<imageUrl>
+ *  多图片数组<AttachesImage>
  */
-@property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) NSArray *attaches;
+
+@end
+
+/**
+ *  关注数据类
+ */
+@interface DynamicData : NSObject
+
+@property (nonatomic, strong) NSNumber *last_side_id;
+@property (nonatomic, strong) NSNumber *last_post_id;
+@property (nonatomic, strong) NSNumber *update_num;
+@property (nonatomic, strong) NSNumber *has_unread_hot;
+/**
+ *  关注列表数组<DynamicList>
+ */
+@property (nonatomic, strong) NSArray *list;
+
+@end
+/**
+ *  关注类模型
+ */
+@interface DynamicModel : NSObject
+
+@property (nonatomic, strong) NSString *ret;
+
+@property (nonatomic, strong) NSString *text;
+
+@property (nonatomic, strong) DynamicData *data;
 
 @end

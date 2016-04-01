@@ -6,8 +6,8 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "DynamicTwoImageCell.h"
+#import "DynamicThreeImageCell.h"
 
-@implementation DynamicTwoImageCell
+@implementation DynamicThreeImageCell
 
 @end

@@ -38,26 +38,33 @@
         
         self.showImageView1 = [UIImageView new];
         [self.contentView addSubview:self.showImageView1];
-        self.showImageView1.backgroundColor = [UIColor blueColor];
+//        self.showImageView1.backgroundColor = [UIColor blueColor];
         
         self.showImageView2 = [UIImageView new];
         [self.contentView addSubview:self.showImageView2];
-        self.showImageView2.backgroundColor = [UIColor blueColor];
+//        self.showImageView2.backgroundColor = [UIColor blueColor];
         
         self.showImageView3 = [UIImageView new];
         [self.contentView addSubview:self.showImageView3];
-        self.showImageView3.backgroundColor = [UIColor blueColor];
+//        self.showImageView3.backgroundColor = [UIColor blueColor];
     }
     
     return self;
 }
 
-+ (NSString *)identifierForModelAtRow:(DynamicModel *)dynamicModel
++ (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList
 {
-    if (dynamicModel.imageUrl) {
-        return @"DynamicOneImageCell";
-    }else
-        return @"DynamicNotImageCell";
+    switch (dynamicList.attaches.count) {
+        case 4:
+            return @"DynamicOneImageCell";
+            break;
+        case 5:
+            return @"DynamicThreeImageCell";
+            break;
+        default:
+            return @"DynamicNotImageCell";
+            break;
+    }
 }
 
 @end

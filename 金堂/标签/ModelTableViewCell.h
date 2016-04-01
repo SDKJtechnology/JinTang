@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DynamicModel.h"
+#import "SDAutoLayout.h"
+#import <UIImageView+WebCache.h>
+
+#define CELL_Width self.contentView.frame.size.width
+#define margin 15
 
 @interface ModelTableViewCell : UITableViewCell
 
@@ -19,8 +24,8 @@
 @property (nonatomic) UIImageView *showImageView2;
 @property (nonatomic) UIImageView *showImageView3;
 
-@property (nonatomic, strong) DynamicModel *dynamicModel;
+@property (nonatomic, strong) DynamicList *dynamicList;
 
-+ (NSString *)identifierForModelAtRow:(DynamicModel *)dynamicModel;
++ (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList;
 
 @end

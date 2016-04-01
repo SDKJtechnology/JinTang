@@ -12,12 +12,12 @@
 		7AA473EA1CACC1FC0012C22C /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473E71CACC1FC0012C22C /* HTHorizontalSelectionList.m */; };
 		7AA473ED1CACD5480012C22C /* ModelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473EC1CACD5480012C22C /* ModelTableViewCell.m */; };
 		7AA473F11CACEE790012C22C /* DynamicOneImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */; };
-		7AA473F41CACEE9A0012C22C /* DynamicTwoImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */; };
+		7AA473F41CACEE9A0012C22C /* DynamicThreeImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F31CACEE9A0012C22C /* DynamicThreeImageCell.m */; };
 		7AA473F71CACEEB70012C22C /* DynamicNotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */; };
 		7AA473FA1CACFFA30012C22C /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F91CACFFA30012C22C /* DynamicModel.m */; };
 		7AA474021CAD18AC0012C22C /* XYString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA474011CAD18AC0012C22C /* XYString.m */; };
 		7AA474051CAD1EC00012C22C /* UILabel+new.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA474041CAD1EC00012C22C /* UILabel+new.m */; };
-		7AA474091CAD2D2C0012C22C /* DynamicDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA474081CAD2D2C0012C22C /* DynamicDataModel.m */; };
+		7AA474091CAD2D2C0012C22C /* DynamicNetworkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA474081CAD2D2C0012C22C /* DynamicNetworkingModel.m */; };
 		7AA474221CAD51540012C22C /* MJDictionaryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4740C1CAD51540012C22C /* MJDictionaryCache.m */; };
 		7AA474231CAD51540012C22C /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4740F1CAD51540012C22C /* MJExtensionConst.m */; };
 		7AA474241CAD51540012C22C /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA474111CAD51540012C22C /* MJFoundation.m */; };
@@ -77,8 +77,8 @@
 		7AA473EC1CACD5480012C22C /* ModelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTableViewCell.m; sourceTree = "<group>"; };
 		7AA473EF1CACEE790012C22C /* DynamicOneImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicOneImageCell.h; sourceTree = "<group>"; };
 		7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicOneImageCell.m; sourceTree = "<group>"; };
-		7AA473F21CACEE9A0012C22C /* DynamicTwoImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTwoImageCell.h; sourceTree = "<group>"; };
-		7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTwoImageCell.m; sourceTree = "<group>"; };
+		7AA473F21CACEE9A0012C22C /* DynamicThreeImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicThreeImageCell.h; sourceTree = "<group>"; };
+		7AA473F31CACEE9A0012C22C /* DynamicThreeImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicThreeImageCell.m; sourceTree = "<group>"; };
 		7AA473F51CACEEB70012C22C /* DynamicNotImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNotImageCell.h; sourceTree = "<group>"; };
 		7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNotImageCell.m; sourceTree = "<group>"; };
 		7AA473F81CACFFA30012C22C /* DynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 		7AA474011CAD18AC0012C22C /* XYString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYString.m; sourceTree = "<group>"; };
 		7AA474031CAD1EC00012C22C /* UILabel+new.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+new.h"; sourceTree = "<group>"; };
 		7AA474041CAD1EC00012C22C /* UILabel+new.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+new.m"; sourceTree = "<group>"; };
-		7AA474071CAD2D2C0012C22C /* DynamicDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDataModel.h; sourceTree = "<group>"; };
-		7AA474081CAD2D2C0012C22C /* DynamicDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDataModel.m; sourceTree = "<group>"; };
+		7AA474071CAD2D2C0012C22C /* DynamicNetworkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNetworkingModel.h; sourceTree = "<group>"; };
+		7AA474081CAD2D2C0012C22C /* DynamicNetworkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNetworkingModel.m; sourceTree = "<group>"; };
 		7AA4740B1CAD51540012C22C /* MJDictionaryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDictionaryCache.h; sourceTree = "<group>"; };
 		7AA4740C1CAD51540012C22C /* MJDictionaryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDictionaryCache.m; sourceTree = "<group>"; };
 		7AA4740D1CAD51540012C22C /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		7AA4741F1CAD51540012C22C /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		7AA474201CAD51540012C22C /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		7AA474211CAD51540012C22C /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		7AA4FA871CAE32DA009312BE /* SDAutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SDAutoLayout.h; path = ../SDAutoLayout.h; sourceTree = "<group>"; };
 		99B0D2C51CA8DC4700DE3965 /* 金堂.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金堂.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B0D2C91CA8DC4700DE3965 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -219,8 +220,8 @@
 				7AA473F61CACEEB70012C22C /* DynamicNotImageCell.m */,
 				7AA473EF1CACEE790012C22C /* DynamicOneImageCell.h */,
 				7AA473F01CACEE790012C22C /* DynamicOneImageCell.m */,
-				7AA473F21CACEE9A0012C22C /* DynamicTwoImageCell.h */,
-				7AA473F31CACEE9A0012C22C /* DynamicTwoImageCell.m */,
+				7AA473F21CACEE9A0012C22C /* DynamicThreeImageCell.h */,
+				7AA473F31CACEE9A0012C22C /* DynamicThreeImageCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -239,8 +240,9 @@
 			children = (
 				7AA473F81CACFFA30012C22C /* DynamicModel.h */,
 				7AA473F91CACFFA30012C22C /* DynamicModel.m */,
-				7AA474071CAD2D2C0012C22C /* DynamicDataModel.h */,
-				7AA474081CAD2D2C0012C22C /* DynamicDataModel.m */,
+				7AA474071CAD2D2C0012C22C /* DynamicNetworkingModel.h */,
+				7AA474081CAD2D2C0012C22C /* DynamicNetworkingModel.m */,
+				7AA4FA871CAE32DA009312BE /* SDAutoLayout.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -561,7 +563,7 @@
 				7AA474271CAD51540012C22C /* MJPropertyType.m in Sources */,
 				7AA4742B1CAD51540012C22C /* NSObject+MJProperty.m in Sources */,
 				7AA474291CAD51540012C22C /* NSObject+MJCoding.m in Sources */,
-				7AA474091CAD2D2C0012C22C /* DynamicDataModel.m in Sources */,
+				7AA474091CAD2D2C0012C22C /* DynamicNetworkingModel.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
 				7AA473ED1CACD5480012C22C /* ModelTableViewCell.m in Sources */,
 				7AA474261CAD51540012C22C /* MJPropertyKey.m in Sources */,
@@ -569,7 +571,7 @@
 				7AA474221CAD51540012C22C /* MJDictionaryCache.m in Sources */,
 				7AA474281CAD51540012C22C /* NSObject+MJClass.m in Sources */,
 				7AA474051CAD1EC00012C22C /* UILabel+new.m in Sources */,
-				7AA473F41CACEE9A0012C22C /* DynamicTwoImageCell.m in Sources */,
+				7AA473F41CACEE9A0012C22C /* DynamicThreeImageCell.m in Sources */,
 				7AA473E81CACC1FC0012C22C /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				7AA474251CAD51540012C22C /* MJProperty.m in Sources */,
 				7AA474021CAD18AC0012C22C /* XYString.m in Sources */,
