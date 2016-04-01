@@ -35,7 +35,7 @@
         
     } success:^(NSURLSessionDataTask * task, id responseObject) {
         if (self.dynamicListBlock) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
             NSArray *array = [DynamicModel mj_objectWithKeyValues:responseObject].data.list;
             NSMutableArray *imageAr ;
             for (DynamicList *list in array) {

@@ -54,10 +54,14 @@ static NSNumber *page;
     
     self.selectList = [[HTHorizontalSelectionList alloc] init];
     self.selectList.frame = CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight);
+    
+    self.selectList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeNoBounce;
     [self.view addSubview:self.selectList];
     
     self.contentView = [[UIScrollView alloc] init];
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
+    self.contentView.showsVerticalScrollIndicator = NO;
+    self.contentView.showsHorizontalScrollIndicator = NO;
     self.contentView.delegate = self;
     [self.view addSubview:self.contentView];
     
@@ -68,6 +72,7 @@ static NSNumber *page;
         CGRect frame = self.contentView.bounds;
         frame.origin.x = i * VIEW_WIDTH;
         UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
+        tableView.showsVerticalScrollIndicator = NO;
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.tag = i + 100;
@@ -124,11 +129,13 @@ static NSNumber *page;
     if (tableView.tag == 100)
     {
         NSString *identifier = [DynamicNotImageCell identifierForModelAtRow:dynamicListData[indexPath.row]];
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         Class cellClass = NSClassFromString(identifier);
         if (!cell){
             cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
+        
+        cell.sd_indexPath = indexPath;
+        cell.sd_tableView = tableView;
         return cell;
     }
     return cell;
@@ -186,7 +193,17 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return 100;
+        {
+            // cell自适应设置
+            DynamicList * model = dynamicListData[indexPath.row];
+            
+            NSString * identifier = [ModelTableViewCell identifierForModelAtRow:model];
+            Class mClass =  NSClassFromString(identifier);
+            
+            // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
+            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:mClass contentViewWidth:self.view.frame.size.width];
+//            return 200;
+        }
             break;
         case 101:
             return 2;

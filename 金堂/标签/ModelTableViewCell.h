@@ -20,6 +20,7 @@
 @property (nonatomic) UILabel *timeLabel;
 @property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) UILabel *countLabel;
+@property (nonatomic) UIView *lineView;
 @property (nonatomic) UIImageView *showImageView1;
 @property (nonatomic) UIImageView *showImageView2;
 @property (nonatomic) UIImageView *showImageView3;

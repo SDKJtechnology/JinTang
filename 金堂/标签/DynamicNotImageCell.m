@@ -22,22 +22,30 @@
         .autoHeightRatio(0);
         
         self.nameLabel.sd_layout
-        .bottomSpaceToView(self.contentView, margin)
+        .topSpaceToView(self.titleLabel, margin)
         .leftSpaceToView(self.contentView, margin)
         .autoHeightRatio(0);
         [self.nameLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
         
         self.countLabel.sd_layout
         .leftSpaceToView(self.nameLabel, margin)
-        .bottomSpaceToView(self.contentView, margin)
+        .topSpaceToView(self.titleLabel, margin)
         .autoHeightRatio(0);
         [self.countLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
         
         self.timeLabel.sd_layout
         .rightSpaceToView(self.contentView, margin)
-        .bottomSpaceToView (self.contentView, margin)
+        .topSpaceToView (self.titleLabel, margin)
         .autoHeightRatio(0);
         [self.timeLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
+        
+        self.lineView.sd_layout
+        .leftSpaceToView(self.contentView, 0)
+        .rightSpaceToView(self.contentView, 0)
+        .heightIs(1.5)
+        .topSpaceToView(self.timeLabel, margin);
+        
+        [self setupAutoHeightWithBottomView:self.lineView bottomMargin:0];
     }
     return self;
 }

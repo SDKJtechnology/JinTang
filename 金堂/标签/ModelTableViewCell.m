@@ -17,36 +17,36 @@
         self.titleLabel = [UILabel new];
         [self.contentView addSubview:self.titleLabel];
         self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:18];
+        self.titleLabel.numberOfLines = 0;
         
         self.nameLabel = [UILabel new];
         [self.contentView addSubview:self.nameLabel];
-//        self.nameLabel.backgroundColor = [UIColor yellowColor];
         self.nameLabel.fontSize = 15;
         self.nameLabel.textColor = [UIColor grayColor];
         
         self.timeLabel = [UILabel new];
         [self.contentView addSubview:self.timeLabel];
-//        self.timeLabel.backgroundColor = [UIColor grayColor];
         self.timeLabel.fontSize = self.nameLabel.fontSize;
         self.timeLabel.textColor = self.nameLabel.textColor;
 
         self.countLabel = [UILabel new];
         [self.contentView addSubview:self.countLabel];
-//        self.countLabel.backgroundColor = [UIColor greenColor];
         self.countLabel.fontSize = self.nameLabel.fontSize;
         self.countLabel.textColor = self.nameLabel.textColor;
         
         self.showImageView1 = [UIImageView new];
         [self.contentView addSubview:self.showImageView1];
-//        self.showImageView1.backgroundColor = [UIColor blueColor];
         
         self.showImageView2 = [UIImageView new];
         [self.contentView addSubview:self.showImageView2];
-//        self.showImageView2.backgroundColor = [UIColor blueColor];
         
         self.showImageView3 = [UIImageView new];
         [self.contentView addSubview:self.showImageView3];
-//        self.showImageView3.backgroundColor = [UIColor blueColor];
+        
+        self.lineView = [UIView new];
+        [self.contentView addSubview:self.lineView];
+        
+        self.lineView.backgroundColor = [UIColor colorWithWhite:0.656 alpha:1.000];
     }
     
     return self;
@@ -55,10 +55,10 @@
 + (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList
 {
     switch (dynamicList.attaches.count) {
-        case 4:
+        case 1:
             return @"DynamicOneImageCell";
             break;
-        case 5:
+        case 3:
             return @"DynamicThreeImageCell";
             break;
         default:
