@@ -52,7 +52,6 @@
 		998DA6D71CAA6AE2006808FF /* chatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DA6D61CAA6AE2006808FF /* chatViewController.m */; };
 		99B0D2CA1CA8DC4700DE3965 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2C91CA8DC4700DE3965 /* main.m */; };
 		99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */; };
-		99B0D2D01CA8DC4700DE3965 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2CF1CA8DC4700DE3965 /* ViewController.m */; };
 		99B0D2D31CA8DC4700DE3965 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D11CA8DC4700DE3965 /* Main.storyboard */; };
 		99B0D2D51CA8DC4700DE3965 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */; };
 		99B0D2D81CA8DC4700DE3965 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D2D61CA8DC4700DE3965 /* LaunchScreen.storyboard */; };
@@ -151,8 +150,6 @@
 		99B0D2C91CA8DC4700DE3965 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		99B0D2CE1CA8DC4700DE3965 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		99B0D2CF1CA8DC4700DE3965 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		99B0D2D21CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99B0D2D41CA8DC4700DE3965 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99B0D2D71CA8DC4700DE3965 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -240,13 +237,6 @@
 			name = personalThirdframework;
 			sourceTree = "<group>";
 		};
-		99A2AA361CAA66D300671F39 /* others */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = others;
-			sourceTree = "<group>";
-		};
 		99B0D2BC1CA8DC4700DE3965 = {
 			isa = PBXGroup;
 			children = (
@@ -274,10 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				994763BC1CAB7DE5008B4E57 /* personalThirdframework */,
-				99A2AA361CAA66D300671F39 /* others */,
 				99CFBEC81CAA65FF00FB64A7 /* controllers */,
 				99CFBEC71CAA65F800FB64A7 /* views */,
-				99CFBEC51CAA65E000FB64A7 /* model */,
 				99B0D2FB1CA9040600DE3965 /* 标签 */,
 				99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */,
 				99B0D2CC1CA8DC4700DE3965 /* AppDelegate.m */,
@@ -351,13 +339,6 @@
 			path = "标签";
 			sourceTree = "<group>";
 		};
-		99CFBEC51CAA65E000FB64A7 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
 		99CFBEC71CAA65F800FB64A7 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +350,6 @@
 		99CFBEC81CAA65FF00FB64A7 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				99B0D2CE1CA8DC4700DE3965 /* ViewController.h */,
 				994763F21CAB8709008B4E57 /* loginViewController.h */,
 				994763F31CAB8709008B4E57 /* loginViewController.m */,
 				998DA6D51CAA6AE2006808FF /* chatViewController.h */,
@@ -384,7 +364,6 @@
 				9947634A1CAB6CAF008B4E57 /* foundViewController.m */,
 				994763B81CAB7CBD008B4E57 /* QRCodeViewController.h */,
 				994763B91CAB7CBD008B4E57 /* QRCodeViewController.m */,
-				99B0D2CF1CA8DC4700DE3965 /* ViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -614,7 +593,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				994763BF1CAB7DFD008B4E57 /* UIView+SDExtension.m in Sources */,
-				99B0D2D01CA8DC4700DE3965 /* ViewController.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
 				994763D71CAB7E2A008B4E57 /* split.c in Sources */,
 				994763D61CAB7E2A008B4E57 /* rscode.c in Sources */,
