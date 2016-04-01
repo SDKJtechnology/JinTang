@@ -9,6 +9,9 @@
 #import "DynamicHomeController.h"
 #import "HTHorizontalSelectionList.h"
 #import <UIView+SDAutoLayout.h>
+#import "DynamicNotImageCell.h"
+#import "DynamicModel.h"
+#import "DynamicDataModel.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -18,6 +21,8 @@
     ,UIScrollViewDelegate>
 {
     NSArray *selectListData;//水平选择列表数据
+    
+    NSMutableArray *dynamicListData;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
@@ -28,13 +33,16 @@
 const CGFloat yNavigationBarBelow = 64;//NavigationBar下边Y坐标
 const CGFloat selectListHeight = 40;//水平选择列表高度
 const CGFloat tabBarHeight = 49;//tabBar高度
+static NSNumber *page;
 
 @implementation DynamicHomeController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];
+    [DynamicDataModel getDynamicDataWithPage:page];
     
     self.selectList = [[HTHorizontalSelectionList alloc] init];
     self.selectList.frame = CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight);
@@ -104,8 +112,13 @@ const CGFloat tabBarHeight = 49;//tabBar高度
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.textLabel.text = @"12";
+    ModelTableViewCell *cell = nil;
+    NSString *identifier = [DynamicNotImageCell identifierForModelAtRow:nil];
+    Class cellClass = NSClassFromString(identifier);
+    if (!cell){
+        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
     return cell;
 }
 
@@ -142,6 +155,25 @@ const CGFloat tabBarHeight = 49;//tabBar高度
 }
 
 #pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (tableView.tag) {
+        case 100:
+        {
+            DynamicModel *dynamicModel = [DynamicModel new];
+            dynamicModel.titleString = @"sjdjkfjkj深刻的话费卡收到回复开机萨哈夫跨时代妇科哈萨克奋斗哈舒服咖还是当付款哈时代";
+            dynamicModel.nameString = @"小李";
+            dynamicModel.countString = @"21阅读";
+            dynamicModel.timeString = @"2514241";
+            ((DynamicNotImageCell *)cell).dynamicModel = dynamicModel;
+        }
+            break;
+        case 101:
+            break;
+        case 102:
+            break;
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

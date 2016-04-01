@@ -29,5 +29,9 @@
  *  图片链接
  */
 @property (nonatomic, strong) NSString *imageUrl;
+/**
+ *  多图片数组<imageUrl>
+ */
+@property (nonatomic, strong) NSArray *imageArray;
 
 @end

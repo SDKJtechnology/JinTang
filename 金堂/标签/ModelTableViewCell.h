@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DynamicModel.h"
 
 @interface ModelTableViewCell : UITableViewCell
 
@@ -17,5 +18,9 @@
 @property (nonatomic) UIImageView *showImageView1;
 @property (nonatomic) UIImageView *showImageView2;
 @property (nonatomic) UIImageView *showImageView3;
+
+@property (nonatomic, strong) DynamicModel *dynamicModel;
+
++ (NSString *)identifierForModelAtRow:(DynamicModel *)dynamicModel;
 
 @end
