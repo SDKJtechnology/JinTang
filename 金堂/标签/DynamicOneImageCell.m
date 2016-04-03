@@ -23,27 +23,21 @@
         .autoHeightRatio(0);
         
         self.showImageView1.sd_layout
-        .leftSpaceToView(self.titleLabel, margin)
         .rightSpaceToView(self.contentView, margin)
         .topSpaceToView(self.contentView, margin)
-        .heightIs(self.contentView.frame.size.height - 2 * margin)
-        .maxWidthIs(CELL_Width / 3)
-        .autoHeightRatio(0.7);
-        
-        self.imageView.sd_layout
-        .rightSpaceToView(self.contentView, margin)
+        .widthRatioToView(self.contentView, 0.3)
         .autoHeightRatio(0.7);
 
         self.nameLabel.sd_layout
         .leftSpaceToView(self.contentView, margin)
-        .topSpaceToView(self.titleLabel, margin)
+        .bottomEqualToView(self.showImageView1)
         .minWidthIs(miniWidth / 2)
         .autoHeightRatio(0);
         [self.nameLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 2];
         
         self.countLabel.sd_layout
         .leftSpaceToView(self.nameLabel, margin)
-        .topSpaceToView(self.titleLabel, margin)
+        .bottomEqualToView(self.nameLabel)
         .minWidthIs(miniWidth)
         .autoHeightRatio(0);
         [self.countLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 2];
@@ -66,7 +60,7 @@
     self.nameLabel.text = dynamicList.source;
     self.countLabel.text = dynamicList.views_num;
     NSURL *url = [NSURL URLWithString:dynamicList.attaches.firstObject];
-    [self.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"load.jpg"]];
+    [self.showImageView1 sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"load.jpg"]];
 }
 
 @end
