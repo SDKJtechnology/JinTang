@@ -29,6 +29,10 @@
         .heightIs(self.contentView.frame.size.height - 2 * margin)
         .maxWidthIs(CELL_Width / 3)
         .autoHeightRatio(0.7);
+        
+        self.imageView.sd_layout
+        .rightSpaceToView(self.contentView, margin)
+        .autoHeightRatio(0.7);
 
         self.nameLabel.sd_layout
         .leftSpaceToView(self.contentView, margin)
@@ -62,7 +66,7 @@
     self.nameLabel.text = dynamicList.source;
     self.countLabel.text = dynamicList.views_num;
     NSURL *url = [NSURL URLWithString:dynamicList.attaches.firstObject];
-    [self.showImageView1 sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"load.jpg"]];
+    [self.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"load.jpg"]];
 }
 
 @end
