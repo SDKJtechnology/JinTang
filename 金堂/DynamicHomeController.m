@@ -7,7 +7,7 @@
 //
 
 #import "DynamicHomeController.h"
-#import "HTHorizontalSelectionList.h"
+#import "TJSelectionList.h"
 #import <UIView+SDAutoLayout.h>
 #import "DynamicNotImageCell.h"
 #import "DynamicModel.h"
@@ -16,7 +16,8 @@
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
 
-@interface DynamicHomeController ()<HTHorizontalSelectionListDataSource,HTHorizontalSelectionListDelegate,
+@interface DynamicHomeController ()
+    <TJSelectionListDelegate,
     UITableViewDelegate,UITableViewDataSource
     ,UIScrollViewDelegate>
 {
@@ -25,8 +26,8 @@
     NSMutableArray *dynamicListData;
 }
 
-@property (strong, nonatomic) IBOutlet UIScrollView *contentView;
-@property (strong, nonatomic) IBOutlet HTHorizontalSelectionList *selectList;//水平选择列表
+@property (strong, nonatomic) UIScrollView *contentView;
+@property (strong, nonatomic) TJSelectionList *selectList;//水平选择列表
 
 @end
 
@@ -52,17 +53,23 @@ static NSNumber *page;
     };
     [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page];
     
-    self.selectList = [[HTHorizontalSelectionList alloc] init];
-    self.selectList.frame = CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight);
-    
-    self.selectList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeNoBounce;
-    [self.view addSubview:self.selectList];
+    self.selectList = [[TJSelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
+//    self.selectList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeNoBounce;
+//    [self.selectList setSelectionIndicatorColor:[UIColor blackColor]];
+//    [self.selectList setTitleFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:16] forState:UIControlStateNormal];
+//    [self.selectList setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [self.selectList setSelectionIndicatorColor:[UIColor blueColor]];
+    self.selectList.delegate = self;
+//    self.selectList.dataSource = self;
     
     self.contentView = [[UIScrollView alloc] init];
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.showsHorizontalScrollIndicator = NO;
+    self.contentView.bounces = NO;
     self.contentView.delegate = self;
+    
+    [self.view addSubview:self.selectList];
     [self.view addSubview:self.contentView];
     
         //  添加TableView
@@ -82,30 +89,23 @@ static NSNumber *page;
     //  设置scrollView
     self.contentView.contentSize = CGSizeMake(selectListData.count * w, h);
     self.contentView.pagingEnabled = YES;
-    
-    [self.selectList setSelectionIndicatorColor:[UIColor blackColor]];
-    [self.selectList setTitleFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:16] forState:UIControlStateNormal];
-    [self.selectList setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [self.selectList setSelectionIndicatorColor:[UIColor blueColor]];
-    self.selectList.delegate = self;
-    self.selectList.dataSource = self;
 }
 
 #pragma mark HTHorizontalSelectionListDataSource
 
-- (NSInteger)numberOfItemsInSelectionList:(HTHorizontalSelectionList *)selectionList
+- (NSInteger)numberOfItemsAtSelectionList:(TJSelectionList *)selectionList
 {
     return selectListData.count;
 }
 
-- (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index
+- (NSString *)selectionList:(TJSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index
 {
     return selectListData[index];
 }
 
 #pragma mark HTHorizontalSelectionListDelegate
 
-- (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index
+- (void)selectionList:(TJSelectionList *)selectionList didSelectItemWithIndex:(NSInteger)index
 {
     //  实现scrollView滑动绑定的方法
     CGRect frame = self.contentView.bounds;
@@ -115,10 +115,11 @@ static NSNumber *page;
 
 #pragma 实现UIScrollViewDelegate 的方法
 //  实现scrollView滑动绑定的方法
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.selectList.selectedButtonIndex = page;
+    self.selectList.selectedItemIndex = page;
 }
 
 #pragma mark UITableViewDataSource

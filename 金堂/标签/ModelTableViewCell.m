@@ -16,7 +16,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.titleLabel = [UILabel new];
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:18];
+        self.titleLabel.font = [UIFont fontWithName:@"Helvetica-BoldOblique" size:18];
         self.titleLabel.numberOfLines = 0;
         
         self.nameLabel = [UILabel new];

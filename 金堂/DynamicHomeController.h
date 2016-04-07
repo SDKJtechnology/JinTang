@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CenterViewController.h"
 
-@interface DynamicHomeController : UIViewController
+@interface DynamicHomeController : CenterViewController
 
 @end
 

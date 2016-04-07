@@ -20,6 +20,7 @@
         .leftSpaceToView(self.contentView, margin)
         .rightSpaceToView(self.contentView, margin)
         .autoHeightRatio(0);
+        self.titleLabel.numberOfLines = 0;
         
         self.nameLabel.sd_layout
         .topSpaceToView(self.titleLabel, margin)
