@@ -20,6 +20,7 @@
 
 @implementation CenterViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -28,7 +29,7 @@
     
     tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dongtai.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openOrCloseLeftList)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"形状-1"] style:UIBarButtonItemStylePlain target:self action:@selector(openOrCloseLeftList)];
     self.title = @"金堂之家";
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.239 green:0.638 blue:0.955 alpha:1.000];
     
@@ -56,10 +57,10 @@
     [tempAppDelegate.LeftSlideVC setPanEnabled:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-//    NSLog(@"viewWillAppear");
+    [super viewDidAppear:animated];
+    //    NSLog(@"viewDidAppear");
     [tempAppDelegate.LeftSlideVC setPanEnabled:YES];
 }
 

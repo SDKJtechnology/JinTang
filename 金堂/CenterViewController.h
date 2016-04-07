@@ -11,4 +11,6 @@
 
 @interface CenterViewController : UIViewController
 
+- (void) openOrCloseLeftList;
+
 @end

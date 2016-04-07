@@ -24,6 +24,8 @@
     NSArray *selectListData;//水平选择列表数据
     
     NSMutableArray *dynamicListData;
+    
+    CGFloat oldContentOffsetY;
 }
 
 @property (strong, nonatomic) UIScrollView *contentView;
@@ -54,13 +56,7 @@ static NSNumber *page;
     [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page];
     
     self.selectList = [[TJSelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
-//    self.selectList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeNoBounce;
-//    [self.selectList setSelectionIndicatorColor:[UIColor blackColor]];
-//    [self.selectList setTitleFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:16] forState:UIControlStateNormal];
-//    [self.selectList setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [self.selectList setSelectionIndicatorColor:[UIColor blueColor]];
     self.selectList.delegate = self;
-//    self.selectList.dataSource = self;
     
     self.contentView = [[UIScrollView alloc] init];
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
@@ -69,8 +65,8 @@ static NSNumber *page;
     self.contentView.bounces = NO;
     self.contentView.delegate = self;
     
-    [self.view addSubview:self.selectList];
-    [self.view addSubview:self.contentView];
+    [self.view insertSubview:self.selectList atIndex:1];
+    [self.view insertSubview:self.contentView atIndex:0];
     
         //  添加TableView
         CGFloat w = self.contentView.frame.size.width;
@@ -83,7 +79,7 @@ static NSNumber *page;
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.tag = i + 100;
-        [self.contentView addSubview:tableView];
+        [self.contentView insertSubview:tableView atIndex:0];
     }
     
     //  设置scrollView
@@ -117,9 +113,17 @@ static NSNumber *page;
 //  实现scrollView滑动绑定的方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    oldContentOffsetY = scrollView.contentOffset.y;
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.selectList.selectedItemIndex = page;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (scrollView.contentOffset.x == targetContentOffset->x && scrollView.contentOffset.y == targetContentOffset->y) {
+        [self openOrCloseLeftList];
+    }
 }
 
 #pragma mark UITableViewDataSource
