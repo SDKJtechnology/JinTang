@@ -15,48 +15,37 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        self.titleLabel.sd_layout
-        .topSpaceToView(self.contentView, margin)
-        .leftSpaceToView(self.contentView, margin)
-        .rightSpaceToView(self.contentView, margin)
-        .autoHeightRatio(0);
-        self.titleLabel.numberOfLines = 0;
         
-        self.nameLabel.sd_layout
-        .topSpaceToView(self.titleLabel, margin)
-        .leftSpaceToView(self.contentView, margin)
-        .autoHeightRatio(0);
-        [self.nameLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
-        
-        self.countLabel.sd_layout
-        .leftSpaceToView(self.nameLabel, margin)
-        .topSpaceToView(self.titleLabel, margin)
-        .autoHeightRatio(0);
-        [self.countLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
-        
-        self.timeLabel.sd_layout
-        .rightSpaceToView(self.contentView, margin)
-        .topSpaceToView (self.titleLabel, margin)
-        .autoHeightRatio(0);
-        [self.timeLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
-        
-        self.lineView.sd_layout
-        .leftSpaceToView(self.contentView, 0)
-        .rightSpaceToView(self.contentView, 0)
-        .heightIs(1.5)
-        .topSpaceToView(self.timeLabel, margin);
-        
-        [self setupAutoHeightWithBottomView:self.lineView bottomMargin:0];
     }
     return self;
 }
 
 - (void)setDynamicList:(DynamicList *)dynamicList
 {
+    [self.headerButton setImage:[UIImage imageNamed:@"头像"] forState:UIControlStateNormal];
+    
     self.titleLabel.text = dynamicList.title;
-    self.nameLabel.text = dynamicList.source;
-    self.countLabel.text = dynamicList.views_num;
+    
+    [self.nameButton setTitle:dynamicList.source forState:UIControlStateNormal];
+    [self.nameButton setImage:[UIImage imageNamed:@"nv"] forState:UIControlStateNormal];
+    
     self.timeLabel.text = dynamicList.push_at;
+    
+    [self.addressButton setTitle:@"金堂印象" forState:UIControlStateNormal];
+    CGRect frame = [self getTitleLabelTexeFrame:self.addressButton];
+    self.addressButton.sd_layout.widthIs(frame.size.width);
+    
+    [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
+    [self.replyCountButton setTitle:@"1252" forState:UIControlStateNormal];
+    self.replyCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.replyCountButton].size.width + [self getImageViewFrame:self.replyCountButton].size.width);
+    
+    [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
+    [self.supportCountButton setTitle:@"1252" forState:UIControlStateNormal];
+    self.supportCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.supportCountButton].size.width + [self getImageViewFrame:self.supportCountButton].size.width);
+    
+    [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
+    [self.browseCountButton setTitle:@"1252" forState:UIControlStateNormal];
+    self.browseCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.browseCountButton].size.width + [self getImageViewFrame:self.browseCountButton].size.width);
 }
 
 @end

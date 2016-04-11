@@ -8,14 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-typedef BOOL (^DynamicNetworkingBlock)(id data);
+typedef void (^DynamicNetworkingBlock)(id data);
 
 @interface DynamicNetworkingModel : NSObject
 
-@property (nonatomic, copy) DynamicNetworkingBlock dynamicListBlock;
-
+/**
+ *  单例初始化方法
+ *
+ *  @return dynamicNetworkingModel Obejct
+ */
 + (instancetype)sharedObejct;
-
-- (void)getDynamicDataWithPage:(NSNumber *)page;
+/**
+ *  根据page获取动态数据
+ *
+ *  @param page 页码
+ */
+- (void)getDynamicDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
+/**
+ *  根据page获取热点数据
+ *
+ *  @param page 页码
+ */
+- (void)getHotspotDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
 
 @end

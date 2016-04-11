@@ -37,19 +37,19 @@
         .topSpaceToView(self.titleLabel, margin)
         .rightSpaceToView(self.contentView, margin);
         
-        self.nameLabel.sd_layout
-        .leftSpaceToView(self.contentView, margin)
-        .topSpaceToView(self.showImageView1, margin)
-        .autoHeightRatio(0)
-        .minWidthIs(miniWidth / 2);
-        [self.nameLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
-        
-        self.countLabel.sd_layout
-        .leftSpaceToView(self.nameLabel, margin)
-        .topSpaceToView(self.showImageView1, margin)
-        .autoHeightRatio(0)
-        .minWidthIs(miniWidth);
-        [self.countLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
+//        self.nameLabel.sd_layout
+//        .leftSpaceToView(self.contentView, margin)
+//        .topSpaceToView(self.showImageView1, margin)
+//        .autoHeightRatio(0)
+//        .minWidthIs(miniWidth / 2);
+//        [self.nameLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
+//        
+//        self.browseCountLabel.sd_layout
+//        .leftSpaceToView(self.nameLabel, margin)
+//        .topSpaceToView(self.showImageView1, margin)
+//        .autoHeightRatio(0)
+//        .minWidthIs(miniWidth);
+//        [self.browseCountLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
         
         self.timeLabel.sd_layout
         .rightSpaceToView(self.contentView, margin)
@@ -58,12 +58,12 @@
         .minWidthIs(miniWidth);
         [self.timeLabel setSingleLineAutoResizeWithMaxWidth:CELL_Width / 3];
         
-        self.lineView.sd_layout
-        .leftSpaceToView(self.contentView, 0)
-        .rightSpaceToView(self.contentView, 0)
-        .heightIs(1.5)
-        .topSpaceToView(self.nameLabel, margin);
-        
+//        self.lineView.sd_layout
+//        .leftSpaceToView(self.contentView, 0)
+//        .rightSpaceToView(self.contentView, 0)
+//        .heightIs(1.5)
+//        .topSpaceToView(self.nameLabel, margin);
+//        
         [self setupAutoHeightWithBottomView:self.lineView bottomMargin:0];
         [self.contentView setSd_equalWidthSubviews:@[self.showImageView1, self.showImageView2, self.showImageView3]];
     }
@@ -73,16 +73,16 @@
 
 - (void)setDynamicList:(DynamicList *)dynamicList
 {
-    [self.showImageView1 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches.firstObject] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
-    
-    [self.showImageView2 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches[1]] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
-    
-    [self.showImageView3 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches[2]] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
-    
-    self.nameLabel.text = dynamicList.source;
-    self.titleLabel.text = dynamicList.title;
-    self.countLabel.text = dynamicList.views_num;
-    self.timeLabel.text = dynamicList.push_at;
+//    [self.showImageView1 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches.firstObject] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
+//    
+//    [self.showImageView2 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches[1]] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
+//    
+//    [self.showImageView3 sd_setImageWithURL:[NSURL URLWithString:dynamicList.attaches[2]] placeholderImage:[UIImage imageNamed:@"load.jpg"]];
+//    
+//    self.nameLabel.text = dynamicList.source;
+//    self.titleLabel.text = dynamicList.title;
+//    self.browseCountLabel.text = dynamicList.views_num;
+//    self.timeLabel.text = dynamicList.push_at;
 }
 
 @end

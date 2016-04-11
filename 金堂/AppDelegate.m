@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "LeftSortsViewController.h"
-#import "DynamicHomeController.h"
+#import "TJ_LeftSortsViewController.h"
+#import "TJ_DynamicHomeController.h"
 
 @interface AppDelegate ()
 
@@ -27,7 +27,7 @@
     
     NSArray *imageNames = @[@"dongtai.png",@"shequ",@"quan",@"liaotian",@"faxian"];
     NSArray *titles = @[@"动态",@"社区",@"金堂圈",@"聊天",@"发现"];
-    NSArray *calssArray = @[@"DynamicHomeController",@"DynamicHomeController",@"DynamicHomeController",@"DynamicHomeController",@"DynamicHomeController"];
+    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController"];
     NSMutableArray *VCArray = [NSMutableArray array];
     NSInteger i = 0;
     
@@ -42,8 +42,8 @@
         i++;
     }
     tabBarVC.viewControllers = VCArray;
-    LeftSortsViewController *leftVCList = [[LeftSortsViewController alloc] init];
-    self.LeftSlideVC = [[LeftSlideViewController alloc] initWithLeftView:leftVCList andMainView:tabBarVC];
+    TJ_LeftSortsViewController *leftVCList = [[TJ_LeftSortsViewController alloc] init];
+    self.LeftSlideVC = [[TJ_LeftSlideViewController alloc] initWithLeftView:leftVCList andMainView:tabBarVC];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor grayColor];
