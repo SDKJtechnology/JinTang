@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TJ_LeftSlideViewController.h"
 
-@interface TJ_CenterViewController : TJ_LeftSlideViewController
+@interface TJ_CenterViewController : UIViewController
 
 - (void) openOrCloseLeftList;
 

@@ -22,7 +22,6 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.titleLabel = [[UILabel alloc] init];
-        self.titleLabel.textColor = [UIColor grayColor];
         self.titleLabel.font = [UIFont fontWithName:@"Helvetica-BoldOblique" size:18];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         
@@ -40,9 +39,9 @@
     [super layoutSubviews];
     
     CGFloat height = 3;
-    self.indicatorView.frame = CGRectMake(5, self.height - height, self.width - 10, 3);
+    self.indicatorView.frame = CGRectMake(5, self.height - height, self.width - 10, height);
 //    self.indicatorView.backgroundColor = [UIColor blueColor];
-    self.titleLabel.frame = CGRectMake(0, 0, self.width, self.height - self.indicatorView.height);
+    self.titleLabel.frame = CGRectMake(0, 0, self.width, self.height);
 }
 
 - (void)setTitleSting:(NSString *)titleSting
@@ -62,6 +61,34 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.titleLabel.textColor = seletedTitleColor;
     });
+}
+
+- (void)setTitleColor:(UIColor *)titleColor
+{
+    self.titleLabel.textColor = titleColor;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    self.titleLabel.backgroundColor = backgroundColor;
+}
+
+- (void)setFont:(UIFont *)font
+{
+    self.titleLabel.font = font;
+}
+
+- (void)setBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor
+{
+    self.titleLabel.layer.masksToBounds = YES;
+    self.titleLabel.layer.cornerRadius = cornerRadius;
+    self.titleLabel.layer.borderWidth = borderWidth;
+    self.titleLabel.layer.borderColor = [borderColor CGColor];
+}
+
+- (void)setDidSelectedItemBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor
+{
+    [self setBorderStyleWithCornerRadius:cornerRadius BorderWidth:borderWidth BorderColor:borderColor];
 }
 
 @end
