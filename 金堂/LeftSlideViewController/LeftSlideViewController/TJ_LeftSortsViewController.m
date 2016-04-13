@@ -67,14 +67,14 @@
     imageview.image = [UIImage imageNamed:@"beijing"];
     
     self.landingButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
-    [self.landingButton setImage:[UIImage imageNamed:@"denglu"] forState:UIControlStateNormal];
+    [self.landingButton setImage:[UIImage imageNamed:@"zu1"] forState:UIControlStateNormal];
     
     self.concernButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
     [self.concernButton setImage:[UIImage imageNamed:@"img_15"] forState:UIControlStateNormal];
     [self.concernButton setTitle:@"关注" forState:UIControlStateNormal];
     
     self.circleButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
-    [self.circleButton setImage:[UIImage imageNamed:@"img_23"] forState:UIControlStateNormal];
+    [self.circleButton setImage:[UIImage imageNamed:@"pyquan"] forState:UIControlStateNormal];
     [self.circleButton setTitle:@"朋友圈" forState:UIControlStateNormal];
     
     self.fansButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
