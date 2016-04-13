@@ -11,11 +11,15 @@
 #import "SDAutoLayout.h"
 #import "TJ_BAButton.h"
 #import <UIImageView+WebCache.h>
+#import "TJ_SharedPhotoView.h"
 
 #define CELL_Width self.contentView.frame.size.width
 #define margin 10
 
-@interface ModelTableViewCell : UITableViewCell
+@interface DynamicConcernNotImageCell : UITableViewCell
+{
+    TJ__SharedPhotoView *sharedPhotoView;
+}
 /**
  *  说说内容
  */
@@ -38,51 +42,22 @@
  */
 @property (nonatomic) TJ_BACustomButton *browseCountButton;
 /**
- *  浏览图标
- */
-@property (nonatomic) UIImageView *browseImage;
-/**
  *  点赞人数
  */
 @property (nonatomic) TJ_BACustomButton *supportCountButton;
-/**
- *  点赞图标
- */
-@property (nonatomic) UIImageView *supportImageView;
 /**
  *  回复数量
  */
 @property (nonatomic) TJ_BACustomButton *replyCountButton;
 /**
- *  回复图标
- */
-@property (nonatomic) UIImageView *replyImageView;
-/**
  *  头像图片
  */
 @property (nonatomic, strong) TJ_BACustomButton *headerButton;
-/**
- *  多图数组
- */
-@property (nonatomic) NSArray *images;
-@property (nonatomic) UIImageView *showImageView1;
-@property (nonatomic) UIImageView *showImageView2;
-@property (nonatomic) UIImageView *showImageView3;
-@property (nonatomic) UIView *lineView;
+
 /**
  *   数据模型
  */
 @property (nonatomic, strong) DynamicList *dynamicList;
-
-/**
- *  通过数据模型获得对应的cell类
- *
- *  @param dynamicList 数据模型
- *
- *  @return cell类名
- */
-+ (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList;
-
 /**
  *  获取按钮titleLabel frame
  *
@@ -94,5 +69,15 @@
 
 //获取imageView的frame
 - (CGRect)getImageViewFrame:(UIButton *)button;
+
++ (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList;
+
+@end
+
+@interface DynamicConcernOneImageCell : DynamicConcernNotImageCell
+
+@end
+
+@interface DynamicConcernManyImageCell : DynamicConcernNotImageCell
 
 @end

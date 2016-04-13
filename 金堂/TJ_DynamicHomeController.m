@@ -9,12 +9,14 @@
 #import "TJ_DynamicHomeController.h"
 #import "TJ_SelectionList.h"
 #import <UIView+SDAutoLayout.h>
-#import "DynamicNotImageCell.h"
+#import "DynamicConcernNotImageCell.h"
 #import "DynamicModel.h"
 #import "HotspotModel.h"
+#import "ActivityModel.h"
 #import "DynamicNetworkingModel.h"
 #import "HotspotBigImageCell.h"
-#import "HotspotSmallPictureCell.h"
+#import "AdCell.h"
+#import "ActivityCell.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -36,6 +38,10 @@
      *   动态热点数据
      */
     NSMutableArray *dynamciHotspotData;
+    /**
+     *  活动页数据
+     */
+    NSMutableArray *activityData;
 }
 
 @property (strong, nonatomic) UIScrollView *contentView;
@@ -53,6 +59,8 @@ static NSNumber *page;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.title = @"金堂有爱";
+    
     page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];
     dynamicConcernListData = [NSMutableArray array];
@@ -89,7 +97,8 @@ static NSNumber *page;
         [self.contentView insertSubview:tableView atIndex:0];
         
         [tableView registerClass:[HotspotBigImageCell class] forCellReuseIdentifier:NSStringFromClass([HotspotBigImageCell class])];
-        [tableView registerClass:[HotspotSmallPictureCell class] forCellReuseIdentifier:NSStringFromClass([HotspotSmallPictureCell class])];
+        [tableView registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
+        [tableView registerClass:[ActivityCell class] forCellReuseIdentifier:NSStringFromClass([ActivityCell class])];
     }
     
     //  设置scrollView
@@ -156,7 +165,7 @@ static NSNumber *page;
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if (scrollView.contentOffset.x == targetContentOffset->x && scrollView.contentOffset.y == targetContentOffset->y  && ![scrollView isKindOfClass:[UITableView class]]) {
+    if (scrollView.contentOffset.x == targetContentOffset->x && scrollView.contentOffset.y == targetContentOffset->y  && ![scrollView isKindOfClass:[UITableView class]] && targetContentOffset->x == 0) {
         [self openOrCloseLeftList];
     }
 }
@@ -168,34 +177,26 @@ static NSNumber *page;
     UITableViewCell *cell = nil;
     if (tableView.tag == 100)
     {
-        NSString *identifier = [DynamicNotImageCell identifierForModelAtRow:dynamicConcernListData[indexPath.row]];
+        NSString *identifier = [DynamicConcernNotImageCell identifierForModelAtRow:dynamicConcernListData[indexPath.section]];
         Class cellClass = NSClassFromString(identifier);
         if (!cell){
             cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.sd_indexPath = indexPath;
-        cell.sd_tableView = tableView;
         return cell;
     }
-    if (tableView.tag == 101) {
-        if (indexPath.row == 0) {
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotBigImageCell class]) forIndexPath:indexPath];
-            cell.sd_indexPath = indexPath;
-            cell.sd_tableView = tableView;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-        else
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotSmallPictureCell class]) forIndexPath:indexPath];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.sd_indexPath = indexPath;
-            cell.sd_tableView = tableView;
-            return cell;
-        }
+    else if (tableView.tag == 101) {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotBigImageCell class]) forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    else
+    {
+        if (indexPath.row == 0)
+            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AdCell class]) forIndexPath:indexPath];
+        else
+            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ActivityCell class]) forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     return cell;
 }
 
@@ -203,13 +204,13 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return 1;
+            return dynamicConcernListData.count;
             break;
         case 101:
             return dynamciHotspotData.count;
             break;
         case 102:
-            return 3;
+            return 5;
             break;
     }
     return 1;
@@ -219,16 +220,13 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return dynamicConcernListData.count;
+            return 1;
             break;
         case 101:
-        {
-            HotspotModel *hots = dynamciHotspotData[section];
-            return hots.item.body.count + 1;
+            return 1;
             break;
-        }
         case 102:
-            return 0;
+            return 4;
             break;
     }
     return 0;
@@ -240,16 +238,13 @@ static NSNumber *page;
     switch (tableView.tag) {
         case 100:
         {
-            ((DynamicNotImageCell *)cell).dynamicList = dynamicConcernListData[indexPath.row];
+            ((DynamicConcernNotImageCell *)cell).dynamicList = dynamicConcernListData[indexPath.section];
         }
             break;
         case 101:
         {
             HotspotModel *hots = dynamciHotspotData[indexPath.section];
-            if (!indexPath.row)
             ((HotspotBigImageCell *)cell).header = hots.item.header;
-            else
-                ((HotspotSmallPictureCell *)cell).body = hots.item.body[indexPath.row - 1];
         }
             break;
         case 102:
@@ -263,11 +258,9 @@ static NSNumber *page;
         case 100:
         {
             // cell自适应设置
-            DynamicList * model = dynamicConcernListData[indexPath.row];
-            
-            NSString * identifier = [ModelTableViewCell identifierForModelAtRow:model];
+            DynamicList * model = dynamicConcernListData[indexPath.section];
+            NSString * identifier = [DynamicConcernNotImageCell identifierForModelAtRow:model];
             Class mClass =  NSClassFromString(identifier);
-            
             // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
             return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:mClass contentViewWidth:VIEW_WIDTH];
         }
@@ -275,16 +268,22 @@ static NSNumber *page;
         case 101:
         {
             HotspotModel *hots = dynamciHotspotData[indexPath.section];
-            if (indexPath.row) {
-                return 80;
-                return [tableView cellHeightForIndexPath:indexPath model:hots.item.body[indexPath.row - 1] keyPath:@"body"cellClass:[HotspotSmallPictureCell class] contentViewWidth:VIEW_WIDTH - 30];
-            }
-            else
-                return [tableView cellHeightForIndexPath:indexPath model:hots.item.header keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH - 30];
+            Body *body = hots.item.header;
+            NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH]);
+
+            return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH];
         }
             break;
         case 102:
-            return 3;
+        {
+            ActivityModel *model = nil;
+
+            if (indexPath.row == 0)
+            {
+                return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"activityModel"cellClass:[AdCell class] contentViewWidth:VIEW_WIDTH];
+            }
+            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"activityModel"cellClass:[ActivityCell class] contentViewWidth:VIEW_WIDTH];
+        }
             break;
     }
     return 30;
@@ -294,13 +293,13 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return 0.01;
+            return 10;
             break;
         case 101:
-            return 30;
+            return 10;
             break;
         case 102:
-            return 3;
+            return 30;
             break;
     }
     return 0.01;

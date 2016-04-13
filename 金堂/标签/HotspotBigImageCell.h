@@ -15,7 +15,8 @@
 
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UILabel *titleLabel;
-
+@property (nonatomic, strong) UILabel *stateLabel;
+@property (nonatomic, strong) UIButton *activityButton;
 @property (nonatomic, strong) Body *header;
 
 @end
