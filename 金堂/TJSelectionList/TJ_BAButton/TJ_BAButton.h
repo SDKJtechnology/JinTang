@@ -57,6 +57,11 @@ typedef enum{
 
 - (instancetype _Nonnull)initWitAligenmentStatus:(BAAligenmentStatus)status;
 
+//获取titleLabel的宽度
+- (CGRect)getTitleLabelWith;
+
+//获取imageView的frame
+- (CGRect)getImageViewFrame;
 
 @end
 

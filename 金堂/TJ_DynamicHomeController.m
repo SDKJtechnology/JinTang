@@ -134,7 +134,7 @@ static NSNumber *page;
     }];
 }
 
-#pragma mark HTHorizontalSelectionListDataSource
+#pragma mark TJ_SelectionListDelegate
 
 - (NSInteger)numberOfItemsAtSelectionList:(TJ_SelectionList *)selectionList
 {
@@ -145,8 +145,6 @@ static NSNumber *page;
 {
     return selectListData[index];
 }
-
-#pragma mark HTHorizontalSelectionListDelegate
 
 - (void)selectionList:(TJ_SelectionList *)selectionList didSelectItemWithIndex:(NSInteger)index
 {

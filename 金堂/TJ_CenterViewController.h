@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TJ_LeftSlideViewController.h"
+#import "SDAutoLayout.h"
 
 @interface TJ_CenterViewController : UIViewController
 

@@ -177,15 +177,15 @@
     
     [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
     [self.replyCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.replyCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.replyCountButton].size.width + [self getImageViewFrame:self.replyCountButton].size.width);
+    self.replyCountButton.sd_layout.widthIs([self.replyCountButton getTitleLabelWith].size.width + [self.replyCountButton getImageViewFrame].size.width);
     
     [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
     [self.supportCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.supportCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.supportCountButton].size.width + [self getImageViewFrame:self.supportCountButton].size.width + 15);
+    self.supportCountButton.sd_layout.widthIs([self.supportCountButton getImageViewFrame].size.width + [self.supportCountButton getTitleLabelWith].size.width);
     
     [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
     [self.browseCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.browseCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.browseCountButton].size.width + [self getImageViewFrame:self.browseCountButton].size.width);
+    self.browseCountButton.sd_layout.widthIs([self.browseCountButton getImageViewFrame].size.width + [self.browseCountButton getTitleLabelWith].size.width);
 }
 
 + (NSString *)identifierForModelAtRow:(DynamicList *)dynamicList
@@ -221,21 +221,17 @@
     
     self.timeLabel.text = dynamicList.push_at;
     
-    [self.addressButton setTitle:@"金堂印象" forState:UIControlStateNormal];
-    CGRect frame = [self getTitleLabelTexeFrame:self.addressButton];
-    self.addressButton.sd_layout.widthIs(frame.size.width);
-    
     [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
     [self.replyCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.replyCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.replyCountButton].size.width + [self getImageViewFrame:self.replyCountButton].size.width);
+    self.replyCountButton.sd_layout.widthIs([self.replyCountButton getTitleLabelWith].size.width + [self.replyCountButton getImageViewFrame].size.width);
     
     [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
     [self.supportCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.supportCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.supportCountButton].size.width + [self getImageViewFrame:self.supportCountButton].size.width + 15);
+    self.supportCountButton.sd_layout.widthIs([self.supportCountButton getImageViewFrame].size.width + [self.supportCountButton getTitleLabelWith].size.width);
     
     [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
     [self.browseCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.browseCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.browseCountButton].size.width + [self getImageViewFrame:self.browseCountButton].size.width);
+    self.browseCountButton.sd_layout.widthIs([self.browseCountButton getImageViewFrame].size.width + [self.browseCountButton getTitleLabelWith].size.width);
 }
 
 @end
@@ -261,15 +257,16 @@
     
     [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
     [self.replyCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.replyCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.replyCountButton].size.width + [self getImageViewFrame:self.replyCountButton].size.width);
+    self.replyCountButton.sd_layout.widthIs([self.replyCountButton getTitleLabelWith].size.width + [self.replyCountButton getImageViewFrame].size.width);
     
     [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
     [self.supportCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.supportCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.supportCountButton].size.width + [self getImageViewFrame:self.supportCountButton].size.width + 15);
+    self.supportCountButton.sd_layout.widthIs([self.supportCountButton getImageViewFrame].size.width + [self.supportCountButton getTitleLabelWith].size.width);
     
     [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
     [self.browseCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.browseCountButton.sd_layout.widthIs([self getTitleLabelTexeFrame:self.browseCountButton].size.width + [self getImageViewFrame:self.browseCountButton].size.width);
+    self.browseCountButton.sd_layout.widthIs([self.browseCountButton getImageViewFrame].size.width + [self.browseCountButton getTitleLabelWith].size.width);
+    
     sharedPhotoView.imageUrlArray = dynamicList.attaches;
 }
 

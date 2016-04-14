@@ -36,6 +36,8 @@
   @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-BoldOblique" size:19],
     NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithWhite:0.891 alpha:1.000];
+    
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     [self.view addGestureRecognizer:pan];
 }

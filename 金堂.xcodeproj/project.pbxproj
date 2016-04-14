@@ -94,6 +94,7 @@
 		99B0D2EE1CA8DC4700DE3965 /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2ED1CA8DC4700DE3965 /* __UITests.m */; };
 		99B0D3091CA907AA00DE3965 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D3081CA907AA00DE3965 /* Podfile */; };
 		D27B858ABBE05EBE31EF8876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FCEF84EADC805EF927E3C6 /* libPods.a */; };
+		DE54B1001CBFB2490029D123 /* TJ_HotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE54B0FF1CBFB2490029D123 /* TJ_HotCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,8 @@
 		99B0D3081CA907AA00DE3965 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C6760EF67EC0D5D5796CBEDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0FF5357F04A504D3432E96F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DE54B0FE1CBFB2490029D123 /* TJ_HotCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_HotCollectionViewCell.h; sourceTree = "<group>"; };
+		DE54B0FF1CBFB2490029D123 /* TJ_HotCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_HotCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,23 +294,16 @@
 		7A2DDC171CAB7BFC0056F363 /* TJ_Dynamic(动态) */ = {
 			isa = PBXGroup;
 			children = (
-				7A7347D21CBD426D006B222E /* SDCycleScrollView */,
-				7A7CDA931CB7D8C90007EF93 /* TJ_BAButton */,
 				7AA4740A1CAD51540012C22C /* TJ_MJExtension */,
-				7A70AE741CB60F9A005D2593 /* TJ_SelectionList */,
 				7AA473FF1CAD18AC0012C22C /* TJ_XYString */,
 				7AA474061CAD2CDA0012C22C /* TJ_Model */,
-				7AA473EE1CACED470012C22C /* TJ_DynamicCells */,
-				99B0D2CE1CA8DC4700DE3965 /* TJ_DynamicHomeController.h */,
-				99B0D2CF1CA8DC4700DE3965 /* TJ_DynamicHomeController.m */,
-				7AA474031CAD1EC00012C22C /* UILabel+new.h */,
-				7AA474041CAD1EC00012C22C /* UILabel+new.m */,
+				DE54B0FC1CBFB1570029D123 /* TJ_views */,
 			);
 			name = "TJ_Dynamic(动态)";
 			path = "标签";
 			sourceTree = "<group>";
 		};
-		7A70AE741CB60F9A005D2593 /* TJ_SelectionList */ = {
+		7A70AE741CB60F9A005D2593 /* TJ_SelectionList(水平列表) */ = {
 			isa = PBXGroup;
 			children = (
 				7A70AE751CB60F9A005D2593 /* TJ_SelectionList.h */,
@@ -317,11 +313,11 @@
 				7A70AE791CB60F9A005D2593 /* UIView_extra.h */,
 				7A70AE7A1CB60F9A005D2593 /* UIView_extra.m */,
 			);
-			name = TJ_SelectionList;
+			name = "TJ_SelectionList(水平列表)";
 			path = ../TJSelectionList;
 			sourceTree = "<group>";
 		};
-		7A7347D21CBD426D006B222E /* SDCycleScrollView */ = {
+		7A7347D21CBD426D006B222E /* SDCycleScrollView(无限滚动) */ = {
 			isa = PBXGroup;
 			children = (
 				7A7347D91CBD42A4006B222E /* PageControl */,
@@ -332,6 +328,7 @@
 				7A7347E61CBD42A4006B222E /* UIView+SDExtension.h */,
 				7A7347E71CBD42A4006B222E /* UIView+SDExtension.m */,
 			);
+			name = "SDCycleScrollView(无限滚动)";
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
 		};
@@ -353,6 +350,7 @@
 		7A7573961CBE88CA00FAA882 /* TJ_ Community(社区) */ = {
 			isa = PBXGroup;
 			children = (
+				DE54B0FD1CBFB1FC0029D123 /* TJ_CommunityCells */,
 				7A7573971CBE88FC00FAA882 /* TJ_CommunityViewController.h */,
 				7A7573981CBE88FC00FAA882 /* TJ_CommunityViewController.m */,
 			);
@@ -446,7 +444,7 @@
 			path = ../MJExtension;
 			sourceTree = "<group>";
 		};
-		7AE303821CB4A26D00A92D38 /* TJ_LeftSlideViewController */ = {
+		7AE303821CB4A26D00A92D38 /* TJ_LeftSlideViewController(抽屉) */ = {
 			isa = PBXGroup;
 			children = (
 				7AE303831CB4A26D00A92D38 /* TJ_LeftSlideViewController.h */,
@@ -456,7 +454,7 @@
 				7AF539811CB26A4E005D9205 /* TJ_CenterViewController.h */,
 				7AF539821CB26A4E005D9205 /* TJ_CenterViewController.m */,
 			);
-			name = TJ_LeftSlideViewController;
+			name = "TJ_LeftSlideViewController(抽屉)";
 			path = LeftSlideViewController/LeftSlideViewController;
 			sourceTree = "<group>";
 		};
@@ -534,7 +532,7 @@
 			isa = PBXGroup;
 			children = (
 				7AF805931CBE54AF00DA2CC4 /* images */,
-				7AE303821CB4A26D00A92D38 /* TJ_LeftSlideViewController */,
+				7AE303821CB4A26D00A92D38 /* TJ_LeftSlideViewController(抽屉) */,
 				7A2DDC171CAB7BFC0056F363 /* TJ_Dynamic(动态) */,
 				7A7573961CBE88CA00FAA882 /* TJ_ Community(社区) */,
 				99B0D2CB1CA8DC4700DE3965 /* AppDelegate.h */,
@@ -579,6 +577,30 @@
 				63FCEF84EADC805EF927E3C6 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE54B0FC1CBFB1570029D123 /* TJ_views */ = {
+			isa = PBXGroup;
+			children = (
+				7A7CDA931CB7D8C90007EF93 /* TJ_BAButton */,
+				7A70AE741CB60F9A005D2593 /* TJ_SelectionList(水平列表) */,
+				7A7347D21CBD426D006B222E /* SDCycleScrollView(无限滚动) */,
+				7AA473EE1CACED470012C22C /* TJ_DynamicCells */,
+				7AA474031CAD1EC00012C22C /* UILabel+new.h */,
+				7AA474041CAD1EC00012C22C /* UILabel+new.m */,
+				99B0D2CF1CA8DC4700DE3965 /* TJ_DynamicHomeController.m */,
+				99B0D2CE1CA8DC4700DE3965 /* TJ_DynamicHomeController.h */,
+			);
+			name = TJ_views;
+			sourceTree = "<group>";
+		};
+		DE54B0FD1CBFB1FC0029D123 /* TJ_CommunityCells */ = {
+			isa = PBXGroup;
+			children = (
+				DE54B0FE1CBFB2490029D123 /* TJ_HotCollectionViewCell.h */,
+				DE54B0FF1CBFB2490029D123 /* TJ_HotCollectionViewCell.m */,
+			);
+			name = TJ_CommunityCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -821,6 +843,7 @@
 				7AA474261CAD51540012C22C /* MJPropertyKey.m in Sources */,
 				7A7347F41CBD5100006B222E /* ActivityModel.m in Sources */,
 				7A7347EA1CBD42A4006B222E /* TADotView.m in Sources */,
+				DE54B1001CBFB2490029D123 /* TJ_HotCollectionViewCell.m in Sources */,
 				7A7347F11CBD4352006B222E /* AdCell.m in Sources */,
 				7AA474231CAD51540012C22C /* MJExtensionConst.m in Sources */,
 				7AA474221CAD51540012C22C /* MJDictionaryCache.m in Sources */,

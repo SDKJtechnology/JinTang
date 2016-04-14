@@ -8,13 +8,24 @@
 
 #import "TJ_CommunityViewController.h"
 #import "TJ_SelectionList.h"
+#import "TJ_HotCollectionViewCell.h"
 
-@interface TJ_CommunityViewController ()<TJ_SelectionListDelegate>
+#define statusBarFrame [[UIApplication sharedApplication] statusBarFrame]//状态栏frame
+#define navigationBarFrame self.navigationController.navigationBar.frame//navigationbar frame
+
+@interface TJ_CommunityViewController ()<TJ_SelectionListDelegate,
+                                            UIScrollViewDelegate,
+                                            UICollectionViewDelegate,
+                                            UICollectionViewDataSource>
 {
-    NSArray *selectionListData;
+    NSArray *selectionListData;//水平选择列表数据
+    
+    NSArray *hotPageData;//热门页数据
 }
 
 @property (nonatomic) TJ_SelectionList *selectionList;
+@property (nonatomic) UICollectionView *collectionView;
+@property (nonatomic) UIScrollView *scrollView;
 
 @end
 
@@ -26,27 +37,67 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     selectionListData = @[@"最热",@"话题",@"最新"];
+    
+    hotPageData = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
 
+    [self setup];
+}
+
+- (void)setup
+{
     self.selectionList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, 0, 150, 25)];
     self.selectionList.delegate = self;
     self.selectionList.seletedTitleColor = [UIColor whiteColor];
     self.selectionList.indicatorColor = [UIColor clearColor];
     self.selectionList.titleColor = [UIColor blackColor];
-    self.selectionList.selectItemBackgroundColor = [UIColor greenColor];
-    self.selectionList.backgroundColor = [UIColor colorWithRed:0.000 green:0.411 blue:0.000 alpha:1.000];
+    self.selectionList.selectItemBackgroundColor = [UIColor colorWithRed:0.275 green:0.476 blue:0.921 alpha:1.000];
+    self.selectionList.backgroundColor = [UIColor colorWithRed:0.221 green:0.621 blue:1.000 alpha:1.000];
     [self.selectionList setBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:0 BorderColor:0];
     self.selectionList.font = [UIFont systemFontOfSize:15];
-//    [self.selectionList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
-    [self.selectionList setDidSelectedItemBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:3 BorderColor:[UIColor colorWithRed:0.000 green:0.411 blue:0.000 alpha:1.000]];
-    self.selectionList.selectedItemIndex = 1;
-
+    //    [self.selectionList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
+    [self.selectionList setDidSelectedItemBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:3 BorderColor:self.selectionList.backgroundColor];
+//    self.selectionList.selectedItemIndex = 1;
+    
     self.navigationItem.titleView = self.selectionList;
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:({
+        CGFloat x = 0;
+        CGFloat y = statusBarFrame.size.height + navigationBarFrame.size.height;
+        CGRect frame = CGRectMake(x, y, self.view.width, self.view.height - self.tabBarController.tabBar.height - y);
+        frame;
+    })];
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.bounces = NO;
+//    self.scrollView.backgroundColor = [UIColor greenColor];
+    
+    CGFloat margin = 10;
+    
+    CGFloat hostViewW = (self.scrollView.width - 3 * margin) / 2;
+    
+    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+    flowLayout.minimumLineSpacing = margin;
+    flowLayout.minimumInteritemSpacing = margin;
+    flowLayout.itemSize = CGSizeMake(hostViewW, hostViewW);
+    flowLayout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.scrollView.height) collectionViewLayout:flowLayout];
+    self.collectionView.dataSource = self;
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.scrollView addSubview:self.collectionView];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.width * selectionListData.count, self.scrollView.height);
+    
+    [self.collectionView registerClass:[TJ_HotCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([TJ_HotCollectionViewCell class])];
+    [self.collectionView registerClass:[TJ_HotCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([self class])];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark TJ_SelectionListDelegate
 
 - (NSInteger)numberOfItemsAtSelectionList:(TJ_SelectionList *)selectionList
 {
@@ -60,7 +111,49 @@
 
 - (void)selectionList:(TJ_SelectionList *)selectionList didSelectItemWithIndex:(NSInteger)index
 {
-    NSLog(@"sfasfd ");
+    //  实现scrollView滑动绑定的方法
+    CGRect frame = self.scrollView.bounds;
+    frame.origin.x = frame.size.width * index;
+    [self.scrollView scrollRectToVisible:frame animated:YES];
+}
+
+#pragma mark UICollectionViewDataSorce
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return hotPageData.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    TJ_HotCollectionViewCell *cell = nil;
+    if (indexPath.item % 4 == 0 || (indexPath.item + 1) % 4 == 0)
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TJ_HotCollectionViewCell class]) forIndexPath:indexPath];
+    else
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([self class]) forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithRed:1.000 green:0.987 blue:0.678 alpha:1.000];
+    cell.tag = 100 + indexPath.item;
+ 
+    return cell;
+}
+
+#pragma 实现UIScrollViewDelegate 的方法
+//  实现scrollView滑动绑定的方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (![scrollView isKindOfClass:[UITableView class]])
+    {
+        CGFloat pageWidth = scrollView.frame.size.width;
+        int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        self.selectionList.selectedItemIndex = page;
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (scrollView.contentOffset.x == targetContentOffset->x && scrollView.contentOffset.y == targetContentOffset->y  && ![scrollView isKindOfClass:[UITableView class]] && targetContentOffset->x == 0) {
+        [self openOrCloseLeftList];
+    }
 }
 
 /*

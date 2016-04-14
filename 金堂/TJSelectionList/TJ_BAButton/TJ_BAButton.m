@@ -130,6 +130,12 @@
     self.imageView.frame = imageFrame;
 }
 
+#pragma mark 获取imageView的frame
+- (CGRect)getImageViewFrame
+{
+    return self.imageView.frame;
+}
+
 #pragma mark - 计算文本的的宽度
 - (CGRect)getTitleLabelWith
 {
