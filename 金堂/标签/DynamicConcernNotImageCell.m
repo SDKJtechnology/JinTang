@@ -40,8 +40,8 @@
         
         //发布时间label
         self.timeLabel = [UILabel new];
-        self.timeLabel.textColor = [UIColor colorWithWhite:0.613 alpha:1.000];
-        self.timeLabel.font = [UIFont systemFontOfSize:12];
+        self.timeLabel.textColor = [UIColor colorWithWhite:0.483 alpha:1.000];
+        self.timeLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:self.timeLabel];
         
         //发布地点
