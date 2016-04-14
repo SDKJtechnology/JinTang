@@ -71,10 +71,12 @@ static NSNumber *page;
     [self getDynamicHotspotData];
     
     self.selectList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
+    self.selectList.delegate = self;
     self.selectList.seletedTitleColor = [UIColor blackColor];
     self.selectList.indicatorColor = [UIColor blueColor];
     self.selectList.titleColor = [UIColor grayColor];
-    self.selectList.delegate = self;
+//    [self.selectList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
+//    self.selectList.selectedItemIndex = 1;
     
     self.contentView = [[UIScrollView alloc] init];
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
@@ -272,7 +274,7 @@ static NSNumber *page;
         {
             HotspotModel *hots = dynamciHotspotData[indexPath.section];
             Body *body = hots.item.header;
-            NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH]);
+//            NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH]);
 
             return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH];
         }

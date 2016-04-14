@@ -28,6 +28,7 @@
     selectionListData = @[@"最热",@"话题",@"最新"];
 
     self.selectionList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, 0, 150, 25)];
+    self.selectionList.delegate = self;
     self.selectionList.seletedTitleColor = [UIColor whiteColor];
     self.selectionList.indicatorColor = [UIColor clearColor];
     self.selectionList.titleColor = [UIColor blackColor];
@@ -35,13 +36,11 @@
     self.selectionList.backgroundColor = [UIColor colorWithRed:0.000 green:0.411 blue:0.000 alpha:1.000];
     [self.selectionList setBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:0 BorderColor:0];
     self.selectionList.font = [UIFont systemFontOfSize:15];
-
+//    [self.selectionList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
     [self.selectionList setDidSelectedItemBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:3 BorderColor:[UIColor colorWithRed:0.000 green:0.411 blue:0.000 alpha:1.000]];
+    self.selectionList.selectedItemIndex = 1;
 
-    self.selectionList.delegate = self;
     self.navigationItem.titleView = self.selectionList;
-//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
-//    [self.view addGestureRecognizer:pan];
 }
 
 - (void)didReceiveMemoryWarning {

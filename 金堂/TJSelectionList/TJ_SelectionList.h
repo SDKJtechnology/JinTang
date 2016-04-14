@@ -41,21 +41,21 @@ typedef NS_ENUM(NSInteger, TJSelectionItemMode)
  */
 @property (nonatomic, strong) UIColor *seletedTitleColor;
 /**
- *  背景颜色
+ *  背景颜色，默认为白色
  */
 @property (nonatomic, strong) UIColor *backgroundColor;
 /**
- *  选项按钮背景颜色
+ *  选项按钮背景颜色,默认为白色
  */
 @property (nonatomic, strong) UIColor *selectItemBackgroundColor;
 
 @property (nonatomic, weak) id<TJ_SelectionListDelegate> delegate;
 /**
- *  选择的索引
+ *  选择的索引,默认为0
  */
 @property (nonatomic, assign) NSInteger selectedItemIndex;
 /**
- *  设置已经选中的选项按钮边框样式
+ *  设置已经选中的选项按钮边框样式，默认无边框
  *
  *  @param cornerRadius                 边框角度
  *  @param borderWidth                  边框宽度
@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, TJSelectionItemMode)
  */
 - (void)setDidSelectedItemBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor;
 /**
- *  设置所有选项按钮边框样式
+ *  设置所有选项按钮边框样式，默认无边框
  *
  *  @param cornerRadius                 边框角度
  *  @param borderWidth                  边框宽度
@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, TJSelectionItemMode)
  */
 - (void)setSelectItemBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor;
 /**
- *  设置选项列表边框样式
+ *  设置选项列表边框样式，默认无边框
  *
  *  @param cornerRadius                 边框角度
  *  @param borderWidth                  边框宽度

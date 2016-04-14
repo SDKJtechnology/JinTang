@@ -10,7 +10,7 @@
 #import "SDAutoLayout.h"
 #import "TJ_SelectionListCell.h"
 
-static  NSIndexPath *oldSelectedIndex;
+//static  NSIndexPath *oldSelectedIndex;
 static NSInteger selectedItem;
 
 @interface TJ_SelectionList()<UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -26,7 +26,9 @@ static NSInteger selectedItem;
     CGFloat selectedBorderWidth_;
     
     UIColor *selectedBorderColor_;
-
+    
+    NSIndexPath *oldSelectedIndex;
+    
     NSInteger items;
     
     CGFloat itemWidth;
@@ -53,6 +55,7 @@ static NSString *identifier = @"cell";
         self.seletedTitleColor = [UIColor grayColor];
         self.indicatorColor = [UIColor grayColor];
         self.selectItemBackgroundColor = [UIColor whiteColor];
+        self.selectedItemIndex = 0;
     }
     
     return self;
@@ -60,12 +63,10 @@ static NSString *identifier = @"cell";
 
 - (void)layoutSubviews
 {
-    [self.collectionView registerClass:[TJ_SelectionListCell class] forCellWithReuseIdentifier:identifier];
-
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-    [self reloadItemState:indexPath];
-    
     [super layoutSubviews];
+    [self.collectionView registerClass:[TJ_SelectionListCell class] forCellWithReuseIdentifier:identifier];
+    
+    [self.delegate selectionList:self didSelectItemWithIndex:_selectedItemIndex];
 }
 
 - (void)commonInit
@@ -76,7 +77,7 @@ static NSString *identifier = @"cell";
     // 两个连续的cell之间的最小距离
     flowLayout.minimumInteritemSpacing = 0;
     // 每一个cell的大小
-//    flowLayout.itemSize = CGSizeMake(138, 40);
+    //    flowLayout.itemSize = CGSizeMake(138, 40);
     // 卷动的方向(默认是垂直)
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     // 每一个cell的margin
@@ -96,7 +97,7 @@ static NSString *identifier = @"cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if ([self.delegate respondsToSelector:@selector(numberOfItemsAtSelectionList:)])
-    return [self.delegate numberOfItemsAtSelectionList:self];
+        return [self.delegate numberOfItemsAtSelectionList:self];
     else return 0;
 }
 
@@ -104,10 +105,15 @@ static NSString *identifier = @"cell";
 {
     TJ_SelectionListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.titleSting = [self.delegate selectionList:self titleForItemWithIndex:indexPath.row];
-    cell.titleColor = self.titleColor;
     [cell setBorderStyleWithCornerRadius:cornerRadius_ BorderWidth:borderWidth_ BorderColor:borderColor_];
+    cell.titleColor = self.titleColor;
+    if (indexPath.row == self.selectedItemIndex)
+    {
+        [cell setDidSelectedItemBorderStyleWithCornerRadius:selectedCornerRadius_ BorderWidth:selectedBorderWidth_ BorderColor:selectedBorderColor_];
+        cell.backgroundColor = self.selectItemBackgroundColor;
+    }
     cell.font = self.font;
-//    cell.backgroundColor = self.selectItemBackgroundColor;
+    //    cell.backgroundColor = self.selectItemBackgroundColor;
     
     return cell;
 }
@@ -116,7 +122,10 @@ static NSString *identifier = @"cell";
 {
     selectedItem = indexPath.row;
     isSeleted = YES;
-    self.selectedItemIndex = indexPath.row;
+    _selectedItemIndex = indexPath.row;
+    
+    [self reloadItemState:indexPath];
+    
     if ([self.delegate respondsToSelector:@selector(selectionList:titleForItemWithIndex:)])
         [self.delegate selectionList:self didSelectItemWithIndex:indexPath.row];
 }
@@ -133,19 +142,21 @@ static NSString *identifier = @"cell";
 {
     if ([self.delegate respondsToSelector:@selector(numberOfItemsAtSelectionList:)])
     {
-            items = [self.delegate numberOfItemsAtSelectionList:self];
-            itemWidth = self.width / items;
-            if (self.selectionItemMode == TJSelectionItemModeEqualWidth) {
-               return CGSizeMake(itemWidth, self.height);
-            }
+        items = [self.delegate numberOfItemsAtSelectionList:self];
+        itemWidth = self.width / items;
+        if (self.selectionItemMode == TJSelectionItemModeEqualWidth) {
+            return CGSizeMake(itemWidth, self.height);
+        }
     }
     return CGSizeMake(itemWidth, self.height);
 }
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectedItemIndex inSection:0];
-    if((oldSelectedIndex.row != selectedItemIndex && !isSeleted) || selectedItemIndex == selectedItem)
+    _selectedItemIndex = selectedItemIndex;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedItemIndex inSection:0];
+    if((oldSelectedIndex.row != _selectedItemIndex && !isSeleted) || _selectedItemIndex == selectedItem)
     {
         isSeleted = NO;
         [self reloadItemState:indexPath];
@@ -154,7 +165,6 @@ static NSString *identifier = @"cell";
 
 - (void)reloadItemState:(NSIndexPath *)indexPath
 {
-    
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     ((TJ_SelectionListCell *)cell).seletedTitleColor = self.seletedTitleColor;
     ((TJ_SelectionListCell *)cell).indicatorColor = self.indicatorColor;
@@ -166,9 +176,10 @@ static NSString *identifier = @"cell";
         ((TJ_SelectionListCell *)cell).indicatorColor = [UIColor clearColor];
         [((TJ_SelectionListCell *)cell) setDidSelectedItemBorderStyleWithCornerRadius:0 BorderWidth:0 BorderColor:0];
         ((TJ_SelectionListCell *)cell).backgroundColor = [UIColor clearColor];
+        [((TJ_SelectionListCell *)cell) setBorderStyleWithCornerRadius:cornerRadius_ BorderWidth:borderWidth_ BorderColor:borderColor_];
     }
-
-    selectedItem = NSIntegerMax;
+    if (!isSeleted)
+        selectedItem = NSIntegerMax;
     oldSelectedIndex = indexPath;
 }
 //设置self的边框样式
@@ -182,9 +193,9 @@ static NSString *identifier = @"cell";
 //设置所有选项的边框样式
 - (void)setSelectItemBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor
 {
-        cornerRadius_ = cornerRadius;
-        borderColor_ = borderColor;
-        borderWidth_ = borderWidth;
+    cornerRadius_ = cornerRadius;
+    borderColor_ = borderColor;
+    borderWidth_ = borderWidth;
 }
 //设置已经选中的选项边框样式
 - (void)setDidSelectedItemBorderStyleWithCornerRadius:(CGFloat)cornerRadius BorderWidth:(CGFloat)borderWidth BorderColor:(UIColor *)borderColor
