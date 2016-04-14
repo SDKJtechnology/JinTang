@@ -9,6 +9,7 @@
 #import "TJ_CommunityViewController.h"
 #import "TJ_SelectionList.h"
 #import "TJ_HotCollectionViewCell.h"
+#import "TJ_HotCollectionView.h"
 
 #define statusBarFrame [[UIApplication sharedApplication] statusBarFrame]//状态栏frame
 #define navigationBarFrame self.navigationController.navigationBar.frame//navigationbar frame
@@ -24,7 +25,7 @@
 }
 
 @property (nonatomic) TJ_SelectionList *selectionList;
-@property (nonatomic) UICollectionView *collectionView;
+@property (nonatomic) TJ_HotCollectionView *collectionView;
 @property (nonatomic) UIScrollView *scrollView;
 
 @end
@@ -75,7 +76,6 @@
 //    self.scrollView.backgroundColor = [UIColor greenColor];
     
     CGFloat margin = 10;
-    
     CGFloat hostViewW = (self.scrollView.width - 3 * margin) / 2;
     
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
@@ -84,17 +84,12 @@
     flowLayout.itemSize = CGSizeMake(hostViewW, hostViewW);
     flowLayout.sectionInset = UIEdgeInsetsMake(margin, margin, margin, margin);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.scrollView.height) collectionViewLayout:flowLayout];
-    self.collectionView.dataSource = self;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView = [[TJ_HotCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.scrollView.height) collectionViewLayout:flowLayout];
     [self.scrollView addSubview:self.collectionView];
+    self.collectionView.hotPageData = hotPageData;
+    
     
     self.scrollView.contentSize = CGSizeMake(self.view.width * selectionListData.count, self.scrollView.height);
-    
-    [self.collectionView registerClass:[TJ_HotCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([TJ_HotCollectionViewCell class])];
-    [self.collectionView registerClass:[TJ_HotCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([self class])];
 }
 
 #pragma mark TJ_SelectionListDelegate
@@ -115,26 +110,6 @@
     CGRect frame = self.scrollView.bounds;
     frame.origin.x = frame.size.width * index;
     [self.scrollView scrollRectToVisible:frame animated:YES];
-}
-
-#pragma mark UICollectionViewDataSorce
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return hotPageData.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    TJ_HotCollectionViewCell *cell = nil;
-    if (indexPath.item % 4 == 0 || (indexPath.item + 1) % 4 == 0)
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TJ_HotCollectionViewCell class]) forIndexPath:indexPath];
-    else
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([self class]) forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:1.000 green:0.987 blue:0.678 alpha:1.000];
-    cell.tag = 100 + indexPath.item;
- 
-    return cell;
 }
 
 #pragma 实现UIScrollViewDelegate 的方法

@@ -24,6 +24,8 @@
 		7A7573991CBE88FC00FAA882 /* TJ_CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7573981CBE88FC00FAA882 /* TJ_CommunityViewController.m */; };
 		7A7CDA961CB7D8C90007EF93 /* TJ_BAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7CDA951CB7D8C90007EF93 /* TJ_BAButton.m */; };
 		7A7CDA991CB7DB170007EF93 /* TJ_Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7CDA981CB7DB170007EF93 /* TJ_Color.m */; };
+		7A8A50F81CBFE12900DC8520 /* TJ_HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8A50F71CBFE12900DC8520 /* TJ_HeaderView.m */; };
+		7A8A50FB1CBFE9C400DC8520 /* TJ_HotCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8A50FA1CBFE9C400DC8520 /* TJ_HotCollectionView.m */; };
 		7A94CF641CBB6D53001CFC7F /* HotspotBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A94CF631CBB6D53001CFC7F /* HotspotBigImageCell.m */; };
 		7AA473ED1CACD5480012C22C /* DynamicConcernNotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473EC1CACD5480012C22C /* DynamicConcernNotImageCell.m */; };
 		7AA473FA1CACFFA30012C22C /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA473F91CACFFA30012C22C /* DynamicModel.m */; };
@@ -150,6 +152,10 @@
 		7A7CDA951CB7D8C90007EF93 /* TJ_BAButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_BAButton.m; sourceTree = "<group>"; };
 		7A7CDA971CB7DB170007EF93 /* TJ_Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_Color.h; sourceTree = "<group>"; };
 		7A7CDA981CB7DB170007EF93 /* TJ_Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_Color.m; sourceTree = "<group>"; };
+		7A8A50F61CBFE12900DC8520 /* TJ_HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_HeaderView.h; sourceTree = "<group>"; };
+		7A8A50F71CBFE12900DC8520 /* TJ_HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_HeaderView.m; sourceTree = "<group>"; };
+		7A8A50F91CBFE9C400DC8520 /* TJ_HotCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_HotCollectionView.h; sourceTree = "<group>"; };
+		7A8A50FA1CBFE9C400DC8520 /* TJ_HotCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_HotCollectionView.m; sourceTree = "<group>"; };
 		7A94CF621CBB6D53001CFC7F /* HotspotBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotspotBigImageCell.h; sourceTree = "<group>"; };
 		7A94CF631CBB6D53001CFC7F /* HotspotBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotspotBigImageCell.m; sourceTree = "<group>"; };
 		7AA473EB1CACD5480012C22C /* DynamicConcernNotImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicConcernNotImageCell.h; sourceTree = "<group>"; };
@@ -588,8 +594,10 @@
 				7AA473EE1CACED470012C22C /* TJ_DynamicCells */,
 				7AA474031CAD1EC00012C22C /* UILabel+new.h */,
 				7AA474041CAD1EC00012C22C /* UILabel+new.m */,
-				99B0D2CF1CA8DC4700DE3965 /* TJ_DynamicHomeController.m */,
+				7A8A50F61CBFE12900DC8520 /* TJ_HeaderView.h */,
+				7A8A50F71CBFE12900DC8520 /* TJ_HeaderView.m */,
 				99B0D2CE1CA8DC4700DE3965 /* TJ_DynamicHomeController.h */,
+				99B0D2CF1CA8DC4700DE3965 /* TJ_DynamicHomeController.m */,
 			);
 			name = TJ_views;
 			sourceTree = "<group>";
@@ -599,6 +607,8 @@
 			children = (
 				DE54B0FE1CBFB2490029D123 /* TJ_HotCollectionViewCell.h */,
 				DE54B0FF1CBFB2490029D123 /* TJ_HotCollectionViewCell.m */,
+				7A8A50F91CBFE9C400DC8520 /* TJ_HotCollectionView.h */,
+				7A8A50FA1CBFE9C400DC8520 /* TJ_HotCollectionView.m */,
 			);
 			name = TJ_CommunityCells;
 			sourceTree = "<group>";
@@ -836,6 +846,7 @@
 				7AA4742B1CAD51540012C22C /* NSObject+MJProperty.m in Sources */,
 				7AA474291CAD51540012C22C /* NSObject+MJCoding.m in Sources */,
 				7AA474091CAD2D2C0012C22C /* DynamicNetworkingModel.m in Sources */,
+				7A8A50FB1CBFE9C400DC8520 /* TJ_HotCollectionView.m in Sources */,
 				99B0D2CD1CA8DC4700DE3965 /* AppDelegate.m in Sources */,
 				7AA473ED1CACD5480012C22C /* DynamicConcernNotImageCell.m in Sources */,
 				7ACC506F1CB9E9F600D79633 /* HotspotModel.m in Sources */,
@@ -844,6 +855,7 @@
 				7A7347F41CBD5100006B222E /* ActivityModel.m in Sources */,
 				7A7347EA1CBD42A4006B222E /* TADotView.m in Sources */,
 				DE54B1001CBFB2490029D123 /* TJ_HotCollectionViewCell.m in Sources */,
+				7A8A50F81CBFE12900DC8520 /* TJ_HeaderView.m in Sources */,
 				7A7347F11CBD4352006B222E /* AdCell.m in Sources */,
 				7AA474231CAD51540012C22C /* MJExtensionConst.m in Sources */,
 				7AA474221CAD51540012C22C /* MJDictionaryCache.m in Sources */,

@@ -17,6 +17,7 @@
 #import "HotspotBigImageCell.h"
 #import "AdCell.h"
 #import "ActivityCell.h"
+#import "TJ_HeaderView.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -292,6 +293,16 @@ static NSNumber *page;
     return 30;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 102) {
+        TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
+        return view;
+    }
+    
+    return nil;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     switch (tableView.tag) {
@@ -302,7 +313,7 @@ static NSNumber *page;
             return 10;
             break;
         case 102:
-            return 30;
+            return 50;
             break;
     }
     return 0.01;
