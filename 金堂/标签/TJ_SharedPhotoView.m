@@ -86,7 +86,7 @@
 
 - (void)tapImageView:(UITapGestureRecognizer *)tap
 {
-    UIView *imageView = tap.view;
+//    UIView *imageView = tap.view;
     NSLog(@"点击照片");
 }
 

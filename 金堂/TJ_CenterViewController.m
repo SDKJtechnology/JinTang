@@ -20,7 +20,6 @@
 
 @implementation TJ_CenterViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,6 +35,19 @@
     [self.navigationController.navigationBar setTitleTextAttributes:
   @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-BoldOblique" size:19],
     NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    [self.view addGestureRecognizer:pan];
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)pan
+{
+    CGPoint point = [pan translationInView:self.view];
+    NSLog(@"x = %f   y = %f",point.x,point.y);
+    if (fabs(point.y) < 10 && point.x > 30 && tempAppDelegate.LeftSlideVC.closed)
+    {
+        [self openOrCloseLeftList];
+    }
 }
 
 - (void) openOrCloseLeftList

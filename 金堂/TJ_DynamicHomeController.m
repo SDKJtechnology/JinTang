@@ -71,6 +71,9 @@ static NSNumber *page;
     [self getDynamicHotspotData];
     
     self.selectList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
+    self.selectList.seletedTitleColor = [UIColor blackColor];
+    self.selectList.indicatorColor = [UIColor blueColor];
+    self.selectList.titleColor = [UIColor grayColor];
     self.selectList.delegate = self;
     
     self.contentView = [[UIScrollView alloc] init];
