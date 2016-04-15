@@ -11,6 +11,7 @@
 #import "DynamicModel.h"
 #import "XYString.h"
 #import "MJExtension.h"
+#import "HotspotModel.h"
 
 @implementation DynamicNetworkingModel
 
@@ -25,7 +26,8 @@
     return dynamicDataModel;
 }
 
-- (void)getDynamicDataWithPage:(NSNumber *)page
+//获取动态数据
+- (void)getDynamicDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
 {
     NSString *url = @"http://xc163.qianfanapi.com/v1_4/home/index";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -34,22 +36,58 @@
     NSURLSessionDataTask *dataTask = [manager POST:url parameters:paramsDic progress:^(NSProgress * uploadProgress) {
         
     } success:^(NSURLSessionDataTask * task, id responseObject) {
-        if (self.dynamicListBlock) {
+        if (success)
+        {
 //            NSLog(@"%@",responseObject);
             NSArray *array = [DynamicModel mj_objectWithKeyValues:responseObject].data.list;
             NSMutableArray *imageAr ;
-            for (DynamicList *list in array) {
+            for (DynamicList *list in array)
+            {
                 imageAr = [NSMutableArray array];
                 for (NSDictionary *dic in list.attaches) {
                     [imageAr addObject:[dic objectForKey:@"attachurl"]];
                 }
                 list.attaches = imageAr;
             }
-            self.dynamicListBlock(array);
+            success(array);
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError * error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+//获取热点数据
+- (void)getHotspotDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
+{
+    NSString *url = @"http://xc163.qianfanapi.com/v1_4/home/get-recommend";
+    NSDictionary *params = @{@"params":@{@"page":page}};
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSURLSessionDataTask *dataTask = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog( @"%@",responseObject);
+        if (success)
+        {
+            NSArray *array = [HotspotModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+            for (HotspotModel *hot in array) {
+                hot.item = [Item mj_objectWithKeyValues:hot.items];
+                hot.item.header = [Body mj_objectWithKeyValues:hot.item.headerDict];
+            }
+    //        self.hotspotDataBlock(array);
+        
+            success(array);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
     }];
     
     [dataTask resume];

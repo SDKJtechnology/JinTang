@@ -69,6 +69,8 @@
     return [scan scanInt:&val] && [scan isAtEnd];
 }
 
+#pragma clang diagnostic ignored"-Wdeprecated-declarations" //废弃警告屏蔽
+
 - (NSURL *)mj_url
 {
 //    [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!$&'()*+,-./:;=?@_~%#[]"]];

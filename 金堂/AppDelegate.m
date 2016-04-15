@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "TJ_LeftSortsViewController.h"
+#import "TJ_DynamicHomeController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +24,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSArray *imageNames = @[@"dongtai.png",@"shequ",@"quan",@"liaotian",@"faxian"];
+    NSArray *titles = @[@"动态",@"社区",@"金堂圈",@"聊天",@"发现"];
+    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_CommunityViewController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController"];
+    NSMutableArray *VCArray = [NSMutableArray array];
+    NSInteger i = 0;
+    
+    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    
+    for (NSString *className in calssArray) {
+        Class myCallss = NSClassFromString(className);
+        self.mainNavigationController = [[UINavigationController alloc] initWithRootViewController:[myCallss new]];
+        UITabBarItem *tabBatItem = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:imageNames[i]] tag:i];
+        self.mainNavigationController.tabBarItem = tabBatItem;
+        [VCArray addObject:self.mainNavigationController];
+        i++;
+    }
+    tabBarVC.viewControllers = VCArray;
+    TJ_LeftSortsViewController *leftVCList = [[TJ_LeftSortsViewController alloc] init];
+    self.LeftSlideVC = [[TJ_LeftSlideViewController alloc] initWithLeftView:leftVCList andMainView:tabBarVC];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor grayColor];
+    self.window.rootViewController = self.LeftSlideVC;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
