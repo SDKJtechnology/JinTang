@@ -20,7 +20,6 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        
         self.backgroundImage = [UIImageView new];
         self.titleLabel = [UILabel new];
         self.supportButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];

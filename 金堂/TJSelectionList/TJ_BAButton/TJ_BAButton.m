@@ -130,22 +130,6 @@
     self.imageView.frame = imageFrame;
 }
 
-#pragma mark 获取imageView的frame
-- (CGRect)getImageViewFrame
-{
-    return self.imageView.frame;
-}
-
-#pragma mark - 计算文本的的宽度
-- (CGRect)getTitleLabelWith
-{
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    dictM[NSFontAttributeName] = self.titleLabel.font;
-    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
-    
-    return frame;
-}
-
 #pragma mark - 居中对齐
 - (void)alignmentCenter
 {
@@ -223,6 +207,55 @@
         [self alignmentBottom];
     }
 }
+
+#pragma mark - 计算文本的的宽度
+- (CGRect)getTitleLabelWith
+{
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    dictM[NSFontAttributeName] = self.titleLabel.font;
+    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
+    
+    return frame;
+}
+
+@end
+
+@implementation TJ_BACustomButton(TJ)
+
+#pragma mark 获取imageView的frame
+- (CGRect)getImageViewFrame
+{
+    return self.imageView.frame;
+}
+
+- (CGRect)getButtonWidth
+{
+    CGRect frame = self.frame;
+    
+    CGRect imageFrame = [self getImageViewFrame];
+    CGRect titleLabelFrame = [self getTitleLabelWith];
+    
+    frame.size.width = imageFrame.size.width + titleLabelFrame.size.width;
+    
+    if (imageFrame.size.height > titleLabelFrame.size.height) {
+        frame.size.height = imageFrame.size.height;
+    }
+    else
+        frame.size.height = titleLabelFrame.size.height;
+    
+    return frame;
+}
+
+#pragma mark - 计算文本的的宽度
+- (CGRect)getTitleLabelWith
+{
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    dictM[NSFontAttributeName] = self.titleLabel.font;
+    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
+    
+    return frame;
+}
+
 @end
 
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//社区最热视图
 @interface TJ_HotCollectionView : UICollectionView
 
 @property (nonatomic) NSArray *hotPageData;

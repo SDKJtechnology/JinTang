@@ -57,11 +57,18 @@ typedef enum{
 
 - (instancetype _Nonnull)initWitAligenmentStatus:(BAAligenmentStatus)status;
 
+@end
+
+@interface TJ_BACustomButton(TJ)
+
 //获取titleLabel的宽度
 - (CGRect)getTitleLabelWith;
 
 //获取imageView的frame
 - (CGRect)getImageViewFrame;
+
+//获取button的宽度（必须在上数据后调用，设置按钮的宽度）
+- (CGRect)getButtonWidth;
 
 @end
 

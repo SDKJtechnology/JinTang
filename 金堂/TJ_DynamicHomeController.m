@@ -242,7 +242,8 @@ static NSNumber *page;
     switch (tableView.tag) {
         case 100:
         {
-            ((DynamicConcernNotImageCell *)cell).dynamicList = dynamicConcernListData[indexPath.section];
+            DynamicList *model = dynamicConcernListData[indexPath.section];
+            ((DynamicConcernNotImageCell *)cell).dynamicList = model;
         }
             break;
         case 101:

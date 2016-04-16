@@ -97,6 +97,13 @@
 		DE5EA1F81CC09B4200447582 /* zu1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5EA1D01CC09B4200447582 /* zu1@2x.png */; };
 		DE5EA1F91CC09B4200447582 /* zu1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5EA1D11CC09B4200447582 /* zu1@3x.png */; };
 		DE5EA1FA1CC09B4200447582 /* 头像.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5EA1D21CC09B4200447582 /* 头像.png */; };
+		DE5EA1FD1CC0B0D400447582 /* Tj_TopicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5EA1FC1CC0B0D400447582 /* Tj_TopicTableViewCell.m */; };
+		DE5EA2011CC0B13F00447582 /* TJ_TopicTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5EA2001CC0B13F00447582 /* TJ_TopicTableView.m */; };
+		DECFEEFF1CC0C09200BC2738 /* TJ_TableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFEEFE1CC0C09200BC2738 /* TJ_TableViewCellModel.m */; };
+		DECFEF031CC0C4AA00BC2738 /* sanjiaoxing.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFEF001CC0C4AA00BC2738 /* sanjiaoxing.png */; };
+		DECFEF041CC0C4AA00BC2738 /* sanjiaoxing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFEF011CC0C4AA00BC2738 /* sanjiaoxing@2x.png */; };
+		DECFEF051CC0C4AA00BC2738 /* sanjiaoxing@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFEF021CC0C4AA00BC2738 /* sanjiaoxing@3x.png */; };
+		DECFEF081CC0E16200BC2738 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFEF071CC0E16200BC2738 /* TopicModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +267,17 @@
 		DE5EA1D01CC09B4200447582 /* zu1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zu1@2x.png"; sourceTree = "<group>"; };
 		DE5EA1D11CC09B4200447582 /* zu1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zu1@3x.png"; sourceTree = "<group>"; };
 		DE5EA1D21CC09B4200447582 /* 头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头像.png"; sourceTree = "<group>"; };
+		DE5EA1FB1CC0B0D400447582 /* Tj_TopicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tj_TopicTableViewCell.h; sourceTree = "<group>"; };
+		DE5EA1FC1CC0B0D400447582 /* Tj_TopicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tj_TopicTableViewCell.m; sourceTree = "<group>"; };
+		DE5EA1FF1CC0B13F00447582 /* TJ_TopicTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_TopicTableView.h; sourceTree = "<group>"; };
+		DE5EA2001CC0B13F00447582 /* TJ_TopicTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_TopicTableView.m; sourceTree = "<group>"; };
+		DECFEEFD1CC0C09200BC2738 /* TJ_TableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_TableViewCellModel.h; sourceTree = "<group>"; };
+		DECFEEFE1CC0C09200BC2738 /* TJ_TableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_TableViewCellModel.m; sourceTree = "<group>"; };
+		DECFEF001CC0C4AA00BC2738 /* sanjiaoxing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sanjiaoxing.png; sourceTree = "<group>"; };
+		DECFEF011CC0C4AA00BC2738 /* sanjiaoxing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sanjiaoxing@2x.png"; sourceTree = "<group>"; };
+		DECFEF021CC0C4AA00BC2738 /* sanjiaoxing@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sanjiaoxing@3x.png"; sourceTree = "<group>"; };
+		DECFEF061CC0E16200BC2738 /* TopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
+		DECFEF071CC0E16200BC2738 /* TopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,7 +320,6 @@
 			children = (
 				7AA4740A1CAD51540012C22C /* TJ_MJExtension */,
 				7AA473FF1CAD18AC0012C22C /* TJ_XYString */,
-				7AA474061CAD2CDA0012C22C /* TJ_Model */,
 				DE54B0FC1CBFB1570029D123 /* TJ_views */,
 			);
 			name = "TJ_Dynamic(动态)";
@@ -356,6 +373,7 @@
 		7A7573961CBE88CA00FAA882 /* TJ_ Community(社区) */ = {
 			isa = PBXGroup;
 			children = (
+				DE5EA1FE1CC0B0FA00447582 /* views */,
 				DE54B0FD1CBFB1FC0029D123 /* TJ_CommunityCells */,
 				7A7573971CBE88FC00FAA882 /* TJ_CommunityViewController.h */,
 				7A7573981CBE88FC00FAA882 /* TJ_CommunityViewController.m */,
@@ -380,6 +398,8 @@
 			isa = PBXGroup;
 			children = (
 				7AA4FA871CAE32DA009312BE /* SDAutoLayout.h */,
+				DECFEEFD1CC0C09200BC2738 /* TJ_TableViewCellModel.h */,
+				DECFEEFE1CC0C09200BC2738 /* TJ_TableViewCellModel.m */,
 				7AA473EB1CACD5480012C22C /* DynamicConcernNotImageCell.h */,
 				7AA473EC1CACD5480012C22C /* DynamicConcernNotImageCell.m */,
 				7A94CF621CBB6D53001CFC7F /* HotspotBigImageCell.h */,
@@ -404,7 +424,7 @@
 			path = ../XYString;
 			sourceTree = "<group>";
 		};
-		7AA474061CAD2CDA0012C22C /* TJ_Model */ = {
+		7AA474061CAD2CDA0012C22C /* TJ_DataModel */ = {
 			isa = PBXGroup;
 			children = (
 				7AA473F81CACFFA30012C22C /* DynamicModel.h */,
@@ -413,10 +433,13 @@
 				7ACC506E1CB9E9F600D79633 /* HotspotModel.m */,
 				7A7347F21CBD5100006B222E /* ActivityModel.h */,
 				7A7347F31CBD5100006B222E /* ActivityModel.m */,
+				DECFEF061CC0E16200BC2738 /* TopicModel.h */,
+				DECFEF071CC0E16200BC2738 /* TopicModel.m */,
 				7AA474071CAD2D2C0012C22C /* DynamicNetworkingModel.h */,
 				7AA474081CAD2D2C0012C22C /* DynamicNetworkingModel.m */,
 			);
-			name = TJ_Model;
+			name = TJ_DataModel;
+			path = "标签";
 			sourceTree = "<group>";
 		};
 		7AA4740A1CAD51540012C22C /* TJ_MJExtension */ = {
@@ -490,6 +513,7 @@
 		99B0D2C71CA8DC4700DE3965 /* 金堂 */ = {
 			isa = PBXGroup;
 			children = (
+				7AA474061CAD2CDA0012C22C /* TJ_DataModel */,
 				DE5EA1AA1CC09B4200447582 /* images */,
 				7AE303821CB4A26D00A92D38 /* TJ_LeftSlideViewController(抽屉) */,
 				7A2DDC171CAB7BFC0056F363 /* TJ_Dynamic(动态) */,
@@ -560,8 +584,8 @@
 			children = (
 				DE54B0FE1CBFB2490029D123 /* TJ_HotCollectionViewCell.h */,
 				DE54B0FF1CBFB2490029D123 /* TJ_HotCollectionViewCell.m */,
-				7A8A50F91CBFE9C400DC8520 /* TJ_HotCollectionView.h */,
-				7A8A50FA1CBFE9C400DC8520 /* TJ_HotCollectionView.m */,
+				DE5EA1FB1CC0B0D400447582 /* Tj_TopicTableViewCell.h */,
+				DE5EA1FC1CC0B0D400447582 /* Tj_TopicTableViewCell.m */,
 			);
 			name = TJ_CommunityCells;
 			sourceTree = "<group>";
@@ -569,6 +593,9 @@
 		DE5EA1AA1CC09B4200447582 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DECFEF001CC0C4AA00BC2738 /* sanjiaoxing.png */,
+				DECFEF011CC0C4AA00BC2738 /* sanjiaoxing@2x.png */,
+				DECFEF021CC0C4AA00BC2738 /* sanjiaoxing@3x.png */,
 				DE5EA1AB1CC09B4200447582 /* beijing@2x.png */,
 				DE5EA1AC1CC09B4200447582 /* dongtai.png */,
 				DE5EA1AD1CC09B4200447582 /* faxian.png */,
@@ -611,6 +638,17 @@
 				DE5EA1D21CC09B4200447582 /* 头像.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		DE5EA1FE1CC0B0FA00447582 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				7A8A50F91CBFE9C400DC8520 /* TJ_HotCollectionView.h */,
+				7A8A50FA1CBFE9C400DC8520 /* TJ_HotCollectionView.m */,
+				DE5EA1FF1CC0B13F00447582 /* TJ_TopicTableView.h */,
+				DE5EA2001CC0B13F00447582 /* TJ_TopicTableView.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,12 +769,14 @@
 				DE5EA1EC1CC09B4200447582 /* nan.png in Resources */,
 				DE5EA1F41CC09B4200447582 /* ren@3x.png in Resources */,
 				DE5EA1EE1CC09B4200447582 /* pyquan.png in Resources */,
+				DECFEF051CC0C4AA00BC2738 /* sanjiaoxing@3x.png in Resources */,
 				DE5EA1F71CC09B4200447582 /* zu1.png in Resources */,
 				DE5EA1F21CC09B4200447582 /* ren.png in Resources */,
 				DE5EA1EF1CC09B4200447582 /* pyquan@2x.png in Resources */,
 				DE5EA1F01CC09B4200447582 /* pyquan@3x.png in Resources */,
 				DE5EA1E91CC09B4200447582 /* liaotian.png in Resources */,
 				DE5EA1E81CC09B4200447582 /* kan.png in Resources */,
+				DECFEF031CC0C4AA00BC2738 /* sanjiaoxing.png in Resources */,
 				DE5EA1D71CC09B4200447582 /* img_03@2x.png in Resources */,
 				DE5EA1DD1CC09B4200447582 /* img_09@2x.png in Resources */,
 				DE5EA1D61CC09B4200447582 /* img_03.png in Resources */,
@@ -760,6 +800,7 @@
 				DE5EA1E31CC09B4200447582 /* img_19@2x.png in Resources */,
 				DE5EA1E11CC09B4200447582 /* img_15@3x.png in Resources */,
 				DE5EA1FA1CC09B4200447582 /* 头像.png in Resources */,
+				DECFEF041CC0C4AA00BC2738 /* sanjiaoxing@2x.png in Resources */,
 				DE5EA1D41CC09B4200447582 /* dongtai.png in Resources */,
 				DE5EA1F91CC09B4200447582 /* zu1@3x.png in Resources */,
 				DE5EA1DF1CC09B4200447582 /* img_15.png in Resources */,
@@ -839,7 +880,9 @@
 				7AE3038B1CB4A27E00A92D38 /* TJ_LeftSortsViewController.m in Sources */,
 				7A70AE7B1CB60F9A005D2593 /* TJ_SelectionList.m in Sources */,
 				7AA4742A1CAD51540012C22C /* NSObject+MJKeyValue.m in Sources */,
+				DECFEEFF1CC0C09200BC2738 /* TJ_TableViewCellModel.m in Sources */,
 				7A70AE7C1CB60F9A005D2593 /* TJ_SelectionListCell.m in Sources */,
+				DE5EA2011CC0B13F00447582 /* TJ_TopicTableView.m in Sources */,
 				7AA473FA1CACFFA30012C22C /* DynamicModel.m in Sources */,
 				7AA474271CAD51540012C22C /* MJPropertyType.m in Sources */,
 				7A7347EB1CBD42A4006B222E /* TAPageControl.m in Sources */,
@@ -852,9 +895,11 @@
 				7ACC506F1CB9E9F600D79633 /* HotspotModel.m in Sources */,
 				7AE303871CB4A26D00A92D38 /* TJ_LeftSlideViewController.m in Sources */,
 				7AA474261CAD51540012C22C /* MJPropertyKey.m in Sources */,
+				DE5EA1FD1CC0B0D400447582 /* Tj_TopicTableViewCell.m in Sources */,
 				7A7347F41CBD5100006B222E /* ActivityModel.m in Sources */,
 				7A7347EA1CBD42A4006B222E /* TADotView.m in Sources */,
 				DE54B1001CBFB2490029D123 /* TJ_HotCollectionViewCell.m in Sources */,
+				DECFEF081CC0E16200BC2738 /* TopicModel.m in Sources */,
 				7A8A50F81CBFE12900DC8520 /* TJ_HeaderView.m in Sources */,
 				7A7347F11CBD4352006B222E /* AdCell.m in Sources */,
 				7AA474231CAD51540012C22C /* MJExtensionConst.m in Sources */,

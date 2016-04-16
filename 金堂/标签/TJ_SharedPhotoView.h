@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//照片分享视图
 @interface TJ__SharedPhotoView : UIView
 /**
  *  图片链接数组

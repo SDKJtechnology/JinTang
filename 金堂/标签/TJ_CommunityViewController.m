@@ -10,6 +10,7 @@
 #import "TJ_SelectionList.h"
 #import "TJ_HotCollectionViewCell.h"
 #import "TJ_HotCollectionView.h"
+#import "TJ_TopicTableView.h"
 
 #define statusBarFrame [[UIApplication sharedApplication] statusBarFrame]//状态栏frame
 #define navigationBarFrame self.navigationController.navigationBar.frame//navigationbar frame
@@ -20,10 +21,13 @@
     NSArray *selectionListData;//水平选择列表数据
 
     NSArray *hotPageData;//热门页数据
+    
+    NSArray *topicPageData;//话题页面数据
 }
 
 @property (nonatomic) TJ_SelectionList *selectionList;
 @property (nonatomic) TJ_HotCollectionView *collectionView;
+@property (nonatomic) TJ_TopicTableView *topicTableView;
 @property (nonatomic) UIScrollView *scrollView;
 
 @end
@@ -38,6 +42,8 @@
     selectionListData = @[@"最热",@"话题",@"最新"];
     
     hotPageData = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+    
+    topicPageData = hotPageData;
 
     [self setup];
 }
@@ -56,8 +62,9 @@
     //    [self.selectionList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
     [self.selectionList setDidSelectedItemBorderStyleWithCornerRadius:self.selectionList.height / 2 BorderWidth:3 BorderColor:self.selectionList.backgroundColor];
 //    self.selectionList.selectedItemIndex = 1;
-    
     self.navigationItem.titleView = self.selectionList;
+    
+    
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:({
         CGFloat x = 0;
@@ -72,6 +79,9 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.bounces = NO;
 //    self.scrollView.backgroundColor = [UIColor greenColor];
+    self.scrollView.contentSize = CGSizeMake(self.view.width * selectionListData.count, self.scrollView.height);
+    
+    
     
     CGFloat margin = 10;
     CGFloat hostViewW = (self.scrollView.width - 3 * margin) / 2;
@@ -87,7 +97,9 @@
     self.collectionView.hotPageData = hotPageData;
     
     
-    self.scrollView.contentSize = CGSizeMake(self.view.width * selectionListData.count, self.scrollView.height);
+    self.topicTableView = [[TJ_TopicTableView alloc] initWithFrame:CGRectMake(self.view.width, 0, self.view.width, self.scrollView.height) style:UITableViewStyleGrouped];
+    [self.scrollView addSubview:self.topicTableView];
+    self.topicTableView.topicData = topicPageData;
 }
 
 #pragma mark TJ_SelectionListDelegate
