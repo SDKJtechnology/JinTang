@@ -1,5 +1,5 @@
 //
-//  CommunityViewController.m
+//  TJ_CircleViewController.m
 //  金堂
 //
 //  Created by ZhangAnMing on 16/4/13.
@@ -45,7 +45,7 @@
     
     selectionListData = @[@"最热",@"话题",@"最新"];
     
-    hotPageData = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+    hotPageData = @[@"",@"",@"",@"",@"",@"",@"",@"",@""];
     
     topicPageData = hotPageData;
     gachincoPageData = hotPageData;
