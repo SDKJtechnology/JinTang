@@ -10,6 +10,7 @@
 #import "TJ_BAButton.h"
 #import "SDAutoLayout.h"
 #import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
 #import "TJ_SharedPhotoView.h"
 
 #define CELL_Width self.contentView.frame.size.width

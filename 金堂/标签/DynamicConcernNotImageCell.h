@@ -18,10 +18,3 @@
 
 @end
 
-@interface DynamicConcernOneImageCell : DynamicConcernNotImageCell
-
-@end
-
-@interface DynamicConcernManyImageCell : DynamicConcernNotImageCell
-
-@end

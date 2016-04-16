@@ -105,10 +105,11 @@
     //滑动左边视图关闭抽屉
     if (rec.view == self.leftVC.view) {
         CGFloat recCenterX = self.mainVC.view.center.x + point.x * self.speedf;
-        if (recCenterX < kScreenWidth * 0.5 - 2) {
+        if (recCenterX < kScreenWidth * 0.5 - 2 || [rec velocityInView:rec.view].x < -1000) {
             recCenterX = kScreenWidth * 0.5;
+            [self closeLeftView];
         }
-        
+//    NSLog(@"%f  %f",[rec velocityInView:rec.view].x,[rec velocityInView:rec.view].y);
         CGFloat recCenterY = self.mainVC.view.center.y;
         
         self.mainVC.view.center = CGPointMake(recCenterX,recCenterY);

@@ -81,7 +81,6 @@
     
     self.height = h;
     self.fixedHeight = @(h);
-    self.fixedWith = @([UIScreen mainScreen].bounds.size.width - 2 * margin);
 }
 
 #pragma mark - private actions
@@ -97,7 +96,7 @@
     if (array.count == 1) {
         return 160;
     } else {
-        CGFloat w = ([UIScreen mainScreen].bounds.size.width - 4 * margin) / 3;
+        CGFloat w = (self.width - 2 * margin) / 3;
         return w;
     }
 }

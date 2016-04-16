@@ -7,7 +7,7 @@
 //
 
 #import "TJ_TopicTableView.h"
-#import "Tj_TopicTableViewCell.h"
+#import "TJ_TopicTableViewCell.h"
 #import "TopicModel.h"
 
 @interface TJ_TopicTableView()<UITableViewDelegate,UITableViewDataSource>
@@ -22,8 +22,6 @@
         self.delegate = self;
         self.dataSource = self;
         
-//        [self registerClass:[Tj_TopicTableViewCell class] forCellReuseIdentifier:NSStringFromClass([Tj_TopicTableViewCell class])];
-//        [self registerClass:[Tj_TopicTableViewCell class] forCellReuseIdentifier:@"cell"];
     }
     
     return self;
@@ -35,13 +33,13 @@
 {
     TopicModel *model = [TopicModel new];
     model.ID = indexPath.section + 1;
-    ((Tj_TopicTableViewCell *)cell).topicModel = model;
+    ((TJ_TopicTableViewCell *)cell).topicModel = model;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TopicModel *topicModel = nil;
-    CGFloat height = [tableView cellHeightForIndexPath:indexPath model:topicModel keyPath:@"topicModel" cellClass:[Tj_TopicTableViewCell class] contentViewWidth:self.width];
+    CGFloat height = [tableView cellHeightForIndexPath:indexPath model:topicModel keyPath:@"topicModel" cellClass:[TJ_TopicTableViewCell class] contentViewWidth:self.width];
     if (indexPath.section < 3)
         return height;
     else return height - 40 * 0.62;
@@ -74,11 +72,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Class myClass = NSClassFromString([Tj_TopicTableViewCell identifierForModelAtRow:indexPath]);
+    Class myClass = NSClassFromString([TJ_TopicTableViewCell identifierForModelAtRow:indexPath]);
     NSString *identifer = @"notIdentifierImage";
     if (indexPath.section > 2)
         identifer = @"cell";
-    Tj_TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+    TJ_TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
     
     if (!cell)
         cell = [[myClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];

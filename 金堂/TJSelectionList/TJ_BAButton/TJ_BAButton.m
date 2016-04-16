@@ -247,14 +247,14 @@
 }
 
 #pragma mark - 计算文本的的宽度
-- (CGRect)getTitleLabelWith
-{
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    dictM[NSFontAttributeName] = self.titleLabel.font;
-    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
-    
-    return frame;
-}
+//- (CGRect)getTitleLabelWith
+//{
+////    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+////    dictM[NSFontAttributeName] = self.titleLabel.font;
+////    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
+//    
+//    return [self getTitleLabelWith];
+//}
 
 @end
 

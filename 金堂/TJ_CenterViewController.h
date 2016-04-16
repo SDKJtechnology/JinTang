@@ -10,6 +10,9 @@
 #import "TJ_LeftSlideViewController.h"
 #import "SDAutoLayout.h"
 
+#define statusBarFrame [[UIApplication sharedApplication] statusBarFrame]//状态栏frame
+#define navigationBarFrame self.navigationController.navigationBar.frame//navigationbar frame
+
 @interface TJ_CenterViewController : UIViewController
 
 - (void) openOrCloseLeftList;

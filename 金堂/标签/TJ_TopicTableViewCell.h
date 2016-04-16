@@ -10,7 +10,7 @@
 #import "TJ_TableViewCellModel.h"
 #import "TopicModel.h"
 
-@interface Tj_TopicTableViewCell : TJ_TableViewCellModel
+@interface TJ_TopicTableViewCell : TJ_TableViewCellModel
 
 @property (nonatomic) UIImageView *identifierImage;
 
@@ -24,6 +24,6 @@
 
 @end
 
-@interface Tj_TopicNotIdentifierImageCell : Tj_TopicTableViewCell
+@interface Tj_TopicNotIdentifierImageCell : TJ_TopicTableViewCell
 
 @end

@@ -6,10 +6,10 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "Tj_TopicTableViewCell.h"
+#import "TJ_TopicTableViewCell.h"
 #import "SDAutoLayout.h"
 
-@implementation Tj_TopicTableViewCell
+@implementation TJ_TopicTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -28,9 +28,6 @@
         [self.contentView addSubview:self.identifierLabel];
         [self.contentView addSubview:self.shareImage2];
         [self.contentView addSubview:self.shareImage1];
-        
-        self.addressButton.hidden = YES;
-        self.addressLabel.hidden = YES;
         
         [self layout];
     }
@@ -102,9 +99,9 @@
 
 + (NSString *)identifierForModelAtRow:(id)Model
 {
-    NSIndexPath *indexPath = Model;NSLog(@"%ld",indexPath.section);
+    NSIndexPath *indexPath = Model;
     if (indexPath.section < 3)
-        return NSStringFromClass([Tj_TopicTableViewCell class]);
+        return NSStringFromClass([TJ_TopicTableViewCell class]);
     else return NSStringFromClass([Tj_TopicNotIdentifierImageCell class]);
 }
 

@@ -182,9 +182,9 @@ static NSNumber *page;
     if (tableView.tag == 100)
     {
         NSString *identifier = [DynamicConcernNotImageCell identifierForModelAtRow:dynamicConcernListData[indexPath.section]];
-        Class cellClass = NSClassFromString(identifier);
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell){
-            cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         return cell;
     }
@@ -264,18 +264,14 @@ static NSNumber *page;
         {
             // cell自适应设置
             DynamicList * model = dynamicConcernListData[indexPath.section];
-            NSString * identifier = [DynamicConcernNotImageCell identifierForModelAtRow:model];
-            Class mClass =  NSClassFromString(identifier);
             // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
-            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:mClass contentViewWidth:VIEW_WIDTH];
+            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:VIEW_WIDTH];
         }
             break;
         case 101:
         {
             HotspotModel *hots = dynamciHotspotData[indexPath.section];
             Body *body = hots.item.header;
-//            NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH]);
-
             return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH];
         }
             break;

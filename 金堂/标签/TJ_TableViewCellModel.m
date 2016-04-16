@@ -52,7 +52,7 @@
         [self.contentView addSubview:self.sharedPhotoView];
         
         
-        // 浏览人数label
+        // 浏览人数
         self.browseCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
         [self.browseCountButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.browseCountButton];
@@ -99,6 +99,7 @@
     self.addressButton.sd_layout
     .topEqualToView(self.headerButton)
     .rightSpaceToView(self.contentView, margin)
+    .widthIs(100)
     .heightRatioToView(self.nameButton, 1);
     
     self.addressLabel.sd_layout
@@ -106,7 +107,6 @@
     .heightRatioToView(self.nameButton, 1)
     .rightSpaceToView(self.addressButton, 0);
     [self.addressLabel setSingleLineAutoResizeWithMaxWidth:100];
-    self.addressLabel.text = @"来自";
     
     self.titleLabel.sd_layout
     .topSpaceToView(self.headerButton, margin / 2)
@@ -116,7 +116,8 @@
     
     self.sharedPhotoView.sd_layout
     .topSpaceToView(self.titleLabel, margin)
-    .leftEqualToView(self.titleLabel);
+    .leftEqualToView(self.titleLabel)
+    .rightEqualToView(self.titleLabel);
     
     self.replyCountButton.sd_layout
     .topSpaceToView(self.titleLabel, margin / 2)
