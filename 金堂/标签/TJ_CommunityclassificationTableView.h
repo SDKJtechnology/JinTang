@@ -10,4 +10,14 @@
 
 @interface TJ_CommunityclassificationTableView : UITableView
 
+@property (nonatomic, strong) UIColor *textLabelTextColor;
+
+@property (nonatomic, strong) UIColor *selectTextLabelTextColor;
+
+@end
+
+@interface TJ_CommunityclassificationTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) UIView *indicatorView;
+
 @end

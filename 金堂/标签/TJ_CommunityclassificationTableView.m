@@ -7,8 +7,11 @@
 //
 
 #import "TJ_CommunityclassificationTableView.h"
+#import "SDAutoLayout.h"
 
 @interface TJ_CommunityclassificationTableView()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) NSArray *classificationData;
 
 @end
 
@@ -21,6 +24,7 @@
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
         self.bounces = NO;
+        self.classificationData = @[@"全金堂",@"幸福门",@"娱乐圈",@"发广告",@"吃喝玩",@"我的关注"];
     }
     
     return self;
@@ -30,23 +34,43 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return self.width / 2;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TJ_CommunityclassificationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor = self.selectTextLabelTextColor;
+    cell.indicatorView.backgroundColor = self.selectTextLabelTextColor;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TJ_CommunityclassificationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor = self.textLabelTextColor;
+    cell.indicatorView.backgroundColor = self.backgroundColor;
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.classificationData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.backgroundColor = [UIColor yellowColor];
+    TJ_CommunityclassificationTableViewCell *cell = [[TJ_CommunityclassificationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor colorWithWhite:0.939 alpha:1.000];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    cell.textLabel.textColor = self.textLabelTextColor;
+    cell.textLabel.text = self.classificationData[indexPath.row];
+    cell.imageView.backgroundColor = [UIColor redColor];
+
     return cell;
 }
 /*
@@ -56,5 +80,26 @@
     // Drawing code
 }
 */
+
+@end
+
+@implementation TJ_CommunityclassificationTableViewCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.indicatorView = [UIView new];
+        [self.contentView addSubview:self.indicatorView];
+        
+        self.indicatorView.sd_layout
+        .topSpaceToView(self.contentView, 0)
+        .leftSpaceToView(self.contentView, 0)
+        .widthIs(3)
+        .bottomSpaceToView(self.contentView, 0);
+        self.indicatorView.backgroundColor = self.backgroundColor;
+    }
+    
+    return self;
+}
 
 @end

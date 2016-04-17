@@ -7,6 +7,7 @@
 //
 
 #import "TJ_ClassificationListTableView.h"
+#import "TJ_ClassificationListCell.h"
 
 @interface TJ_ClassificationListTableView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -30,11 +31,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    ConcernModel *model = [ConcernModel new];
+    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"concernModel" cellClass:[TJ_ClassificationListCell class] contentViewWidth:self.width];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{}
+{
+    TJ_ClassificationListCell *cell1 = (TJ_ClassificationListCell*)cell;
+    cell1.concernModel = [ConcernModel new];
+}
 
 #pragma mark UITableViewDataSource
 
@@ -45,10 +50,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.backgroundColor = [UIColor greenColor];
-    
-    return cell;
+    TJ_ClassificationListCell *cell = [[TJ_ClassificationListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        return cell;
 }
 
 /*
