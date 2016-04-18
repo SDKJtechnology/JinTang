@@ -63,8 +63,9 @@
     CGFloat itemH = [self itemWidthForPicPathArray:self.imageUrlArray];
     
     NSInteger perRowItemCount = [self perRowItemCountForPicPathArray:imageUrlArray];
-    
-    [imageUrlArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSInteger idx = 0;
+    for (NSString *obj in imageUrlArray)
+    {
         long columnIndex = idx % perRowItemCount;
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [imageViews objectAtIndex:idx];
@@ -72,7 +73,8 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"]];
 //        imageView.image = [UIImage imageNamed:obj];
         imageView.frame = CGRectMake(columnIndex * (itemH + margin), rowIndex * (itemH + margin), itemH, itemH);
-    }];
+        idx++;
+    };
     float count = (float)imageUrlArray.count / perRowItemCount;
     if (count > imageUrlArray.count / perRowItemCount)
         count++;

@@ -61,6 +61,7 @@ static NSNumber *page;
     [super viewDidLoad];
 
     self.navigationItem.title = @"金堂有爱";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"sousuo"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:nil];
     
     page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];

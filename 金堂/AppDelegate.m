@@ -45,6 +45,12 @@
     TJ_LeftSortsViewController *leftVCList = [[TJ_LeftSortsViewController alloc] init];
     self.LeftSlideVC = [[TJ_LeftSlideViewController alloc] initWithLeftView:leftVCList andMainView:tabBarVC];
     
+    __block typeof(self) waekSelf = self;
+    leftVCList.closeLeftVC = ^(UIViewController *vc)
+    {
+        [waekSelf.LeftSlideVC closeLeftView];
+    };
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor grayColor];
     self.window.rootViewController = self.LeftSlideVC;

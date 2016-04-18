@@ -49,6 +49,8 @@
     
     topicPageData = hotPageData;
     gachincoPageData = hotPageData;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"tuoyuan"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:nil];
 
     [self setup];
 }
@@ -99,8 +101,7 @@
     
     self.collectionView = [[TJ_HotCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.scrollView.height) collectionViewLayout:flowLayout];
     [self.scrollView addSubview:self.collectionView];
-    self.collectionView.hotPageData = hotPageData;
-    
+    self.collectionView.hotPageData = hotPageData;NSLog(@"%f  %f",self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
     
     self.topicTableView = [[TJ_TopicTableView alloc] initWithFrame:CGRectMake(self.view.width, 0, self.view.width, self.scrollView.height) style:UITableViewStyleGrouped];
     [self.scrollView addSubview:self.topicTableView];

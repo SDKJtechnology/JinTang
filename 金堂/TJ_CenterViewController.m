@@ -28,8 +28,16 @@
     
     tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"ren"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(openOrCloseLeftList)];
-//    self.title = @"金堂之家";
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setImage:[[UIImage imageNamed:@"ren"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(openOrCloseLeftList) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(0, 0, 30, 30);
+    UIView *view = [UIView new];
+    view.frame = CGRectMake(0, 0, 50, 30);
+    [view addSubview:button];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    
+    self.navigationItem.leftBarButtonItems = @[buttonItem];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.239 green:0.638 blue:0.955 alpha:1.000];
     
     [self.navigationController.navigationBar setTitleTextAttributes:

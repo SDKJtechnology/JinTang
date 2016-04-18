@@ -24,7 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"全部分类";
+    self.navigationItem.title = @"全部分类";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"pencil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:nil];
     
     CGFloat y = statusBarFrame.size.height + navigationBarFrame.size.height;
     CGFloat height = self.view.height - self.tabBarController.tabBar.height - y;
