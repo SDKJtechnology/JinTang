@@ -42,6 +42,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"注册";
     self.view.backgroundColor = [UIColor whiteColor];
+    
     //创建输入框的那个背景图
     
     UIImage *image1 = [UIImage imageNamed:@"kongbai"];

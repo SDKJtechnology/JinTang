@@ -32,9 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     self.navigationItem.title = @"登陆";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     //创建输入框的那个背景图
     
     UIImage *image1 = [UIImage imageNamed:@"kongbai"];
@@ -202,10 +203,12 @@
     }];
 }
 
+
 - (void)clickforget:(UIButton *)sender
 {
     NSLog(@"点击忘记密码");
 }
+
 -(void)clicklogin:(UIButton *)sender{
     NSLog(@"这个登录按钮");
 }

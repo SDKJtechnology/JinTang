@@ -53,6 +53,7 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
+
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
