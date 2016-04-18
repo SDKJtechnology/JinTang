@@ -75,7 +75,6 @@
         
         [self.view addSubview:self.mainVC.view];
         self.closed = YES;//初始时侧滑窗关闭
-        
     }
     return self;
 }

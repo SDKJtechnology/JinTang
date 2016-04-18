@@ -9,6 +9,22 @@
 #import "AppDelegate.h"
 #import "TJ_LeftSortsViewController.h"
 #import "TJ_DynamicHomeController.h"
+#import <SMS_SDK/SMSSDK.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+
+#define kUMKey    @"5657f8a367e58e3b660032d7"
+
+#define kWXKey    @"wx945b58aef3a271f0"
+#define kWXSecret   @"0ae78dd42761fd9681b04833c79a857b"
+
+//SMSSDK官网公共key
+#define appkey @"1141b32ced8e6"
+#define app_secrect @"4ac3a62626f3d41e2c75e83bce6fb814"
+
+#define kUMKey    @"5657f8a367e58e3b660032d7"
+
 
 @interface AppDelegate ()
 
@@ -24,10 +40,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [UMSocialData setAppKey:kUMKey];
+    /*苹果审核要求,隐藏未安装的应用 的分享选项 */
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline]];
+    //  添加微信分享授权
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:kWXKey appSecret:kWXSecret url:@"http://www.umeng.com/social"];
+    /*注册QQ登录授权*/
+    [UMSocialQQHandler setQQWithAppId:@"1104539912" appKey:@"eFVgRits2fqf36Jf" url:@"http://www.umeng.com/social"];
+    
+    
+    
+    [SMSSDK registerApp:appkey
+             withSecret:app_secrect];
     
     NSArray *imageNames = @[@"dongtai.png",@"shequ",@"quan",@"liaotian",@"faxian"];
     NSArray *titles = @[@"动态",@"社区",@"金堂圈",@"聊天",@"发现"];
-    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_CommunityViewController",@"TJ_CircleViewController",@"TJ_DynamicHomeController",@"TJ_DynamicHomeController"];
+    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_CommunityViewController",@"TJ_CircleViewController",@"LX_loginViewController",@"LX_foundViewController"];
     NSMutableArray *VCArray = [NSMutableArray array];
     NSInteger i = 0;
     
@@ -45,10 +74,19 @@
     TJ_LeftSortsViewController *leftVCList = [[TJ_LeftSortsViewController alloc] init];
     self.LeftSlideVC = [[TJ_LeftSlideViewController alloc] initWithLeftView:leftVCList andMainView:tabBarVC];
     
+    __block typeof(self) waekSelf = self;
+    leftVCList.closeLeftVC = ^(UIViewController *vc)
+    {
+        [waekSelf.LeftSlideVC closeLeftView];
+    };
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor grayColor];
     self.window.rootViewController = self.LeftSlideVC;
     [self.window makeKeyAndVisible];
+    
+    
+    
     
     return YES;
 }

@@ -48,9 +48,12 @@
         .heightIs(self.supportCountButton.height);
         self.replyCountButton.backgroundColor = self.supportCountButton.backgroundColor;
         self.replyCountButton.sd_cornerRadiusFromHeightRatio = self.supportCountButton.sd_cornerRadiusFromHeightRatio;
+        [self.replyCountButton updateLayout];
         
+        CGFloat mar = (self.replyCountButton.left - self.supportCountButton.right) / 2;
         self.shareButton.sd_layout
         .topEqualToView(self.supportCountButton)
+        .leftSpaceToView(self.supportCountButton, mar)
         .widthIs(self.supportCountButton.width)
         .heightIs(self.supportCountButton.height);
         self.shareButton.backgroundColor = self.supportCountButton.backgroundColor;
@@ -70,11 +73,11 @@
 
 - (void)layoutSubviews
 {
-    CGPoint center = self.shareButton.center;
-    center.x = self.sharedPhotoView.center.x;
-    self.shareButton.center = center;
-    
     [super layoutSubviews];
+    
+//    CGPoint center = self.shareButton.center;
+//    center.x = self.sharedPhotoView.center.x;
+//    self.shareButton.center = center;
 }
 
 - (void)setGachincoModel:(GachincoModel *)gachincoModel

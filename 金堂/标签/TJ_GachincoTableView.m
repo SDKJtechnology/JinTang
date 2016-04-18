@@ -16,6 +16,7 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.dataSource = self;
         self.delegate = self;
+        self.showsVerticalScrollIndicator = NO;
     }
     
     return self;

@@ -51,7 +51,7 @@
 {
     TJ_CommunityclassificationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.textLabel.textColor = self.textLabelTextColor;
-    cell.indicatorView.backgroundColor = self.backgroundColor;
+    cell.indicatorView.backgroundColor = cell.backgroundColor;
 }
 
 #pragma mark UITableViewDataSource
@@ -63,14 +63,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJ_CommunityclassificationTableViewCell *cell = [[TJ_CommunityclassificationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithWhite:0.939 alpha:1.000];
+    static UIImageView *selectView = nil;
+    TJ_CommunityclassificationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if(!cell)
+    {
+         cell = [[TJ_CommunityclassificationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        selectView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beijing1"]];
+    }
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor colorWithWhite:0.882 alpha:1.000];
     cell.textLabel.font = [UIFont systemFontOfSize:20];
     cell.textLabel.textColor = self.textLabelTextColor;
     cell.textLabel.text = self.classificationData[indexPath.row];
     cell.imageView.backgroundColor = [UIColor redColor];
-
+    cell.selectedBackgroundView = selectView;
     return cell;
 }
 /*
