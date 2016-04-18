@@ -8,7 +8,22 @@
 
 #import "TJ_SetingViewController.h"
 
+typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
+{
+    TJ_SwitchTagValuePush,
+    TJ_SwitchTagValueNotImage
+};
+
 @interface TJ_SetingViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray *cellTitle;//cell textLabel字符串
+    
+    NSString *cacheSize;//缓存大小
+    
+    BOOL isPush;//是否推送
+    
+    BOOL isNotImage;//是否无图
+}
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -21,6 +36,11 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"设置";
+
+    isPush = YES;
+    isNotImage = NO;
+    cacheSize = @"5.89MB";
+    cellTitle = @[@[@"推送消息",@"浏览记录",@"社区无图模式",@"清除缓存"],@[@"意见反馈",@"版本更新",@"关于我们"],@[@"退出当前账号"]];
     
     CGRect frame = self.view.bounds;
     frame.origin.y = 64;
@@ -31,8 +51,8 @@
     self.tableView.bounces = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
-
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -54,20 +74,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return cellTitle.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSArray *array = cellTitle[section];
     switch (section) {
         case 0:
-            return 4;
+            return array.count;
             break;
         case 1:
-            return 3;
+            return array.count;
             break;
         default:
-            return 1;
+            return array.count;
             break;
     }
 }
@@ -75,10 +96,45 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
-    cell.accessoryView = switchView;
+    NSArray *array = cellTitle[indexPath.section];
+    cell.textLabel.text = array[indexPath.row];
+    cell.textLabel.textColor = [UIColor grayColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (!indexPath.section) {
+        if (!indexPath.row || indexPath.row == 2) {
+            UISwitch *switchView = [UISwitch new];
+            switchView.on = !indexPath.row ? isPush : isNotImage;
+            switchView.tag = !indexPath.row ? TJ_SwitchTagValuePush : TJ_SwitchTagValueNotImage;
+            [switchView addTarget:self action:@selector(switchViewAction:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = switchView;
+        }
+        else if (indexPath.row == 3)
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.detailTextLabel.text = cacheSize;
+        }
+    }
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    if (indexPath.section == 2) {
+        CGRect frame = [cell.textLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:cell.textLabel.font} context:nil];
+        CGFloat margin = (self.view.frame.size.width - frame.size.width) / 2;
+        cell.separatorInset = UIEdgeInsetsMake(0, margin, 0, margin);
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
+}
+
+- (void)switchViewAction:(UISwitch *)sender
+{
+    if (sender.isOn) {
+        NSLog(@"开 tag = %ld",sender.tag);
+    }
+    else
+        NSLog(@"关  tag = %ld",sender.tag);
 }
 
 /*
