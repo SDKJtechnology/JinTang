@@ -223,12 +223,6 @@
 		DEDF6B0B1CC50EEF00FDECA2 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B091CC50EEF00FDECA2 /* MessageCell.m */; };
 		DEDF6B0E1CC50FFF00FDECA2 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B0D1CC50FFF00FDECA2 /* CommonTableViewCell.m */; };
 		DEDF6B131CC5115C00FDECA2 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B121CC5115C00FDECA2 /* UIView+TL.m */; };
-<<<<<<< HEAD
-=======
-		DEDF6B341CC513E000FDECA2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */; };
-		DEDF6B351CC513E000FDECA2 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */; };
-		DEDF6B361CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */; };
->>>>>>> db525ba09989a7187237359accd34586e0f8418b
 		DEDF6B461CC5145900FDECA2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B3C1CC5145900FDECA2 /* libSocialQQ.a */; };
 		DEDF6B471CC5145900FDECA2 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B3D1CC5145900FDECA2 /* TencentOpenAPI.framework */; };
 		DEDF6B481CC5145A00FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B3E1CC5145900FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -560,13 +554,6 @@
 		DEDF6B0F1CC5107300FDECA2 /* UIView+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TL.h"; sourceTree = "<group>"; };
 		DEDF6B121CC5115C00FDECA2 /* UIView+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TL.m"; sourceTree = "<group>"; };
 		DEDF6B181CC5134400FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
-		DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		DEDF6B251CC513E000FDECA2 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
->>>>>>> db525ba09989a7187237359accd34586e0f8418b
 		DEDF6B3C1CC5145900FDECA2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		DEDF6B3D1CC5145900FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		DEDF6B3E1CC5145900FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -1176,10 +1163,6 @@
 		DEDF6AAA1CC50CD200FDECA2 /* UMSocial_Sdk_4.2.5 */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-=======
-				DEDF6B211CC513E000FDECA2 /* TencentOpenAPI */,
->>>>>>> db525ba09989a7187237359accd34586e0f8418b
 				DEDF6AAB1CC50CD200FDECA2 /* Header */,
 				DEDF6AB71CC50CD200FDECA2 /* libUMSocial_Sdk_4.2.5.a */,
 				DEDF6AB81CC50CD200FDECA2 /* SocialSDKXib */,
@@ -1264,21 +1247,6 @@
 			path = models;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-=======
-		DEDF6B211CC513E000FDECA2 /* TencentOpenAPI */ = {
-			isa = PBXGroup;
-			children = (
-				DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */,
-				DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */,
-				DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */,
-				DEDF6B251CC513E000FDECA2 /* UMSocialQQHandler.h */,
-			);
-			name = TencentOpenAPI;
-			path = TencentOpenAPI/TencentOpenAPI;
-			sourceTree = "<group>";
-		};
->>>>>>> db525ba09989a7187237359accd34586e0f8418b
 		DEDF6B3A1CC5145900FDECA2 /* UMSocial_Sdk_Extra_Frameworks */ = {
 			isa = PBXGroup;
 			children = (
