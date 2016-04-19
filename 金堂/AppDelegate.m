@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TJ_LeftSortsViewController.h"
 #import "TJ_DynamicHomeController.h"
+#import "TJ_CycleScrollView.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
@@ -39,6 +40,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // Override point for customization after application launch.
     [UMSocialData setAppKey:kUMKey];
     /*苹果审核要求,隐藏未安装的应用 的分享选项 */
@@ -48,8 +50,6 @@
     [UMSocialWechatHandler setWXAppId:kWXKey appSecret:kWXSecret url:@"http://www.umeng.com/social"];
     /*注册QQ登录授权*/
     [UMSocialQQHandler setQQWithAppId:@"1104539912" appKey:@"eFVgRits2fqf36Jf" url:@"http://www.umeng.com/social"];
-    
-    
     
     [SMSSDK registerApp:appkey
              withSecret:app_secrect];
@@ -84,9 +84,12 @@
     self.window.backgroundColor = [UIColor grayColor];
     self.window.rootViewController = self.LeftSlideVC;
     [self.window makeKeyAndVisible];
-    
-    
-    
+   
+    TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
+    startView.cycleModel = TJ_CycleScrollViewStartPageModel;
+    startView.imageGroup = @[@"start",@"start2"];
+    [self.window addSubview:startView];
+    [self.window bringSubviewToFront:startView];
     
     return YES;
 }

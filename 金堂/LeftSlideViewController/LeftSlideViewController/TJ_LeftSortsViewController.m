@@ -276,6 +276,7 @@
             break;
     }
     UIViewController *viewController = [myClass new];
+    viewController.view.backgroundColor = [UIColor whiteColor];
     self.closeLeftVC(viewController);
     [self presentViewController:viewController];
 }
