@@ -209,6 +209,7 @@
 }
 
 #pragma mark - 计算文本的的宽度
+/*
 - (CGRect)getTitleLabelWith
 {
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
@@ -217,7 +218,7 @@
     
     return frame;
 }
-
+*/
 @end
 
 @implementation TJ_BACustomButton(TJ)
