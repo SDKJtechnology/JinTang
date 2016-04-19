@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TJ_CenterViewController.h"
-@interface LX_login2ViewController : UIViewController
+#import <RongIMKit/RongIMKit.h>
+@interface LX_login2ViewController : UIViewController<RCIMUserInfoDataSource>
 
 @end

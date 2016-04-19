@@ -8,6 +8,7 @@
 
 #import "LX_foundViewController.h"
 #import <Masonry.h>
+#import "LX_QRCodeViewController.h"
 @interface LX_foundViewController ()
 @property(nonatomic,strong)UIView *backgroundView;
 @property(nonatomic,strong)UILabel *label1;
@@ -62,9 +63,9 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"dongtai"] style:UIBarButtonItemStylePlain target:self action:@selector(clickQRCode:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    ////创建导航栏左上角的那个具有二维码扫描功能的按钮
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"dongtai"] style:UIBarButtonItemStylePlain target:self action:@selector(clickVIP:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
+//    ////创建导航栏左上角的那个具有二维码扫描功能的按钮
+//    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"dongtai"] style:UIBarButtonItemStylePlain target:self action:@selector(clickVIP:)];
+//    self.navigationItem.leftBarButtonItem = leftButton;
     
     
     
@@ -94,7 +95,7 @@
     //创建第一行的四个按钮
     
     _btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ai"]];
     [_btn1 addTarget:self action:@selector(clickOne:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn1];
     [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -106,7 +107,7 @@
     }];
     
     _btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"didi"]];
     [_btn2 addTarget:self action:@selector(clictwo:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn2];
     [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,7 +119,7 @@
     }];
     
     _btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn3.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn3.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lukuang"]];
     [_btn3 addTarget:self action:@selector(clickThree:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn3];
     
@@ -131,7 +132,7 @@
     }];
     
     _btn4 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn4.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"redian@3x.png"]];
+    _btn4.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"redian"]];
     [_btn4 addTarget:self action:@selector(clickThree:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn4];
     
@@ -164,7 +165,7 @@
     
     
     _btn5 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn5.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn5.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shenghuo"]];
     [_btn5 addTarget:self action:@selector(clickFive:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn5];
     [_btn5 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +177,7 @@
     }];
     
     _btn6 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn6.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn6.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tingdian"]];
     [_btn6 addTarget:self action:@selector(clickFive:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn6];
     [_btn6 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -188,7 +189,7 @@
     }];
     
     _btn7 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn7.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn7.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"weizhang"]];
     [_btn7 addTarget:self action:@selector(clickSeven:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn7];
     [_btn7 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,7 +201,7 @@
     }];
     
     _btn8 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn8.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"redian.png"]];
+    _btn8.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"xinshou"]];
     [_btn8 addTarget:self action:@selector(clickdidi:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn8];
     [_btn8 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -231,7 +232,7 @@
     
     
     _btn9 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn9.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn9.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"yaopin"]];
     // [_btn9 addTarget:self action:@selector(clickNine:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn9];
     [_btn9 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -242,7 +243,7 @@
     }];
     
     _btn10 = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn10.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Icon-60"]];
+    _btn10.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"yonghuming"]];
     //[_btn10 addTarget:self action:@selector(clickNine:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn10];
     [_btn10 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -289,9 +290,12 @@
 }
 -(void)clickQRCode:(UIBarButtonItem *)sender{
     NSLog(@"点击了后就会产生二维码扫描功能");
-    //QRCodeViewController *QRCode = [self.storyboard instantiateViewControllerWithIdentifier:@"QRCode"];
-//    QRCodeViewController *QRCode = [QRCodeViewController new];
-//    [self presentViewController:QRCode animated:YES completion:nil];
+   
+    
+    LX_QRCodeViewController *codeViewController = [LX_QRCodeViewController new];
+    codeViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    
+    [self presentViewController:codeViewController animated:YES completion:nil];
     
     
     

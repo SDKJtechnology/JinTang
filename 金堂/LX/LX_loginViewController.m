@@ -82,35 +82,19 @@
             make.edges.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(21, 23));
         }];
-        
     }
     return _backgroundView;
-    
+
 }
 
 -(void)clicklogin:(UIButton *)sender{
     NSLog(@"你点对了，我擦");
-   
     LX_login2ViewController *login2 = [LX_login2ViewController new];
     login2.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
     [self.navigationController pushViewController:login2 animated:YES];
-
-    
-    
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
