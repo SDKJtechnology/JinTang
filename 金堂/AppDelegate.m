@@ -14,7 +14,9 @@
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
-
+#import <RongIMKit/RongIMKit.h>
+#import "LX_login2ViewController.h"
+#import <RongIMLib/RongIMLib.h>
 #define kUMKey    @"5657f8a367e58e3b660032d7"
 
 #define kWXKey    @"wx945b58aef3a271f0"
@@ -26,6 +28,7 @@
 
 #define kUMKey    @"5657f8a367e58e3b660032d7"
 
+#define RONGCLOUD_IM_APPKEY @"z3v5yqkbv8v30" //1请换成您的appkey
 
 @interface AppDelegate ()
 
@@ -40,6 +43,13 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+<<<<<<< HEAD
+=======
+    //初始化融云SDK
+    [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY];
+    
+    
+>>>>>>> 2981728dc9a94e24914bfdc9b6b9dbd399673dd6
     
     // Override point for customization after application launch.
     [UMSocialData setAppKey:kUMKey];
@@ -84,6 +94,7 @@
     self.window.backgroundColor = [UIColor grayColor];
     self.window.rootViewController = self.LeftSlideVC;
     [self.window makeKeyAndVisible];
+<<<<<<< HEAD
    
     TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
     startView.cycleModel = TJ_CycleScrollViewStartPageModel;
@@ -91,9 +102,50 @@
     [self.window addSubview:startView];
     [self.window bringSubviewToFront:startView];
     
+=======
+>>>>>>> 2981728dc9a94e24914bfdc9b6b9dbd399673dd6
     return YES;
 }
 
+/**2
+ *  将得到的devicetoken 传给融云用于离线状态接收push ，您的app后台要上传推送证书
+ *
+ *  @param application <#application description#>
+ *  @param deviceToken <#deviceToken description#>
+ */
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token =
+    [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
+                                                           withString:@""]
+      stringByReplacingOccurrencesOfString:@">"
+      withString:@""]
+     stringByReplacingOccurrencesOfString:@" "
+     withString:@""];
+    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+}
+
+//监听网络状态的变化
+/**
+ *  网络状态变化。
+ *
+ *  @param status 网络状态。
+ */
+
+- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
+    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"提示"
+                              message:@"您"
+                              @"的帐号在别的设备上登录，您被迫下线！"
+                              delegate:nil
+                              cancelButtonTitle:@"知道了"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+       
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
