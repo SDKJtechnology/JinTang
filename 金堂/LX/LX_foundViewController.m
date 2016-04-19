@@ -72,6 +72,8 @@
     _label1.text = @"热点推荐";
     _label1.textColor = [UIColor blackColor];
     _label1.backgroundColor = [UIColor whiteColor];
+    _label1.textAlignment = NSTextAlignmentCenter;
+    _label1.lineBreakMode = NSLineBreakByWordWrapping;
     _label1.textAlignment = UITextAlignmentCenter;
     _label1.lineBreakMode = UILineBreakModeWordWrap;
     _label1.font = [UIFont fontWithName:@"AppleGothic" size:18];

@@ -248,6 +248,8 @@
     Class myClass = [UIViewController class];
     switch (sender.tag) {
         case TJ_BACustomButtonTagLandingButton:
+
+            myClass = NSClassFromString(@"LX_login2ViewController");
             NSLog(@"landingButton  %ld",TJ_BACustomButtonTagLandingButton);
             break;
         case TJ_BACustomButtonTagConcernButton:
@@ -269,6 +271,7 @@
             myClass = NSClassFromString(@"TJ_SetingViewController");
             break;
         case TJ_BACustomButtonTagLogingButton:
+            myClass = NSClassFromString(@"LX_enrollViewController");
             NSLog(@"LogingButton  %ld",TJ_BACustomButtonTagLogingButton);
             break;
     }

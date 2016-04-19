@@ -133,6 +133,13 @@
 		DED5D97E1CC475A000F59BB1 /* tuoyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = DED5D97B1CC475A000F59BB1 /* tuoyuan.png */; };
 		DED5D97F1CC475A000F59BB1 /* tuoyuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED5D97C1CC475A000F59BB1 /* tuoyuan@2x.png */; };
 		DED5D9801CC475A000F59BB1 /* tuoyuan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED5D97D1CC475A000F59BB1 /* tuoyuan@3x.png */; };
+		DED6D6921CC5C50B0080B09F /* jintang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D6891CC5C50B0080B09F /* jintang@2x.png */; };
+		DED6D6931CC5C50B0080B09F /* jintang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D68A1CC5C50B0080B09F /* jintang@3x.png */; };
+		DED6D6951CC5C50B0080B09F /* jintang1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D68C1CC5C50B0080B09F /* jintang1@2x.png */; };
+		DED6D6961CC5C50B0080B09F /* jintang1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D68D1CC5C50B0080B09F /* jintang1@3x.png */; };
+		DED6D6971CC5C50B0080B09F /* jintang2.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D68E1CC5C50B0080B09F /* jintang2.png */; };
+		DED6D6981CC5C50B0080B09F /* jintang2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D68F1CC5C50B0080B09F /* jintang2@2x.png */; };
+		DED6D6991CC5C50B0080B09F /* jintang2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D6901CC5C50B0080B09F /* jintang2@3x.png */; };
 		DEDF69D71CC4D39000FDECA2 /* TJ_SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF69D61CC4D39000FDECA2 /* TJ_SetingViewController.m */; };
 		DEDF6A3B1CC5037800FDECA2 /* LX_enroll2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */; };
 		DEDF6A3C1CC5037800FDECA2 /* LX_enrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A341CC5037800FDECA2 /* LX_enrollViewController.m */; };
@@ -216,18 +223,6 @@
 		DEDF6B0B1CC50EEF00FDECA2 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B091CC50EEF00FDECA2 /* MessageCell.m */; };
 		DEDF6B0E1CC50FFF00FDECA2 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B0D1CC50FFF00FDECA2 /* CommonTableViewCell.m */; };
 		DEDF6B131CC5115C00FDECA2 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6B121CC5115C00FDECA2 /* UIView+TL.m */; };
-		DEDF6B2E1CC513E000FDECA2 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B1B1CC513E000FDECA2 /* error.png */; };
-		DEDF6B2F1CC513E000FDECA2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B1C1CC513E000FDECA2 /* Info.plist */; };
-		DEDF6B301CC513E000FDECA2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B1D1CC513E000FDECA2 /* libSocialQQ.a */; };
-		DEDF6B311CC513E000FDECA2 /* local.html in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B1E1CC513E000FDECA2 /* local.html */; };
-		DEDF6B321CC513E000FDECA2 /* qqicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B1F1CC513E000FDECA2 /* qqicon.png */; };
-		DEDF6B331CC513E000FDECA2 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B201CC513E000FDECA2 /* success.png */; };
-		DEDF6B341CC513E000FDECA2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */; };
-		DEDF6B351CC513E000FDECA2 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */; };
-		DEDF6B361CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		DEDF6B371CC513E000FDECA2 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B261CC513E000FDECA2 /* TencentOpenAPI.framework */; };
-		DEDF6B381CC513E000FDECA2 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B291CC513E000FDECA2 /* libSocialWechat.a */; };
-		DEDF6B391CC513E000FDECA2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B2A1CC513E000FDECA2 /* libWeChatSDK.a */; };
 		DEDF6B461CC5145900FDECA2 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B3C1CC5145900FDECA2 /* libSocialQQ.a */; };
 		DEDF6B471CC5145900FDECA2 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF6B3D1CC5145900FDECA2 /* TencentOpenAPI.framework */; };
 		DEDF6B481CC5145A00FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6B3E1CC5145900FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -446,6 +441,13 @@
 		DED5D97B1CC475A000F59BB1 /* tuoyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuoyuan.png; sourceTree = "<group>"; };
 		DED5D97C1CC475A000F59BB1 /* tuoyuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuoyuan@2x.png"; sourceTree = "<group>"; };
 		DED5D97D1CC475A000F59BB1 /* tuoyuan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuoyuan@3x.png"; sourceTree = "<group>"; };
+		DED6D6891CC5C50B0080B09F /* jintang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang@2x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang@2x.png"; sourceTree = "<group>"; };
+		DED6D68A1CC5C50B0080B09F /* jintang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang@3x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang@3x.png"; sourceTree = "<group>"; };
+		DED6D68C1CC5C50B0080B09F /* jintang1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang1@2x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang1@2x.png"; sourceTree = "<group>"; };
+		DED6D68D1CC5C50B0080B09F /* jintang1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang1@3x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang1@3x.png"; sourceTree = "<group>"; };
+		DED6D68E1CC5C50B0080B09F /* jintang2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jintang2.png; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang2.png"; sourceTree = "<group>"; };
+		DED6D68F1CC5C50B0080B09F /* jintang2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang2@2x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang2@2x.png"; sourceTree = "<group>"; };
+		DED6D6901CC5C50B0080B09F /* jintang2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jintang2@3x.png"; path = "../../../../Volumes/U启动U盘/TinJang/金堂/images/jintang2@3x.png"; sourceTree = "<group>"; };
 		DEDF69D51CC4D39000FDECA2 /* TJ_SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_SetingViewController.h; sourceTree = "<group>"; };
 		DEDF69D61CC4D39000FDECA2 /* TJ_SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_SetingViewController.m; sourceTree = "<group>"; };
 		DEDF6A311CC5037800FDECA2 /* LX_enroll2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX_enroll2ViewController.h; sourceTree = "<group>"; };
@@ -552,23 +554,6 @@
 		DEDF6B0F1CC5107300FDECA2 /* UIView+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TL.h"; sourceTree = "<group>"; };
 		DEDF6B121CC5115C00FDECA2 /* UIView+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TL.m"; sourceTree = "<group>"; };
 		DEDF6B181CC5134400FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		DEDF6B1B1CC513E000FDECA2 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
-		DEDF6B1C1CC513E000FDECA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
-		DEDF6B1D1CC513E000FDECA2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		DEDF6B1E1CC513E000FDECA2 /* local.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = local.html; sourceTree = "<group>"; };
-		DEDF6B1F1CC513E000FDECA2 /* qqicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqicon.png; sourceTree = "<group>"; };
-		DEDF6B201CC513E000FDECA2 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
-		DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		DEDF6B251CC513E000FDECA2 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
-		DEDF6B261CC513E000FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		DEDF6B271CC513E000FDECA2 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
-		DEDF6B291CC513E000FDECA2 /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
-		DEDF6B2A1CC513E000FDECA2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		DEDF6B2B1CC513E000FDECA2 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
-		DEDF6B2C1CC513E000FDECA2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		DEDF6B2D1CC513E000FDECA2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DEDF6B3C1CC5145900FDECA2 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		DEDF6B3D1CC5145900FDECA2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		DEDF6B3E1CC5145900FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -586,15 +571,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEDF6B341CC513E000FDECA2 /* libSocialQQ.a in Frameworks */,
 				DEDF6A751CC50B0E00FDECA2 /* libiconv.2.4.0.tbd in Frameworks */,
 				DEDF6A731CC50B0200FDECA2 /* CoreTelephony.framework in Frameworks */,
-				DEDF6B351CC513E000FDECA2 /* TencentOpenAPI.framework in Frameworks */,
 				DEDF6A771CC50B8300FDECA2 /* SMS_SDK.framework in Frameworks */,
 				DEDF6A711CC50AF700FDECA2 /* CoreGraphics.framework in Frameworks */,
 				DEDF6B4C1CC514D600FDECA2 /* MOBFoundation.framework in Frameworks */,
 				DEDF6A991CC50C0A00FDECA2 /* MOBFoundation.framework in Frameworks */,
-				DEDF6B301CC513E000FDECA2 /* libSocialQQ.a in Frameworks */,
 				DEDF6AA11CC50C2500FDECA2 /* MessageUI.framework in Frameworks */,
 				DEDF6AA31CC50C2A00FDECA2 /* libicucore.A.tbd in Frameworks */,
 				DEDF6AA51CC50C3000FDECA2 /* libicucore.tbd in Frameworks */,
@@ -604,7 +586,6 @@
 				DEDF6B4A1CC5145A00FDECA2 /* libWeChatSDK.a in Frameworks */,
 				DEDF6A9D1CC50C1500FDECA2 /* JavaScriptCore.framework in Frameworks */,
 				DEDF6A7B1CC50BA000FDECA2 /* libSocialWechat.a in Frameworks */,
-				DEDF6B381CC513E000FDECA2 /* libSocialWechat.a in Frameworks */,
 				DEDF6A9B1CC50C0F00FDECA2 /* libz.tbd in Frameworks */,
 				DEDF6A7D1CC50BAB00FDECA2 /* CoreTelephony.framework in Frameworks */,
 				DEDF6A971CC50C0500FDECA2 /* libz.1.tbd in Frameworks */,
@@ -616,13 +597,11 @@
 				DEDF6A8F1CC50BEC00FDECA2 /* libSocialQQ.a in Frameworks */,
 				DEDF6A8D1CC50BE600FDECA2 /* libstdc++.6.tbd in Frameworks */,
 				DEDF6A8B1CC50BE000FDECA2 /* libstdc++.6.0.9.tbd in Frameworks */,
-				DEDF6B371CC513E000FDECA2 /* TencentOpenAPI.framework in Frameworks */,
 				DEDF6A891CC50BD800FDECA2 /* libsqlite3.tbd in Frameworks */,
 				DEDF6A871CC50BD100FDECA2 /* libsqlite3.0.tbd in Frameworks */,
 				DEDF6A851CC50BCB00FDECA2 /* libiconv.tbd in Frameworks */,
 				DEDF6A831CC50BC500FDECA2 /* libWeChatSDK.a in Frameworks */,
 				DEDF6A811CC50BBF00FDECA2 /* libiconv.2.tbd in Frameworks */,
-				DEDF6B391CC513E000FDECA2 /* libWeChatSDK.a in Frameworks */,
 				DEDF6B491CC5145A00FDECA2 /* libSocialWechat.a in Frameworks */,
 				DEDF6A7F1CC50BB900FDECA2 /* libUMSocial_Sdk_4.2.5.a in Frameworks */,
 				DEDF6A6F1CC50AED00FDECA2 /* Security.framework in Frameworks */,
@@ -1034,6 +1013,13 @@
 		DE5EA1AA1CC09B4200447582 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DED6D6891CC5C50B0080B09F /* jintang@2x.png */,
+				DED6D68A1CC5C50B0080B09F /* jintang@3x.png */,
+				DED6D68C1CC5C50B0080B09F /* jintang1@2x.png */,
+				DED6D68D1CC5C50B0080B09F /* jintang1@3x.png */,
+				DED6D68E1CC5C50B0080B09F /* jintang2.png */,
+				DED6D68F1CC5C50B0080B09F /* jintang2@2x.png */,
+				DED6D6901CC5C50B0080B09F /* jintang2@3x.png */,
 				DE86D4B01CC49038009E1D9B /* beijing1.png */,
 				DE86D4B11CC49038009E1D9B /* beijing1@2x.png */,
 				DE86D4B21CC49038009E1D9B /* beijing1@3x.png */,
@@ -1177,7 +1163,6 @@
 		DEDF6AAA1CC50CD200FDECA2 /* UMSocial_Sdk_4.2.5 */ = {
 			isa = PBXGroup;
 			children = (
-				DEDF6B1A1CC513E000FDECA2 /* TencentOpenAPI */,
 				DEDF6AAB1CC50CD200FDECA2 /* Header */,
 				DEDF6AB71CC50CD200FDECA2 /* libUMSocial_Sdk_4.2.5.a */,
 				DEDF6AB81CC50CD200FDECA2 /* SocialSDKXib */,
@@ -1260,46 +1245,6 @@
 				DEDF6B0F1CC5107300FDECA2 /* UIView+TL.h */,
 			);
 			path = models;
-			sourceTree = "<group>";
-		};
-		DEDF6B1A1CC513E000FDECA2 /* TencentOpenAPI */ = {
-			isa = PBXGroup;
-			children = (
-				DEDF6B1B1CC513E000FDECA2 /* error.png */,
-				DEDF6B1C1CC513E000FDECA2 /* Info.plist */,
-				DEDF6B1D1CC513E000FDECA2 /* libSocialQQ.a */,
-				DEDF6B1E1CC513E000FDECA2 /* local.html */,
-				DEDF6B1F1CC513E000FDECA2 /* qqicon.png */,
-				DEDF6B201CC513E000FDECA2 /* success.png */,
-				DEDF6B211CC513E000FDECA2 /* TencentOpenAPI */,
-				DEDF6B261CC513E000FDECA2 /* TencentOpenAPI.framework */,
-				DEDF6B271CC513E000FDECA2 /* UMSocialQQHandler.h */,
-				DEDF6B281CC513E000FDECA2 /* Wechat */,
-			);
-			path = TencentOpenAPI;
-			sourceTree = "<group>";
-		};
-		DEDF6B211CC513E000FDECA2 /* TencentOpenAPI */ = {
-			isa = PBXGroup;
-			children = (
-				DEDF6B221CC513E000FDECA2 /* libSocialQQ.a */,
-				DEDF6B231CC513E000FDECA2 /* TencentOpenAPI.framework */,
-				DEDF6B241CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle */,
-				DEDF6B251CC513E000FDECA2 /* UMSocialQQHandler.h */,
-			);
-			path = TencentOpenAPI;
-			sourceTree = "<group>";
-		};
-		DEDF6B281CC513E000FDECA2 /* Wechat */ = {
-			isa = PBXGroup;
-			children = (
-				DEDF6B291CC513E000FDECA2 /* libSocialWechat.a */,
-				DEDF6B2A1CC513E000FDECA2 /* libWeChatSDK.a */,
-				DEDF6B2B1CC513E000FDECA2 /* UMSocialWechatHandler.h */,
-				DEDF6B2C1CC513E000FDECA2 /* WXApi.h */,
-				DEDF6B2D1CC513E000FDECA2 /* WXApiObject.h */,
-			);
-			path = Wechat;
 			sourceTree = "<group>";
 		};
 		DEDF6B3A1CC5145900FDECA2 /* UMSocial_Sdk_Extra_Frameworks */ = {
@@ -1449,7 +1394,6 @@
 				DE283BD51CC489260070D7B3 /* fanhui@2x.png in Resources */,
 				DE5EA1D91CC09B4200447582 /* img_06.png in Resources */,
 				DEDF6AFA1CC50CD300FDECA2 /* ios-social-sdk-comment-quick.html in Resources */,
-				DEDF6B321CC513E000FDECA2 /* qqicon.png in Resources */,
 				DE5EA1F81CC09B4200447582 /* zu1@2x.png in Resources */,
 				DEDF6A511CC5045200FDECA2 /* shoji@3x.png in Resources */,
 				DEDF6AFC1CC50CD300FDECA2 /* ios-social-sdk-login-detail.html in Resources */,
@@ -1460,13 +1404,12 @@
 				DEDF6A681CC5045C00FDECA2 /* qq@2x.png in Resources */,
 				DEDF6B481CC5145A00FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DEDF6AE51CC50CD200FDECA2 /* UMSCommentInputController.xib in Resources */,
-				DEDF6B2E1CC513E000FDECA2 /* error.png in Resources */,
 				DE86D4B31CC49038009E1D9B /* beijing1.png in Resources */,
 				DE283BDE1CC489260070D7B3 /* sousuo@2x.png in Resources */,
 				DE283BD61CC489260070D7B3 /* fanhui@3x.png in Resources */,
-				DEDF6B2F1CC513E000FDECA2 /* Info.plist in Resources */,
 				DE283BDF1CC489260070D7B3 /* sousuo@3x.png in Resources */,
 				DE5EA1F51CC09B4200447582 /* shequ.png in Resources */,
+				DED6D6931CC5C50B0080B09F /* jintang@3x.png in Resources */,
 				DE5EA1EC1CC09B4200447582 /* nan.png in Resources */,
 				DE5EA1F41CC09B4200447582 /* ren@3x.png in Resources */,
 				DEDF6B011CC50CD300FDECA2 /* ios-social-sdk-socialbar.html in Resources */,
@@ -1493,12 +1436,16 @@
 				DEDF6A551CC5045200FDECA2 /* touxiang.png in Resources */,
 				DEDF6AE91CC50CD200FDECA2 /* UMSLoginViewController.xib in Resources */,
 				DE5EA1D61CC09B4200447582 /* img_03.png in Resources */,
+				DED6D6981CC5C50B0080B09F /* jintang2@2x.png in Resources */,
+				DED6D6961CC5C50B0080B09F /* jintang1@3x.png in Resources */,
 				DEDF6A631CC5045C00FDECA2 /* tupian@3x.png in Resources */,
 				DE5EA1E71CC09B4200447582 /* img_26@3x.png in Resources */,
 				DE5EA1E21CC09B4200447582 /* img_19.png in Resources */,
 				DEDF6A531CC5045200FDECA2 /* suo@2x.png in Resources */,
 				DEDF6A501CC5045200FDECA2 /* shoji@2x.png in Resources */,
+				DED6D6951CC5C50B0080B09F /* jintang1@2x.png in Resources */,
 				DEDF6AFF1CC50CD300FDECA2 /* ios-social-sdk-share-detail.html in Resources */,
+				DED6D6971CC5C50B0080B09F /* jintang2.png in Resources */,
 				DE283BDB1CC489260070D7B3 /* shoucang@2x.png in Resources */,
 				DE5EA1D81CC09B4200447582 /* img_03@3x.png in Resources */,
 				DE283BD71CC489260070D7B3 /* pencil.png in Resources */,
@@ -1515,6 +1462,7 @@
 				99B0D2D81CA8DC4700DE3965 /* LaunchScreen.storyboard in Resources */,
 				DE5EA1DC1CC09B4200447582 /* img_09.png in Resources */,
 				DE5EA1E01CC09B4200447582 /* img_15@2x.png in Resources */,
+				DED6D6921CC5C50B0080B09F /* jintang@2x.png in Resources */,
 				DEDF6A571CC5045200FDECA2 /* touxiang@3x.png in Resources */,
 				DE5EA1D51CC09B4200447582 /* faxian.png in Resources */,
 				DE5EA1F11CC09B4200447582 /* quan.png in Resources */,
@@ -1526,7 +1474,6 @@
 				DEDF6A4E1CC5045200FDECA2 /* kongbai@3x.png in Resources */,
 				DEDF6B021CC50CD300FDECA2 /* markdown.css in Resources */,
 				DE283BDD1CC489260070D7B3 /* sousuo.png in Resources */,
-				DEDF6B361CC513E000FDECA2 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DEDF6A621CC5045C00FDECA2 /* tupian@2x.png in Resources */,
 				DEDF6AEB1CC50CD200FDECA2 /* UMSShareListController.xib in Resources */,
 				DE283BDC1CC489260070D7B3 /* shoucang@3x.png in Resources */,
@@ -1542,15 +1489,14 @@
 				DE5EA1E51CC09B4200447582 /* img_26.png in Resources */,
 				DEDF6AFB1CC50CD300FDECA2 /* ios-social-sdk-like.html in Resources */,
 				DE5EA1D31CC09B4200447582 /* beijing@2x.png in Resources */,
+				DED6D6991CC5C50B0080B09F /* jintang2@3x.png in Resources */,
 				DED5D97E1CC475A000F59BB1 /* tuoyuan.png in Resources */,
 				DEDF6AE61CC50CD200FDECA2 /* UMSCommentInputControlleriPad.xib in Resources */,
 				DEDF6A651CC5045C00FDECA2 /* xinfeng@2x.png in Resources */,
 				DE5EA1E41CC09B4200447582 /* img_19@3x.png in Resources */,
 				DE5EA1E61CC09B4200447582 /* img_26@2x.png in Resources */,
-				DEDF6B331CC513E000FDECA2 /* success.png in Resources */,
 				DE5EA1EA1CC09B4200447582 /* load.jpg in Resources */,
 				DE5EA1E31CC09B4200447582 /* img_19@2x.png in Resources */,
-				DEDF6B311CC513E000FDECA2 /* local.html in Resources */,
 				DE5EA1E11CC09B4200447582 /* img_15@3x.png in Resources */,
 				DE5EA1FA1CC09B4200447582 /* 头像.png in Resources */,
 				DECFEF041CC0C4AA00BC2738 /* sanjiaoxing@2x.png in Resources */,
