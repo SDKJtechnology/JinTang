@@ -1,5 +1,5 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B5452F69774D0B48ABF5D6B8D30C9FD3DFE35E32",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "778CE08C77B2FE87E0A7C6789A1CA6D8AE1B81F7",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "176ce5f2-6d0b-4cc8-95fe-4c993e769986" : {
 
@@ -9,6 +9,7 @@
     "B5452F69774D0B48ABF5D6B8D30C9FD3DFE35E32" : 0,
     "3A3BEDCC36D45E0F2A2292E783E7D7B5100F199C" : 0,
     "176ce5f2-6d0b-4cc8-95fe-4c993e769986" : 0,
+    "778CE08C77B2FE87E0A7C6789A1CA6D8AE1B81F7" : 0,
     "BE9B0AB31626F77ED681CD0492DF422BBDB6ADA0" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1B3CA431-CFDA-4208-8352-451C385EF943",
@@ -16,6 +17,7 @@
     "B5452F69774D0B48ABF5D6B8D30C9FD3DFE35E32" : "%E9%87%91%E5%A0%82\/",
     "3A3BEDCC36D45E0F2A2292E783E7D7B5100F199C" : "",
     "176ce5f2-6d0b-4cc8-95fe-4c993e769986" : "..\/..\/..\/Volumes\/DATA\/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%A4%B9\/TeamDemo",
+    "778CE08C77B2FE87E0A7C6789A1CA6D8AE1B81F7" : "JinTang-master\/",
     "BE9B0AB31626F77ED681CD0492DF422BBDB6ADA0" : "..\/..\/..\/Volumes\/DATA\/File\/SuccessProjcet\/YunHouDemo"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "金堂",
@@ -31,6 +33,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SDKJtechnology\/JinTang.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A3BEDCC36D45E0F2A2292E783E7D7B5100F199C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SDKJtechnology\/JinTang.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "778CE08C77B2FE87E0A7C6789A1CA6D8AE1B81F7"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SDKJtechnology\/-2.git",
