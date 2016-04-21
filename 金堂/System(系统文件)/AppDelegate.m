@@ -93,11 +93,13 @@
     self.window.rootViewController = self.LeftSlideVC;
     [self.window makeKeyAndVisible];
 
-    TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
-    startView.cycleModel = TJ_CycleScrollViewStartPageModel;
-    startView.imageGroup = @[@"start",@"start2"];
-    [self.window addSubview:startView];
-    [self.window bringSubviewToFront:startView];
+    //添加启动页
+//    TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
+//    startView.cycleModel = TJ_CycleScrollViewStartPageModel;
+//    startView.imageGroup = @[@"start",@"start2"];
+//    startView.imageUrlGroup = @[@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png",@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png",@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png"];
+//    [self.window addSubview:startView];
+//    [self.window bringSubviewToFront:startView];
     
 
     return YES;

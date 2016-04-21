@@ -7,3 +7,4 @@
 //
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
+#import <UIImageView+WebCache.h>

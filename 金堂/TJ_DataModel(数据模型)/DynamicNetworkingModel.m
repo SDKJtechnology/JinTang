@@ -11,7 +11,7 @@
 #import "DynamicModel.h"
 #import "XYString.h"
 #import "MJExtension.h"
-#import "HotspotModel.h"
+#import "ActivityModel.h"
 
 @implementation DynamicNetworkingModel
 
@@ -38,7 +38,7 @@
     } success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success)
         {
-//            NSLog(@"%@",responseObject);
+            NSLog(@"%@",responseObject);
             NSArray *array = [DynamicModel mj_objectWithKeyValues:responseObject].data.list;
             NSMutableArray *imageAr ;
             for (DynamicList *list in array)
@@ -75,8 +75,8 @@
 //        NSLog( @"%@",responseObject);
         if (success)
         {
-            NSArray *array = [HotspotModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            for (HotspotModel *hot in array) {
+            NSArray *array = [ActivityModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+            for (ActivityModel *hot in array) {
                 hot.item = [Item mj_objectWithKeyValues:hot.items];
                 hot.item.header = [Body mj_objectWithKeyValues:hot.item.headerDict];
             }

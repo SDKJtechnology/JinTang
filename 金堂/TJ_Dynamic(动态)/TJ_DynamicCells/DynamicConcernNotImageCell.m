@@ -15,40 +15,61 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+    {
+        [self setup];
     }
     
     return self;
 }
 
+- (void)setup
+{
+    self.titleLabel.sd_layout
+    .topSpaceToView(self.headerButton, margin / 2)
+    .leftSpaceToView(self.contentView, margin)
+    .rightSpaceToView(self.contentView, margin)
+    .autoHeightRatio(0);
+    
+    self.sharedPhotoView.sd_layout
+    .topSpaceToView(self.titleLabel, margin)
+    .leftEqualToView(self.titleLabel)
+    .rightEqualToView(self.titleLabel);
+    
+    self.nameButton.sd_layout
+    .topSpaceToView(self.sharedPhotoView, margin / 2)
+    .leftEqualToView(self.titleLabel)
+    .widthIs(150)
+    .heightIs(20);
+    [self.nameButton setTitleColor:self.browseCountButton.currentTitleColor forState:UIControlStateNormal];
+    
+    self.timeLabel.sd_layout
+    .topSpaceToView(self.sharedPhotoView, margin / 2)
+    .rightEqualToView(self.titleLabel)
+    .autoHeightRatio(0);
+    [self.timeLabel setSingleLineAutoResizeWithMaxWidth:150];
+    
+    self.browseCountButton.sd_layout
+    .topEqualToView(self.timeLabel)
+    .leftSpaceToView(self.nameButton, margin)
+    .widthIs(150)
+    .heightIs(20);
+    
+    [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
+}
+
 - (void)setDynamicList:(DynamicList *)dynamicList
 {
-    self.replyCountButton.sd_layout.topSpaceToView(self.sharedPhotoView, margin / 2);
+    [self.nameButton setTitle:dynamicList.source forState:UIControlStateNormal];
+    self.nameButton.sd_layout.widthIs([self.nameButton getButtonWidth].size.width);
+    
     self.sharedPhotoView.imageUrlArray = dynamicList.attaches;
     
-    [self.headerButton setImage:[UIImage imageNamed:@"头像"] forState:UIControlStateNormal];
-    
     self.titleLabel.text = dynamicList.title;
-    
-    [self.nameButton setTitle:dynamicList.source forState:UIControlStateNormal];
-    [self.nameButton setImage:[UIImage imageNamed:@"nv"] forState:UIControlStateNormal];
-    self.addressLabel.text = @"来自";
-    [self.addressButton setTitle:@"金堂印象" forState:UIControlStateNormal];
-    self.addressButton.sd_layout.widthIs([self.addressButton getTitleLabelWith].size.width);
-    
+        
     self.timeLabel.text = dynamicList.push_at;
     
-    [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
-    [self.replyCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.replyCountButton.sd_layout.widthIs([self.replyCountButton getButtonWidth].size.width);
-    
-    [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
-    [self.supportCountButton setTitle:@"1252" forState:UIControlStateNormal];
-    self.supportCountButton.sd_layout.widthIs([self.supportCountButton getButtonWidth].size.width);
-    
-    [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
-    [self.browseCountButton setTitle:@"1252" forState:UIControlStateNormal];
+    [self.browseCountButton setTitle:dynamicList.views_num forState:UIControlStateNormal];
     self.browseCountButton.sd_layout.widthIs([self.browseCountButton getButtonWidth].size.width);
 }
 

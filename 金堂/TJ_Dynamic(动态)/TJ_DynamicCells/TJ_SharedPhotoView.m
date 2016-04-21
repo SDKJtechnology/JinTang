@@ -60,7 +60,7 @@
         return;
     }
     
-    CGFloat itemH = [self itemWidthForPicPathArray:self.imageUrlArray];
+    CGFloat itemH = [self itemWidthForPicPathArray:imageUrlArray];
     
     NSInteger perRowItemCount = [self perRowItemCountForPicPathArray:imageUrlArray];
     NSInteger idx = 0;
@@ -76,7 +76,7 @@
         idx++;
     };
     float count = (float)imageUrlArray.count / perRowItemCount;
-    if (count > imageUrlArray.count / perRowItemCount)
+    if (count > (float)imageUrlArray.count / perRowItemCount)
         count++;
     NSInteger columnCount = roundf(count);
     CGFloat h = columnCount * (itemH + margin);

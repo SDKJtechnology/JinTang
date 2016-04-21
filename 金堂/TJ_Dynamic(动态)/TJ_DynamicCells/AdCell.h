@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivityModel.h"
+#import "HotspotModel.h"
 
 @interface AdCell : UITableViewCell
 
-@property (nonatomic) ActivityModel *activityModel;
+@property (nonatomic) HotspotModel *hotspotModel;
 
 @end

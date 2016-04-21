@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HotspotModel.h"
+#import "ActivityModel.h"
 #import "SDAutoLayout.h"
 #import <UIImageView+WebCache.h>
 
-@interface HotspotBigImageCell : UITableViewCell
+@interface ActivityBigImageCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UILabel *titleLabel;

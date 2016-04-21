@@ -6,9 +6,9 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "HotspotBigImageCell.h"
+#import "ActivityBigImageCell.h"
 
-@implementation HotspotBigImageCell
+@implementation ActivityBigImageCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

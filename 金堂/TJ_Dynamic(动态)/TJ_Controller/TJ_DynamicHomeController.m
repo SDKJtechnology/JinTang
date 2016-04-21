@@ -11,12 +11,12 @@
 #import <UIView+SDAutoLayout.h>
 #import "DynamicConcernNotImageCell.h"
 #import "DynamicModel.h"
-#import "HotspotModel.h"
 #import "ActivityModel.h"
+#import "HotspotModel.h"
 #import "DynamicNetworkingModel.h"
-#import "HotspotBigImageCell.h"
+#import "ActivityBigImageCell.h"
 #import "AdCell.h"
-#import "ActivityCell.h"
+#import "HotspotCell.h"
 #import "TJ_HeaderView.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
@@ -84,6 +84,8 @@ static NSNumber *page;
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.showsHorizontalScrollIndicator = NO;
+    self.contentView.canCancelContentTouches = NO;
+    self.contentView.delaysContentTouches = NO;
     self.contentView.bounces = NO;
     self.contentView.delegate = self;
     
@@ -103,9 +105,9 @@ static NSNumber *page;
         tableView.tag = i + 100;
         [self.contentView insertSubview:tableView atIndex:0];
         
-        [tableView registerClass:[HotspotBigImageCell class] forCellReuseIdentifier:NSStringFromClass([HotspotBigImageCell class])];
+        [tableView registerClass:[ActivityBigImageCell class] forCellReuseIdentifier:NSStringFromClass([ActivityBigImageCell class])];
         [tableView registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
-        [tableView registerClass:[ActivityCell class] forCellReuseIdentifier:NSStringFromClass([ActivityCell class])];
+        [tableView registerClass:[HotspotCell class] forCellReuseIdentifier:NSStringFromClass([HotspotCell class])];
     }
     
     //  设置scrollView
@@ -113,6 +115,7 @@ static NSNumber *page;
     self.contentView.pagingEnabled = YES;
 }
 
+//获取动态数据
 - (void)getDynamicConcernData
 {
     [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page success:^(id data) {
@@ -129,7 +132,7 @@ static NSNumber *page;
 {
     [[DynamicNetworkingModel sharedObejct] getHotspotDataWithPage:page success:^(id data) {
         [dynamciHotspotData addObjectsFromArray:data];
-        UITableView *tableView = [self.contentView viewWithTag:101];
+        UITableView *tableView = [self.contentView viewWithTag:102];
         [tableView reloadData];
     } failure:^(id data) {
         NSLog(@"动态热点数据加载失败。。。%@",data);
@@ -189,9 +192,10 @@ static NSNumber *page;
         }
         return cell;
     }
-    else if (tableView.tag == 101) {
-        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotBigImageCell class]) forIndexPath:indexPath];
+    else if (tableView.tag == 102) {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ActivityBigImageCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor redColor];
         return cell;
     }
     else
@@ -199,7 +203,7 @@ static NSNumber *page;
         if (indexPath.row == 0)
             cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AdCell class]) forIndexPath:indexPath];
         else
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ActivityCell class]) forIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
@@ -212,10 +216,10 @@ static NSNumber *page;
             return dynamicConcernListData.count;
             break;
         case 101:
-            return dynamciHotspotData.count;
+            return 5;
             break;
         case 102:
-            return 5;
+            return dynamciHotspotData.count;
             break;
     }
     return 1;
@@ -228,10 +232,10 @@ static NSNumber *page;
             return 1;
             break;
         case 101:
-            return 1;
+            return 5;
             break;
         case 102:
-            return 4;
+            return 1;
             break;
     }
     return 0;
@@ -249,11 +253,15 @@ static NSNumber *page;
             break;
         case 101:
         {
-            HotspotModel *hots = dynamciHotspotData[indexPath.section];
-            ((HotspotBigImageCell *)cell).header = hots.item.header;
+            HotspotModel *model = [HotspotModel new];
+            ((HotspotCell *)cell).hotspotModel = model;
         }
             break;
         case 102:
+        {
+            ActivityModel *hots = dynamciHotspotData[indexPath.section];
+            ((ActivityBigImageCell *)cell).header = hots.item.header;
+        }
             break;
     }
 }
@@ -271,20 +279,20 @@ static NSNumber *page;
             break;
         case 101:
         {
-            HotspotModel *hots = dynamciHotspotData[indexPath.section];
-            Body *body = hots.item.header;
-            return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[HotspotBigImageCell class] contentViewWidth:VIEW_WIDTH];
+            HotspotModel *model = [HotspotModel new];
+
+            if (indexPath.row == 0)
+            {
+                return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[AdCell class] contentViewWidth:VIEW_WIDTH];
+            }
+            else return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[HotspotCell class] contentViewWidth:VIEW_WIDTH];
         }
             break;
         case 102:
         {
-            ActivityModel *model = nil;
-
-            if (indexPath.row == 0)
-            {
-                return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"activityModel"cellClass:[AdCell class] contentViewWidth:VIEW_WIDTH];
-            }
-            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"activityModel"cellClass:[ActivityCell class] contentViewWidth:VIEW_WIDTH];
+            ActivityModel *model = dynamciHotspotData[indexPath.section];
+            Body *body = model.item.header;
+            return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[ActivityBigImageCell class] contentViewWidth:VIEW_WIDTH];
         }
             break;
     }
@@ -293,7 +301,7 @@ static NSNumber *page;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView.tag == 102) {
+    if (tableView.tag == 101) {
         TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
         return view;
     }
@@ -305,13 +313,13 @@ static NSNumber *page;
 {
     switch (tableView.tag) {
         case 100:
-            return 10;
+            return 0.01;
             break;
         case 101:
-            return 10;
+            return 50;
             break;
         case 102:
-            return 50;
+            return 10;
             break;
     }
     return 0.01;
@@ -324,10 +332,10 @@ static NSNumber *page;
             return 0.01;
             break;
         case 101:
-            return 5;
+            return 3;
             break;
         case 102:
-            return 3;
+            return 5;
             break;
     }
     return 0.01;
