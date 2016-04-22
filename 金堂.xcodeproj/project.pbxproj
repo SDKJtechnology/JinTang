@@ -379,6 +379,8 @@
 		99B0D2E31CA8DC4700DE3965 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B0D2E21CA8DC4700DE3965 /* __Tests.m */; };
 		99B0D3091CA907AA00DE3965 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 99B0D3081CA907AA00DE3965 /* Podfile */; };
 		D27B858ABBE05EBE31EF8876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FCEF84EADC805EF927E3C6 /* libPods.a */; };
+		DE401DF11CC9CE4F004C1AAB /* TJ_ CalculateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */; };
+		DE5791E81CC87EEC00145B93 /* TJ_DynamicSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */; };
 		DE95978B1CC759CF0065337E /* NSArray Chinese.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9597861CC759CF0065337E /* NSArray Chinese.m */; };
 		DE95978C1CC759CF0065337E /* NSDictionary Chinese.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9597881CC759CF0065337E /* NSDictionary Chinese.m */; };
 		DE95978D1CC759CF0065337E /* NSSet Chinese.m in Sources */ = {isa = PBXBuildFile; fileRef = DE95978A1CC759CF0065337E /* NSSet Chinese.m */; };
@@ -924,6 +926,10 @@
 		99B0D3081CA907AA00DE3965 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C6760EF67EC0D5D5796CBEDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0FF5357F04A504D3432E96F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DE401DEF1CC9CE4F004C1AAB /* TJ_ CalculateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJ_ CalculateCache.h"; sourceTree = "<group>"; };
+		DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ CalculateCache.m"; sourceTree = "<group>"; };
+		DE5791E61CC87EEC00145B93 /* TJ_DynamicSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicSearchController.h; sourceTree = "<group>"; };
+		DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicSearchController.m; sourceTree = "<group>"; };
 		DE9597851CC759CF0065337E /* NSArray Chinese.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray Chinese.h"; sourceTree = "<group>"; };
 		DE9597861CC759CF0065337E /* NSArray Chinese.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray Chinese.m"; sourceTree = "<group>"; };
 		DE9597871CC759CF0065337E /* NSDictionary Chinese.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary Chinese.h"; sourceTree = "<group>"; };
@@ -1082,10 +1088,12 @@
 				7A7796711CC6820800D843D9 /* TJ_LeftSlideViewController.m */,
 				7A7796721CC6820800D843D9 /* TJ_LeftSortsViewController.h */,
 				7A7796731CC6820800D843D9 /* TJ_LeftSortsViewController.m */,
-				7A7796741CC6820800D843D9 /* TJ_SetingViewController.h */,
-				7A7796751CC6820800D843D9 /* TJ_SetingViewController.m */,
 				7A7796761CC6820800D843D9 /* TJ_CenterViewController.h */,
 				7A7796771CC6820800D843D9 /* TJ_CenterViewController.m */,
+				7A7796741CC6820800D843D9 /* TJ_SetingViewController.h */,
+				7A7796751CC6820800D843D9 /* TJ_SetingViewController.m */,
+				DE401DEF1CC9CE4F004C1AAB /* TJ_ CalculateCache.h */,
+				DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */,
 			);
 			path = "TJ_LeftSlideViewController(抽屉)";
 			sourceTree = "<group>";
@@ -1420,6 +1428,8 @@
 			children = (
 				7A77989C1CC685A200D843D9 /* TJ_DynamicHomeController.h */,
 				7A77989D1CC685A200D843D9 /* TJ_DynamicHomeController.m */,
+				DE5791E61CC87EEC00145B93 /* TJ_DynamicSearchController.h */,
+				DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */,
 			);
 			path = TJ_Controller;
 			sourceTree = "<group>";
@@ -1535,9 +1545,9 @@
 		7A7799061CC688E900D843D9 /* TJ_ Community(社区) */ = {
 			isa = PBXGroup;
 			children = (
+				7A7799091CC688E900D843D9 /* TJ_Views */,
 				7A7799071CC688E900D843D9 /* TJ_CommunityViewController.h */,
 				7A7799081CC688E900D843D9 /* TJ_CommunityViewController.m */,
-				7A7799091CC688E900D843D9 /* TJ_Views */,
 			);
 			path = "TJ_ Community(社区)";
 			sourceTree = "<group>";
@@ -2499,6 +2509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE5791E81CC87EEC00145B93 /* TJ_DynamicSearchController.m in Sources */,
 				7A77992D1CC6894800D843D9 /* TJ_HotCollectionView.m in Sources */,
 				7A7799121CC688E900D843D9 /* TJ_ClassificationListTableView.m in Sources */,
 				7A7798D71CC6862700D843D9 /* NSObject+MJCoding.m in Sources */,
@@ -2540,6 +2551,7 @@
 				DEDF6A3F1CC5037800FDECA2 /* LX_loginViewController.m in Sources */,
 				7A7799001CC6889700D843D9 /* ConcernModel.m in Sources */,
 				7A7798B01CC685FD00D843D9 /* UIView_extra.m in Sources */,
+				DE401DF11CC9CE4F004C1AAB /* TJ_ CalculateCache.m in Sources */,
 				7A7798D91CC6862700D843D9 /* NSObject+MJProperty.m in Sources */,
 				7A7796641CC67A6200D843D9 /* LX_QRCodeViewController.m in Sources */,
 				7A77992B1CC6894800D843D9 /* TJ_TopicTableViewCell.m in Sources */,

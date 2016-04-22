@@ -12,6 +12,8 @@
 
 @interface TJ_ClassificationListCell : UITableViewCell
 
+@property (nonatomic, assign) BOOL hiddenConcernButton;
+
 @property (nonatomic, strong) ConcernModel *concernModel;
 
 @end

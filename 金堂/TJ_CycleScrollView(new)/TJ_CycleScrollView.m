@@ -56,6 +56,7 @@
         
         pageIndex = 0;
         self.interval = 2;
+        self.titleLabelHeight = 30;
     }
     return self;
 }
@@ -77,6 +78,9 @@
     NSInteger i = 0;
     for (NSString *imageString in imageArray) {
         self.imageView = [UIImageView new];
+        self.titelLabel = [UILabel new];
+        self.titelLabel.text = @"临时当局分裂开始的肌肤";
+        
         if ([imageString hasPrefix:@"http"]) {
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"load"]];
         }
@@ -84,7 +88,13 @@
             self.imageView.image = [UIImage imageNamed:imageString];
         }
         self.imageView.frame = CGRectMake(i * selfWidth, 0, selfWidth, selfHeight);
+        self.titelLabel.frame = CGRectMake(i * selfWidth, selfHeight - self.titleLabelHeight, selfWidth, self.titleLabelHeight);
+        self.titelLabel.textColor = self.titleLabelTextColor;
+        self.titelLabel.backgroundColor = self.titleLabelBackgroundColor;
+        self.titelLabel.font = self.titleLabelTextFont;
+        
         [self.scrollView addSubview:self.imageView];
+        [self.scrollView addSubview:self.titelLabel];
         i++;
     }
     self.scrollView.contentSize = CGSizeMake(i * selfWidth, selfHeight);
@@ -179,6 +189,32 @@
     [self setPageControllFrame:[self.pageControl sizeForNumberOfPages:self.imageGroup.count]];
 }
 
+- (void)setTitleLabelHeight:(CGFloat)titleLabelHeight
+{
+    _titleLabelHeight = titleLabelHeight;
+    CGRect frame = self.titelLabel.frame;
+    frame.size.height = titleLabelHeight;
+    self.titelLabel.frame = frame;
+}
+
+- (void)setTitleLabelTextFont:(UIFont *)titleLabelTextFont
+{
+    _titleLabelTextFont = titleLabelTextFont;
+    self.titelLabel.font = titleLabelTextFont;
+}
+
+- (void)setTitleLabelBackgroundColor:(UIColor *)titleLabelBackgroundColor
+{
+    _titleLabelBackgroundColor = titleLabelBackgroundColor;
+    self.titelLabel.backgroundColor = titleLabelBackgroundColor;
+}
+
+- (void)setTitleLabelTextColor:(UIColor *)titleLabelTextColor
+{
+    _titleLabelTextColor = titleLabelTextColor;
+    self.titelLabel.textColor = titleLabelTextColor;
+}
+
 #pragma mark Other
 
 - (void)setTimer
@@ -201,17 +237,19 @@
         }
         case TJ_CycleScrollViewPageControlStyleDownLeft:
         {
-            CGRect frame = self.pageControl.frame;
-            frame.origin.x = Size.width / 2 + 20;
-            frame.origin.y = self.frame.size.height - 20;
-            self.pageControl.frame = frame;
+            self.pageControl.frame = CGRectMake(
+                                                10,
+                                                selfHeight - 30,
+                                                Size.width,
+                                                Size.height
+                                                );
             break;
         }
         case TJ_CycleScrollViewPageControlStyleDownRight:
         {
             self.pageControl.frame = CGRectMake(
-                                                selfWidth - Size.width - 20,
-                                                selfHeight - 20,
+                                                selfWidth - Size.width - 10,
+                                                selfHeight - 30,
                                                 Size.width,
                                                 Size.height
                                                 );
@@ -220,7 +258,7 @@
         case TJ_CycleScrollViewPageControlStyleTopCenter:
         {
             CGPoint center = self.scrollView.center;
-            center.y = 40;
+            center.y = 30;
             self.pageControl.center = center;
             break;
         }

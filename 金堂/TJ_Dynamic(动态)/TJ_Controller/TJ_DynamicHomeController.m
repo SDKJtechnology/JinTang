@@ -8,7 +8,6 @@
 
 #import "TJ_DynamicHomeController.h"
 #import "TJ_SelectionList.h"
-#import <UIView+SDAutoLayout.h>
 #import "DynamicConcernNotImageCell.h"
 #import "DynamicModel.h"
 #import "ActivityModel.h"
@@ -18,6 +17,7 @@
 #import "AdCell.h"
 #import "HotspotCell.h"
 #import "TJ_HeaderView.h"
+#import "TJ_DynamicSearchController.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -61,7 +61,7 @@ static NSNumber *page;
     [super viewDidLoad];
 
     self.navigationItem.title = @"金堂有爱";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"sousuo"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"sousuo"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(clickRigthButtonAction)];
     
     page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];
@@ -72,13 +72,16 @@ static NSNumber *page;
     [self getDynamicConcernData];
     [self getDynamicHotspotData];
     
+    [self setup];
+}
+
+- (void)setup
+{
     self.selectList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
     self.selectList.delegate = self;
     self.selectList.seletedTitleColor = [UIColor blackColor];
     self.selectList.indicatorColor = [UIColor blueColor];
     self.selectList.titleColor = [UIColor grayColor];
-//    [self.selectList setSelectItemBorderStyleWithCornerRadius:6 BorderWidth:5 BorderColor:[UIColor redColor]];
-//    self.selectList.selectedItemIndex = 1;
     
     self.contentView = [[UIScrollView alloc] init];
     self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
@@ -92,9 +95,9 @@ static NSNumber *page;
     [self.view insertSubview:self.selectList atIndex:1];
     [self.view insertSubview:self.contentView atIndex:0];
     
-        //  添加TableView
-        CGFloat w = self.contentView.frame.size.width;
-        CGFloat h = self.contentView.frame.size.height;
+    //  添加TableView
+    CGFloat w = self.contentView.frame.size.width;
+    CGFloat h = self.contentView.frame.size.height;
     for (NSInteger i = 0; i < selectListData.count; i++) {     /* 有多View取决于categories的数量 */
         CGRect frame = self.contentView.bounds;
         frame.origin.x = i * VIEW_WIDTH;
@@ -113,6 +116,11 @@ static NSNumber *page;
     //  设置scrollView
     self.contentView.contentSize = CGSizeMake(selectListData.count * w, h);
     self.contentView.pagingEnabled = YES;
+}
+
+- (void)clickRigthButtonAction
+{
+    [self.navigationController pushViewController:[TJ_DynamicSearchController new] animated:YES];
 }
 
 //获取动态数据

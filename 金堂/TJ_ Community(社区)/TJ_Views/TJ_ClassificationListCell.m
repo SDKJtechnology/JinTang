@@ -82,6 +82,11 @@
     return self;
 }
 
+- (void)setHiddenConcernButton:(BOOL)hiddenConcernButton
+{
+    self.concernButton.hidden = hiddenConcernButton;
+}
+
 - (void)setConcernModel:(ConcernModel *)concernModel
 {
     self.titleLabel.text = concernModel.title;

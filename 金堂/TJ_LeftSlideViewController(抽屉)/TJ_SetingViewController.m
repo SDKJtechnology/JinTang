@@ -7,6 +7,7 @@
 //
 
 #import "TJ_SetingViewController.h"
+#import "TJ_ CalculateCache.h"
 
 typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 {
@@ -19,6 +20,8 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
     NSArray *cellTitle;//cell textLabel字符串
     
     NSString *cacheSize;//缓存大小
+    
+    NSString *cachePath;
     
     BOOL isPush;//是否推送
     
@@ -39,7 +42,12 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 
     isPush = YES;
     isNotImage = NO;
-    cacheSize = @"5.89MB";
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    cachePath = [paths lastObject];
+    CGFloat size = [[TJ_CalculateCache sharedCalculateCache] getFolderSizeAtPath:cachePath];
+    cacheSize = [NSString stringWithFormat:@"%.2fMB",size];
+    
     cellTitle = @[@[@"推送消息",@"浏览记录",@"社区无图模式",@"清除缓存"],@[@"意见反馈",@"版本更新",@"关于我们"],@[@"退出当前账号"]];
     
     CGRect frame = self.view.bounds;
@@ -69,6 +77,16 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.textLabel.text isEqualToString:@"清除缓存"]) {
+        [[TJ_CalculateCache sharedCalculateCache] clearCache:cachePath];
+        cacheSize = @"0.00MB";
+        [tableView reloadData];
+    }
 }
 
 #pragma mark UITableViewDataSource

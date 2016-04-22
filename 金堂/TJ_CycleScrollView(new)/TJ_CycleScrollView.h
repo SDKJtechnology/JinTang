@@ -60,4 +60,16 @@ typedef NS_ENUM(NSInteger, TJ_CycleScrollViewPageControlStyle)
  */
 @property (nonatomic , assign) TJ_CycleScrollViewPageControlStyle pageControllStyle;
 
+/** 轮播文字label字体颜色 */
+@property (nonatomic, strong) UIColor *titleLabelTextColor;
+
+/** 轮播文字label字体大小 */
+@property (nonatomic, strong) UIFont  *titleLabelTextFont;
+
+/** 轮播文字label背景颜色 */
+@property (nonatomic, strong) UIColor *titleLabelBackgroundColor;
+
+/** 轮播文字label高度 */
+@property (nonatomic, assign) CGFloat titleLabelHeight;
+
 @end

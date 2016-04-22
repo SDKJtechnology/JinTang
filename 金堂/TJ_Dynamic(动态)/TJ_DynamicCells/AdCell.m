@@ -33,9 +33,12 @@
         .leftSpaceToView(self.contentView, margin)
         .rightSpaceToView(self.contentView, margin)
         .autoHeightRatio(0.5);
+        self.cycleScrollView.showPageControl = NO;
+        self.cycleScrollView.titleLabelTextColor = [UIColor whiteColor];
+        self.cycleScrollView.titleLabelBackgroundColor = [UIColor colorWithWhite:0.347 alpha:1.000];
 
         [self setupAutoHeightWithBottomView:self.cycleScrollView bottomMargin:margin];
-        self.cycleScrollView.pageControllStyle = TJ_CycleScrollViewPageControlStyleDownRight;
+//        self.cycleScrollView.pageControllStyle = TJ_CycleScrollViewPageControlStyleDownCenter;
 //        self.cycleScrollView.titleLabelBackgroundColor = [UIColor colorWithWhite:0.352 alpha:0.610];
 //        self.cycleScrollView.titlesGroup = @[@"撒旦发射的发生多福多寿风格",@"撒旦个地方是广东省各地热",@"撒旦发射的发生多福多寿风格",@"撒旦个地方是广东省各地热"];
 //        self.cycleScrollView.localizationImageNamesGroup = @[@"beijing"];
