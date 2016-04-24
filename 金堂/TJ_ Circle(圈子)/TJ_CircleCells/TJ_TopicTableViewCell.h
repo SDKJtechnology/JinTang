@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TJ_TableViewCellModel.h"
 #import "TopicModel.h"
 
-@interface TJ_TopicTableViewCell : TJ_TableViewCellModel
+@interface TJ_TopicTableViewCell : UITableViewCell
 
 @property (nonatomic) UIImageView *identifierImage;
 
@@ -21,9 +20,5 @@
 @property (nonatomic) UIImageView *shareImage2;
 
 @property (nonatomic) TopicModel *topicModel;
-
-@end
-
-@interface Tj_TopicNotIdentifierImageCell : TJ_TopicTableViewCell
 
 @end

@@ -25,7 +25,6 @@
         
         self.sourceName = @"似懂非懂说";
         self.timeString = @"10分钟前";
-        self.addressesSting = @"三江路红灯区";
         self.titleString = @"卢卡斯飞机上的纠纷克里斯蒂减肥";
         self.headImageUrl = @"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png";
         i++;

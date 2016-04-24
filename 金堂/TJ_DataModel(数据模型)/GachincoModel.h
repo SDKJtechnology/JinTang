@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *  最新动态模型（圈子页）
+ */
 @interface GachincoModel : NSObject
 
 @property (nonatomic, strong) NSString *titleString;

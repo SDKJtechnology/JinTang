@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SDAutoLayout.h"
-#import "ConcernModel.h"
+#import "CommunityModel.h"
 
 @interface TJ_ClassificationListCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL hiddenConcernButton;
 
-@property (nonatomic, strong) ConcernModel *concernModel;
+@property (nonatomic, strong) CommunityModel *communityModel;
 
 @end

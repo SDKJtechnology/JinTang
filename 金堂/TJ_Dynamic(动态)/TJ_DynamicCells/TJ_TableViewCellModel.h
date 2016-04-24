@@ -12,16 +12,17 @@
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
 #import "TJ_SharedPhotoView.h"
-
+#import "MLLinkLabel.h"
+#import "MolonDebug.h"
 #define CELL_Width self.contentView.frame.size.width
 #define margin 10
 
-@interface TJ_TableViewCellModel : UITableViewCell
+@interface TJ_TableViewCellModel : UITableViewCell<MLLinkLabelDelegate>
 
 /**
  *  说说内容
  */
-@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) MLLinkLabel *titleLabel;
 /**
  *  发布地址
  */
@@ -32,6 +33,10 @@
  *  发布时间
  */
 @property (nonatomic) UILabel *timeLabel;
+/**
+ *  性别图
+ */
+@property (nonatomic) UIImageView *sexImageView;
 /**
  *  发布人昵称
  */
@@ -45,6 +50,10 @@
  *  点赞人数
  */
 @property (nonatomic) TJ_BACustomButton *supportCountButton;
+/**
+ *  分享按钮
+ */
+@property (nonatomic, strong) TJ_BACustomButton *shareButton;
 /**
  *  回复数量
  */

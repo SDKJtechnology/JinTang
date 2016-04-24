@@ -14,7 +14,7 @@
 {
     if (self = [super init]) {
         self.titleString = @"史蒂夫圣诞节啊风口浪尖";
-        self.browseCount = @"2435";
+        self.detailString = @"已有24152人参与 － 2564张照片";
         self.supportCount = @"546";
         self.sharedImageUrls = @[@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png",@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png"];
     }

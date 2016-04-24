@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  TJ_TopicTableViewDelegate;
+
 @interface TJ_TopicTableView : UITableView
 
+@property (nonatomic, strong) id<TJ_TopicTableViewDelegate> delegateTopic;
+
 @property (nonatomic) NSArray *topicData;
+
+@end
+
+@protocol  TJ_TopicTableViewDelegate
+
+- (void)didClickNavigationButtonAtTitel:(NSString *)title;
 
 @end

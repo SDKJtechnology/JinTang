@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *  动态网络请求模型
+ *
+ *  @param data 请求完成模型组
+ */
 typedef void (^DynamicNetworkingBlock)(id data);
 
 @interface DynamicNetworkingModel : NSObject
