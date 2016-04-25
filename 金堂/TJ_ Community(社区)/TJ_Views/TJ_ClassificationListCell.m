@@ -87,12 +87,12 @@
     self.concernButton.hidden = hiddenConcernButton;
 }
 
-- (void)setConcernModel:(ConcernModel *)concernModel
+- (void)setCommunityModel:(CommunityModel *)communityModel
 {
-    self.titleLabel.text = concernModel.title;
-    self.concernLabel.text = concernModel.concernCount;
+    self.titleLabel.text = communityModel.title;
+    self.concernLabel.text = communityModel.concernCount;
     
-    [self.image sd_setImageWithURL:[NSURL URLWithString:concernModel.imageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:communityModel.imageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
     [self.concernButton setTitle:@"关注" forState:UIControlStateNormal];
 }
 

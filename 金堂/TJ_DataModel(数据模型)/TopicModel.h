@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *  话题模型
+ */
 @interface TopicModel : NSObject
 
 @property (nonatomic, strong) NSString *titleString;
 
 @property (nonatomic, strong) NSArray *sharedImageUrls;
 
-@property (nonatomic, strong) NSString *browseCount;
+@property (nonatomic, strong) NSString *detailString;
 
 @property (nonatomic, strong) NSString *supportCount;
 

@@ -9,8 +9,17 @@
 
 #import "SDAutoLayout.h"
 #import "TJ_HotCollectionViewCell.h"
+#import <UIImageView+WebCache.h>
 
 @interface TJ_HotCollectionViewCell()
+
+@property (nonatomic) UIImageView *imageView;//背景试图
+
+@property (nonatomic) TJ_BACustomButton *headButton;//头像按钮
+
+@property (nonatomic, strong) UILabel *nameLabel;//昵称label
+
+@property (nonatomic, strong) UIView *backView;//透明视图
 
 @end
 
@@ -20,81 +29,55 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        self.backgroundImage = [UIImageView new];
-        self.titleLabel = [UILabel new];
-        self.supportButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
-        self.nameButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusLeft];
-        self.contentLabel = [UILabel new];
+        self.imageView = [UIImageView new];
+        self.backView = [UIView new];
+        self.nameLabel = [UILabel new];
+
+        self.headButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusLeft];
         
-        [self.contentView sd_addSubviews:@[self.backgroundImage,self.nameButton,self.contentLabel,self.titleLabel,self.supportButton]];
+        [self.contentView sd_addSubviews:@[self.imageView,self.backView,self.headButton,self.nameLabel]];
         
-        [self layout];
+        [self setup];
     }
     
     return self;
 }
 
-- (void)layout
-{
-    CGFloat margin = 10;
+- (void)setup
+{    
+    self.imageView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://7xn4qj.com1.z0.glb.clouddn.com/_20160203141820_56b19bac58683.png"] placeholderImage:[UIImage imageNamed:@"load"]];
     
-    self.backgroundImage.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+    self.headButton.sd_layout
+    .leftSpaceToView(self.contentView, 3)
+    .bottomSpaceToView(self.contentView, 3)
+    .heightRatioToView(self.contentView, 0.3)
+    .widthEqualToHeight();
+    self.headButton.sd_cornerRadiusFromWidthRatio = @0.5;
+    [self.headButton setImage:[UIImage imageNamed:@"ai@3x"] forState:UIControlStateNormal];
+    [self.headButton addTarget:self action:@selector(clickHeadButtonAction) forControlEvents:
+     UIControlEventTouchUpInside];
     
-    self.titleLabel.sd_layout
-    .topSpaceToView(self.contentView, 0)
-    .leftSpaceToView(self.contentView, margin)
-    .rightSpaceToView(self.contentView, margin)
-    .heightIs(self.contentView.height / 3);
-    self.titleLabel.numberOfLines = 0;
-    self.titleLabel.font = [UIFont systemFontOfSize:20];
-    [self.titleLabel setTextColor:[UIColor whiteColor]];
-    self.titleLabel.text = @"仨快递放假快乐";
+    self.backView.sd_layout
+    .leftSpaceToView(self.contentView, 0)
+    .rightSpaceToView(self.contentView, 0)
+    .bottomSpaceToView(self.contentView, 0)
+    .heightIs(self.contentView.height * 0.3 + 6);
+    self.backView.backgroundColor = [UIColor colorWithWhite:0.131 alpha:0.650];
     
-    self.contentLabel.sd_layout
-    .topSpaceToView(self.titleLabel, 0)
-    .leftSpaceToView(self.contentView, margin * 2.5)
-    .rightSpaceToView(self.contentView, margin)
-    .heightIs(self.titleLabel.height);
-    self.contentLabel.numberOfLines = 0;
-    self.contentLabel.font = [UIFont systemFontOfSize:15];
-    [self.contentLabel setTextColor:self.titleLabel.textColor];
-    self.contentLabel.text = @"萨肯邓丽君佛拉数据的佛 i 阿萨德将佛教萨快点放假快乐撒娇的风口浪尖啊生动风景";
-    
-    self.nameButton.sd_layout
-    .heightIs(25)
-    .widthIs(self.contentView.width / 2)
-    .leftEqualToView(self.titleLabel)
-    .bottomSpaceToView(self.contentView, margin);
-    [self.nameButton setTitleColor:self.titleLabel.textColor forState:UIControlStateNormal];
-    self.nameButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [self.nameButton setTitle:@"萨芬的告诉对方" forState:UIControlStateNormal];
-    
-    self.supportButton.sd_layout
-    .heightIs(self.nameButton.height)
-    .rightSpaceToView(self.contentView, margin)
-    .widthIs(200)
-    .bottomEqualToView(self.nameButton);
-    [self.supportButton setTitleColor:self.titleLabel.textColor forState:UIControlStateNormal];
-    self.supportButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [self.supportButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
-    [self.supportButton setTitle:@"1221" forState:UIControlStateNormal];
-    self.supportButton.sd_layout.widthIs([self.supportButton getTitleLabelWith].size.width + [self.supportButton getImageViewFrame].size.width);
+    self.nameLabel.sd_layout
+    .leftSpaceToView(self.headButton, 5)
+    .rightSpaceToView(self.contentView, 0)
+    .bottomSpaceToView(self.contentView, 0)
+    .heightIs(self.backView.height);
+    self.nameLabel.font = [UIFont systemFontOfSize:10];
+    self.nameLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.text = @"金堂妹妹";
 }
 
-- (void)layoutSubviews
+- (void)clickHeadButtonAction
 {
-    [super layoutSubviews];
-    
-    if (self.tag % 4 == 0 || (self.tag + 1) % 4 == 0)
-        self.backgroundImage.image = [UIImage imageNamed:@"beijing"];
-    else
-    {
-        self.titleLabel.textColor = [UIColor colorWithWhite:0.187 alpha:1.000];
-        [self.supportButton setTitleColor:self.titleLabel.textColor forState:UIControlStateNormal];
-        [self.nameButton setTitleColor:self.titleLabel.textColor forState:UIControlStateNormal];
-        [self.contentLabel setTextColor:self.titleLabel.textColor];
-    }
+    NSLog(@"点击头像");
 }
-
 
 @end

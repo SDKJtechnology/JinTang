@@ -7,7 +7,6 @@
 //
 
 #import "DynamicConcernNotImageCell.h"
-#import "UILabel+new.h"
 #import "TJ_SharedPhotoView.h"
 
 
@@ -87,6 +86,11 @@
             return @"DynamicConcernManyImageCell";
             break;
     }
+}
+
+- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
+{
+    _po(linkText);
 }
 
 @end

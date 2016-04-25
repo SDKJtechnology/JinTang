@@ -11,14 +11,5 @@
 
 @interface TJ_HotCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic) UIImageView *backgroundImage;//背景试图
-
-@property (nonatomic) UILabel *titleLabel;//标题label
-
-@property (nonatomic) UILabel *contentLabel;//内容label
-
-@property (nonatomic) TJ_BACustomButton *nameButton;//昵称按钮
-
-@property (nonatomic) TJ_BACustomButton *supportButton;//点赞按钮
 
 @end

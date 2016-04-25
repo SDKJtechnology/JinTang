@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *  动态模型
+ */
 @interface DynamicList : NSObject
 /**
  *  标题

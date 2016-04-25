@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SDAutoLayout.h"
-#import "TJ_BAButton.h"
 
 @interface TJ_CommetView : UIView
 
-@property (nonatomic, strong) UILabel *commentLable;
-
-@property (nonatomic, strong) TJ_BACustomButton *commetPersonButton;
-
-@property (nonatomic, strong) NSArray *commetData;
+- (void)setupWithLikeItemsArray:(NSArray *)likeItemsArray commentItemsArray:(NSArray *)commentItemsArray;
 
 @end

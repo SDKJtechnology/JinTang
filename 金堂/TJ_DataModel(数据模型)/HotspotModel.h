@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *  动态热点模型
+ */
 @interface HotspotModel : NSObject
 
 @property (nonatomic, strong) NSString *hotspotTitel;

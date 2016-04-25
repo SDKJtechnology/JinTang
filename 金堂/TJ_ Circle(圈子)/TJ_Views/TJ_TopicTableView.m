@@ -8,9 +8,10 @@
 
 #import "TJ_TopicTableView.h"
 #import "TJ_TopicTableViewCell.h"
+#import "TJ_TopicNavigationTableViewCell.h"
 #import "TopicModel.h"
 
-@interface TJ_TopicTableView()<UITableViewDelegate,UITableViewDataSource>
+@interface TJ_TopicTableView()<UITableViewDelegate,UITableViewDataSource,TJ_TopicNavigationTableViewCellDelegate>
 
 @end
 
@@ -22,6 +23,8 @@
         self.delegate = self;
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
+        [self registerClass:[TJ_TopicTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_TopicTableViewCell class])];
+        [self registerClass:[TJ_TopicNavigationTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_TopicNavigationTableViewCell class])];
     }
     
     return self;
@@ -31,57 +34,78 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TopicModel *model = [TopicModel new];
-    model.ID = indexPath.section + 1;
-    ((TJ_TopicTableViewCell *)cell).topicModel = model;
+    if (indexPath.section)
+        ((TJ_TopicTableViewCell *)cell).topicModel = [TopicModel new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TopicModel *topicModel = nil;
-    CGFloat height = [tableView cellHeightForIndexPath:indexPath model:topicModel keyPath:@"topicModel" cellClass:[TJ_TopicTableViewCell class] contentViewWidth:self.width];
-    if (indexPath.section < 3)
-        return height;
-    else return height - 40 * 0.62;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 5;
+    if (!section) {
+        return 0.01;
+    }
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.topicData.count - 1) {
-        return 5;
-    }
+    
     return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{    
+    UIView *vHeader = [UIView new];
+    vHeader.backgroundColor = [UIColor colorWithWhite:0.856 alpha:1.000];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 200, 30)];
+    [vHeader addSubview:titleLabel];
+    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.textColor = [UIColor colorWithWhite:0.591 alpha:1.000];
+    titleLabel.text = @"本周话题排行";
+    
+    if (section)
+        return vHeader;
+    else
+        return nil;
 }
 
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.topicData.count;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (!section) {
+        return 1;
+    }
+    return self.topicData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Class myClass = NSClassFromString([TJ_TopicTableViewCell identifierForModelAtRow:indexPath]);
-    NSString *identifer = @"notIdentifierImage";
-    if (indexPath.section > 2)
-        identifer = @"cell";
-    TJ_TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
-    
-    if (!cell)
-        cell = [[myClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+    UITableViewCell *cell = nil;
+    if (!indexPath.section) {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_TopicNavigationTableViewCell class]) forIndexPath:indexPath];
+        ((TJ_TopicNavigationTableViewCell *)cell).delegate = self;
+    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_TopicTableViewCell class]) forIndexPath:indexPath];
+    }
     
     return cell;
+}
+
+- (void)didClickTopicNavigationButton:(TJ_TopicNavigationTableViewCell *)cell Titel:(NSString *)title
+{
+    [self.delegateTopic didClickNavigationButtonAtTitel:title];
 }
 
 /*

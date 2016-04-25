@@ -15,10 +15,12 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         //说说内容label
-        self.titleLabel = [UILabel new];
+        self.titleLabel = [MLLinkLabel new];
         [self.contentView addSubview:self.titleLabel];
         self.titleLabel.font = [UIFont systemFontOfSize:16];
         self.titleLabel.numberOfLines = 0;
+        self.titleLabel.dataDetectorTypes = MLDataDetectorTypeHashtag;
+        self.titleLabel.delegate = self;
         
         //发布人昵称
         self.nameButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusLeft];
@@ -36,6 +38,10 @@
         self.timeLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:self.timeLabel];
         
+        //性别图
+        self.sexImageView = [UIImageView new];
+        [self.contentView addSubview:self.sexImageView];
+        
         //发布地点
         self.addressButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusRight];
         [self.addressButton setTitleColor:[UIColor colorWithRed:0.175 green:1.000 blue:0.533 alpha:1.000] forState:UIControlStateNormal];
@@ -51,7 +57,11 @@
         self.sharedPhotoView = [TJ__SharedPhotoView new];
         [self.contentView addSubview:self.sharedPhotoView];
         
-        
+        //分享按钮
+        self.shareButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
+        [self.contentView addSubview:self.shareButton];
+        [self.shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+
         // 浏览人数
         self.browseCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
         [self.browseCountButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -86,9 +96,13 @@
     self.nameButton.sd_layout
     .topEqualToView(self.headerButton)
     .leftSpaceToView(self.headerButton, margin / 2)
-    .minWidthIs(100)
     .heightIs(self.headerButton.height / 2);
-    [self.nameButton.titleLabel setSingleLineAutoResizeWithMaxWidth:200];
+    
+    self.sexImageView.sd_layout
+    .topEqualToView(self.nameButton)
+    .leftSpaceToView(self.nameButton, margin / 2)
+    .heightIs(self.nameButton.height)
+    .widthEqualToHeight();
     
     self.timeLabel.sd_layout
     .leftEqualToView(self.nameButton)
@@ -123,19 +137,19 @@
     .topSpaceToView(self.titleLabel, margin / 2)
     .rightEqualToView(self.titleLabel)
     .widthIs(150)
-    .heightIs(20);
+    .heightIs(30);
     
     self.supportCountButton.sd_layout
     .topEqualToView(self.replyCountButton)
     .rightSpaceToView(self.replyCountButton, margin)
     .widthIs(150)
-    .heightIs(20);
+    .heightIs(30);
     
     self.browseCountButton.sd_layout
     .topEqualToView(self.replyCountButton)
     .rightSpaceToView(self.supportCountButton, margin)
     .widthIs(150)
-    .heightIs(20);
+    .heightIs(30);
     
     [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
 }
@@ -144,6 +158,9 @@
 {
     return NSStringFromClass([TJ_TableViewCellModel class]);
 }
+
+- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
+{}
 
 - (void)awakeFromNib {
     // Initialization code

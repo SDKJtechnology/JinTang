@@ -70,7 +70,10 @@
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [imageViews objectAtIndex:idx];
         imageView.hidden = NO;
+        [imageView setContentMode:UIViewContentModeScaleAspectFit];
         [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"]];
+        if (imageUrlArray.count == 1)
+            itemH = imageView.image.size.height / imageView.image.size.width * itemH;
 //        imageView.image = [UIImage imageNamed:obj];
         imageView.frame = CGRectMake(columnIndex * (itemH + margin), rowIndex * (itemH + margin), itemH, itemH);
         idx++;
@@ -96,7 +99,7 @@
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array
 {
     if (array.count == 1) {
-        return 160;
+        return 120;
     } else {
         CGFloat w = (self.width - 2 * margin) / 3;
         return w;

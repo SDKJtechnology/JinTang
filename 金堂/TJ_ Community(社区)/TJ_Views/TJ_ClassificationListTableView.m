@@ -31,14 +31,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ConcernModel *model = [ConcernModel new];
-    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"concernModel" cellClass:[TJ_ClassificationListCell class] contentViewWidth:self.width];
+    CommunityModel *model = [CommunityModel new];
+    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"communityModel" cellClass:[TJ_ClassificationListCell class] contentViewWidth:self.width];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TJ_ClassificationListCell *cell1 = (TJ_ClassificationListCell*)cell;
-    cell1.concernModel = [ConcernModel new];
+    cell1.communityModel = [CommunityModel new];
 }
 
 #pragma mark UITableViewDataSource
