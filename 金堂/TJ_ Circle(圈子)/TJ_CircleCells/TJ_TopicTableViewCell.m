@@ -15,6 +15,8 @@
 {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.identifierImage = [UIImageView new];
+        [self.contentView addSubview:self.identifierImage];
     }
     return self;
 }
@@ -30,6 +32,14 @@
     .leftSpaceToView(self.contentView, margin)
     .bottomSpaceToView(self.contentView, margin / 2)
     .widthEqualToHeight();
+    
+    self.identifierImage.sd_layout
+    .topSpaceToView(self.contentView, margin / 2)
+    .leftSpaceToView(self.contentView, margin)
+    .heightRatioToView(self.imageView, 0.4)
+    .widthEqualToHeight();
+//    self.identifierImage.backgroundColor = [UIColor redColor];
+    [self.contentView bringSubviewToFront:self.identifierImage];
     
     self.textLabel.sd_layout
     .leftSpaceToView(self.imageView, margin)

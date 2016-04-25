@@ -43,10 +43,10 @@
         [self.contentView addSubview:self.sexImageView];
         
         //发布地点
-        self.addressButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusRight];
-        [self.addressButton setTitleColor:[UIColor colorWithRed:0.175 green:1.000 blue:0.533 alpha:1.000] forState:UIControlStateNormal];
-        self.addressButton.titleLabel.font = self.titleLabel.font;
-        [self.contentView addSubview:self.addressButton];
+        self.rightButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusRight];
+        [self.rightButton setTitleColor:[UIColor colorWithRed:0.175 green:1.000 blue:0.533 alpha:1.000] forState:UIControlStateNormal];
+        self.rightButton.titleLabel.font = self.titleLabel.font;
+        [self.contentView addSubview:self.rightButton];
         
         self.addressLabel = [UILabel new];
         [self.contentView addSubview:self.addressLabel];
@@ -110,7 +110,7 @@
     .autoHeightRatio(0);
     [self.timeLabel setSingleLineAutoResizeWithMaxWidth:150];
     
-    self.addressButton.sd_layout
+    self.rightButton.sd_layout
     .topEqualToView(self.headerButton)
     .rightSpaceToView(self.contentView, margin)
     .widthIs(100)
@@ -119,7 +119,7 @@
     self.addressLabel.sd_layout
     .topEqualToView(self.nameButton)
     .heightRatioToView(self.nameButton, 1)
-    .rightSpaceToView(self.addressButton, 0);
+    .rightSpaceToView(self.rightButton, 0);
     [self.addressLabel setSingleLineAutoResizeWithMaxWidth:100];
     
     self.titleLabel.sd_layout

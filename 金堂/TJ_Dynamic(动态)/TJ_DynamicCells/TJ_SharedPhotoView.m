@@ -66,11 +66,15 @@
     NSInteger idx = 0;
     for (NSString *obj in imageUrlArray)
     {
+        if (idx > 8) {
+            break;
+        }
         long columnIndex = idx % perRowItemCount;
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [imageViews objectAtIndex:idx];
         imageView.hidden = NO;
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [imageView setContentMode:UIViewContentModeScaleAspectFill];
+        imageView.clipsToBounds = YES;
         [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"]];
         if (imageUrlArray.count == 1)
             itemH = imageView.image.size.height / imageView.image.size.width * itemH;
@@ -78,8 +82,12 @@
         imageView.frame = CGRectMake(columnIndex * (itemH + margin), rowIndex * (itemH + margin), itemH, itemH);
         idx++;
     };
-    float count = (float)imageUrlArray.count / perRowItemCount;
-    if (count > (float)imageUrlArray.count / perRowItemCount)
+    CGFloat imageCount = imageUrlArray.count;
+    if (imageCount > 9 ) {
+        imageCount = 9;
+    }
+    float count = (float)imageCount / perRowItemCount;
+    if (count > imageCount / perRowItemCount)
         count++;
     NSInteger columnCount = roundf(count);
     CGFloat h = columnCount * (itemH + margin);
@@ -99,7 +107,7 @@
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array
 {
     if (array.count == 1) {
-        return 120;
+        return 160;
     } else {
         CGFloat w = (self.width - 2 * margin) / 3;
         return w;

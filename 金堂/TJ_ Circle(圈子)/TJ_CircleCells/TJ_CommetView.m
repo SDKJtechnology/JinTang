@@ -17,7 +17,11 @@
 
 @property (nonatomic, strong) UIImageView *bgImageView;
 
-@property (nonatomic, strong) MLLinkLabel *likeLabel;
+@property (nonatomic, strong) UIControl *likeView;
+
+@property (nonatomic, strong) NSMutableArray *likeImageViewsArray;
+
+//@property (nonatomic, strong) MLLinkLabel *likeLabel;
 @property (nonatomic, strong) UIView *likeLableBottomLine;
 
 @property (nonatomic, strong) NSMutableArray *commentLabelsArray;
@@ -42,10 +46,33 @@
     _bgImageView.image = bgImage;
     [self addSubview:_bgImageView];
     
-    _likeLabel = [MLLinkLabel new];
-    _likeLabel.font = [UIFont systemFontOfSize:14];
+//    _likeLabel = [MLLinkLabel new];
+//    _likeLabel.font = [UIFont systemFontOfSize:14];
 //    _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName : TimeLineCellHighlightedColor};
-    [self addSubview:_likeLabel];
+//    [self addSubview:_likeLabel];
+    
+    _likeView = [UIControl new];
+    [self addSubview:_likeView];
+    CGFloat margin = 5;
+    _likeView.sd_resetLayout
+    .leftSpaceToView(self, margin)
+    .rightSpaceToView(self, margin)
+    .topSpaceToView(self, 10)
+    .heightIs(20);
+    [_likeView addTarget:self action:@selector(clickLikeViewAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    _likeImageViewsArray = [NSMutableArray array];
+    for (NSInteger i = 0; i < 9; i++) {
+        UIImageView *image = [UIImageView new];
+        
+        image.sd_layout
+        .xIs(i * (20 + 3))
+        .yIs(0)
+        .heightIs(20)
+        .widthEqualToHeight();
+        [_likeImageViewsArray addObject:image];
+        [_likeView addSubview:image];
+    }
     
     _likeLableBottomLine = [UIView new];
     _likeLableBottomLine.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.2];
@@ -81,23 +108,20 @@
 {
     _likeItemsArray = likeItemsArray;
     
-    NSTextAttachment *attach = [NSTextAttachment new];
-    attach.image = [UIImage imageNamed:@"Like"];
-    attach.bounds = CGRectMake(0, -3, 16, 16);
-    NSAttributedString *likeIcon = [NSAttributedString attributedStringWithAttachment:attach];
-    
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithAttributedString:likeIcon];
-    
-    for (int i = 0; i < likeItemsArray.count; i++) {
-        CommentModel *model = likeItemsArray[i];
-        if (i > 0) {
-            [attributedText appendAttributedString:[[NSAttributedString alloc] initWithString:@"，"]];
-        }
-        [attributedText appendAttributedString:[self generateAttributedStringWithLikeItemModel:model]];
-        ;
+    NSInteger start = 0;
+    if (likeItemsArray.count > 9) {
+        start = likeItemsArray.count - 9;
     }
     
-    _likeLabel.attributedText = [attributedText copy];
+    for (NSInteger i = 0; i < likeItemsArray.count; i++) {
+        if (i > 8) {
+            break;
+        }
+        UIImageView *image = _likeImageViewsArray[i];
+        image.layer.cornerRadius = image.width / 2;
+        NSString *s = likeItemsArray[i + start];
+        [image sd_setImageWithURL:[NSURL URLWithString:s]];
+    }
 }
 
 - (NSMutableArray *)commentLabelsArray
@@ -110,6 +134,11 @@
 
 - (void)setupWithLikeItemsArray:(NSArray *)likeItemsArray commentItemsArray:(NSArray *)commentItemsArray
 {
+    if (!likeItemsArray && !commentItemsArray) {
+        self.fixedHeight = @0;
+        return;
+    }
+    
     self.likeItemsArray = likeItemsArray;
     self.commentItemsArray = commentItemsArray;
     
@@ -120,23 +149,13 @@
         }];
     }
     
-    CGFloat margin = 5;
-    
     UIView *lastTopView = nil;
     
     if (likeItemsArray.count) {
-        _likeLabel.sd_resetLayout
-        .leftSpaceToView(self, margin)
-        .rightSpaceToView(self, margin)
-        .topSpaceToView(lastTopView, 10)
-        .autoHeightRatio(0);
-        
-        _likeLabel.isAttributedContent = YES;
-        
-        lastTopView = _likeLabel;
+        lastTopView = _likeView;
         
     } else {
-        _likeLabel.sd_resetLayout
+        _likeView.sd_resetLayout
         .heightIs(0);
     }
     
@@ -200,6 +219,11 @@
     [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
     
     return attString;
+}
+
+- (void)clickLikeViewAction
+{
+    NSLog(@"喜欢人数  %ld",self.likeItemsArray.count);
 }
 
 

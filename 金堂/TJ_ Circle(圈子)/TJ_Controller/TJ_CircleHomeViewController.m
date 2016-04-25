@@ -10,7 +10,7 @@
 #import "TJ_SelectionList.h"
 #import "TJ_RecommendTableView.h"
 #import "TJ_TopicTableView.h"
-#import "TJ_GachincoTableView.h"
+#import "TJ_TarentoTableView.h"
 #import "TJ_NewTopicViewController.h"
 
 #define statusBarFrame [[UIApplication sharedApplication] statusBarFrame]//状态栏frame
@@ -26,12 +26,16 @@
     NSArray *topicPageData;//话题页面数据
     
     NSArray *gachincoPageData;//最新页面数据
+    
+    UIView *indicatorView;//
+    
+    TJ_SelectionList *activeSelectionList;
 }
 
 @property (nonatomic) TJ_SelectionList *selectionList;
 @property (nonatomic) TJ_RecommendTableView *recommendTableView;
 @property (nonatomic) TJ_TopicTableView *topicTableView;
-@property (nonatomic) TJ_GachincoTableView *gachincoTableView;
+@property (nonatomic) TJ_TarentoTableView *gachincoTableView;
 @property (nonatomic) UIScrollView *scrollView;
 
 @end
@@ -104,10 +108,19 @@
     
     self.recommendTableView = [[TJ_RecommendTableView alloc] initWithFrame:CGRectMake(self.view.width, 0, self.view.width, self.scrollView.height)];
     [self.scrollView addSubview:self.recommendTableView];
-
-//    NSLog(@"%f  %f",self.navigationController.navigationBar.frame.size.width,self.navigationController.navigationBar.frame.size.height);
     
-    self.gachincoTableView = [[TJ_GachincoTableView alloc] initWithFrame:CGRectMake(self.view.width * 2, 0, self.view.width, self.scrollView.height) style:UITableViewStylePlain];
+    activeSelectionList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(self.view.width * 2, 0, self.view.width, 30)];
+    activeSelectionList.tag = 101;
+    activeSelectionList.delegate = self;
+    activeSelectionList.seletedTitleColor = [UIColor blackColor];
+    activeSelectionList.indicatorColor = [UIColor colorWithRed:0.262 green:0.446 blue:1.000 alpha:1.000];
+    activeSelectionList.titleColor = [UIColor grayColor];
+    activeSelectionList.backgroundColor = [UIColor colorWithWhite:0.820 alpha:1.000];
+    activeSelectionList.selectItemBackgroundColor = activeSelectionList.backgroundColor;
+    activeSelectionList.font = [UIFont systemFontOfSize:15];
+    [self.scrollView addSubview:activeSelectionList];
+    
+    self.gachincoTableView = [[TJ_TarentoTableView alloc] initWithFrame:CGRectMake(self.view.width * 2, 30, self.view.width, self.scrollView.height) style:UITableViewStylePlain];
     [self.scrollView addSubview:self.gachincoTableView];
     self.gachincoTableView.gachincoData = gachincoPageData;
 }
@@ -116,20 +129,33 @@
 
 - (NSInteger)numberOfItemsAtSelectionList:(TJ_SelectionList *)selectionList
 {
+    if (selectionList.tag == 101) {
+        return 2;
+    }
     return selectionListData.count;
 }
 
 - (NSString *)selectionList:(TJ_SelectionList *)selectionList titleForItemWithIndex:(NSInteger)index
 {
+    if (selectionList.tag == 101) {
+        NSArray *array = @[@"24H活跃度",@"总活跃度"];
+        return array[index];
+    }
     return  selectionListData[index];
 }
 
 - (void)selectionList:(TJ_SelectionList *)selectionList didSelectItemWithIndex:(NSInteger)index
 {
-    //  实现scrollView滑动绑定的方法
-    CGRect frame = self.scrollView.bounds;
-    frame.origin.x = frame.size.width * index;
-    [self.scrollView scrollRectToVisible:frame animated:YES];
+    if (selectionList.tag == 101) {
+        return ;
+    }
+    else
+    {
+        //  实现scrollView滑动绑定的方法
+        CGRect frame = self.scrollView.bounds;
+        frame.origin.x = frame.size.width * index;
+        [self.scrollView scrollRectToVisible:frame animated:YES];
+    }
 }
 
 #pragma 实现UIScrollViewDelegate 的方法

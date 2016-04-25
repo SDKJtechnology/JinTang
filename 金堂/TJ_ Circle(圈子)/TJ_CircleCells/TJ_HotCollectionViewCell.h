@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TJ_BAButton.h"
-
+/**
+ *  今日热门CollectionViewCell
+ */
 @interface TJ_HotCollectionViewCell : UICollectionViewCell
 
 

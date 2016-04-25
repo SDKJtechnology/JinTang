@@ -9,6 +9,7 @@
 #import "TJ_RecommendTableView.h"
 #import "TJ_TopicTableViewCell.h"
 #import "TJ_TodayHotTableViewCell.h"
+#import "TJ_CommentTableViewCell.h"
 
 @interface TJ_RecommendTableView()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -30,7 +31,7 @@
         
         [self registerClass:[TJ_TopicTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_TopicTableViewCell class])];
         [self registerClass:[TJ_TodayHotTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_TodayHotTableViewCell class])];
-        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [self registerClass:[TJ_CommentTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_CommentTableViewCell class])];
         
         sectionTitleArray = @[@"推荐话题",@"今日热门",@"新帖广场"];
         accessoriesTitleArray = @[@"更多话题》",@"       更多》",@"附近动态》"];
@@ -47,6 +48,11 @@
         ((TJ_TopicTableViewCell *)cell).topicModel = [TopicModel new];
     else if (indexPath.section == 1)
         ((TJ_TodayHotTableViewCell *)cell).hotPageData = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""];
+    else if (indexPath.section == 2)
+    {
+        GachincoModel *model = [[GachincoModel alloc] init:indexPath.row];
+        ((TJ_CommentTableViewCell *)cell).gachincoModel = model;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,8 +61,12 @@
         return 50;
     else if (indexPath.section == 1)
         return 100;
-    else
-        return 100;
+    else if (indexPath.section == 2)
+    {
+        GachincoModel *model = [[GachincoModel alloc] init:indexPath.row];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"gachincoModel" cellClass:[TJ_CommentTableViewCell class] contentViewWidth:self.width];
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -125,7 +135,7 @@
     }
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_CommentTableViewCell class]) forIndexPath:indexPath];
     }
     return cell;
 }

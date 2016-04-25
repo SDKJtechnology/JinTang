@@ -11,7 +11,9 @@
 #import "GachincoModel.h"
 #import "TJ_CommetView.h"
 #import "CommentModel.h"
-
+/**
+ *  评论cell
+ */
 @interface TJ_CommentTableViewCell : TJ_TableViewCellModel
 
 @property (nonatomic, strong) GachincoModel *gachincoModel;

@@ -8,16 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TopicModel.h"
-
+/**
+ *  话题cell
+ */
 @interface TJ_TopicTableViewCell : UITableViewCell
 
 @property (nonatomic) UIImageView *identifierImage;
-
-@property (nonatomic) UILabel *identifierLabel;
-
-@property (nonatomic) UIImageView *shareImage1;
-
-@property (nonatomic) UIImageView *shareImage2;
 
 @property (nonatomic) TopicModel *topicModel;
 

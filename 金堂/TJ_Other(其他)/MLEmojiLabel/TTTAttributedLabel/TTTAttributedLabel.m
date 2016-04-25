@@ -70,7 +70,7 @@ const UITextAlignment TTTLineBreakByTruncatingTail = NSLineBreakByTruncatingTail
 typedef UITextAlignment TTTTextAlignment;
 typedef UILineBreakMode TTTLineBreakMode;
 #endif
-
+#pragma clang diagnostic ignored"-Wdeprecated-declarations" //废弃警告屏蔽
 
 static inline CTTextAlignment CTTextAlignmentFromTTTTextAlignment(TTTTextAlignment alignment) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
@@ -1145,7 +1145,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if (&NSLinkAttributeName) {
+    if (NSLinkAttributeName) {
         [self.attributedText enumerateAttribute:NSLinkAttributeName inRange:NSMakeRange(0, self.attributedText.length) options:0 usingBlock:^(id value, __unused NSRange range, __unused BOOL *stop) {
             if (value) {
                 NSURL *URL = [value isKindOfClass:[NSString class]] ? [NSURL URLWithString:value] : value;

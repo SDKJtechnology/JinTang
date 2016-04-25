@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  今日热门cell
+ */
 @interface TJ_TodayHotTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSArray *hotPageData;

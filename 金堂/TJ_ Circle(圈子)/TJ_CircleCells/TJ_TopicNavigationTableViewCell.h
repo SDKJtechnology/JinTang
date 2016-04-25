@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, TJ_TopicNavigationButtonTag)
-{
+typedef NS_ENUM(NSInteger, TJ_TopicNavigationButtonTag) {
+
     TJ_TopicNavigationNewTopicButtonTag = 20,
+
     TJ_TopicNavigationMyTopicButtonTag
 };
 
 @protocol TJ_TopicNavigationTableViewCellDelegate;
-
+/**
+ *  话题导航选项cell
+ */
 @interface TJ_TopicNavigationTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) id<TJ_TopicNavigationTableViewCellDelegate> delegate;

@@ -98,6 +98,12 @@
     else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_TopicTableViewCell class]) forIndexPath:indexPath];
+        ((TJ_TopicTableViewCell *)cell).identifierImage.hidden = YES;
+        if (indexPath.row < 3)
+        {
+            ((TJ_TopicTableViewCell *)cell).identifierImage.hidden = NO;
+            ((TJ_TopicTableViewCell *)cell).identifierImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",indexPath.row + 1]];
+        }
     }
     
     return cell;

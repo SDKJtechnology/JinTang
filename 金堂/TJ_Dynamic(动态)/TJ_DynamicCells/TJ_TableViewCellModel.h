@@ -26,7 +26,7 @@
 /**
  *  发布地址
  */
-@property (nonatomic) TJ_BACustomButton *addressButton;
+@property (nonatomic) TJ_BACustomButton *rightButton;
 
 @property (nonatomic) UILabel *addressLabel;
 /**

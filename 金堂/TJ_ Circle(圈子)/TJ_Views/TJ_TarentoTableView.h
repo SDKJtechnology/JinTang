@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJ_GachincoTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
+@interface TJ_TarentoTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *gachincoData;
 

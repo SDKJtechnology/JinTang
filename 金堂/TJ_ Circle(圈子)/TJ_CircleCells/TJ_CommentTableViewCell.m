@@ -78,7 +78,8 @@
 {
  
     CommentModel *model = [CommentModel new];
-    [self.commetView setupWithLikeItemsArray:@[model,model] commentItemsArray:@[model,model,model,model,model,model]];
+    
+    [self.commetView setupWithLikeItemsArray:gachincoModel.sharedImageUrls commentItemsArray:@[model,model,model,model]];
     
     [self.headerButton sd_setImageWithURL:[NSURL URLWithString:gachincoModel.headImageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"头像"]];
     
