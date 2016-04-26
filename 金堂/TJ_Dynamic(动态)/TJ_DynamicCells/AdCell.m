@@ -7,7 +7,6 @@
 //
 
 #import "AdCell.h"
-#import "SDCycleScrollView.h"
 #import "SDAutoLayout.h"
 #import "TJ_CycleScrollView.h"
 

@@ -18,6 +18,8 @@
     
     NSArray *imageStrings;
     
+    NSMutableArray *titleLables;
+    
     BOOL isDragging;
 }
 
@@ -71,6 +73,7 @@
 - (void)setupImageView
 {
     NSMutableArray *imageArray = [NSMutableArray arrayWithArray:imageStrings];
+    titleLables = [NSMutableArray array];
     if (self.imageGroup.count > 1 && self.cycleModel == TJ_CycleScrollViewCycleModel)
     {
         [imageArray addObject:imageStrings.firstObject];
@@ -79,8 +82,8 @@
     for (NSString *imageString in imageArray) {
         self.imageView = [UIImageView new];
         self.titelLabel = [UILabel new];
-        self.titelLabel.text = @"临时当局分裂开始的肌肤";
-        
+//        self.titelLabel.text = @"临时当局分裂开始的肌肤";
+        [titleLables addObject:self.titelLabel];
         if ([imageString hasPrefix:@"http"]) {
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"load"]];
         }
@@ -213,6 +216,17 @@
 {
     _titleLabelTextColor = titleLabelTextColor;
     self.titelLabel.textColor = titleLabelTextColor;
+}
+
+- (void)setTitleArray:(NSArray<NSString *> *)titleArray
+{
+    _titleArray = titleArray;
+    NSInteger i = 0;
+    for (NSString *string in titleArray) {
+        UILabel *label = titleLables[i];
+        label.text = string;
+        i++;
+    }
 }
 
 #pragma mark Other

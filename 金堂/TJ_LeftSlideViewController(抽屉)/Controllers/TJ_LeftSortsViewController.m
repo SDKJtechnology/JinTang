@@ -8,6 +8,7 @@
 
 #import "TJ_LeftSortsViewController.h"
 #import "TJ_LeftSlideViewController.h"
+#import "TJ_FansTableViewCell.h"
 #import "AppDelegate.h"
 #import "SDAutoLayout.h"
 #import "TJ_BAButton.h"
@@ -73,6 +74,7 @@
     
     [self addSubviews];
 }
+
 //添加子视图
 - (void)addSubviews
 {
@@ -110,8 +112,8 @@
     [self.concernButton addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.circleButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
-    [self.circleButton setImage:[UIImage imageNamed:@"pyquan"] forState:UIControlStateNormal];
-    [self.circleButton setTitle:@"朋友圈" forState:UIControlStateNormal];
+//    [self.circleButton setImage:[UIImage imageNamed:@"pyquan"] forState:UIControlStateNormal];
+//    [self.circleButton setTitle:@"朋友圈" forState:UIControlStateNormal];
     self.circleButton.tag = TJ_BACustomButtonTagCircleButton;
     [self.circleButton addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -149,6 +151,7 @@
     
     [self.view sd_addSubviews:@[imageview,self.landingView,self.landingButton,self.concernButton,self.circleButton,self.invitationButton,self.fansButton,self.enshrineButton,self.setingButton,self.logingButton]];
 }
+
 //即将布局子视图
 - (void)viewWillLayoutSubviews
 {
@@ -215,7 +218,7 @@
     .topSpaceToView(self.fansButton, margin * rate)
     .leftEqualToView(self.landingButton)
     .rightEqualToView(self.landingButton)
-    .heightIs(buttonH);
+    .heightIs(0);
     
     self.invitationButton.sd_layout
     .topSpaceToView(self.circleButton, margin * rate)
@@ -240,31 +243,39 @@
     .rightEqualToView(self.landingButton)
     .widthIs(buttonH)
     .heightIs(buttonH);
-    
 }
+
 //点击按钮
 - (void)clickButtonAction:(TJ_BACustomButton *)sender
 {
     Class myClass = [UIViewController class];
+    NSString *titel = nil;
     switch (sender.tag) {
         case TJ_BACustomButtonTagLandingButton:
-
             myClass = NSClassFromString(@"LX_login2ViewController");
-            NSLog(@"landingButton  %ld",TJ_BACustomButtonTagLandingButton);
+            NSLog(@"landingButton  %ld  %@",TJ_BACustomButtonTagLandingButton,sender.currentTitle);
             break;
         case TJ_BACustomButtonTagConcernButton:
+            titel = @"关注的人";
+            myClass = NSClassFromString(@"TJ_ConnernsViewController");
             NSLog(@"ConcernButton  %ld",TJ_BACustomButtonTagConcernButton);
             break;
         case TJ_BACustomButtonTagFansButton:
+            titel = @"我的粉丝";
+            myClass = NSClassFromString(@"TJ_FansViewController");
             NSLog(@"FansButton  %ld",TJ_BACustomButtonTagFansButton);
             break;
         case TJ_BACustomButtonTagCircleButton:
             NSLog(@"CircleButton  %ld",TJ_BACustomButtonTagCircleButton);
             break;
         case TJ_BACustomButtonTagEnshrineButton:
+            titel = @"我的收藏";
+            myClass = NSClassFromString(@"TJ_EnshrineViewController");
             NSLog(@"EnshrineButton  %ld",TJ_BACustomButtonTagEnshrineButton);
             break;
         case TJ_BACustomButtonTagInvitationButton:
+            titel = @"我的帖子";
+            myClass = NSClassFromString(@"TJ_InvitationViewController");
             NSLog(@"InvitationButton  %ld",TJ_BACustomButtonTagInvitationButton);
             break;
         case TJ_BACustomButtonTagSetingButton:
@@ -275,7 +286,9 @@
             NSLog(@"LogingButton  %ld",TJ_BACustomButtonTagLogingButton);
             break;
     }
+    
     UIViewController *viewController = [myClass new];
+    viewController.title = titel;
     viewController.view.backgroundColor = [UIColor whiteColor];
     self.closeLeftVC(viewController);
     [self presentViewController:viewController];
@@ -290,7 +303,7 @@
     UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:viewController.navigationItem.title];
     item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismissViewController)];
     [navigationBar pushNavigationItem:item animated:YES];
-    navigationBar.barTintColor = [UIColor colorWithRed:0.239 green:0.638 blue:0.955 alpha:1.000];
+    navigationBar.barTintColor = [UIColor colorWithWhite:0.693 alpha:1.000];
     navigationBar.tintColor = [UIColor whiteColor];
     [navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-BoldOblique" size:19],

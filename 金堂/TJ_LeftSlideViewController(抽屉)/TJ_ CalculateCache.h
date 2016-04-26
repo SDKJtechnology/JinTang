@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ *   缓存处理
+ */
 @interface TJ_CalculateCache : NSObject
 
 //类方法

@@ -46,7 +46,9 @@ typedef NS_ENUM(NSInteger,TJ_BACustomButtonTag)
 };
 
 typedef void(^CloseLeftVC)(UIViewController *);
-
+/**
+ *  抽屉左侧视图
+ */
 @interface TJ_LeftSortsViewController : UIViewController
 
 @property (nonatomic, strong) CloseLeftVC closeLeftVC;

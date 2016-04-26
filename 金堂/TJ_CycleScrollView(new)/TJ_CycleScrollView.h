@@ -71,5 +71,7 @@ typedef NS_ENUM(NSInteger, TJ_CycleScrollViewPageControlStyle)
 
 /** 轮播文字label高度 */
 @property (nonatomic, assign) CGFloat titleLabelHeight;
+/** 轮播文字label */
+@property (nonatomic, strong) NSArray<NSString *> *titleArray;
 
 @end

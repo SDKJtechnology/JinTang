@@ -18,7 +18,7 @@
         [self.contentView addSubview:self.commetView];
         
         self.headerButton.sd_cornerRadiusFromHeightRatio = @.5;
-        [self.nameButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.nameButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
 
         self.titleLabel.sd_layout
         .leftEqualToView(self.timeLabel);
@@ -35,6 +35,7 @@
         .heightIs(20);
         self.shareButton.backgroundColor = [UIColor colorWithWhite:0.875 alpha:1.000];
         self.shareButton.sd_cornerRadius = @5 ;
+        [self.contentView bringSubviewToFront:self.shareButton];
         
         self.replyCountButton.sd_resetLayout
         .topSpaceToView(self.sharedPhotoView, 0)
@@ -65,15 +66,6 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-//    CGPoint center = self.shareButton.center;
-//    center.x = self.sharedPhotoView.center.x;
-//    self.shareButton.center = center;
-}
-
 - (void)setGachincoModel:(GachincoModel *)gachincoModel
 {
  
@@ -96,13 +88,16 @@
     
     [self.replyCountButton setImage:[UIImage imageNamed:@"lun"] forState:UIControlStateNormal];
     [self.replyCountButton setTitle:@"评论" forState:UIControlStateNormal];
+    [self.replyCountButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.supportCountButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
     [self.supportCountButton setTitle:@"赞" forState:UIControlStateNormal];
+    [self.supportCountButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.shareButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];
+    self.shareButton.enabled = YES;
+    [self.shareButton setImage:[UIImage imageNamed:@"fenxiang"] forState:UIControlStateNormal];
     [self.shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    
+    [self.shareButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 + (NSString *)identifierForModelAtRow:(id)Model
@@ -121,7 +116,7 @@
     }
 }
 
-- (void)buttonAction
+- (void)buttonAction:(TJ_BACustomButton *)sender
 {
     NSLog(@"最新页面地址按钮");
 }

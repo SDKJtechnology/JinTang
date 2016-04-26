@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  抽屉设置 
+ */
 @interface TJ_SetingViewController : UIViewController
 
 @end

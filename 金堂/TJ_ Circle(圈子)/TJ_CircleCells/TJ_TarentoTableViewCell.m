@@ -51,11 +51,7 @@
         .widthEqualToHeight();
         [self.contentView bringSubviewToFront:self.identifierImage];
         
-        self.rightButton.sd_layout
-        .widthIs(40);
-        self.rightButton.sd_cornerRadius = @5;
-        self.rightButton.layer.borderColor = [[UIColor greenColor] CGColor];
-        self.rightButton.layer.borderWidth = 1;
+        [self.rightButton addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         self.contentView.sd_equalWidthSubviews = _imageViewsArray;
         self.headerButton.sd_cornerRadiusFromHeightRatio = @.5;
@@ -66,11 +62,18 @@
     return self;
 }
 
-- (void)layoutSubviews
+- (void)clickButtonAction:(TJ_BACustomButton *)sender
 {
-    [super layoutSubviews];
-    
-    
+    static BOOL isOk = NO;
+    if (isOk) {
+        [self.rightButton setBackgroundImage:[UIImage imageNamed:@"liaotian1"] forState:UIControlStateNormal];
+        isOk = NO;
+    }
+    else
+    {
+        [self.rightButton setBackgroundImage:[UIImage imageNamed:@"guanzhu"] forState:UIControlStateNormal];
+        isOk = YES;
+    }
 }
 
 - (void)setModel:(SupportTarentoModel *)model
@@ -80,6 +83,16 @@
         UIImageView *imageView = _imageViewsArray[i];
         [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"load"]];
     }
+    static BOOL isOk = NO;
+    if (isOk) {
+        [self.rightButton setBackgroundImage:[UIImage imageNamed:@"liaotian1"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.rightButton setBackgroundImage:[UIImage imageNamed:@"guanzhu"] forState:UIControlStateNormal];
+        isOk = YES;
+    }
+    [self.rightButton setButtonTruthWidth];
     
     [self.headerButton sd_setImageWithURL:[NSURL URLWithString:model.userImageUrl] forState:UIControlStateNormal];
     

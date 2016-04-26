@@ -226,7 +226,13 @@
 #pragma mark 获取imageView的frame
 - (CGRect)getImageViewFrame
 {
-    return self.imageView.frame;
+    CGRect frame = self.imageView.frame;
+    CGSize size = self.currentImage.size;
+    frame.size = size;
+    if (!size.height && !size.width) {
+        frame.size = self.currentBackgroundImage.size;
+    }
+    return frame;
 }
 
 - (CGRect)getButtonWidth
