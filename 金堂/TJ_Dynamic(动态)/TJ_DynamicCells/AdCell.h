@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HotspotModel.h"
+#import "SDAutoLayout.h"
 
 @interface AdCell : UITableViewCell
 

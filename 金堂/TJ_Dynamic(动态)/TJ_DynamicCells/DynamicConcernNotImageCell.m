@@ -88,9 +88,4 @@
     }
 }
 
-- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
-{
-    _po(linkText);
-}
-
 @end

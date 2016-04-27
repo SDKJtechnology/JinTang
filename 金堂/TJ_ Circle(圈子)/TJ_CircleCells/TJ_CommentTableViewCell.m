@@ -22,6 +22,8 @@
 
         self.titleLabel.sd_layout
         .leftEqualToView(self.timeLabel);
+//        self.titleLabel.delegate = self;
+//        self.titleLabel.dataDetectorTypes = MLDataDetectorTypeHashtag;
         
         self.sharedPhotoView.sd_resetLayout
         .leftEqualToView(self.titleLabel)
@@ -119,6 +121,11 @@
 - (void)buttonAction:(TJ_BACustomButton *)sender
 {
     NSLog(@"最新页面地址按钮");
+}
+
+- (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
+{
+    NSLog(@"%@",link.linkValue);
 }
 
 - (void)awakeFromNib {

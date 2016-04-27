@@ -423,6 +423,9 @@
 		DE0DD7491CCF597D00B122F7 /* liaotian1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0DD7461CCF597D00B122F7 /* liaotian1@3x.png */; };
 		DE0DD7511CCF6F9500B122F7 /* fenxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0DD7501CCF6F9500B122F7 /* fenxiang@2x.png */; };
 		DE401DF11CC9CE4F004C1AAB /* TJ_ CalculateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */; };
+		DE52A2A81CD0B167000D5A22 /* TJ_DynamicConcernTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2A71CD0B167000D5A22 /* TJ_DynamicConcernTableView.m */; };
+		DE52A2AB1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2AA1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m */; };
+		DE52A2AE1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2AD1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m */; };
 		DE5791E81CC87EEC00145B93 /* TJ_DynamicSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */; };
 		DE68C6F11CCDFB1700953281 /* TJ_TarentoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */; };
 		DE68C6F71CCDFD2900953281 /* SupportTarentoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */; };
@@ -1036,6 +1039,12 @@
 		DE0DD7501CCF6F9500B122F7 /* fenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenxiang@2x.png"; sourceTree = "<group>"; };
 		DE401DEF1CC9CE4F004C1AAB /* TJ_ CalculateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJ_ CalculateCache.h"; sourceTree = "<group>"; };
 		DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ CalculateCache.m"; sourceTree = "<group>"; };
+		DE52A2A61CD0B167000D5A22 /* TJ_DynamicConcernTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicConcernTableView.h; sourceTree = "<group>"; };
+		DE52A2A71CD0B167000D5A22 /* TJ_DynamicConcernTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicConcernTableView.m; sourceTree = "<group>"; };
+		DE52A2A91CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicHotspotTableView.h; sourceTree = "<group>"; };
+		DE52A2AA1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicHotspotTableView.m; sourceTree = "<group>"; };
+		DE52A2AC1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicActivityTableView.h; sourceTree = "<group>"; };
+		DE52A2AD1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicActivityTableView.m; sourceTree = "<group>"; };
 		DE5791E61CC87EEC00145B93 /* TJ_DynamicSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicSearchController.h; sourceTree = "<group>"; };
 		DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicSearchController.m; sourceTree = "<group>"; };
 		DE68C6EF1CCDFB1700953281 /* TJ_TarentoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_TarentoTableViewCell.h; sourceTree = "<group>"; };
@@ -1220,6 +1229,12 @@
 			children = (
 				7A77988A1CC685A200D843D9 /* TJ_HeaderView.h */,
 				7A77988B1CC685A200D843D9 /* TJ_HeaderView.m */,
+				DE52A2A61CD0B167000D5A22 /* TJ_DynamicConcernTableView.h */,
+				DE52A2A71CD0B167000D5A22 /* TJ_DynamicConcernTableView.m */,
+				DE52A2A91CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.h */,
+				DE52A2AA1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m */,
+				DE52A2AC1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.h */,
+				DE52A2AD1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m */,
 			);
 			path = TJ_Views;
 			sourceTree = "<group>";
@@ -2825,6 +2840,7 @@
 				7A945BDF1CCCB37600FCB43E /* MJDictionaryCache.m in Sources */,
 				7A7799041CC6889700D843D9 /* ActivityModel.m in Sources */,
 				7A945C1D1CCCB58700FCB43E /* MLLinkLabel.m in Sources */,
+				DE52A2AE1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m in Sources */,
 				7A945C1C1CCCB58700FCB43E /* MLLabel.m in Sources */,
 				7A7799031CC6889700D843D9 /* GachincoModel.m in Sources */,
 				7A7799291CC6894800D843D9 /* TJ_CommentTableViewCell.m in Sources */,
@@ -2860,6 +2876,7 @@
 				7A945BE61CCCB37600FCB43E /* NSObject+MJCoding.m in Sources */,
 				7A77992E1CC6894800D843D9 /* TJ_TopicTableView.m in Sources */,
 				7A945BDE1CCCB37600FCB43E /* TJ_Color.m in Sources */,
+				DE52A2AB1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m in Sources */,
 				7A77992A1CC6894800D843D9 /* TJ_HotCollectionViewCell.m in Sources */,
 				7A945BE31CCCB37600FCB43E /* MJPropertyKey.m in Sources */,
 				DE0DD7021CCF4E1A00B122F7 /* TJ_InvitationViewController.m in Sources */,
@@ -2909,6 +2926,7 @@
 				7A945BE01CCCB37600FCB43E /* MJExtensionConst.m in Sources */,
 				DE0DD6E51CCF45DA00B122F7 /* TJ_ConnernsTableViewCell.m in Sources */,
 				7A7799101CC688E900D843D9 /* TJ_CommunityViewController.m in Sources */,
+				DE52A2A81CD0B167000D5A22 /* TJ_DynamicConcernTableView.m in Sources */,
 				7A945C161CCCB58700FCB43E /* NSString+MLLabel.m in Sources */,
 				DEAA8D311CCA498000C78512 /* TJ_RecommendTableView.m in Sources */,
 				DEDF6A3E1CC5037800FDECA2 /* LX_login2ViewController.m in Sources */,

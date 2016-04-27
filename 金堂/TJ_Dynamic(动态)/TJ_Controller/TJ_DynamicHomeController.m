@@ -8,24 +8,16 @@
 
 #import "TJ_DynamicHomeController.h"
 #import "TJ_SelectionList.h"
-#import "DynamicConcernNotImageCell.h"
-#import "DynamicModel.h"
-#import "ActivityModel.h"
-#import "HotspotModel.h"
 #import "DynamicNetworkingModel.h"
-#import "ActivityBigImageCell.h"
-#import "AdCell.h"
-#import "HotspotCell.h"
-#import "TJ_HeaderView.h"
 #import "TJ_DynamicSearchController.h"
+#import "TJ_DynamicConcernTableView.h"
+#import "TJ_DynamicHotspotTableView.h"
+#import "TJ_DynamicActivityTableView.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
 
-@interface TJ_DynamicHomeController ()
-    <TJ_SelectionListDelegate,
-    UITableViewDelegate,UITableViewDataSource
-    ,UIScrollViewDelegate>
+@interface TJ_DynamicHomeController ()<TJ_SelectionListDelegate,UIScrollViewDelegate>
 {
     /**
      *  水平选择列表数据
@@ -47,6 +39,12 @@
 
 @property (strong, nonatomic) UIScrollView *contentView;
 @property (strong, nonatomic) TJ_SelectionList *selectList;//水平选择列表
+
+@property (nonatomic, strong) TJ_DynamicConcernTableView *dynamicConcernTableView;
+
+@property (nonatomic, strong) TJ_DynamicHotspotTableView *dynamicHotspotTableView;
+
+@property (nonatomic, strong) TJ_DynamicActivityTableView *dynamicActivityTableView;
 
 @end
 
@@ -98,38 +96,35 @@ static NSNumber *page;
     //  添加TableView
     CGFloat w = self.contentView.frame.size.width;
     CGFloat h = self.contentView.frame.size.height;
-    for (NSInteger i = 0; i < selectListData.count; i++) {     /* 有多View取决于categories的数量 */
-        CGRect frame = self.contentView.bounds;
-        frame.origin.x = i * VIEW_WIDTH;
-        UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-        tableView.showsVerticalScrollIndicator = NO;
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.tag = i + 100;
-        [self.contentView insertSubview:tableView atIndex:0];
-        
-        [tableView registerClass:[ActivityBigImageCell class] forCellReuseIdentifier:NSStringFromClass([ActivityBigImageCell class])];
-        [tableView registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
-        [tableView registerClass:[HotspotCell class] forCellReuseIdentifier:NSStringFromClass([HotspotCell class])];
-    }
+    
+    CGRect frame = self.contentView.bounds;
+    self.dynamicConcernTableView = [[TJ_DynamicConcernTableView alloc] initWithFrame:frame];
+    [self.contentView addSubview:self.dynamicConcernTableView];
+    
+    frame.origin.x = Screen_Width;
+    self.dynamicHotspotTableView = [[TJ_DynamicHotspotTableView alloc] initWithFrame:frame];
+    [self.contentView addSubview:self.dynamicHotspotTableView];
+    
+    frame.origin.x = Screen_Width * 2;
+    self.dynamicActivityTableView = [[TJ_DynamicActivityTableView alloc] initWithFrame:frame];
+    [self.contentView addSubview:self.dynamicActivityTableView];
     
     //  设置scrollView
     self.contentView.contentSize = CGSizeMake(selectListData.count * w, h);
     self.contentView.pagingEnabled = YES;
 }
 
-- (void)clickRigthButtonAction
-{
-    [self.navigationController pushViewController:[TJ_DynamicSearchController new] animated:YES];
-}
+#pragma mark get data
 
 //获取动态数据
 - (void)getDynamicConcernData
 {
+    __block typeof(self) blockSelf = self;
     [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page success:^(id data) {
         [dynamicConcernListData addObjectsFromArray:data];
-        UITableView *tableView = [self.contentView viewWithTag:100];
-        [tableView reloadData];
+        blockSelf.dynamicConcernTableView.dynamicConcernListData = dynamicConcernListData;
+        
+        [blockSelf.dynamicConcernTableView reloadData];
     } failure:^(id data) {
         NSLog(@"动态关注数据加载失败。。。%@",data);
     }];
@@ -138,14 +133,20 @@ static NSNumber *page;
 //获取动态热点数据
 - (void)getDynamicHotspotData
 {
+    __block typeof(self) blockSelf = self;
     [[DynamicNetworkingModel sharedObejct] getHotspotDataWithPage:page success:^(id data) {
         [dynamciHotspotData addObjectsFromArray:data];
-        UITableView *tableView = [self.contentView viewWithTag:102];
-        [tableView reloadData];
+        blockSelf.dynamicHotspotTableView.dynamciHotspotData = dynamciHotspotData;
+        
+        blockSelf.dynamicActivityTableView.dynamciActivityData = dynamciHotspotData;
+        [blockSelf.dynamicActivityTableView reloadData];
+        
+        [blockSelf.dynamicHotspotTableView reloadData];
     } failure:^(id data) {
         NSLog(@"动态热点数据加载失败。。。%@",data);
     }];
 }
+
 
 #pragma mark TJ_SelectionListDelegate
 
@@ -186,167 +187,12 @@ static NSNumber *page;
     }
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark Actions
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//点击搜索按钮，弹出搜索视图
+- (void)clickRigthButtonAction
 {
-    UITableViewCell *cell = nil;
-    if (tableView.tag == 100)
-    {
-        NSString *identifier = [DynamicConcernNotImageCell identifierForModelAtRow:dynamicConcernListData[indexPath.section]];
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell){
-            cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        return cell;
-    }
-    else if (tableView.tag == 102) {
-        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ActivityBigImageCell class]) forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor redColor];
-        return cell;
-    }
-    else
-    {
-        if (indexPath.row == 0)
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AdCell class]) forIndexPath:indexPath];
-        else
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotCell class]) forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    switch (tableView.tag) {
-        case 100:
-            return dynamicConcernListData.count;
-            break;
-        case 101:
-            return 5;
-            break;
-        case 102:
-            return dynamciHotspotData.count;
-            break;
-    }
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch (tableView.tag) {
-        case 100:
-            return 1;
-            break;
-        case 101:
-            return 5;
-            break;
-        case 102:
-            return 1;
-            break;
-    }
-    return 0;
-}
-
-#pragma mark UITableViewDelegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (tableView.tag) {
-        case 100:
-        {
-            DynamicList *model = dynamicConcernListData[indexPath.section];
-            ((DynamicConcernNotImageCell *)cell).dynamicList = model;
-        }
-            break;
-        case 101:
-        {
-            HotspotModel *model = [HotspotModel new];
-            ((HotspotCell *)cell).hotspotModel = model;
-        }
-            break;
-        case 102:
-        {
-            ActivityModel *hots = dynamciHotspotData[indexPath.section];
-            ((ActivityBigImageCell *)cell).header = hots.item.header;
-        }
-            break;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (tableView.tag) {
-        case 100:
-        {
-            // cell自适应设置
-            DynamicList * model = dynamicConcernListData[indexPath.section];
-            // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
-            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:VIEW_WIDTH];
-        }
-            break;
-        case 101:
-        {
-            HotspotModel *model = [HotspotModel new];
-
-            if (indexPath.row == 0)
-            {
-                return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[AdCell class] contentViewWidth:VIEW_WIDTH];
-            }
-            else return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[HotspotCell class] contentViewWidth:VIEW_WIDTH];
-        }
-            break;
-        case 102:
-        {
-            ActivityModel *model = dynamciHotspotData[indexPath.section];
-            Body *body = model.item.header;
-            return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[ActivityBigImageCell class] contentViewWidth:VIEW_WIDTH];
-        }
-            break;
-    }
-    return 30;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView.tag == 101) {
-        TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
-        return view;
-    }
-    
-    return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    switch (tableView.tag) {
-        case 100:
-            return 0.01;
-            break;
-        case 101:
-            return 50;
-            break;
-        case 102:
-            return 10;
-            break;
-    }
-    return 0.01;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
-{
-    switch (tableView.tag) {
-        case 100:
-            return 0.01;
-            break;
-        case 101:
-            return 3;
-            break;
-        case 102:
-            return 5;
-            break;
-    }
-    return 0.01;
+    [self.navigationController pushViewController:[TJ_DynamicSearchController new] animated:YES];
 }
 
 @end

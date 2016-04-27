@@ -31,7 +31,7 @@
     
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.showsScopeBar = YES;
-    self.searchBar.showsCancelButton = YES;
+    self.searchBar.showsCancelButton = NO;
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"请输入搜索内容";
     
@@ -41,7 +41,7 @@
     self.contentView.delegate = self;
     self.contentView.dataSource = self;
     [self.view addSubview:self.contentView];
-    
+    self.contentView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
 
@@ -83,12 +83,14 @@
             historySearchData = [NSMutableArray array];
         }
         [historySearchData insertObject:self.searchBar.text atIndex:0];
-        [self.contentView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        if (historySearchData.count > 10) {
+            [historySearchData removeLastObject];
+            [self.contentView reloadData];
+        }
+        else
+            [self.contentView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         if (historySearchData.count == 1)
             [self.contentView reloadData];
-    }
-    if (historySearchData.count > 10) {
-        [historySearchData removeLastObject];
     }
     
     NSLog(@"开始搜索");
@@ -155,6 +157,11 @@
         cell.separatorInset = UIEdgeInsetsMake(0, margin, 0, margin);
         return cell;
     }
+
+    cell.layer.borderColor = [[UIColor grayColor] CGColor];
+    cell.layer.borderWidth = 0.5;
+    
+    
     cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.textColor = [UIColor grayColor];
     cell.textLabel.text = historySearchData[indexPath.row];
