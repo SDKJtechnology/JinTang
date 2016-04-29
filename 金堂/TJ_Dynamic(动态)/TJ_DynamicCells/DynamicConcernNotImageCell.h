@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DynamicModel.h"
+#import "DynamicConcernsModel.h"
 #import "TJ_TableViewCellModel.h"
 
 @interface DynamicConcernNotImageCell : TJ_TableViewCellModel
 /**
  *   数据模型
  */
-@property (nonatomic, strong) DynamicList *dynamicList;
+@property (nonatomic, strong) DynamicConcernsModel *dynamicConcernsModel;
 
 @end
 

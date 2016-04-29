@@ -47,6 +47,9 @@ typedef enum{
 
 @interface TJ_BACustomButton : UIButton
 
+/*设置默认状态的图文间距，默认为零*/
+@property (nonatomic, assign) CGFloat space;
+
 /** 设置样式 */
 @property (nonatomic, assign) BAAligenmentStatus buttonStatus;
 /** 设置圆角 */

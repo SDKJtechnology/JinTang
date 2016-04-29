@@ -23,11 +23,11 @@ typedef void (^DynamicNetworkingBlock)(id data);
  */
 + (instancetype)sharedObejct;
 /**
- *  根据page获取动态数据
+ *  根据page获取动态关注数据
  *
  *  @param page 页码
  */
-- (void)getDynamicDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
+- (void)getDynamicConcernsDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
 /**
  *  根据page获取热点数据
  *

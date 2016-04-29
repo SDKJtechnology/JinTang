@@ -34,6 +34,7 @@
     .topSpaceToView(self.titleLabel, margin)
     .leftEqualToView(self.titleLabel)
     .rightEqualToView(self.titleLabel);
+    self.sharedPhotoView.userInteractionEnabled = NO;
     
     self.nameButton.sd_layout
     .topSpaceToView(self.sharedPhotoView, margin / 2)
@@ -41,6 +42,7 @@
     .widthIs(150)
     .heightIs(20);
     [self.nameButton setTitleColor:self.browseCountButton.currentTitleColor forState:UIControlStateNormal];
+    self.nameButton.enabled = NO;
     
     self.timeLabel.sd_layout
     .topSpaceToView(self.sharedPhotoView, margin / 2)
@@ -53,29 +55,33 @@
     .leftSpaceToView(self.nameButton, margin)
     .widthIs(150)
     .heightIs(20);
+    self.browseCountButton.enabled = NO;
     
     [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
 }
 
-- (void)setDynamicList:(DynamicList *)dynamicList
+- (void)setDynamicConcernsModel:(DynamicConcernsModel *)dynamicConcernsModel
 {
-    [self.nameButton setTitle:dynamicList.source forState:UIControlStateNormal];
-    self.nameButton.sd_layout.widthIs([self.nameButton getButtonWidth].size.width);
+    [self.nameButton setTitle:dynamicConcernsModel.name forState:UIControlStateNormal];
+    [self.nameButton setButtonTruthWidth];
     
-    self.sharedPhotoView.imageUrlArray = dynamicList.attaches;
-    
-    self.titleLabel.text = dynamicList.title;
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (Image *image in dynamicConcernsModel.imagesUrl) {
+        [imageArray addObject:image.imageUrl];
+    }
+    self.sharedPhotoView.imageUrlArray = imageArray;
+    self.titleLabel.text = dynamicConcernsModel.title;
         
-    self.timeLabel.text = dynamicList.push_at;
+    self.timeLabel.text = dynamicConcernsModel.createDate;
     
-    [self.browseCountButton setTitle:dynamicList.views_num forState:UIControlStateNormal];
-    self.browseCountButton.sd_layout.widthIs([self.browseCountButton getButtonWidth].size.width);
+    [self.browseCountButton setTitle:[NSString stringWithFormat:@"%@",dynamicConcernsModel.readNumber] forState:UIControlStateNormal];
+    [self.browseCountButton setButtonTruthWidth];
 }
 
 + (NSString *)identifierForModelAtRow:(id)Model
 {
-    DynamicList *model = Model;
-    switch (model.attaches.count) {
+    DynamicConcernsModel *model = Model;
+    switch (model.imagesUrl.count) {
         case 0:
             return @"DynamicConcernNotImageCell";
             break;

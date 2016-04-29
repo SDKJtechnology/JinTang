@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^DidSelectRowAtIndexPath)(NSIndexPath *);
+
 @interface TJ_DynamicConcernTableView : UITableView
 
 @property (nonatomic, strong) NSArray *dynamicConcernListData;
+
+@property (nonatomic, strong) DidSelectRowAtIndexPath didSelectRowAtIndexPath;
 
 @end

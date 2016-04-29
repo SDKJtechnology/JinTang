@@ -22,6 +22,7 @@
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
+        self.
         self.bounces = NO;
     }
     
@@ -52,20 +53,28 @@
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.didSelectRowAtIndexPath) {
+        self.didSelectRowAtIndexPath(indexPath);
+    }
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    DynamicList *model = _dynamicConcernListData[indexPath.row];
-    ((DynamicConcernNotImageCell *)cell).dynamicList = model;
+    DynamicConcernsModel *model = _dynamicConcernListData[indexPath.row];
+    ((DynamicConcernNotImageCell *)cell).dynamicConcernsModel = model;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
     // cell自适应设置
-    DynamicList * model = _dynamicConcernListData[indexPath.row];
+    DynamicConcernsModel * model = _dynamicConcernListData[indexPath.row];
     // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
-    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicList" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:self.width];
+    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:self.width];
 }
 
 @end

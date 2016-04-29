@@ -23,21 +23,7 @@
     [super viewDidLoad];
     
     self.gachincoTopicData = @[@"",@"",@"",@"",@"",@"",@""];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
-    [self.view addSubview:titleLabel];
-    titleLabel.backgroundColor = [UIColor colorWithWhite:0.920 alpha:1.000];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.text = self.titelString;
 
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [leftButton setTitle:@"<" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:25];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 20, 44, 44);
-    [self.view addSubview:leftButton];
-    [leftButton addTarget:self action:@selector(didClickLeftButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -46,13 +32,9 @@
     
     [self.tableView registerClass:[TJ_TopicTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TJ_TopicTableViewCell class])];
     
+    self.rightButton.hidden = YES;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didClickLeftButtonAction
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

@@ -32,7 +32,7 @@
     .leftSpaceToView(self.contentView, margin)
     .bottomSpaceToView(self.contentView, margin / 2)
     .widthEqualToHeight();
-    
+
     self.identifierImage.sd_layout
     .topSpaceToView(self.contentView, margin / 2)
     .leftSpaceToView(self.contentView, margin)

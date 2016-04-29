@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJ_DetailsBaseViewController.h"
 
-@interface TJ_NewTopicViewController : UIViewController
+@interface TJ_NewTopicViewController : TJ_DetailsBaseViewController
 
-@property (nonatomic, strong) NSString *titelString;
+//@property (nonatomic, strong) NSString *titelString;
 
 @property (nonatomic, strong) NSArray *gachincoTopicData;
 

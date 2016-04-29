@@ -24,11 +24,7 @@
 		7A7798E91CC686B700D843D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798E51CC686B700D843D9 /* main.m */; };
 		7A7798ED1CC687A800D843D9 /* TJ_CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798EB1CC687A800D843D9 /* TJ_CycleScrollView.m */; };
 		7A7798EF1CC6882D00D843D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A7798EE1CC6882D00D843D9 /* Info.plist */; };
-		7A7798FF1CC6889700D843D9 /* HotspotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798F21CC6889700D843D9 /* HotspotModel.m */; };
-		7A7799011CC6889700D843D9 /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798F61CC6889700D843D9 /* DynamicModel.m */; };
-		7A7799021CC6889700D843D9 /* DynamicNetworkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798F81CC6889700D843D9 /* DynamicNetworkingModel.m */; };
 		7A7799031CC6889700D843D9 /* GachincoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798FA1CC6889700D843D9 /* GachincoModel.m */; };
-		7A7799041CC6889700D843D9 /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798FC1CC6889700D843D9 /* ActivityModel.m */; };
 		7A7799051CC6889700D843D9 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7798FE1CC6889700D843D9 /* TopicModel.m */; };
 		7A7799101CC688E900D843D9 /* TJ_CommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7799081CC688E900D843D9 /* TJ_CommunityViewController.m */; };
 		7A7799111CC688E900D843D9 /* TJ_ClassificationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A77990B1CC688E900D843D9 /* TJ_ClassificationListCell.m */; };
@@ -339,7 +335,6 @@
 		7A945C1D1CCCB58700FCB43E /* MLLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945C0A1CCCB58600FCB43E /* MLLinkLabel.m */; };
 		7A945C201CCCB58700FCB43E /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945C0F1CCCB58700FCB43E /* TTTAttributedLabel.m */; };
 		7A945C2A1CCCF39400FCB43E /* CommunityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945C291CCCF39400FCB43E /* CommunityModel.m */; };
-		7A945C2D1CCCFC7700FCB43E /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A945C2C1CCCFC7700FCB43E /* CommentModel.m */; };
 		7AA7D6EB1CCBCC7F00ED69E1 /* TJ_TodayHotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7D6EA1CCBCC7F00ED69E1 /* TJ_TodayHotTableViewCell.m */; };
 		7AEA9D201CC6A7C000503961 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AEA9CB71CC6A7C000503961 /* UMSCommentDetailController.xib */; };
 		7AEA9D211CC6A7C000503961 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AEA9CB81CC6A7C000503961 /* UMSCommentInputController.xib */; };
@@ -422,16 +417,26 @@
 		DE0DD7481CCF597D00B122F7 /* liaotian1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0DD7451CCF597D00B122F7 /* liaotian1@2x.png */; };
 		DE0DD7491CCF597D00B122F7 /* liaotian1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0DD7461CCF597D00B122F7 /* liaotian1@3x.png */; };
 		DE0DD7511CCF6F9500B122F7 /* fenxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0DD7501CCF6F9500B122F7 /* fenxiang@2x.png */; };
+		DE3CD2B81CD1B53600943ADB /* TJ_DetailsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3CD2B71CD1B53600943ADB /* TJ_DetailsBaseViewController.m */; };
 		DE401DF11CC9CE4F004C1AAB /* TJ_ CalculateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */; };
 		DE52A2A81CD0B167000D5A22 /* TJ_DynamicConcernTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2A71CD0B167000D5A22 /* TJ_DynamicConcernTableView.m */; };
 		DE52A2AB1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2AA1CD0B78F000D5A22 /* TJ_DynamicHotspotTableView.m */; };
 		DE52A2AE1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A2AD1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m */; };
 		DE5791E81CC87EEC00145B93 /* TJ_DynamicSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */; };
+		DE5854F31CD31ED1004366A4 /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854EC1CD31ED1004366A4 /* ActivityModel.m */; };
+		DE5854F41CD31ED1004366A4 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854EE1CD31ED1004366A4 /* CommentModel.m */; };
+		DE5854F51CD31ED1004366A4 /* DynamicNetworkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854F01CD31ED1004366A4 /* DynamicNetworkingModel.m */; };
+		DE5854F61CD31ED1004366A4 /* HotspotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854F21CD31ED1004366A4 /* HotspotModel.m */; };
+		DE5854F91CD32804004366A4 /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854F81CD32803004366A4 /* DynamicModel.m */; };
+		DE5854FC1CD328B0004366A4 /* DynamicConcernsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854FB1CD328B0004366A4 /* DynamicConcernsModel.m */; };
+		DE5854FF1CD32A50004366A4 /* DynamicHotspotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5854FE1CD32A50004366A4 /* DynamicHotspotModel.m */; };
+		DE5855021CD32A85004366A4 /* DynamicActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5855011CD32A85004366A4 /* DynamicActivityModel.m */; };
 		DE68C6F11CCDFB1700953281 /* TJ_TarentoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */; };
 		DE68C6F71CCDFD2900953281 /* SupportTarentoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */; };
 		DEA062C11CCF3C89000B249D /* TJ_FansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA062C01CCF3C89000B249D /* TJ_FansTableViewCell.m */; };
 		DEAA8D2E1CCA488300C78512 /* TJ_ RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */; };
 		DEAA8D311CCA498000C78512 /* TJ_RecommendTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D301CCA498000C78512 /* TJ_RecommendTableView.m */; };
+		DEBED66A1CD1DBEB006D2282 /* TJ_DynamicDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */; };
 		DED6D6AB1CC5D7990080B09F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */; };
 		DEDF6A3B1CC5037800FDECA2 /* LX_enroll2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */; };
 		DEDF6A3C1CC5037800FDECA2 /* LX_enrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A341CC5037800FDECA2 /* LX_enrollViewController.m */; };
@@ -524,16 +529,8 @@
 		7A7798EB1CC687A800D843D9 /* TJ_CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CycleScrollView.m; sourceTree = "<group>"; };
 		7A7798EC1CC687A800D843D9 /* TJ_CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CycleScrollView.h; sourceTree = "<group>"; };
 		7A7798EE1CC6882D00D843D9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A7798F11CC6889700D843D9 /* HotspotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotspotModel.h; sourceTree = "<group>"; };
-		7A7798F21CC6889700D843D9 /* HotspotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotspotModel.m; sourceTree = "<group>"; };
-		7A7798F51CC6889700D843D9 /* DynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
-		7A7798F61CC6889700D843D9 /* DynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
-		7A7798F71CC6889700D843D9 /* DynamicNetworkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNetworkingModel.h; sourceTree = "<group>"; };
-		7A7798F81CC6889700D843D9 /* DynamicNetworkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNetworkingModel.m; sourceTree = "<group>"; };
 		7A7798F91CC6889700D843D9 /* GachincoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GachincoModel.h; sourceTree = "<group>"; };
 		7A7798FA1CC6889700D843D9 /* GachincoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GachincoModel.m; sourceTree = "<group>"; };
-		7A7798FB1CC6889700D843D9 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
-		7A7798FC1CC6889700D843D9 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		7A7798FD1CC6889700D843D9 /* TopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
 		7A7798FE1CC6889700D843D9 /* TopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
 		7A7799071CC688E900D843D9 /* TJ_CommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommunityViewController.h; sourceTree = "<group>"; };
@@ -889,8 +886,6 @@
 		7A945C271CCCB99C00FCB43E /* MolonDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MolonDebug.h; sourceTree = "<group>"; };
 		7A945C281CCCF39400FCB43E /* CommunityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityModel.h; sourceTree = "<group>"; };
 		7A945C291CCCF39400FCB43E /* CommunityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityModel.m; sourceTree = "<group>"; };
-		7A945C2B1CCCFC7700FCB43E /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
-		7A945C2C1CCCFC7700FCB43E /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		7AA7D6E91CCBCC7F00ED69E1 /* TJ_TodayHotTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_TodayHotTableViewCell.h; sourceTree = "<group>"; };
 		7AA7D6EA1CCBCC7F00ED69E1 /* TJ_TodayHotTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_TodayHotTableViewCell.m; sourceTree = "<group>"; };
 		7AEA9CAB1CC6A7C000503961 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
@@ -1037,6 +1032,8 @@
 		DE0DD7451CCF597D00B122F7 /* liaotian1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liaotian1@2x.png"; sourceTree = "<group>"; };
 		DE0DD7461CCF597D00B122F7 /* liaotian1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liaotian1@3x.png"; sourceTree = "<group>"; };
 		DE0DD7501CCF6F9500B122F7 /* fenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenxiang@2x.png"; sourceTree = "<group>"; };
+		DE3CD2B61CD1B53600943ADB /* TJ_DetailsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DetailsBaseViewController.h; sourceTree = "<group>"; };
+		DE3CD2B71CD1B53600943ADB /* TJ_DetailsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DetailsBaseViewController.m; sourceTree = "<group>"; };
 		DE401DEF1CC9CE4F004C1AAB /* TJ_ CalculateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJ_ CalculateCache.h"; sourceTree = "<group>"; };
 		DE401DF01CC9CE4F004C1AAB /* TJ_ CalculateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ CalculateCache.m"; sourceTree = "<group>"; };
 		DE52A2A61CD0B167000D5A22 /* TJ_DynamicConcernTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicConcernTableView.h; sourceTree = "<group>"; };
@@ -1047,6 +1044,22 @@
 		DE52A2AD1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicActivityTableView.m; sourceTree = "<group>"; };
 		DE5791E61CC87EEC00145B93 /* TJ_DynamicSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicSearchController.h; sourceTree = "<group>"; };
 		DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicSearchController.m; sourceTree = "<group>"; };
+		DE5854EB1CD31ED1004366A4 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
+		DE5854EC1CD31ED1004366A4 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
+		DE5854ED1CD31ED1004366A4 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		DE5854EE1CD31ED1004366A4 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		DE5854EF1CD31ED1004366A4 /* DynamicNetworkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNetworkingModel.h; sourceTree = "<group>"; };
+		DE5854F01CD31ED1004366A4 /* DynamicNetworkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNetworkingModel.m; sourceTree = "<group>"; };
+		DE5854F11CD31ED1004366A4 /* HotspotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotspotModel.h; sourceTree = "<group>"; };
+		DE5854F21CD31ED1004366A4 /* HotspotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotspotModel.m; sourceTree = "<group>"; };
+		DE5854F71CD32803004366A4 /* DynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
+		DE5854F81CD32803004366A4 /* DynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
+		DE5854FA1CD328B0004366A4 /* DynamicConcernsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicConcernsModel.h; sourceTree = "<group>"; };
+		DE5854FB1CD328B0004366A4 /* DynamicConcernsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicConcernsModel.m; sourceTree = "<group>"; };
+		DE5854FD1CD32A50004366A4 /* DynamicHotspotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHotspotModel.h; sourceTree = "<group>"; };
+		DE5854FE1CD32A50004366A4 /* DynamicHotspotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHotspotModel.m; sourceTree = "<group>"; };
+		DE5855001CD32A85004366A4 /* DynamicActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicActivityModel.h; sourceTree = "<group>"; };
+		DE5855011CD32A85004366A4 /* DynamicActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicActivityModel.m; sourceTree = "<group>"; };
 		DE68C6EF1CCDFB1700953281 /* TJ_TarentoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_TarentoTableViewCell.h; sourceTree = "<group>"; };
 		DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_TarentoTableViewCell.m; sourceTree = "<group>"; };
 		DE68C6F51CCDFD2900953281 /* SupportTarentoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTarentoModel.h; sourceTree = "<group>"; };
@@ -1057,6 +1070,8 @@
 		DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ RecommendViewController.m"; sourceTree = "<group>"; };
 		DEAA8D2F1CCA498000C78512 /* TJ_RecommendTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_RecommendTableView.h; sourceTree = "<group>"; };
 		DEAA8D301CCA498000C78512 /* TJ_RecommendTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_RecommendTableView.m; sourceTree = "<group>"; };
+		DEBED6681CD1DBEB006D2282 /* TJ_DynamicDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicDetailController.h; sourceTree = "<group>"; };
+		DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicDetailController.m; sourceTree = "<group>"; };
 		DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DEDF6A311CC5037800FDECA2 /* LX_enroll2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX_enroll2ViewController.h; sourceTree = "<group>"; };
 		DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX_enroll2ViewController.m; sourceTree = "<group>"; };
@@ -1217,8 +1232,8 @@
 			isa = PBXGroup;
 			children = (
 				DE68C6F41CCDFCD000953281 /* TJ_Model */,
-				7A7798891CC685A200D843D9 /* TJ_Views */,
 				7A77988E1CC685A200D843D9 /* TJ_DynamicCells */,
+				7A7798891CC685A200D843D9 /* TJ_Views */,
 				7A77989B1CC685A200D843D9 /* TJ_Controller */,
 			);
 			path = "TJ_Dynamic(动态)";
@@ -1261,6 +1276,8 @@
 				7A77989D1CC685A200D843D9 /* TJ_DynamicHomeController.m */,
 				DE5791E61CC87EEC00145B93 /* TJ_DynamicSearchController.h */,
 				DE5791E71CC87EEC00145B93 /* TJ_DynamicSearchController.m */,
+				DEBED6681CD1DBEB006D2282 /* TJ_DynamicDetailController.h */,
+				DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */,
 			);
 			path = TJ_Controller;
 			sourceTree = "<group>";
@@ -1303,22 +1320,12 @@
 		7A7798F01CC6889700D843D9 /* TJ_DataModel(数据模型) */ = {
 			isa = PBXGroup;
 			children = (
-				7A7798F11CC6889700D843D9 /* HotspotModel.h */,
-				7A7798F21CC6889700D843D9 /* HotspotModel.m */,
-				7A7798FB1CC6889700D843D9 /* ActivityModel.h */,
-				7A7798FC1CC6889700D843D9 /* ActivityModel.m */,
 				7A945C281CCCF39400FCB43E /* CommunityModel.h */,
 				7A945C291CCCF39400FCB43E /* CommunityModel.m */,
-				7A7798F51CC6889700D843D9 /* DynamicModel.h */,
-				7A7798F61CC6889700D843D9 /* DynamicModel.m */,
-				7A7798F71CC6889700D843D9 /* DynamicNetworkingModel.h */,
-				7A7798F81CC6889700D843D9 /* DynamicNetworkingModel.m */,
 				7A7798F91CC6889700D843D9 /* GachincoModel.h */,
 				7A7798FA1CC6889700D843D9 /* GachincoModel.m */,
 				7A7798FD1CC6889700D843D9 /* TopicModel.h */,
 				7A7798FE1CC6889700D843D9 /* TopicModel.m */,
-				7A945C2B1CCCFC7700FCB43E /* CommentModel.h */,
-				7A945C2C1CCCFC7700FCB43E /* CommentModel.m */,
 			);
 			path = "TJ_DataModel(数据模型)";
 			sourceTree = "<group>";
@@ -2255,6 +2262,8 @@
 			children = (
 				DE0DD72D1CCF533900B122F7 /* TJ_CenterViewController.h */,
 				DE0DD72E1CCF533900B122F7 /* TJ_CenterViewController.m */,
+				DE3CD2B61CD1B53600943ADB /* TJ_DetailsBaseViewController.h */,
+				DE3CD2B71CD1B53600943ADB /* TJ_DetailsBaseViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2291,6 +2300,22 @@
 		DE68C6F41CCDFCD000953281 /* TJ_Model */ = {
 			isa = PBXGroup;
 			children = (
+				DE5854F71CD32803004366A4 /* DynamicModel.h */,
+				DE5854F81CD32803004366A4 /* DynamicModel.m */,
+				DE5854EB1CD31ED1004366A4 /* ActivityModel.h */,
+				DE5854EC1CD31ED1004366A4 /* ActivityModel.m */,
+				DE5854ED1CD31ED1004366A4 /* CommentModel.h */,
+				DE5854EE1CD31ED1004366A4 /* CommentModel.m */,
+				DE5854F11CD31ED1004366A4 /* HotspotModel.h */,
+				DE5854F21CD31ED1004366A4 /* HotspotModel.m */,
+				DE5854EF1CD31ED1004366A4 /* DynamicNetworkingModel.h */,
+				DE5854F01CD31ED1004366A4 /* DynamicNetworkingModel.m */,
+				DE5854FA1CD328B0004366A4 /* DynamicConcernsModel.h */,
+				DE5854FB1CD328B0004366A4 /* DynamicConcernsModel.m */,
+				DE5854FD1CD32A50004366A4 /* DynamicHotspotModel.h */,
+				DE5854FE1CD32A50004366A4 /* DynamicHotspotModel.m */,
+				DE5855001CD32A85004366A4 /* DynamicActivityModel.h */,
+				DE5855011CD32A85004366A4 /* DynamicActivityModel.m */,
 			);
 			path = TJ_Model;
 			sourceTree = "<group>";
@@ -2834,22 +2859,26 @@
 			files = (
 				DE5791E81CC87EEC00145B93 /* TJ_DynamicSearchController.m in Sources */,
 				DE0DD7371CCF533900B122F7 /* TJ_CenterViewController.m in Sources */,
+				DEBED66A1CD1DBEB006D2282 /* TJ_DynamicDetailController.m in Sources */,
 				7A7799121CC688E900D843D9 /* TJ_ClassificationListTableView.m in Sources */,
 				DEDF6A3D1CC5037800FDECA2 /* LX_foundViewController.m in Sources */,
+				DE5854F51CD31ED1004366A4 /* DynamicNetworkingModel.m in Sources */,
 				DE0DD70C1CCF50AC00B122F7 /* TJ_ConnernsViewController.m in Sources */,
 				7A945BDF1CCCB37600FCB43E /* MJDictionaryCache.m in Sources */,
-				7A7799041CC6889700D843D9 /* ActivityModel.m in Sources */,
 				7A945C1D1CCCB58700FCB43E /* MLLinkLabel.m in Sources */,
 				DE52A2AE1CD0C2F6000D5A22 /* TJ_DynamicActivityTableView.m in Sources */,
 				7A945C1C1CCCB58700FCB43E /* MLLabel.m in Sources */,
+				DE5854F31CD31ED1004366A4 /* ActivityModel.m in Sources */,
 				7A7799031CC6889700D843D9 /* GachincoModel.m in Sources */,
 				7A7799291CC6894800D843D9 /* TJ_CommentTableViewCell.m in Sources */,
 				7A945BE71CCCB37600FCB43E /* NSObject+MJKeyValue.m in Sources */,
 				7AA7D6EB1CCBCC7F00ED69E1 /* TJ_TodayHotTableViewCell.m in Sources */,
+				DE5854FF1CD32A50004366A4 /* DynamicHotspotModel.m in Sources */,
 				7A7799051CC6889700D843D9 /* TopicModel.m in Sources */,
 				DE0DD6E81CCF49AE00B122F7 /* TJ_InvitationTableViewCell.m in Sources */,
 				7A945BE81CCCB37600FCB43E /* NSObject+MJProperty.m in Sources */,
 				DE0DD7001CCF4E1A00B122F7 /* TJ_EnshrineViewController.m in Sources */,
+				DE5854FC1CD328B0004366A4 /* DynamicConcernsModel.m in Sources */,
 				DEDF6A3B1CC5037800FDECA2 /* LX_enroll2ViewController.m in Sources */,
 				DE0DD73A1CCF533900B122F7 /* UIView+SDExtension.m in Sources */,
 				DEDF6B0E1CC50FFF00FDECA2 /* CommonTableViewCell.m in Sources */,
@@ -2861,11 +2890,10 @@
 				DEDF6A3C1CC5037800FDECA2 /* LX_enrollViewController.m in Sources */,
 				7A945AD21CCCB37600FCB43E /* NSDictionary Chinese.m in Sources */,
 				7A945BE11CCCB37600FCB43E /* MJFoundation.m in Sources */,
+				DE5854F41CD31ED1004366A4 /* CommentModel.m in Sources */,
 				7A945C1B1CCCB58700FCB43E /* MLLabelLayoutManager.m in Sources */,
 				7A7798A01CC685A200D843D9 /* HotspotCell.m in Sources */,
 				7A945C151CCCB58700FCB43E /* NSMutableAttributedString+MLLabel.m in Sources */,
-				7A7798FF1CC6889700D843D9 /* HotspotModel.m in Sources */,
-				7A945C2D1CCCFC7700FCB43E /* CommentModel.m in Sources */,
 				7A945C1A1CCCB58700FCB43E /* NSString+MLExpression.m in Sources */,
 				7A945C191CCCB58700FCB43E /* NSAttributedString+MLExpression.m in Sources */,
 				DE68C6F11CCDFB1700953281 /* TJ_TarentoTableViewCell.m in Sources */,
@@ -2881,6 +2909,7 @@
 				7A945BE31CCCB37600FCB43E /* MJPropertyKey.m in Sources */,
 				DE0DD7021CCF4E1A00B122F7 /* TJ_InvitationViewController.m in Sources */,
 				DE0C48201CCA3274004E9C3C /* TJ_NewTopicViewController.m in Sources */,
+				DE5855021CD32A85004366A4 /* DynamicActivityModel.m in Sources */,
 				7A945C141CCCB58700FCB43E /* NSAttributedString+MLLabel.m in Sources */,
 				7A7799111CC688E900D843D9 /* TJ_ClassificationListCell.m in Sources */,
 				DE0DD73D1CCF545200B122F7 /* TJ_EnshrineTableViewCell.m in Sources */,
@@ -2898,17 +2927,17 @@
 				7A7796641CC67A6200D843D9 /* LX_QRCodeViewController.m in Sources */,
 				7A945BE21CCCB37600FCB43E /* MJProperty.m in Sources */,
 				7A945BE91CCCB37600FCB43E /* NSString+MJExtension.m in Sources */,
+				DE5854F91CD32804004366A4 /* DynamicModel.m in Sources */,
 				7A945AD11CCCB37600FCB43E /* NSArray Chinese.m in Sources */,
 				7A77992B1CC6894800D843D9 /* TJ_TopicTableViewCell.m in Sources */,
 				7A7798E91CC686B700D843D9 /* main.m in Sources */,
 				7A7799281CC6894800D843D9 /* TJ_CommetView.m in Sources */,
 				DE0C481D1CCA2C93004E9C3C /* TJ_TopicNavigationTableViewCell.m in Sources */,
 				7A7798AE1CC685FD00D843D9 /* TJ_SelectionList.m in Sources */,
+				DE5854F61CD31ED1004366A4 /* HotspotModel.m in Sources */,
 				7A945BEA1CCCB37600FCB43E /* XYString.m in Sources */,
 				7A7798AF1CC685FD00D843D9 /* TJ_SelectionListCell.m in Sources */,
 				7A945C171CCCB58700FCB43E /* MLExpressionManager.m in Sources */,
-				7A7799021CC6889700D843D9 /* DynamicNetworkingModel.m in Sources */,
-				7A7799011CC6889700D843D9 /* DynamicModel.m in Sources */,
 				7A945BDD1CCCB37600FCB43E /* TJ_BAButton.m in Sources */,
 				7A77966A1CC67AF400D843D9 /* QRCodeViewController.m in Sources */,
 				DEDF6B0A1CC50EEF00FDECA2 /* Message.m in Sources */,
@@ -2919,6 +2948,7 @@
 				7A7798ED1CC687A800D843D9 /* TJ_CycleScrollView.m in Sources */,
 				7A7798A21CC685A200D843D9 /* DynamicConcernNotImageCell.m in Sources */,
 				7A945AD31CCCB37600FCB43E /* NSSet Chinese.m in Sources */,
+				DE3CD2B81CD1B53600943ADB /* TJ_DetailsBaseViewController.m in Sources */,
 				DEAA8D2E1CCA488300C78512 /* TJ_ RecommendViewController.m in Sources */,
 				DEDF6B131CC5115C00FDECA2 /* UIView+TL.m in Sources */,
 				DE0DD7011CCF4E1A00B122F7 /* TJ_FansViewController.m in Sources */,

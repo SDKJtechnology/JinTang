@@ -13,6 +13,7 @@
 #import "TJ_DynamicConcernTableView.h"
 #import "TJ_DynamicHotspotTableView.h"
 #import "TJ_DynamicActivityTableView.h"
+#import "TJ_DynamicDetailController.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -38,6 +39,7 @@
 }
 
 @property (strong, nonatomic) UIScrollView *contentView;
+
 @property (strong, nonatomic) TJ_SelectionList *selectList;//水平选择列表
 
 @property (nonatomic, strong) TJ_DynamicConcernTableView *dynamicConcernTableView;
@@ -45,6 +47,8 @@
 @property (nonatomic, strong) TJ_DynamicHotspotTableView *dynamicHotspotTableView;
 
 @property (nonatomic, strong) TJ_DynamicActivityTableView *dynamicActivityTableView;
+
+@property (nonatomic, strong) TJ_DynamicDetailController *dynamicDetailController;
 
 @end
 
@@ -100,6 +104,13 @@ static NSNumber *page;
     CGRect frame = self.contentView.bounds;
     self.dynamicConcernTableView = [[TJ_DynamicConcernTableView alloc] initWithFrame:frame];
     [self.contentView addSubview:self.dynamicConcernTableView];
+    __block typeof(self) blockSelf = self;
+    self.dynamicConcernTableView.didSelectRowAtIndexPath = ^(NSIndexPath *indexPath){
+        _dynamicDetailController = [TJ_DynamicDetailController new];
+        blockSelf.dynamicDetailController.titelString = @"详情";
+        
+        [blockSelf presentViewController:blockSelf.dynamicDetailController animated:YES completion:nil];
+    };
     
     frame.origin.x = Screen_Width;
     self.dynamicHotspotTableView = [[TJ_DynamicHotspotTableView alloc] initWithFrame:frame];
@@ -120,7 +131,7 @@ static NSNumber *page;
 - (void)getDynamicConcernData
 {
     __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getDynamicDataWithPage:page success:^(id data) {
+    [[DynamicNetworkingModel sharedObejct] getDynamicConcernsDataWithID:page success:^(id data) {
         [dynamicConcernListData addObjectsFromArray:data];
         blockSelf.dynamicConcernTableView.dynamicConcernListData = dynamicConcernListData;
         

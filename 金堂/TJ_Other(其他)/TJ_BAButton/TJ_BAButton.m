@@ -91,6 +91,7 @@
     button.buttonStatus = status;
     [button setTitleColor:[UIColor colorWithHexString:@"9ae6ff"] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15];
+    _space = 0.f;
     
     return button;
 }
@@ -98,6 +99,27 @@
 - (void)setButtonStatus:(BAAligenmentStatus)buttonStatus
 {
     _buttonStatus = buttonStatus;
+}
+
+#pragma mark - 默认对齐【文字在右，图片在左】可以设置间距
+- (void)alignmentNormal
+{
+    //    获得按钮的图片的frame
+    CGRect imageFrame = self.imageView.frame;
+    //    设置按钮的图片的x坐标为0
+    imageFrame.origin.x = 0;
+    //    获得按钮的文本的frame
+    CGRect titleFrame = self.titleLabel.frame;
+    //    设置按钮的文本的x坐标紧跟图片的后面的后面
+    if (!_space) {
+        titleFrame.origin.x = CGRectGetWidth(imageFrame);
+    }
+    else{
+        titleFrame.origin.x = imageFrame.size.width + _space;
+    }
+    
+    self.titleLabel.frame = titleFrame;
+    self.imageView.frame = imageFrame;
 }
 
 #pragma mark - 左对齐【文字在左，图片在右】
@@ -185,6 +207,7 @@
     
     if (_buttonStatus == BAAligenmentStatusNormal)
     {
+        [self alignmentNormal];
     }
     else if (_buttonStatus == BAAligenmentStatusLeft)
     {
