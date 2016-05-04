@@ -9,16 +9,25 @@
 
 #import "TJ_DetailsBaseViewController.h"
 #import "SDAutoLayout.h"
+#import "BCTextView.h"
 
-@interface TJ_DetailsBaseViewController ()<UITextFieldDelegate>
+//将数字转为
+#define EMOJI_CODE_TO_SYMBOL(x) ((((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24);
 
-@property (nonatomic, strong) UITextField *textField;
+@interface TJ_DetailsBaseViewController ()<UITextViewDelegate>
+{
+    UITapGestureRecognizer *tapGestureRecognizer;
+}
+
+@property (nonatomic, strong) BCTextView *textView;
 
 @property (nonatomic, strong) UILabel *rightLabel;
 
 @property (nonatomic, strong) UIView *bottomView;
 
 @property (nonatomic, strong) UIButton *supportButton;
+
+@property (nonatomic, strong) UIButton *sendButton;
 
 @end
 
@@ -29,9 +38,24 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [self setup];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoardNotification:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setup
@@ -70,17 +94,17 @@
     .rightSpaceToView(self.view, 0)
     .heightIs(49);
     [_bottomView updateLayout];
-    _bottomView.fixedHeight = @49;
     
     _supportButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [_bottomView addSubview:_supportButton];
     _supportButton.sd_layout
     .topSpaceToView(_bottomView, 10)
     .leftSpaceToView(_bottomView, 10)
-    .bottomSpaceToView(_bottomView, 10)
+    .widthIs(29)
     .heightEqualToWidth();
     _supportButton.sd_cornerRadiusFromWidthRatio = @0.5;
     _supportButton.backgroundColor = [UIColor yellowColor];
+    [_supportButton addTarget: self action:@selector(didCilckSupportButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     _rightLabel= [[UILabel alloc] init];
     [_bottomView addSubview:_rightLabel];
@@ -93,57 +117,167 @@
     _rightLabel.textColor = [UIColor colorWithWhite:0.673 alpha:1.000];
     _rightLabel.text = @"洛杉矶的风景";
     
-    _textField = [[UITextField alloc] init];
-    [_bottomView addSubview:_textField];
-    _textField.sd_layout
+    _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_bottomView addSubview:_sendButton];
+    _sendButton.sd_layout
+    .topEqualToView(_supportButton)
+    .rightSpaceToView(_bottomView, 10)
+    .bottomSpaceToView(_bottomView, 10)
+    .widthIs(0);
+    _sendButton.titleLabel.font = [UIFont fontWithName:TJFont size:15];
+    [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [_sendButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    _sendButton.layer.masksToBounds = YES;
+    _sendButton.layer.borderColor = [[UIColor grayColor] CGColor];
+    _sendButton.layer.borderWidth = 0.5;
+    _sendButton.layer.cornerRadius = 5;
+    [_sendButton addTarget:self action:@selector(didClickSendButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    _textView = [[BCTextView alloc] init];
+    [_bottomView addSubview:_textView];
+    _textView.sd_layout
     .topSpaceToView(_bottomView, 5)
     .leftSpaceToView(_supportButton, 10)
-    .rightSpaceToView(_supportButton, 10)
+    .rightSpaceToView(_sendButton, 0)
     .bottomSpaceToView(_bottomView, 5);
-    _textField.layer.borderColor = [[UIColor grayColor] CGColor];
-    _textField.layer.borderWidth = 0.5;
-    _textField.layer.cornerRadius = 5;
-    _textField.placeholder = @" 回复楼主";
-    _textField.delegate = self;
-    [_textField setValue:_rightLabel.textColor forKeyPath:@"_placeholderLabel.textColor"];
-    [_textField setValue:_rightLabel.font forKeyPath:@"_placeholderLabel.font"];
+    _textView.layer.borderColor = _sendButton.layer.borderColor;
+    _textView.layer.borderWidth = _sendButton.layer.borderWidth;
+    _textView.layer.cornerRadius = 5;
+    _textView.placeholder = @"回复楼主";
+    _textView.delegate = self;
 
+//    _textField.text = [self defaultEmoticons].lastObject;
 }
 
-#pragma mark UITextFieldDelegate
+//获取默认表情数组
+- (NSArray *)defaultEmoticons {
+    NSMutableArray *array = [NSMutableArray new];
+    for (int i=0x1F600; i<=0x1F64F; i++) {
+        if (i < 0x1F641 || i > 0x1F644) {
+            int sym = EMOJI_CODE_TO_SYMBOL(i);
+            NSString *emoT = [[NSString alloc] initWithBytes:&sym length:sizeof(sym) encoding:NSUTF8StringEncoding];
+            [array addObject:emoT];
+        }
+    }
+    return array;
+}
+
+#pragma mark UITextViewDelegate
 
 //已经开始编辑
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    _textField.placeholder = @" 我来说一句...";
+    _supportButton.sd_layout.widthIs(0);
+    _sendButton.sd_layout.widthIs(40);
+    _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_supportButton, 0);
+    _textView.placeholder = @"我来说一句...";
+    _textView.text = @"";
     _rightLabel.hidden = YES;
+    
+    return YES;
 }
 //已经结束编辑
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    _textField.placeholder = @" 回复楼主";
-    _rightLabel.hidden = NO;
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    _textField.placeholder = @" 回复楼主";
+//    _rightLabel.hidden = NO;
+//}
 
 // 点击键盘上Return按钮时候调用
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [_textField resignFirstResponder];
-    
-    _textField.text = @"";
-    _textField.placeholder = @" 回复楼主";
-    _rightLabel.hidden = NO;
-    
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        if (![_textView.text isEqualToString:@""])
+        {
+            [self willHideKeyBoard];
+        }
+        else
+        {
+            [self addPromptView];
+        }
+        return NO;
+    }
     return YES;
 }
 
 #pragma mark Actions
-
+//点击右侧按钮（用于子类重写）
 - (void)didClickRightButton:(TJ_BACustomButton *)sender
 {}
-
+//点击左侧按钮
 - (void)didClickLeftButtonAction
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//点击点赞按钮
+- (void)didCilckSupportButtonAction
+{
+    NSLog(@"点赞");
+}
+
+//点击发送按钮
+- (void)didClickSendButtonAction
+{
+    if (![_textView.text isEqualToString:@""]) {
+        [self willHideKeyBoard];
+        NSLog(@"发送");
+    }
+    else
+    {
+        [self addPromptView];
+    }
+}
+
+#pragma mark Others
+//添加提示视图
+- (void)addPromptView
+{
+    UILabel *promptLabel = [UILabel new];
+    [[UIApplication sharedApplication].windows.lastObject addSubview:promptLabel];
+    promptLabel.text = @"内容不能为空!";
+    promptLabel.textAlignment = NSTextAlignmentCenter;
+    promptLabel.sd_layout.widthIs(150).heightIs(30);
+    CGPoint center = self.view.center;
+    promptLabel.center = CGPointMake(center.x, center.y * 1.8);
+    promptLabel.sd_cornerRadiusFromHeightRatio = @0.5;
+    promptLabel.textColor = [UIColor whiteColor];
+    promptLabel.font = [UIFont fontWithName:TJFont size:15];
+    promptLabel.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.7];
+    
+    [UIView animateWithDuration:5 animations:^{
+        promptLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+        [promptLabel removeFromSuperview];
+    }];
+}
+
+//键盘将要显示
+- (void)willShowKeyBoardNotification:(NSNotification *)notification
+{
+//    NSLog(@"%@",notification.userInfo);
+     CGRect frame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    _bottomView.origin =  CGPointMake(frame.origin.x, frame.origin.y - 49);
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willHideKeyBoard)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+//键盘将要收起
+- (void)willHideKeyBoardNotification:(NSNotification *)notification
+{
+//    NSLog(@"%@",notification.userInfo);
+    _bottomView.origin =  CGPointMake(0, self.view.height - 49);
+    [self.view removeGestureRecognizer:tapGestureRecognizer];
+}
+//点击空白收起键盘
+- (void)willHideKeyBoard
+{
+    [_textView resignFirstResponder];
+    _sendButton.sd_layout.widthIs(0);
+    _supportButton.sd_layout.widthIs(29);
+    _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
+    _textView.text = @"";
+    _textView.placeholder = @"回复楼主";
+//    _rightLabel.hidden = NO;
 }
 
 @end

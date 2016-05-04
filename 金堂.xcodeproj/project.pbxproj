@@ -434,6 +434,7 @@
 		DE68C6F11CCDFB1700953281 /* TJ_TarentoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */; };
 		DE68C6F71CCDFD2900953281 /* SupportTarentoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */; };
 		DEA062C11CCF3C89000B249D /* TJ_FansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA062C01CCF3C89000B249D /* TJ_FansTableViewCell.m */; };
+		DEA4D0291CD9FBB3004F22C4 /* BCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA4D0281CD9FBB3004F22C4 /* BCTextView.m */; };
 		DEAA8D2E1CCA488300C78512 /* TJ_ RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */; };
 		DEAA8D311CCA498000C78512 /* TJ_RecommendTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D301CCA498000C78512 /* TJ_RecommendTableView.m */; };
 		DEBED66A1CD1DBEB006D2282 /* TJ_DynamicDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */; };
@@ -1066,6 +1067,8 @@
 		DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTarentoModel.m; sourceTree = "<group>"; };
 		DEA062BF1CCF3C89000B249D /* TJ_FansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_FansTableViewCell.h; sourceTree = "<group>"; };
 		DEA062C01CCF3C89000B249D /* TJ_FansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_FansTableViewCell.m; sourceTree = "<group>"; };
+		DEA4D0271CD9FBB3004F22C4 /* BCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTextView.h; sourceTree = "<group>"; };
+		DEA4D0281CD9FBB3004F22C4 /* BCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTextView.m; sourceTree = "<group>"; };
 		DEAA8D2C1CCA488300C78512 /* TJ_ RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJ_ RecommendViewController.h"; sourceTree = "<group>"; };
 		DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ RecommendViewController.m"; sourceTree = "<group>"; };
 		DEAA8D2F1CCA498000C78512 /* TJ_RecommendTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_RecommendTableView.h; sourceTree = "<group>"; };
@@ -2264,6 +2267,8 @@
 				DE0DD72E1CCF533900B122F7 /* TJ_CenterViewController.m */,
 				DE3CD2B61CD1B53600943ADB /* TJ_DetailsBaseViewController.h */,
 				DE3CD2B71CD1B53600943ADB /* TJ_DetailsBaseViewController.m */,
+				DEA4D0271CD9FBB3004F22C4 /* BCTextView.h */,
+				DEA4D0281CD9FBB3004F22C4 /* BCTextView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2885,6 +2890,7 @@
 				DE0DD7381CCF533900B122F7 /* TJ_SharedPhotoView.m in Sources */,
 				DE0DD7041CCF4E1A00B122F7 /* TJ_LeftSortsViewController.m in Sources */,
 				DEDF6B0B1CC50EEF00FDECA2 /* MessageCell.m in Sources */,
+				DEA4D0291CD9FBB3004F22C4 /* BCTextView.m in Sources */,
 				7A7799131CC688E900D843D9 /* TJ_CommunityclassificationTableView.m in Sources */,
 				7A945C181CCCB58700FCB43E /* MLTextAttachment.m in Sources */,
 				DEDF6A3C1CC5037800FDECA2 /* LX_enrollViewController.m in Sources */,
