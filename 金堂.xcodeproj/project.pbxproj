@@ -433,10 +433,14 @@
 		DE5855021CD32A85004366A4 /* DynamicActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5855011CD32A85004366A4 /* DynamicActivityModel.m */; };
 		DE68C6F11CCDFB1700953281 /* TJ_TarentoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */; };
 		DE68C6F71CCDFD2900953281 /* SupportTarentoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */; };
+		DE7267141CDB3A0300DCCBC7 /* faceDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = DE7267121CDB3A0300DCCBC7 /* faceDelete.png */; };
+		DE7267151CDB3A0300DCCBC7 /* faceDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE7267131CDB3A0300DCCBC7 /* faceDelete@2x.png */; };
 		DEA062C11CCF3C89000B249D /* TJ_FansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA062C01CCF3C89000B249D /* TJ_FansTableViewCell.m */; };
 		DEA4D0291CD9FBB3004F22C4 /* BCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA4D0281CD9FBB3004F22C4 /* BCTextView.m */; };
 		DEAA8D2E1CCA488300C78512 /* TJ_ RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */; };
 		DEAA8D311CCA498000C78512 /* TJ_RecommendTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA8D301CCA498000C78512 /* TJ_RecommendTableView.m */; };
+		DEAC1CF21CDAE5D1004AC6F8 /* TJ_Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC1CF11CDAE5D1004AC6F8 /* TJ_Emoji.m */; };
+		DEAC1CF51CDAED4F004AC6F8 /* TJ_EmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC1CF41CDAED4F004AC6F8 /* TJ_EmojiView.m */; };
 		DEBED66A1CD1DBEB006D2282 /* TJ_DynamicDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */; };
 		DED6D6AB1CC5D7990080B09F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */; };
 		DEDF6A3B1CC5037800FDECA2 /* LX_enroll2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */; };
@@ -1065,6 +1069,8 @@
 		DE68C6F01CCDFB1700953281 /* TJ_TarentoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_TarentoTableViewCell.m; sourceTree = "<group>"; };
 		DE68C6F51CCDFD2900953281 /* SupportTarentoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTarentoModel.h; sourceTree = "<group>"; };
 		DE68C6F61CCDFD2900953281 /* SupportTarentoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTarentoModel.m; sourceTree = "<group>"; };
+		DE7267121CDB3A0300DCCBC7 /* faceDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceDelete.png; sourceTree = "<group>"; };
+		DE7267131CDB3A0300DCCBC7 /* faceDelete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceDelete@2x.png"; sourceTree = "<group>"; };
 		DEA062BF1CCF3C89000B249D /* TJ_FansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_FansTableViewCell.h; sourceTree = "<group>"; };
 		DEA062C01CCF3C89000B249D /* TJ_FansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_FansTableViewCell.m; sourceTree = "<group>"; };
 		DEA4D0271CD9FBB3004F22C4 /* BCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTextView.h; sourceTree = "<group>"; };
@@ -1073,6 +1079,10 @@
 		DEAA8D2D1CCA488300C78512 /* TJ_ RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJ_ RecommendViewController.m"; sourceTree = "<group>"; };
 		DEAA8D2F1CCA498000C78512 /* TJ_RecommendTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_RecommendTableView.h; sourceTree = "<group>"; };
 		DEAA8D301CCA498000C78512 /* TJ_RecommendTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_RecommendTableView.m; sourceTree = "<group>"; };
+		DEAC1CF01CDAE5D1004AC6F8 /* TJ_Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_Emoji.h; sourceTree = "<group>"; };
+		DEAC1CF11CDAE5D1004AC6F8 /* TJ_Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_Emoji.m; sourceTree = "<group>"; };
+		DEAC1CF31CDAED4F004AC6F8 /* TJ_EmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_EmojiView.h; sourceTree = "<group>"; };
+		DEAC1CF41CDAED4F004AC6F8 /* TJ_EmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_EmojiView.m; sourceTree = "<group>"; };
 		DEBED6681CD1DBEB006D2282 /* TJ_DynamicDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicDetailController.h; sourceTree = "<group>"; };
 		DEBED6691CD1DBEB006D2282 /* TJ_DynamicDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicDetailController.m; sourceTree = "<group>"; };
 		DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1445,6 +1455,8 @@
 		7A94599D1CCCB37500FCB43E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DE7267121CDB3A0300DCCBC7 /* faceDelete.png */,
+				DE7267131CDB3A0300DCCBC7 /* faceDelete@2x.png */,
 				DE0DD7501CCF6F9500B122F7 /* fenxiang@2x.png */,
 				DE0DD7441CCF597D00B122F7 /* liaotian1.png */,
 				DE0DD7451CCF597D00B122F7 /* liaotian1@2x.png */,
@@ -2269,6 +2281,10 @@
 				DE3CD2B71CD1B53600943ADB /* TJ_DetailsBaseViewController.m */,
 				DEA4D0271CD9FBB3004F22C4 /* BCTextView.h */,
 				DEA4D0281CD9FBB3004F22C4 /* BCTextView.m */,
+				DEAC1CF01CDAE5D1004AC6F8 /* TJ_Emoji.h */,
+				DEAC1CF11CDAE5D1004AC6F8 /* TJ_Emoji.m */,
+				DEAC1CF31CDAED4F004AC6F8 /* TJ_EmojiView.h */,
+				DEAC1CF41CDAED4F004AC6F8 /* TJ_EmojiView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2531,6 +2547,7 @@
 				7A945B611CCCB37600FCB43E /* network_status_warning@2x.png in Resources */,
 				7A945B941CCCB37600FCB43E /* shequ.png in Resources */,
 				7A945B8C1CCCB37600FCB43E /* scan_4@2x.png in Resources */,
+				DE7267141CDB3A0300DCCBC7 /* faceDelete.png in Resources */,
 				7A945B4E1CCCB37600FCB43E /* LikeCmtBg@2x.png in Resources */,
 				7A7798EF1CC6882D00D843D9 /* Info.plist in Resources */,
 				7A945B0A1CCCB37600FCB43E /* default_discussion_collection_portrait@3x.png in Resources */,
@@ -2631,6 +2648,7 @@
 				7A945B7C1CCCB37600FCB43E /* qrcode_scan_titlebar_back_nor@2x.png in Resources */,
 				7A945B2E1CCCB37600FCB43E /* img_03.png in Resources */,
 				7A945BDA1CCCB37600FCB43E /* zuixinhuati@2x.png in Resources */,
+				DE7267151CDB3A0300DCCBC7 /* faceDelete@2x.png in Resources */,
 				7A945B391CCCB37600FCB43E /* img_15@3x.png in Resources */,
 				7A945B131CCCB37600FCB43E /* delete_member_tip@2x.png in Resources */,
 				7A945B2B1CCCB37600FCB43E /* from_voice_play2@2x.png in Resources */,
@@ -2889,6 +2907,7 @@
 				DEDF6B0E1CC50FFF00FDECA2 /* CommonTableViewCell.m in Sources */,
 				DE0DD7381CCF533900B122F7 /* TJ_SharedPhotoView.m in Sources */,
 				DE0DD7041CCF4E1A00B122F7 /* TJ_LeftSortsViewController.m in Sources */,
+				DEAC1CF51CDAED4F004AC6F8 /* TJ_EmojiView.m in Sources */,
 				DEDF6B0B1CC50EEF00FDECA2 /* MessageCell.m in Sources */,
 				DEA4D0291CD9FBB3004F22C4 /* BCTextView.m in Sources */,
 				7A7799131CC688E900D843D9 /* TJ_CommunityclassificationTableView.m in Sources */,
@@ -2898,6 +2917,7 @@
 				7A945BE11CCCB37600FCB43E /* MJFoundation.m in Sources */,
 				DE5854F41CD31ED1004366A4 /* CommentModel.m in Sources */,
 				7A945C1B1CCCB58700FCB43E /* MLLabelLayoutManager.m in Sources */,
+				DEAC1CF21CDAE5D1004AC6F8 /* TJ_Emoji.m in Sources */,
 				7A7798A01CC685A200D843D9 /* HotspotCell.m in Sources */,
 				7A945C151CCCB58700FCB43E /* NSMutableAttributedString+MLLabel.m in Sources */,
 				7A945C1A1CCCB58700FCB43E /* NSString+MLExpression.m in Sources */,

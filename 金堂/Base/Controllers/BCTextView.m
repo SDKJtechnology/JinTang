@@ -38,7 +38,7 @@
     if ([self.text isEqualToString:@""]) {
         CGRect placeholderRect;
         placeholderRect.origin.y = 10;
-        placeholderRect.size.height = CGRectGetHeight(self.frame) - 8;
+        placeholderRect.size.height = CGRectGetHeight(self.frame) - 10;
 
         placeholderRect.origin.x = 5;
         placeholderRect.size.width = CGRectGetWidth(self.frame) - 5;

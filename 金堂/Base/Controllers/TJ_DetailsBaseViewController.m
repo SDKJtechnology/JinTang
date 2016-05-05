@@ -10,13 +10,16 @@
 #import "TJ_DetailsBaseViewController.h"
 #import "SDAutoLayout.h"
 #import "BCTextView.h"
+#import "TJ_EmojiView.h"
 
 //将数字转为
 #define EMOJI_CODE_TO_SYMBOL(x) ((((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24);
 
-@interface TJ_DetailsBaseViewController ()<UITextViewDelegate>
+@interface TJ_DetailsBaseViewController ()<UITextViewDelegate,TJ_EmojiViewDelegate>
 {
     UITapGestureRecognizer *tapGestureRecognizer;
+    CGRect keyboardFrame;
+    TJ_EmojiView *emojiView;
 }
 
 @property (nonatomic, strong) BCTextView *textView;
@@ -28,6 +31,12 @@
 @property (nonatomic, strong) UIButton *supportButton;
 
 @property (nonatomic, strong) UIButton *sendButton;
+
+@property (nonatomic, strong) UIButton *photoButton;
+
+@property (nonatomic, strong) UIButton *emojiButton;
+
+@property (nonatomic, strong) TJ_EmojiView *emojiView;
 
 @end
 
@@ -48,7 +57,6 @@
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoardNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -113,9 +121,9 @@
     .rightSpaceToView(_bottomView, 15)
     .heightRatioToView(_bottomView, 1);
     [_rightLabel setSingleLineAutoResizeWithMaxWidth:self.view.width / 2];
-    _rightLabel.font = [UIFont fontWithName:TJFont size:15];
-    _rightLabel.textColor = [UIColor colorWithWhite:0.673 alpha:1.000];
-    _rightLabel.text = @"洛杉矶的风景";
+    _rightLabel.font = [UIFont fontWithName:TJFont size:13];
+//    _rightLabel.textColor = [UIColor colorWithWhite:0.673 alpha:1.000];
+    _rightLabel.text = @"已有0条回复";
     
     _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_bottomView addSubview:_sendButton];
@@ -134,7 +142,7 @@
     [_sendButton addTarget:self action:@selector(didClickSendButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     _textView = [[BCTextView alloc] init];
-    [_bottomView addSubview:_textView];
+    [_bottomView insertSubview:_textView atIndex:0];
     _textView.sd_layout
     .topSpaceToView(_bottomView, 5)
     .leftSpaceToView(_supportButton, 10)
@@ -145,7 +153,35 @@
     _textView.layer.cornerRadius = 5;
     _textView.placeholder = @"回复楼主";
     _textView.delegate = self;
+    
+    _photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_bottomView addSubview:_photoButton];
+    _photoButton.sd_layout
+    .leftEqualToView(_supportButton)
+    .topSpaceToView(_bottomView, 15)
+    .bottomSpaceToView(_bottomView, 15)
+    .widthEqualToHeight();
+    _photoButton.hidden = YES;
+    [_photoButton addTarget:self action:@selector(didCilckPhotoButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _photoButton.backgroundColor = [UIColor blueColor];
+    
+    _emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_bottomView addSubview:_emojiButton];
+    _emojiButton.sd_layout
+    .leftSpaceToView(_photoButton, 10)
+    .topEqualToView(_photoButton)
+    .bottomSpaceToView(_bottomView, 15)
+    .widthEqualToHeight();
+    _emojiButton.hidden = YES;
+    _emojiButton.sd_cornerRadiusFromWidthRatio = @0.5;
+    [_emojiButton addTarget:self action:@selector(didCilckEmojiButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _emojiButton.backgroundColor = [UIColor redColor];
 
+//    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+//    attachment.image = [UIImage imageNamed:@"MLEmoji_Expression.bundle/Expression_1"];
+//    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
+//    _textView.attributedText = string;
+    
 //    _textField.text = [self defaultEmoticons].lastObject;
 }
 
@@ -169,23 +205,21 @@
 {
     _supportButton.sd_layout.widthIs(0);
     _sendButton.sd_layout.widthIs(40);
-    _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_supportButton, 0);
+    _photoButton.hidden = NO;
+    _emojiButton.hidden = NO;
+    _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_emojiButton, 10);
     _textView.placeholder = @"我来说一句...";
     _textView.text = @"";
     _rightLabel.hidden = YES;
+    _textView.inputView = nil;
     
     return YES;
 }
-//已经结束编辑
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    _textField.placeholder = @" 回复楼主";
-//    _rightLabel.hidden = NO;
-//}
 
 // 点击键盘上Return按钮时候调用
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    NSLog(@"%@",text);
     if ([text isEqualToString:@"\n"]) {
         if (![_textView.text isEqualToString:@""])
         {
@@ -198,6 +232,22 @@
         return NO;
     }
     return YES;
+}
+
+#pragma mark Tj_EmojiViewDelegate
+
+- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath
+{
+    if ([_textView.text isEqualToString:@""]) {
+        _textView.text = @"";
+    }
+    UIImage *image = [UIImage imageNamed:emojiImagePath];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:_textView.attributedText];
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = image;
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
+    [text appendAttributedString:string];
+    _textView.attributedText = text;
 }
 
 #pragma mark Actions
@@ -216,11 +266,38 @@
     NSLog(@"点赞");
 }
 
+//点击图片按钮
+- (void)didCilckPhotoButtonAction
+{
+    NSLog(@"点didCilckPhotoButtonAction");
+}
+
+//点击表情按钮
+- (void)didCilckEmojiButtonAction
+{
+    _emojiButton.selected = !_emojiButton.selected;
+    
+    if (_emojiButton.selected) {
+        emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
+        emojiView.delegateEmojiView = self;
+        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
+        [[UIApplication sharedApplication].windows.lastObject addSubview:emojiView];
+//        _textView.inputView = emojiView;
+        NSLog(@"点didCilckEmojiButtonAction");
+    }
+    else{
+        _textView.inputView = nil;
+        [_textView becomeFirstResponder];
+        [emojiView removeFromSuperview];
+    }
+}
+
 //点击发送按钮
 - (void)didClickSendButtonAction
 {
     if (![_textView.text isEqualToString:@""]) {
         [self willHideKeyBoard];
+
         NSLog(@"发送");
     }
     else
@@ -256,28 +333,32 @@
 - (void)willShowKeyBoardNotification:(NSNotification *)notification
 {
 //    NSLog(@"%@",notification.userInfo);
-     CGRect frame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    _bottomView.origin =  CGPointMake(frame.origin.x, frame.origin.y - 49);
+     keyboardFrame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willHideKeyBoard)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
-//键盘将要收起
-- (void)willHideKeyBoardNotification:(NSNotification *)notification
-{
-//    NSLog(@"%@",notification.userInfo);
-    _bottomView.origin =  CGPointMake(0, self.view.height - 49);
-    [self.view removeGestureRecognizer:tapGestureRecognizer];
-}
+
 //点击空白收起键盘
 - (void)willHideKeyBoard
 {
     [_textView resignFirstResponder];
     _sendButton.sd_layout.widthIs(0);
     _supportButton.sd_layout.widthIs(29);
+    _photoButton.hidden = YES;
+    _emojiButton.hidden = YES;
+    _emojiButton.selected = NO;
     _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
     _textView.text = @"";
     _textView.placeholder = @"回复楼主";
-//    _rightLabel.hidden = NO;
+    _rightLabel.hidden = NO;
+    _bottomView.origin =  CGPointMake(0, self.view.height - 49);
+    
+    
+    emojiView.origin = CGPointMake(0, self.view.height);
+    [emojiView removeFromSuperview];
+    
+    [self.view removeGestureRecognizer:tapGestureRecognizer];
 }
 
 @end
