@@ -34,7 +34,7 @@
 - (void)getDynamicConcernsDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_fw_list";
-    NSDictionary *paramsDic = @{@"rows":@20,@"a_id":@0};
+    NSDictionary *paramsDic = @{@"rows":@20,@"a_id":ID};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -62,10 +62,10 @@
 }
 
 //获取动态热点数据
-- (void)getHotspotDataWithPage:(NSNumber *)page success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
+- (void)getHotspotDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_hot_list";
-    NSDictionary *params = @{@"a_id":@0,@"rows":@20};
+    NSDictionary *params = @{@"a_id":ID,@"rows":@20};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];

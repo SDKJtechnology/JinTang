@@ -43,10 +43,16 @@
         emojiDictionary = [TJ_Emoji getEmojiDictionary];
         NSString *bundle = [[NSBundle mainBundle] resourcePath];
         emojiArray = [NSMutableArray array];
+        NSString *s = @"";
         for (NSString *name in array) {
+            NSString *string = emojiDictionary[name];
+            NSString *st =[NSString stringWithFormat:@"%@@2x.png,%@\n",string,name];
+            s = [s stringByAppendingString:st];
+//            printf("%s","sdfsdf");
             NSString *path = [bundle stringByAppendingPathComponent:[NSString stringWithFormat:@"MLEmoji_Expression.bundle/%@",emojiDictionary[name]]];
             [emojiArray addObject:path];
         }
+        NSLog(@"%@",s);
     }
     
     return self;
@@ -77,12 +83,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.item == ((indexPath.item / 21 + 1) * 21 - 1)) {
-        
+    BOOL isDelete = NO;
+    if (indexPath.item == ((indexPath.item / 21 + 1) * 21 - 1) || indexPath.item == (emojiArray.count + emojiArray.count / 21)) {
+        isDelete = YES;
     }
-    NSLog(@"%ld",indexPath.item);
-    if ([self.delegateEmojiView respondsToSelector:@selector(didSelectedEmojiImagePath:)]) {
-        [self.delegateEmojiView didSelectedEmojiImagePath:emojiArray[indexPath.item]];
+    if ([self.delegateEmojiView respondsToSelector:@selector(didSelectedEmojiImagePath:isDelete:)]) {
+        [self.delegateEmojiView didSelectedEmojiImagePath:emojiArray[indexPath.item - indexPath.item / 21] isDelete:isDelete];
     }
 }
 

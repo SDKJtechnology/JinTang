@@ -8,8 +8,12 @@
 
 #import "TJ_DynamicConcernTableView.h"
 #import "DynamicConcernNotImageCell.h"
+#import "DynamicNetworkingModel.h"
 
 @interface TJ_DynamicConcernTableView()<UITableViewDelegate,UITableViewDataSource>
+{
+//    NSMutableArray *dynamicConcernListData;
+}
 
 @end
 
@@ -22,11 +26,45 @@
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
-        self.
-        self.bounces = NO;
+//        self.bounces = NO;
+        _dynamicConcernListData = [NSMutableArray array];
     }
     
     return self;
+}
+
+- (void)loadDataWithView:(MJRefreshComponent *)view
+{
+    if (view == self.mj_header) {
+        [self getDynamicConcernDataWithID:@0];
+    }
+    if (view == self.mj_footer) {
+        DynamicConcernsModel *model = _dynamicConcernListData.firstObject;
+        [self getDynamicConcernDataWithID:model.ID];
+    }
+}
+
+//获取动态数据
+- (void)getDynamicConcernDataWithID:(NSNumber *)ID
+{
+    __block typeof(self) blockSelf = self;
+    [[DynamicNetworkingModel sharedObejct] getDynamicConcernsDataWithID:ID success:^(id data) {
+        //..下拉刷新
+        if (blockSelf.myRefreshView == blockSelf.mj_header) {
+            _dynamicConcernListData = data;
+            blockSelf.mj_footer.hidden = _dynamicConcernListData.count == 0 ? YES : NO;
+        }else if(blockSelf.myRefreshView == blockSelf.mj_footer){
+            [_dynamicConcernListData addObjectsFromArray:data];
+            if (((NSArray *)data).count == 0) {
+//                blockSelf.mj_footer.hidden = YES;
+            }
+        }
+        [blockSelf reloadData];
+        [blockSelf.myRefreshView endRefreshing];
+    } failure:^(id data) {
+        NSLog(@"动态关注数据加载失败。。。%@",data);
+        [blockSelf.myRefreshView endRefreshing];
+    }];
 }
 
 #pragma mark UITableViewDataSource
@@ -40,11 +78,6 @@
         cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     return cell;
-}
-
-- (void)setDynamicConcernListData:(NSArray *)dynamicConcernListData
-{
-    _dynamicConcernListData = dynamicConcernListData;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

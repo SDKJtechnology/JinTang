@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJ_TableViewModel.h"
 
 typedef void(^DidSelectRowAtIndexPath)(NSIndexPath *);
 
-@interface TJ_DynamicConcernTableView : UITableView
+@interface TJ_DynamicConcernTableView : TJ_TableViewModel
 
-@property (nonatomic, strong) NSArray *dynamicConcernListData;
+@property (nonatomic, strong) NSMutableArray *dynamicConcernListData;
 
 @property (nonatomic, strong) DidSelectRowAtIndexPath didSelectRowAtIndexPath;
 

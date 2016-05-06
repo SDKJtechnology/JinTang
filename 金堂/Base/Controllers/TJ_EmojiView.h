@@ -10,7 +10,7 @@
 
 @protocol TJ_EmojiViewDelegate <NSObject>
 
-- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath;
+- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath isDelete:(BOOL)deleted;
 
 @end
 

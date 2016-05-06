@@ -8,12 +8,12 @@
 
 #import "TJ_DynamicHomeController.h"
 #import "TJ_SelectionList.h"
-#import "DynamicNetworkingModel.h"
 #import "TJ_DynamicSearchController.h"
 #import "TJ_DynamicConcernTableView.h"
 #import "TJ_DynamicHotspotTableView.h"
 #import "TJ_DynamicActivityTableView.h"
 #import "TJ_DynamicDetailController.h"
+//#import "MJRefresh.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -24,18 +24,6 @@
      *  水平选择列表数据
      */
     NSArray *selectListData;
-    /**
-     *  动态关注列表数据
-     */
-    NSMutableArray *dynamicConcernListData;
-    /**
-     *   动态热点数据
-     */
-    NSMutableArray *dynamciHotspotData;
-    /**
-     *  活动页数据
-     */
-    NSMutableArray *activityData;
 }
 
 @property (strong, nonatomic) UIScrollView *contentView;
@@ -55,7 +43,6 @@
 const CGFloat yNavigationBarBelow = 64;//NavigationBar下边Y坐标
 const CGFloat selectListHeight = 40;//水平选择列表高度
 const CGFloat tabBarHeight = 49;//tabBar高度
-static NSNumber *page;
 
 @implementation TJ_DynamicHomeController
 
@@ -65,16 +52,14 @@ static NSNumber *page;
     self.navigationItem.title = @"金堂有爱";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"sousuo"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(clickRigthButtonAction)];
     
-    page = @1;
     selectListData = @[@"关注",@"热点",@"活动"];
-    dynamicConcernListData = [NSMutableArray array];
-    dynamciHotspotData = [NSMutableArray array];
-    
-    //获取tableView数据
-    [self getDynamicConcernData];
-    [self getDynamicHotspotData];
     
     [self setup];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)setup
@@ -124,40 +109,6 @@ static NSNumber *page;
     self.contentView.contentSize = CGSizeMake(selectListData.count * w, h);
     self.contentView.pagingEnabled = YES;
 }
-
-#pragma mark get data
-
-//获取动态数据
-- (void)getDynamicConcernData
-{
-    __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getDynamicConcernsDataWithID:page success:^(id data) {
-        [dynamicConcernListData addObjectsFromArray:data];
-        blockSelf.dynamicConcernTableView.dynamicConcernListData = dynamicConcernListData;
-        
-        [blockSelf.dynamicConcernTableView reloadData];
-    } failure:^(id data) {
-        NSLog(@"动态关注数据加载失败。。。%@",data);
-    }];
-}
-
-//获取动态热点数据
-- (void)getDynamicHotspotData
-{
-    __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getHotspotDataWithPage:page success:^(id data) {
-        [dynamciHotspotData addObjectsFromArray:data];
-        blockSelf.dynamicHotspotTableView.dynamciHotspotData = dynamciHotspotData;
-        
-        blockSelf.dynamicActivityTableView.dynamciActivityData = dynamciHotspotData;
-        [blockSelf.dynamicActivityTableView reloadData];
-        
-        [blockSelf.dynamicHotspotTableView reloadData];
-    } failure:^(id data) {
-        NSLog(@"动态热点数据加载失败。。。%@",data);
-    }];
-}
-
 
 #pragma mark TJ_SelectionListDelegate
 

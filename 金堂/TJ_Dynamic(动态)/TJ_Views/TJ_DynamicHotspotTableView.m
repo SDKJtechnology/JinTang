@@ -10,6 +10,8 @@
 #import "AdCell.h"
 #import "HotspotCell.h"
 #import "TJ_HeaderView.h"
+#import "DynamicNetworkingModel.h"
+#import "DynamicHotspotModel.h"
 
 @interface TJ_DynamicHotspotTableView()<UITableViewDataSource,UITableViewDelegate>
 
@@ -28,9 +30,40 @@
         
         [self registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
         [self registerClass:[HotspotCell class] forCellReuseIdentifier:NSStringFromClass([HotspotCell class])];
+        _dynamciHotspotData = [NSMutableArray array];
     }
     
     return self;
+}
+
+- (void)loadDataWithView:(MJRefreshComponent *)view
+{
+    if (self.mj_header == view) {
+        [self getDynamciHotspotDataWithID:@0];
+    }
+    if (self.mj_footer == view) {
+        DynamicHotspotModel *model = _dynamciHotspotData.firstObject;
+        [self getDynamciHotspotDataWithID:model.ID];
+    }
+}
+
+- (void)getDynamciHotspotDataWithID:(NSNumber *)ID
+{
+    __block typeof(self) blockSelf = self;
+    [[DynamicNetworkingModel sharedObejct] getHotspotDataWithID:ID success:^(id data) {
+        if (blockSelf.myRefreshView == blockSelf.mj_footer) {
+            [_dynamciHotspotData addObjectsFromArray:data];
+        }
+        if (blockSelf.myRefreshView == blockSelf.mj_header) {
+            _dynamciHotspotData = data;
+            blockSelf.mj_footer.hidden = _dynamciHotspotData.count == 0 ? YES : NO;
+        }
+        [blockSelf reloadData];
+        [blockSelf.myRefreshView endRefreshing];
+    } failure:^(id data) {
+        NSLog(@"关注活动页加载数据失败。。。");
+        [blockSelf.myRefreshView endRefreshing];
+    }];
 }
 
 /*让headerView跟着cell滚动*/

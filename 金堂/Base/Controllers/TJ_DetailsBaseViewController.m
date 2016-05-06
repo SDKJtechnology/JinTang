@@ -19,7 +19,6 @@
 {
     UITapGestureRecognizer *tapGestureRecognizer;
     CGRect keyboardFrame;
-    TJ_EmojiView *emojiView;
 }
 
 @property (nonatomic, strong) BCTextView *textView;
@@ -219,7 +218,7 @@
 // 点击键盘上Return按钮时候调用
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    NSLog(@"%@",text);
+//    NSLog(@"%@",text);
     if ([text isEqualToString:@"\n"]) {
         if (![_textView.text isEqualToString:@""])
         {
@@ -236,18 +235,31 @@
 
 #pragma mark Tj_EmojiViewDelegate
 
-- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath
+- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath isDelete:(BOOL)deleted
 {
     if ([_textView.text isEqualToString:@""]) {
         _textView.text = @"";
     }
-    UIImage *image = [UIImage imageNamed:emojiImagePath];
+    
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:_textView.attributedText];
-    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = image;
-    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
-    [text appendAttributedString:string];
-    _textView.attributedText = text;
+    
+    if (deleted) {
+        if (text.length){
+            [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+//            NSLog(@"asdfasfsadf%ld",text.length);
+            _textView.attributedText = text;
+        }
+        if (!text.length){
+            _textView.text = @"";
+        }
+    }else{
+        UIImage *image = [UIImage imageNamed:emojiImagePath];
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.image = image;
+        NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
+        [text appendAttributedString:string];
+        _textView.attributedText = text;
+    }
 }
 
 #pragma mark Actions
@@ -278,17 +290,17 @@
     _emojiButton.selected = !_emojiButton.selected;
     
     if (_emojiButton.selected) {
-        emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
-        emojiView.delegateEmojiView = self;
+        _emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
+        _emojiView.delegateEmojiView = self;
         _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
-        [[UIApplication sharedApplication].windows.lastObject addSubview:emojiView];
+        [[UIApplication sharedApplication].windows.lastObject addSubview:_emojiView];
 //        _textView.inputView = emojiView;
         NSLog(@"点didCilckEmojiButtonAction");
     }
     else{
         _textView.inputView = nil;
         [_textView becomeFirstResponder];
-        [emojiView removeFromSuperview];
+        [_emojiView removeFromSuperview];
     }
 }
 
@@ -355,8 +367,8 @@
     _bottomView.origin =  CGPointMake(0, self.view.height - 49);
     
     
-    emojiView.origin = CGPointMake(0, self.view.height);
-    [emojiView removeFromSuperview];
+    _emojiView.origin = CGPointMake(0, self.view.height);
+    [_emojiView removeFromSuperview];
     
     [self.view removeGestureRecognizer:tapGestureRecognizer];
 }

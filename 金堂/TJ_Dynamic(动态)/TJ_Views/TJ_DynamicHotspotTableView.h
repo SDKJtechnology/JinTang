@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJ_TableViewModel.h"
 
-@interface TJ_DynamicHotspotTableView : UITableView
+@interface TJ_DynamicHotspotTableView : TJ_TableViewModel
 
-@property (nonatomic, strong) NSArray *dynamciHotspotData;
+@property (nonatomic, strong) NSMutableArray *dynamciHotspotData;
 
 @end
