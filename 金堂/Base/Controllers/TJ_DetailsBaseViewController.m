@@ -175,27 +175,20 @@
     _emojiButton.sd_cornerRadiusFromWidthRatio = @0.5;
     [_emojiButton addTarget:self action:@selector(didCilckEmojiButtonAction) forControlEvents:UIControlEventTouchUpInside];
     _emojiButton.backgroundColor = [UIColor redColor];
-
-//    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-//    attachment.image = [UIImage imageNamed:@"MLEmoji_Expression.bundle/Expression_1"];
-//    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
-//    _textView.attributedText = string;
-    
-//    _textField.text = [self defaultEmoticons].lastObject;
 }
 
 //获取默认表情数组
-- (NSArray *)defaultEmoticons {
-    NSMutableArray *array = [NSMutableArray new];
-    for (int i=0x1F600; i<=0x1F64F; i++) {
-        if (i < 0x1F641 || i > 0x1F644) {
-            int sym = EMOJI_CODE_TO_SYMBOL(i);
-            NSString *emoT = [[NSString alloc] initWithBytes:&sym length:sizeof(sym) encoding:NSUTF8StringEncoding];
-            [array addObject:emoT];
-        }
-    }
-    return array;
-}
+//- (NSArray *)defaultEmoticons {
+//    NSMutableArray *array = [NSMutableArray new];
+//    for (int i=0x1F600; i<=0x1F64F; i++) {
+//        if (i < 0x1F641 || i > 0x1F644) {
+//            int sym = EMOJI_CODE_TO_SYMBOL(i);
+//            NSString *emoT = [[NSString alloc] initWithBytes:&sym length:sizeof(sym) encoding:NSUTF8StringEncoding];
+//            [array addObject:emoT];
+//        }
+//    }
+//    return array;
+//}
 
 #pragma mark UITextViewDelegate
 
@@ -294,7 +287,7 @@
         _emojiView.delegateEmojiView = self;
         _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
         [[UIApplication sharedApplication].windows.lastObject addSubview:_emojiView];
-//        _textView.inputView = emojiView;
+        
         NSLog(@"点didCilckEmojiButtonAction");
     }
     else{

@@ -15,20 +15,27 @@
     if (self = [super initWithFrame:frame style:style]) {
         
         __block typeof(self) blockSelf = self;
-        self.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             blockSelf.myRefreshView = blockSelf.mj_footer;
             [blockSelf loadDataWithView:blockSelf.mj_footer];
         }];
+        self.mj_footer = footer;
         
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             blockSelf.myRefreshView = blockSelf.mj_header;
             [blockSelf loadDataWithView:blockSelf.mj_header];
         }];
         [self.mj_header beginRefreshing];
-        self.mj_footer.hidden = YES;
     }
     
     return self;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if (self.myRefreshView.isRefreshing) {
+        [self.myRefreshView endRefreshing];
+    }
 }
 
 - (void)loadDataWithView:(MJRefreshComponent *)view

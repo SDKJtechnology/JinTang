@@ -9,6 +9,9 @@
 #import "LX_loginViewController.h"
 #import <Masonry.h>
 #import "LX_login2ViewController.h"
+#import "LX_editInformationViewController.h"
+#import "LX_chatoneTableViewController.h"
+
 
 @interface LX_loginViewController ()
 @property(nonatomic,strong)UIView *backgroundView;
@@ -24,6 +27,12 @@
     
     //UIView *view = [[UIView alloc]init];
     
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(200, 200, 100, 100)];
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(clickPerson:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:btn];
+    
     //创建微笑的那个圆脸的uiimageView
     UIImage *image = [UIImage imageNamed:@"touxiang"];
     UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
@@ -37,8 +46,8 @@
     label.text = @"登录后去和朋友聊天吧";
     
     label.textColor = [UIColor grayColor];
-    label.textAlignment = UITextAlignmentCenter;
-    label.lineBreakMode = UILineBreakModeWordWrap;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
     label.font = [UIFont fontWithName:@"HiraKakuProN-w3" size:18];
     label.numberOfLines = 1;
     [label sizeToFit];
@@ -86,10 +95,22 @@
     return _backgroundView;
 
 }
-
+-(void)clickPerson:(UIButton *)sender{
+    NSLog(@"点击的是人物的那个按钮");
+//    LX_ChatoneTAViewController *chatoneViewController = [LX_ChatoneViewController new];
+//    chatoneViewController.view.backgroundColor = [UIColor colorWithRed:242.0/255 green:242.0/255 blue:242.0/255 alpha:1];
+    LX_chatoneTableViewController *chatoneViewController = [LX_chatoneTableViewController new];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatoneViewController animated:YES];
+   
+}
 -(void)clicklogin:(UIButton *)sender{
     NSLog(@"你点对了，我擦");
+    //    NSString *username = @"张三";
+    //    NSString *pwd = @"zhang";
+    
     LX_login2ViewController *login2 = [LX_login2ViewController new];
+    self.hidesBottomBarWhenPushed = YES;
     login2.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
     [self.navigationController pushViewController:login2 animated:YES];
 }

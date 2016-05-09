@@ -52,12 +52,8 @@
         //..下拉刷新
         if (blockSelf.myRefreshView == blockSelf.mj_header) {
             _dynamicConcernListData = data;
-            blockSelf.mj_footer.hidden = _dynamicConcernListData.count == 0 ? YES : NO;
         }else if(blockSelf.myRefreshView == blockSelf.mj_footer){
             [_dynamicConcernListData addObjectsFromArray:data];
-            if (((NSArray *)data).count == 0) {
-//                blockSelf.mj_footer.hidden = YES;
-            }
         }
         [blockSelf reloadData];
         [blockSelf.myRefreshView endRefreshing];
@@ -77,6 +73,8 @@
     if (!cell){
         cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    
     return cell;
 }
 

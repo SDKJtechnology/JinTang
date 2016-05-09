@@ -71,14 +71,14 @@
     
     _textFieldAccount.backgroundColor = [UIColor clearColor];
     _textFieldAccount.placeholder = @"请输入用户名/手机号";
-    _textFieldAccount.textAlignment = UITextAlignmentCenter;
-    _textFieldAccount.borderStyle = UITextBorderStyleRoundedRect;
+    _textFieldAccount.textAlignment = NSTextAlignmentCenter;
+    _textFieldAccount.borderStyle = NSLineBreakByWordWrapping;
     _textFieldAccount.font = [UIFont systemFontOfSize:18];
     _textFieldAccount.adjustsFontSizeToFitWidth = YES;
     _textFieldAccount.keyboardType = UIKeyboardTypeNumberPad;
     _textFieldAccount.returnKeyType = UIReturnKeyDone;//设置键盘的完成按钮
     
-    _textFieldAccount.delegate = self;
+   // _textFieldAccount.delegate = self;
     [_textFieldAccount addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_textFieldAccount];
     [_textFieldAccount mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -113,15 +113,15 @@
     _textFieldPassword = [[UITextField alloc]init];
     _textFieldPassword.backgroundColor = [UIColor clearColor];
     _textFieldPassword.placeholder = @"请输入验证码";
-    _textFieldPassword.textAlignment = UITextAlignmentCenter;
-    _textFieldPassword.borderStyle = UITextBorderStyleRoundedRect;
+    _textFieldPassword.textAlignment = NSTextAlignmentCenter;
+    _textFieldPassword.borderStyle = NSLineBreakByWordWrapping;
     _textFieldPassword.font = [UIFont systemFontOfSize:18];
     _textFieldPassword.adjustsFontSizeToFitWidth = YES;
     _textFieldPassword.keyboardType = UIKeyboardTypeNumberPad;
     _textFieldPassword.returnKeyType = UIReturnKeyDone;//设置键盘的完成按钮
     
-    _textFieldPassword.delegate = self;
-    [_textFieldPassword addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+  //  _textFieldPassword.delegate = self;
+   // [_textFieldPassword addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_textFieldPassword];
     [_textFieldPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -276,26 +276,13 @@
     if (_secondsCountDown == 0) {
         [_countDownTimer invalidate];
         
-        //[_getBtn.titleLabel removeFromSuperview];
-        // _getBtn.titleLabel.text = @"验证码已发送";
+        
     }
 }
 -(void)clicknext:(UIButton *)sender{
-//    NSLog(@"点击跳转到下一步用户注册用户信息");
-//    NSString *codeString = _textFieldAccount.text;
-//    NSLog(@"codeString是:%@",codeString);
-//    [SMSSDK commitVerificationCode:@"12" phoneNumber:codeString zone:@"86" result:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"error %@",error);
-//            LX_enroll2ViewController *enroll2 = [LX_enroll2ViewController new];
-//            enroll2.view.backgroundColor =[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
-//            [self.navigationController pushViewController:enroll2 animated:YES];
-//        }else{
-//            NSLog(@"验证成功");
-//        }
-//    }];
     
     LX_enroll2ViewController *enroll2 = [LX_enroll2ViewController new];
+    self.hidesBottomBarWhenPushed = YES;
     enroll2.view.backgroundColor =[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
     [self.navigationController pushViewController:enroll2 animated:YES];
 }

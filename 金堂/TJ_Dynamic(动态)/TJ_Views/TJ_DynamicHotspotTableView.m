@@ -26,7 +26,7 @@
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
-        self.bounces = NO;
+//        self.bounces = NO;
         
         [self registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
         [self registerClass:[HotspotCell class] forCellReuseIdentifier:NSStringFromClass([HotspotCell class])];
@@ -56,7 +56,6 @@
         }
         if (blockSelf.myRefreshView == blockSelf.mj_header) {
             _dynamciHotspotData = data;
-            blockSelf.mj_footer.hidden = _dynamciHotspotData.count == 0 ? YES : NO;
         }
         [blockSelf reloadData];
         [blockSelf.myRefreshView endRefreshing];
@@ -70,18 +69,18 @@
 #pragma mark - Scroll
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat sectionHeaderHeight = 50;
-    NSLog(@"%f",scrollView.contentOffset.y);
+//    NSLog(@"%f",scrollView.contentOffset.y);
+    
     //固定section 随着cell滚动而滚动
-    if (scrollView.contentOffset.y < 100) {
+    if (scrollView.contentOffset.y < 100 && !self.myRefreshView.isRefreshing) {
         
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
     } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-        
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-        
+        UIEdgeInsets edgeInsets = scrollView.contentInset;
+        edgeInsets.top = -sectionHeaderHeight;
+        scrollView.contentInset = edgeInsets;
     }
-    
 }
 
 #pragma mark UITableViewDataSource

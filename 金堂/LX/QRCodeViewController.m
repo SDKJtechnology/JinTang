@@ -217,24 +217,8 @@ static const CGFloat kBorderW = 100;
     
     [self.view addSubview:bottomBar];
     
-    //    //2.我的二维码
-//        UIButton * myCodeBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-//       myCodeBtn.frame = CGRectMake(0,0, self.view.sd_height * 0.1*35/49, self.view.sd_height * 0.1);
-//        myCodeBtn.center=CGPointMake(self.view.sd_width/2, self.view.sd_height * 0.1/2);
-//       [myCodeBtn setImage:[UIImage imageNamed:@"qrcode_scan_btn_myqrcode_down"] forState:UIControlStateNormal];
-//    //
-//       myCodeBtn.contentMode=UIViewContentModeScaleAspectFit;
-//    //
-//       [myCodeBtn addTarget:self action:@selector(myCode) forControlEvents:UIControlEventTouchUpInside];
-//        [bottomBar addSubview:myCodeBtn];
+
 }
-//-(void)myCode{
-//    NSLog(@"我的二维码");
-//    //mycodeViewControll *vc = [[mycodeViewController alloc]init];
-//    foundViewController *found = [self.storyboard instantiateViewControllerWithIdentifier:@"found"];
-//    [self presentViewController:found animated:YES completion:nil];
-//
-//}
 -(void)setupMaskView{
     UIView *mask = [[UIView alloc] init];
     _maskView = mask;
