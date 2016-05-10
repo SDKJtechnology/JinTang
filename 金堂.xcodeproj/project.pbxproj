@@ -62,6 +62,7 @@
 		99F4293A1CCDC45200A96C23 /* DownSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F429361CCDC45200A96C23 /* DownSheetCell.m */; };
 		99F4293B1CCDC45200A96C23 /* DownSheetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F429381CCDC45200A96C23 /* DownSheetModel.m */; };
 		D27B858ABBE05EBE31EF8876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FCEF84EADC805EF927E3C6 /* libPods.a */; };
+		DEB69A421CE1B008006BD506 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */; };
 		DECFD3601CE0A373001033A4 /* TJ_CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */; };
 		DECFD3611CE0A373001033A4 /* TJ_CommetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1521CE0A371001033A4 /* TJ_CommetView.m */; };
 		DECFD3621CE0A373001033A4 /* TJ_HotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1541CE0A371001033A4 /* TJ_HotCollectionViewCell.m */; };
@@ -596,6 +597,7 @@
 		99F429381CCDC45200A96C23 /* DownSheetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownSheetModel.m; sourceTree = "<group>"; };
 		C6760EF67EC0D5D5796CBEDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0FF5357F04A504D3432E96F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
 		DECFD14F1CE0A371001033A4 /* TJ_CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommentTableViewCell.h; sourceTree = "<group>"; };
 		DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CommentTableViewCell.m; sourceTree = "<group>"; };
 		DECFD1511CE0A371001033A4 /* TJ_CommetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommetView.h; sourceTree = "<group>"; };
@@ -1434,6 +1436,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DEB69A401CE1B008006BD506 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		DECFD14D1CE0A371001033A4 /* TJ_ Circle(圈子) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1469,10 +1479,10 @@
 		DECFD15D1CE0A371001033A4 /* TJ_Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DECFD15E1CE0A371001033A4 /* TJ_ RecommendViewController.h */,
-				DECFD15F1CE0A371001033A4 /* TJ_ RecommendViewController.m */,
 				DECFD1601CE0A371001033A4 /* TJ_CircleHomeViewController.h */,
 				DECFD1611CE0A371001033A4 /* TJ_CircleHomeViewController.m */,
+				DECFD15E1CE0A371001033A4 /* TJ_ RecommendViewController.h */,
+				DECFD15F1CE0A371001033A4 /* TJ_ RecommendViewController.m */,
 				DECFD1621CE0A371001033A4 /* TJ_NewTopicViewController.h */,
 				DECFD1631CE0A371001033A4 /* TJ_NewTopicViewController.m */,
 			);
@@ -1608,10 +1618,10 @@
 				DECFD19E1CE0A371001033A4 /* DynamicHotspotModel.m */,
 				DECFD19F1CE0A371001033A4 /* DynamicModel.h */,
 				DECFD1A01CE0A371001033A4 /* DynamicModel.m */,
-				DECFD1A11CE0A371001033A4 /* DynamicNetworkingModel.h */,
-				DECFD1A21CE0A371001033A4 /* DynamicNetworkingModel.m */,
 				DECFD1A31CE0A371001033A4 /* HotspotModel.h */,
 				DECFD1A41CE0A371001033A4 /* HotspotModel.m */,
+				DECFD1A11CE0A371001033A4 /* DynamicNetworkingModel.h */,
+				DECFD1A21CE0A371001033A4 /* DynamicNetworkingModel.m */,
 			);
 			path = TJ_Model;
 			sourceTree = "<group>";
@@ -2233,11 +2243,12 @@
 		DECFD4E01CE0A409001033A4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				DEB69A401CE1B008006BD506 /* Images */,
 				DECFD4E11CE0A409001033A4 /* Album */,
 				DECFD5091CE0A409001033A4 /* Cells */,
 				DECFD50E1CE0A409001033A4 /* Controllers */,
-				DECFD5191CE0A409001033A4 /* SDAutoLayout.h */,
 				DECFD51A1CE0A409001033A4 /* Views */,
+				DECFD5191CE0A409001033A4 /* SDAutoLayout.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2245,6 +2256,7 @@
 		DECFD4E11CE0A409001033A4 /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				DECFD4EC1CE0A409001033A4 /* Images */,
 				DECFD4E21CE0A409001033A4 /* AlbumDataHandle.h */,
 				DECFD4E31CE0A409001033A4 /* AlbumDataHandle.m */,
 				DECFD4E41CE0A409001033A4 /* AlbumDataModel.h */,
@@ -2255,7 +2267,6 @@
 				DECFD4E91CE0A409001033A4 /* AlbumListTableViewCell.m */,
 				DECFD4EA1CE0A409001033A4 /* AlbumNavigationController.h */,
 				DECFD4EB1CE0A409001033A4 /* AlbumNavigationController.m */,
-				DECFD4EC1CE0A409001033A4 /* Images */,
 				DECFD4FB1CE0A409001033A4 /* MediaType.h */,
 				DECFD4FC1CE0A409001033A4 /* PhotoPickerCell.h */,
 				DECFD4FD1CE0A409001033A4 /* PhotoPickerCell.m */,
@@ -2662,6 +2673,7 @@
 				DECFD3F31CE0A373001033A4 /* fenxiang@3x.png in Resources */,
 				DECFD48A1CE0A373001033A4 /* tupian@3x.png in Resources */,
 				DECFD4141CE0A373001033A4 /* jintang@2x.png in Resources */,
+				DEB69A421CE1B008006BD506 /* AlbumAddBtn@2x.png in Resources */,
 				DECFD41D1CE0A373001033A4 /* liaotian1@3x.png in Resources */,
 				DECFD3AB1CE0A373001033A4 /* actionbar_location_icon@2x.png in Resources */,
 				DECFD44E1CE0A373001033A4 /* rc_richcontentmsg_placeholder@2x.png in Resources */,

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol TJ_EmojiViewDelegate <NSObject>
-
+//已经选中表情图片
 - (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath isDelete:(BOOL)deleted;
 
 @end

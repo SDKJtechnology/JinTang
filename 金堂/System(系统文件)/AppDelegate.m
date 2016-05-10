@@ -121,7 +121,7 @@
     
     NSArray *imageNames = @[@"dongtai.png",@"shequ",@"quan",@"liaotian",@"faxian"];
     NSArray *titles = @[@"动态",@"社区",@"金堂圈",@"聊天",@"发现"];
-    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_CommunityViewController",@"TJ_CircleViewController",@"LX_loginViewController",@"LX_foundViewController"];
+    NSArray *calssArray = @[@"TJ_DynamicHomeController",@"TJ_CommunityViewController",@"TJ_CircleHomeViewController",@"LX_loginViewController",@"LX_foundViewController"];
     NSMutableArray *VCArray = [NSMutableArray array];
     NSInteger i = 0;
     
@@ -151,6 +151,7 @@
     [self.window makeKeyAndVisible];
 
     TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
+    startView.interval = 0.1;
     startView.cycleModel = TJ_CycleScrollViewStartPageModel;
     startView.imageGroup = @[@"start",@"start2"];
     [self.window addSubview:startView];

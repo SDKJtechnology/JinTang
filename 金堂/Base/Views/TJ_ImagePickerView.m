@@ -10,7 +10,7 @@
 #import "AlbumNavigationController.h"
 #import "TJ_ShowPhotoCollectionCell.h"
 
-@interface TJ_ImagePickerView()<AlbumNavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate> {
+@interface TJ_ImagePickerView()<AlbumNavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate,TJ_ShowPhotoCollectionCellDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     
@@ -24,14 +24,13 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat itemSize = 40;
+    CGFloat itemSize = 50;
     layout.itemSize = CGSizeMake(itemSize, itemSize);
     layout.minimumLineSpacing = 20;
     layout.minimumInteritemSpacing = 20;
     layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        
-//        self.collectionViewLayout = layout;
+        self.backgroundColor = [UIColor colorWithWhite:0.914 alpha:1.000];
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[TJ_ShowPhotoCollectionCell class] forCellWithReuseIdentifier:NSStringFromClass([TJ_ShowPhotoCollectionCell class])];
@@ -42,6 +41,14 @@
     return self;
 }
 
+#pragma mark TJ_ShowPhotoCollectionCellDelegate
+
+- (void)didClickDeleteButton:(NSIndexPath *)indexPath
+{
+    [_selectedPhotos removeObjectAtIndex:indexPath.row];
+    [self reloadData];
+}
+
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -50,7 +57,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TJ_ShowPhotoCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TJ_ShowPhotoCollectionCell class]) forIndexPath:indexPath];
+    cell.delegate = self;
+    cell.indexPath = indexPath;
+    cell.isShowDeleteButton = YES;
     if (indexPath.row == _selectedPhotos.count) {
+        cell.isShowDeleteButton = NO;
         cell.imageView.image = [UIImage imageNamed:@"AlbumAddBtn"];
     } else {
         cell.imageView.image = _selectedPhotos[indexPath.row];
@@ -100,7 +111,7 @@
     // imagePickerVc.allowPickingVideo = NO;
     //     imagePickerVc.allowPickingOriginalPhoto = NO;
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navigation animated:YES completion:nil];
+    [self.currentVC presentViewController:navigation animated:YES completion:nil];
 }
 
 #pragma mark - 用户点击了取消

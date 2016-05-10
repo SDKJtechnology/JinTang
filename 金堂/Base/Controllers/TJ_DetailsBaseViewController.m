@@ -11,6 +11,7 @@
 #import "SDAutoLayout.h"
 #import "BCTextView.h"
 #import "TJ_EmojiView.h"
+#import "TJ_ImagePickerView.h"
 
 //将数字转为
 #define EMOJI_CODE_TO_SYMBOL(x) ((((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24);
@@ -19,6 +20,7 @@
 {
     UITapGestureRecognizer *tapGestureRecognizer;
     CGRect keyboardFrame;
+    UIView *inputView;
 }
 
 @property (nonatomic, strong) BCTextView *textView;
@@ -36,6 +38,8 @@
 @property (nonatomic, strong) UIButton *emojiButton;
 
 @property (nonatomic, strong) TJ_EmojiView *emojiView;
+
+@property (nonatomic, strong) TJ_ImagePickerView *imagePickerView;
 
 @end
 
@@ -201,10 +205,10 @@
     _emojiButton.hidden = NO;
     _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_emojiButton, 10);
     _textView.placeholder = @"我来说一句...";
-    _textView.text = @"";
+    if ([_textView.text isEqualToString:@""]) {
+        _textView.text = @"";
+    }
     _rightLabel.hidden = YES;
-    _textView.inputView = nil;
-    
     return YES;
 }
 
@@ -262,6 +266,7 @@
 //点击左侧按钮
 - (void)didClickLeftButtonAction
 {
+    [inputView removeFromSuperview];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -274,7 +279,10 @@
 //点击图片按钮
 - (void)didCilckPhotoButtonAction
 {
-    NSLog(@"点didCilckPhotoButtonAction");
+    _imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    _imagePickerView.currentVC = self;
+    [self showInputView:_imagePickerView];
+    [_textView resignFirstResponder];
 }
 
 //点击表情按钮
@@ -285,16 +293,25 @@
     if (_emojiButton.selected) {
         _emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
         _emojiView.delegateEmojiView = self;
-        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
-        [[UIApplication sharedApplication].windows.lastObject addSubview:_emojiView];
-        
-        NSLog(@"点didCilckEmojiButtonAction");
+        [self showInputView:_emojiView];
+        [_textView resignFirstResponder];
     }
     else{
-        _textView.inputView = nil;
+        [self showInputView:nil];
         [_textView becomeFirstResponder];
-        [_emojiView removeFromSuperview];
     }
+}
+//显示制定的输入视图
+- (void)showInputView:(UIView *)view
+{
+    if (![inputView isEqual:view]) {
+        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
+        [[UIApplication sharedApplication].keyWindow addSubview:view];
+    }
+    if (inputView) {
+        [inputView removeFromSuperview];
+    }
+    inputView = view;
 }
 
 //点击发送按钮
@@ -327,7 +344,7 @@
     promptLabel.font = [UIFont fontWithName:TJFont size:15];
     promptLabel.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.7];
     
-    [UIView animateWithDuration:5 animations:^{
+    [UIView animateWithDuration:3 animations:^{
         promptLabel.alpha = 0;
     } completion:^(BOOL finished) {
         [promptLabel removeFromSuperview];
@@ -348,22 +365,32 @@
 - (void)willHideKeyBoard
 {
     [_textView resignFirstResponder];
+    
+    [self didEndComment];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        _bottomView.origin =  CGPointMake(0, self.view.height - 49);
+        inputView.origin = CGPointMake(0, self.view.height);
+    } completion:^(BOOL finished) {
+        [inputView removeFromSuperview];
+    }];
+    
+    [self.view removeGestureRecognizer:tapGestureRecognizer];
+}
+
+//已经结束评论，改变控件frame
+- (void)didEndComment
+{
     _sendButton.sd_layout.widthIs(0);
     _supportButton.sd_layout.widthIs(29);
     _photoButton.hidden = YES;
     _emojiButton.hidden = YES;
     _emojiButton.selected = NO;
+    
     _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
     _textView.text = @"";
     _textView.placeholder = @"回复楼主";
     _rightLabel.hidden = NO;
-    _bottomView.origin =  CGPointMake(0, self.view.height - 49);
-    
-    
-    _emojiView.origin = CGPointMake(0, self.view.height);
-    [_emojiView removeFromSuperview];
-    
-    [self.view removeGestureRecognizer:tapGestureRecognizer];
 }
 
 @end

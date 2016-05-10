@@ -64,30 +64,30 @@
 //获取动态热点数据
 - (void)getHotspotDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
 {
-//    NSString *url = @"http://192.168.0.110/Article/get_hot_list";
-//    NSDictionary *params = @{@"a_id":ID,@"rows":@20};
-//    
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    
-//    NSURLSessionDataTask *dataTask = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog( @"%@",[responseObject mj_JSONString]);
-//        if (success)
-//        {
-////            NSArray *array = [DynamicHotspotModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-////            success(array);
-//        }
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        if (failure) {
-//            failure(error);
-//        }
-//    }];
-//    
-//    [dataTask resume];
+    NSString *url = @"http://192.168.0.110/Article/get_hot_list";
+    NSDictionary *params = @{@"a_id":ID,@"rows":@20};
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSURLSessionDataTask *dataTask = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog( @"%@",[responseObject mj_JSONString]);
+        if (success)
+        {
+//            NSArray *array = [DynamicHotspotModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+//            success(array);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 
