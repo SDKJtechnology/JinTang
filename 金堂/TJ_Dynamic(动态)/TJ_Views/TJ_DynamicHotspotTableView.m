@@ -10,7 +10,7 @@
 #import "AdCell.h"
 #import "HotspotCell.h"
 #import "TJ_HeaderView.h"
-#import "DynamicNetworkingModel.h"
+#import "DataModel+Dynamic.h"
 #import "DynamicHotspotModel.h"
 #import "TJ_DynamicDetailController.h"
 
@@ -55,7 +55,7 @@
 - (void)getDynamciHotspotDataWithDate:(NSString *)date
 {
     __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getHotspotDataWithDate:date success:^(id data){
+    [[DataModel sharedObejct] getHotspotDataWithDate:date success:^(id data){
         if (blockSelf.myRefreshView == blockSelf.mj_footer) {
             [_dynamciHotspotData addObjectsFromArray:data];
         }
@@ -120,7 +120,8 @@
 {
     TJ_DynamicDetailController *VC = [[TJ_DynamicDetailController alloc] init];
     VC.showBottomView = NO;
-    [_myVC presentViewController:VC animated:YES completion:nil];
+    VC.titelString = @"详情";
+    [self.myVC presentViewController:VC animated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

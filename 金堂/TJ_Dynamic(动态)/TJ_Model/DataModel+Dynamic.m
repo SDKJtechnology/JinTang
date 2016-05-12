@@ -1,12 +1,12 @@
 //
-//  DynamicDataModel.m
+//  DataModel+Dynamic.m
 //  金堂
 //
 //  Created by ZhangAnMing on 16/3/31.
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "DynamicNetworkingModel.h"
+#import "DataModel+Dynamic.h"
 #import "AFNetworking.h"
 #import "XYString.h"
 #import "MJExtension.h"
@@ -15,21 +15,10 @@
 #import "DynamicConcernsModel.h"
 #import "DynamicHotspotModel.h"
 
-@implementation DynamicNetworkingModel
-
-+ (instancetype)sharedObejct
-{
-    static DynamicNetworkingModel *dynamicDataModel = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dynamicDataModel = [[super allocWithZone:NULL] init];
-    });
-    
-    return dynamicDataModel;
-}
+@implementation DataModel (Dynamic)
 
 //获取动态关注数据
-- (void)getDynamicConcernsDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
+- (void)getDynamicConcernsDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_fw_list";
     NSDictionary *paramsDic = @{@"rows":@10,@"a_id":ID};
@@ -64,7 +53,7 @@
 }
 
 //获取动态热点数据
-- (void)getHotspotDataWithDate:(NSString *)date success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
+- (void)getHotspotDataWithDate:(NSString *)date success:(DataModelBlock)success failure:(DataModelBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_hot_list";
     NSDictionary *params = @{@"date":date,@"days":@20};
@@ -112,7 +101,7 @@
 }
 
 
-- (void)getDynamicActivityDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure
+- (void)getDynamicActivityDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_at_list";
     NSDictionary *params = @{@"r_id":@5,@"rows":@2};

@@ -95,7 +95,7 @@
             return @"DynamicConcernNotImageCell";
             break;
         case 1:
-            return [NSString stringWithFormat:@"%@",model.ID];
+            return @"DynamicConcernOneImageCell";
             break;
         default:
             return @"DynamicConcernManyImageCell";

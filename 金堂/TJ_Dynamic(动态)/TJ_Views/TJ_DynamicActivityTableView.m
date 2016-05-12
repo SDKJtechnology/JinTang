@@ -8,7 +8,8 @@
 
 #import "TJ_DynamicActivityTableView.h"
 #import "ActivityBigImageCell.h"
-#import "DynamicNetworkingModel.h"
+#import "DataModel+Dynamic.h"
+#import "TJ_DynamicDetailController.h"
 
 @interface TJ_DynamicActivityTableView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -46,7 +47,7 @@
 - (void)getDynamciActivityDataWithID:(NSNumber *)ID
 {
     __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getDynamicActivityDataWithID:ID success:^(id data) {
+    [[DataModel sharedObejct] getDynamicActivityDataWithID:ID success:^(id data) {
         if (self.myRefreshView == self.mj_header) {
             _dynamciActivityData = data;
         }
@@ -84,6 +85,15 @@
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TJ_DynamicDetailController *VC = [[TJ_DynamicDetailController alloc] init];
+    VC.showBottomView = NO;
+    VC.titelString = @"详情";
+    [self.myVC presentViewController:VC animated:YES completion:nil];
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DynamicActivityModel *hots = _dynamciActivityData[indexPath.section];

@@ -100,7 +100,7 @@
     _bottomView.layer.borderColor = [[UIColor grayColor] CGColor];
     _bottomView.layer.borderWidth = 1;
     _bottomView.backgroundColor = [UIColor whiteColor];
-//    _bottomView.hidden = !self.showBottomView;
+    _bottomView.hidden = !self.showBottomView;
     [self.view addSubview:_bottomView];
     _bottomView.sd_layout
     .leftSpaceToView(self.view, 0)
@@ -199,6 +199,7 @@
 
 - (void)setShowBottomView:(BOOL)showBottomView
 {
+    _showBottomView = showBottomView;
     self.bottomView.hidden = !showBottomView;
 }
 

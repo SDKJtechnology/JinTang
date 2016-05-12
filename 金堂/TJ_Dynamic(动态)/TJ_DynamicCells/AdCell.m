@@ -32,6 +32,7 @@
         .rightSpaceToView(self.contentView, margin)
         .autoHeightRatio(0.5);
         self.cycleScrollView.showPageControl = NO;
+        self.cycleScrollView.userInteractionEnabled = NO;
         self.cycleScrollView.titleLabelTextColor = [UIColor whiteColor];
         self.cycleScrollView.titleLabelBackgroundColor = [UIColor colorWithWhite:0.347 alpha:1.000];
 

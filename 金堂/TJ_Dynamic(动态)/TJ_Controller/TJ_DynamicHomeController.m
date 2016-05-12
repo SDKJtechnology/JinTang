@@ -92,7 +92,7 @@ const CGFloat tabBarHeight = 49;//tabBar高度
     self.dynamicConcernTableView.didSelectRowAtIndexPath = ^(NSIndexPath *indexPath){
         _dynamicDetailController = [TJ_DynamicDetailController new];
         blockSelf.dynamicDetailController.titelString = @"详情";
-        
+        blockSelf.dynamicDetailController.showBottomView = YES;
         [blockSelf presentViewController:blockSelf.dynamicDetailController animated:YES completion:nil];
     };
     
@@ -103,6 +103,7 @@ const CGFloat tabBarHeight = 49;//tabBar高度
     
     frame.origin.x = Screen_Width * 2;
     self.dynamicActivityTableView = [[TJ_DynamicActivityTableView alloc] initWithFrame:frame];
+    self.dynamicActivityTableView.myVC = self;
     [self.contentView addSubview:self.dynamicActivityTableView];
     
     //  设置scrollView

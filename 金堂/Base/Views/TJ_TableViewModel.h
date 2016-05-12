@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) MJRefreshComponent *myRefreshView;
 
+@property (nonatomic, strong) UIViewController *myVC;
+
 - (void)loadDataWithView:(MJRefreshComponent *)view;
 
 @end
