@@ -133,8 +133,10 @@ static NSString *identifier = @"cell";
     
     [self reloadItemState:indexPath];
     
-    if ([self.delegate respondsToSelector:@selector(selectionList:titleForItemWithIndex:)])
+    if ([self.delegate respondsToSelector:@selector(selectionList:didSelectItemWithIndex:)])
+    {
         [self.delegate selectionList:self didSelectItemWithIndex:indexPath.row];
+    }
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout

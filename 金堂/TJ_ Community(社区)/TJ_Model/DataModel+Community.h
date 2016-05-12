@@ -10,4 +10,7 @@
 
 @interface DataModel (Community)
 
+- (void)getCommunityDataSuccess:(DataModelBlock)success failure:(DataModelBlock)failure;
+;
+
 @end

@@ -7,11 +7,8 @@
 //
 
 #import "DataModel+Dynamic.h"
-#import "AFNetworking.h"
-#import "XYString.h"
-#import "MJExtension.h"
+
 #import "DynamicActivityModel.h"
-#import "NSDictionary Chinese.h"
 #import "DynamicConcernsModel.h"
 #import "DynamicHotspotModel.h"
 
@@ -23,12 +20,7 @@
     NSString *url = @"http://192.168.0.110/Article/get_fw_list";
     NSDictionary *paramsDic = @{@"rows":@10,@"a_id":ID};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSURLSessionDataTask *dataTask = [manager POST:url parameters:paramsDic progress:^(NSProgress * uploadProgress) {
+    NSURLSessionDataTask *dataTask = [self.manager POST:url parameters:paramsDic progress:^(NSProgress * uploadProgress) {
         
     } success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success)
@@ -58,12 +50,7 @@
     NSString *url = @"http://192.168.0.110/Article/get_hot_list";
     NSDictionary *params = @{@"date":date,@"days":@20};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSURLSessionDataTask *dataTask = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionDataTask *dataTask = [self.manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
@@ -104,15 +91,9 @@
 - (void)getDynamicActivityDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure
 {
     NSString *url = @"http://192.168.0.110/Article/get_at_list";
-    NSDictionary *params = @{@"r_id":@5,@"rows":@2};
+    NSDictionary *params = @{@"r_id":ID,@"rows":@10};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSURLSessionDataTask *dataTask = [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionDataTask *dataTask = [self.manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [responseObject mj_JSONObject];

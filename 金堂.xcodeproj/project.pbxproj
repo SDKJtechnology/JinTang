@@ -62,6 +62,7 @@
 		99F4293A1CCDC45200A96C23 /* DownSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F429361CCDC45200A96C23 /* DownSheetCell.m */; };
 		99F4293B1CCDC45200A96C23 /* DownSheetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F429381CCDC45200A96C23 /* DownSheetModel.m */; };
 		D27B858ABBE05EBE31EF8876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FCEF84EADC805EF927E3C6 /* libPods.a */; };
+		DEA469E71CE48F1A006CEB71 /* DataModel+LefiSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA469E61CE48F1A006CEB71 /* DataModel+LefiSlide.m */; };
 		DEB69A421CE1B008006BD506 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */; };
 		DECFD3601CE0A373001033A4 /* TJ_CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */; };
 		DECFD3611CE0A373001033A4 /* TJ_CommetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1521CE0A371001033A4 /* TJ_CommetView.m */; };
@@ -596,6 +597,8 @@
 		99F429381CCDC45200A96C23 /* DownSheetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownSheetModel.m; sourceTree = "<group>"; };
 		C6760EF67EC0D5D5796CBEDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0FF5357F04A504D3432E96F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DEA469E51CE48F1A006CEB71 /* DataModel+LefiSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataModel+LefiSlide.h"; sourceTree = "<group>"; };
+		DEA469E61CE48F1A006CEB71 /* DataModel+LefiSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataModel+LefiSlide.m"; sourceTree = "<group>"; };
 		DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
 		DECFD14F1CE0A371001033A4 /* TJ_CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommentTableViewCell.h; sourceTree = "<group>"; };
 		DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CommentTableViewCell.m; sourceTree = "<group>"; };
@@ -1433,6 +1436,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DEA469E41CE48F01006CEB71 /* TJ_Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEA469E51CE48F1A006CEB71 /* DataModel+LefiSlide.h */,
+				DEA469E61CE48F1A006CEB71 /* DataModel+LefiSlide.m */,
+			);
+			path = TJ_Model;
+			sourceTree = "<group>";
+		};
 		DEB69A401CE1B008006BD506 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1511,9 +1523,9 @@
 		DECFD16E1CE0A371001033A4 /* TJ_ Community(社区) */ = {
 			isa = PBXGroup;
 			children = (
-				DEDE87B01CE45C6500E6016A /* Controller */,
 				DECFD1711CE0A371001033A4 /* TJ_Model */,
 				DECFD1721CE0A371001033A4 /* TJ_Views */,
+				DEDE87B01CE45C6500E6016A /* Controller */,
 			);
 			path = "TJ_ Community(社区)";
 			sourceTree = "<group>";
@@ -1638,6 +1650,7 @@
 		DECFD1B01CE0A371001033A4 /* TJ_LeftSlideViewController(抽屉) */ = {
 			isa = PBXGroup;
 			children = (
+				DEA469E41CE48F01006CEB71 /* TJ_Model */,
 				DECFD1B11CE0A371001033A4 /* Cells */,
 				DECFD1BA1CE0A371001033A4 /* Controllers */,
 				DECFD1C91CE0A371001033A4 /* TJ_ CalculateCache.h */,
@@ -1666,12 +1679,12 @@
 			children = (
 				DECFD1BB1CE0A371001033A4 /* TJ_ConnernsViewController.h */,
 				DECFD1BC1CE0A371001033A4 /* TJ_ConnernsViewController.m */,
-				DECFD1BD1CE0A371001033A4 /* TJ_EnshrineViewController.h */,
-				DECFD1BE1CE0A371001033A4 /* TJ_EnshrineViewController.m */,
 				DECFD1BF1CE0A371001033A4 /* TJ_FansViewController.h */,
 				DECFD1C01CE0A371001033A4 /* TJ_FansViewController.m */,
 				DECFD1C11CE0A371001033A4 /* TJ_InvitationViewController.h */,
 				DECFD1C21CE0A371001033A4 /* TJ_InvitationViewController.m */,
+				DECFD1BD1CE0A371001033A4 /* TJ_EnshrineViewController.h */,
+				DECFD1BE1CE0A371001033A4 /* TJ_EnshrineViewController.m */,
 				DECFD1C31CE0A371001033A4 /* TJ_LeftSlideViewController.h */,
 				DECFD1C41CE0A371001033A4 /* TJ_LeftSlideViewController.m */,
 				DECFD1C51CE0A371001033A4 /* TJ_LeftSortsViewController.h */,
@@ -3026,6 +3039,7 @@
 				DECFD4D51CE0A373001033A4 /* MJPropertyKey.m in Sources */,
 				DECFD4B51CE0A373001033A4 /* MJRefreshBackGifFooter.m in Sources */,
 				DECFD5471CE0A45A001033A4 /* UIView+SDExtension.m in Sources */,
+				DEA469E71CE48F1A006CEB71 /* DataModel+LefiSlide.m in Sources */,
 				7A77966A1CC67AF400D843D9 /* QRCodeViewController.m in Sources */,
 				DECFD3721CE0A373001033A4 /* TJ_CycleScrollView.m in Sources */,
 				DECFD4D31CE0A373001033A4 /* MJFoundation.m in Sources */,

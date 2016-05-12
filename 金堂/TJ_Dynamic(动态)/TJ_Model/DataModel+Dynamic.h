@@ -11,21 +11,21 @@
 @interface DataModel (Dynamic)
 
 /**
- *  根据page获取动态关注数据
+ *  根据ID获取动态关注数据
  *
- *  @param page 页码
+ *  @param ID 帖子id
  */
 - (void)getDynamicConcernsDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
 /**
- *  根据page获取热点数据
+ *  根据date获取热点数据
  *
- *  @param page 页码
+ *  @param date 帖子日期
  */
 - (void)getHotspotDataWithDate:(NSString *)date success:(DataModelBlock)success failure:(DataModelBlock)failure;
 /**
- *  根据page获取动态活动页数据
+ *  根据ID获取动态活动页数据
  *
- *  @param page 页码
+ *  @@param ID 帖子id
  */
 - (void)getDynamicActivityDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
 

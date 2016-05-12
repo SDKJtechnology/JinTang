@@ -12,11 +12,11 @@
 /**
  *  活动开始时间
  */
-@property (nonatomic, strong) NSNumber *startDate;
+@property (nonatomic, strong) NSString *startDate;
 /**
  * 活动结束时间
  */
-@property (nonatomic, strong) NSNumber *endDate;
+@property (nonatomic, strong) NSString *endDate;
 
 @property (nonatomic, strong) NSString *image_Url;
 

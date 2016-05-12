@@ -8,6 +8,7 @@
 
 #import "TJ_CommunityclassificationTableView.h"
 #import "SDAutoLayout.h"
+#import "DataModel+Community.h"
 
 @interface TJ_CommunityclassificationTableView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,9 +26,20 @@
         self.showsVerticalScrollIndicator = NO;
         self.bounces = NO;
         self.classificationData = @[@"全金堂",@"幸福门",@"娱乐圈",@"发广告",@"吃喝玩",@"我的关注"];
+        [self getCommunityData];
     }
     
     return self;
+}
+
+- (void)getCommunityData
+{
+    [[DataModel sharedObejct] getCommunityDataSuccess:^(id data) {
+        
+        
+    } failure:^(id data) {
+        
+    }];
 }
 
 #pragma mark UITableViewDelegate

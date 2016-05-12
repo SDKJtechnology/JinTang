@@ -22,7 +22,7 @@
     if (self = [super initWithFrame:frame style:UITableViewStyleGrouped]) {
         self.delegate = self;
         self.dataSource = self;
-        self.bounces = NO;
+//        self.bounces = NO;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         
@@ -39,8 +39,11 @@
         [self getDynamciActivityDataWithID:@0];
     }
     if (view == self.mj_footer) {
-        
-        [self getDynamciActivityDataWithID:@0];
+        if (!_dynamciActivityData.count) {
+            return;
+        }
+        DynamicActivityModel *model = _dynamciActivityData.lastObject;
+        [self getDynamciActivityDataWithID:model.ID];
     }
 }
 

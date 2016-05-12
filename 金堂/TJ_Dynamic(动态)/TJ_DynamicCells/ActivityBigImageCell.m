@@ -7,13 +7,14 @@
 //
 
 #import "ActivityBigImageCell.h"
+#import "TJ_BAButton.h"
 
 @interface ActivityBigImageCell ()
 
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *stateLabel;
-@property (nonatomic, strong) UIButton *activityButton;
+@property (nonatomic, strong) TJ_BACustomButton *activityButton;
 
 @end
 
@@ -35,11 +36,12 @@
         self.stateLabel = [UILabel new];
         [self.contentView addSubview:self.stateLabel];
         self.stateLabel.textColor = [UIColor whiteColor];
-        self.stateLabel.font = [UIFont systemFontOfSize:14];
+        self.stateLabel.font = [UIFont systemFontOfSize:13];
         self.stateLabel.backgroundColor = [UIColor colorWithWhite:0.139 alpha:0.6];
         
-        self.activityButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.activityButton = [TJ_BACustomButton buttonWithType:UIButtonTypeCustom];
         [self.activityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.activityButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:self.activityButton];
         
         CGFloat margin = 10;
@@ -86,8 +88,9 @@
 - (void)setActivityModel:(DynamicActivityModel *)activityModel
 {
     self.titleLabel.text = activityModel.title;
-    self.stateLabel.text = @" 活动时间：2016.2 —— 2016.4 ";
+    self.stateLabel.text = [NSString stringWithFormat: @"活动时间:%@ — %@",activityModel.startDate,activityModel.endDate];
     [self.activityButton setTitle:@"立即参与﹥" forState:UIControlStateNormal];
+    [self.activityButton setButtonTruthWidth];
     
     [self.image sd_setImageWithURL:[NSURL URLWithString:activityModel.image_Url] placeholderImage:[UIImage imageNamed:@"load"]];
 }

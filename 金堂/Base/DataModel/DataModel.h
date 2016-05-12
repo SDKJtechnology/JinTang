@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "AFNetworking.h"
+#import "MJExtension.h"
+#import "NSDictionary Chinese.h"
+
 /**
  *  动态网络请求模型
  *
@@ -15,6 +20,8 @@
 typedef void (^DataModelBlock)(id data);
 
 @interface DataModel : NSObject
+
+@property (nonatomic, strong, readonly) AFHTTPSessionManager *manager;
 /**
  *  单例初始化方法
  *

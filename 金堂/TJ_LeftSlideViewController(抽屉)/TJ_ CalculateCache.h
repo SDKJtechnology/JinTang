@@ -19,7 +19,7 @@
 - (float)getFileSizeAtPath:(NSString*)path;
 // 计算目录大小
 - (float)getFolderSizeAtPath:(NSString*)path;
-// 清除文件按
+// 清除文件
 - (void)clearCache:(NSString *)path;
 
 @end

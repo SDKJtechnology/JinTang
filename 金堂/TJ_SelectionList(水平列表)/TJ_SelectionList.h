@@ -25,10 +25,6 @@ typedef NS_ENUM(NSInteger, TJSelectionItemMode)
  */
 @property (nonatomic) TJSelectionItemMode selectionItemMode;
 /**
- *  选项title
- */
-@property (nonatomic, assign) NSString *titleSting;
-/**
  *  指示器颜色,默认为灰色
  */
 @property (nonatomic, strong) UIColor *indicatorColor;

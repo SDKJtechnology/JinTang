@@ -20,4 +20,13 @@
     return dataModel;
 }
 
+- (AFHTTPSessionManager *)manager
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    return manager;
+}
+
 @end
