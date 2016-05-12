@@ -20,9 +20,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 130)];
-//    [self.view addSubview:_webView];
+    CGFloat height = self.view.height - 64 - BottonView_H;
+    if (!self.showBottomView){
+        height += BottonView_H;
+    }
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, height)];
+    [self.view insertSubview:_webView atIndex:0];
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
     [_webView loadRequest:request];

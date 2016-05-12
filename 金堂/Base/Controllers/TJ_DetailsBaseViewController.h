@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TJ_BAButton.h"
 
+#define BottonView_H 49
 
 @interface TJ_DetailsBaseViewController : UIViewController
+
+@property (nonatomic, assign) BOOL showBottomView;
 
 @property (nonatomic, strong) NSString *titelString;
 

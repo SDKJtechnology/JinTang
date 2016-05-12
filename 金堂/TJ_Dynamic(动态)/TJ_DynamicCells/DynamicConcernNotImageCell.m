@@ -57,7 +57,16 @@
     .heightIs(20);
     self.browseCountButton.enabled = NO;
     
-    [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
+    UIView *lineView = [UIView new];
+    [self.contentView addSubview:lineView];
+    lineView.sd_layout
+    .topSpaceToView(self.browseCountButton, margin / 2)
+    .leftSpaceToView(self.contentView, 0)
+    .rightSpaceToView(self.contentView, 0)
+    .heightIs(0.5);
+    lineView.backgroundColor = [UIColor grayColor];
+    
+    [self setupAutoHeightWithBottomView:lineView bottomMargin:0];
 }
 
 - (void)setDynamicConcernsModel:(DynamicConcernsModel *)dynamicConcernsModel
@@ -86,7 +95,7 @@
             return @"DynamicConcernNotImageCell";
             break;
         case 1:
-            return @"DynamicConcernOneImageCell";
+            return [NSString stringWithFormat:@"%@",model.ID];
             break;
         default:
             return @"DynamicConcernManyImageCell";

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HotspotModel.h"
+#import "DynamicHotspotModel.h"
 #import "SDAutoLayout.h"
 
 @interface AdCell : UITableViewCell
 
-@property (nonatomic) HotspotModel *hotspotModel;
+@property (nonatomic) DynamicHotspotModel *hotspotModel;
 
 @end

@@ -8,6 +8,15 @@
 
 #import "ActivityBigImageCell.h"
 
+@interface ActivityBigImageCell ()
+
+@property (nonatomic, strong) UIImageView *image;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *stateLabel;
+@property (nonatomic, strong) UIButton *activityButton;
+
+@end
+
 @implementation ActivityBigImageCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -74,13 +83,13 @@
     return self;
 }
 
-- (void)setHeader:(Body *)header
+- (void)setActivityModel:(DynamicActivityModel *)activityModel
 {
-    self.titleLabel.text = header.title;
+    self.titleLabel.text = activityModel.title;
     self.stateLabel.text = @" 活动时间：2016.2 —— 2016.4 ";
     [self.activityButton setTitle:@"立即参与﹥" forState:UIControlStateNormal];
     
-    [self.image sd_setImageWithURL:[NSURL URLWithString:header.imageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:activityModel.image_Url] placeholderImage:[UIImage imageNamed:@"load"]];
 }
 
 

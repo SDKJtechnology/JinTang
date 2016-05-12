@@ -50,7 +50,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     [self setup];
 
 }
@@ -60,6 +60,7 @@
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoard) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -98,12 +99,14 @@
     _bottomView = [[UIView alloc] init];
     _bottomView.layer.borderColor = [[UIColor grayColor] CGColor];
     _bottomView.layer.borderWidth = 1;
+    _bottomView.backgroundColor = [UIColor whiteColor];
+//    _bottomView.hidden = !self.showBottomView;
     [self.view addSubview:_bottomView];
     _bottomView.sd_layout
     .leftSpaceToView(self.view, 0)
     .bottomSpaceToView(self.view, 0)
     .rightSpaceToView(self.view, 0)
-    .heightIs(49);
+    .heightIs(BottonView_H);
     [_bottomView updateLayout];
     
     _supportButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -111,7 +114,7 @@
     _supportButton.sd_layout
     .topSpaceToView(_bottomView, 10)
     .leftSpaceToView(_bottomView, 10)
-    .widthIs(29)
+    .widthIs(BottonView_H - 20)
     .heightEqualToWidth();
     _supportButton.sd_cornerRadiusFromWidthRatio = @0.5;
     _supportButton.backgroundColor = [UIColor yellowColor];
@@ -193,6 +196,11 @@
 //    }
 //    return array;
 //}
+
+- (void)setShowBottomView:(BOOL)showBottomView
+{
+    self.bottomView.hidden = !showBottomView;
+}
 
 #pragma mark UITextViewDelegate
 
@@ -305,7 +313,7 @@
 - (void)showInputView:(UIView *)view
 {
     if (![inputView isEqual:view]) {
-        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
+        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
         [[UIApplication sharedApplication].keyWindow addSubview:view];
     }
     if (inputView) {
@@ -356,9 +364,9 @@
 {
 //    NSLog(@"%@",notification.userInfo);
      keyboardFrame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - 49);
+    _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willHideKeyBoard)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    [self.view.subviews.firstObject addGestureRecognizer:tapGestureRecognizer];
 }
 
 //点击空白收起键盘
@@ -369,7 +377,7 @@
     [self didEndComment];
     
     [UIView animateWithDuration:0.3 animations:^{
-        _bottomView.origin =  CGPointMake(0, self.view.height - 49);
+        _bottomView.origin =  CGPointMake(0, self.view.height - BottonView_H);
         inputView.origin = CGPointMake(0, self.view.height);
     } completion:^(BOOL finished) {
         [inputView removeFromSuperview];
@@ -382,7 +390,7 @@
 - (void)didEndComment
 {
     _sendButton.sd_layout.widthIs(0);
-    _supportButton.sd_layout.widthIs(29);
+    _supportButton.sd_layout.widthIs(BottonView_H - 20);
     _photoButton.hidden = YES;
     _emojiButton.hidden = YES;
     _emojiButton.selected = NO;

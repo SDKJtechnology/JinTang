@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) NSMutableArray *dynamciHotspotData;
 
+@property (nonatomic, strong) UIViewController *myVC;
+
 @end

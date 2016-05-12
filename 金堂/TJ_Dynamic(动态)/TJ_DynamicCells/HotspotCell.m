@@ -28,7 +28,7 @@
         [self.contentView addSubview:self.image];
         
         self.image.sd_layout
-        .widthIs(60)
+        .widthIs(50)
         .heightEqualToWidth()
         .topSpaceToView(self.contentView, margin)
         .rightSpaceToView(self.contentView, margin);
@@ -39,27 +39,20 @@
         .centerYIs(self.image.centerY)
         .rightSpaceToView(self.image, margin);
         self.textLabel.numberOfLines = 3;
+        self.textLabel.textAlignment = NSTextAlignmentLeft;
         self.textLabel.font = [UIFont systemFontOfSize:13];
         
-        self.lineView = [UIView new];
-        [self.contentView addSubview:self.lineView];
-        self.lineView.sd_layout
-        .topSpaceToView(self.image, margin)
-        .leftSpaceToView(self.contentView, 0)
-        .rightSpaceToView(self.contentView, 0)
-        .heightIs(1);
-        self.lineView.backgroundColor = [UIColor grayColor];
-        
-        [self setupAutoHeightWithBottomView:self.lineView bottomMargin:0];
+        [self setupAutoHeightWithBottomView:self.image bottomMargin:margin];
     }
     
     return self;
 }
 
-- (void)setHotspotModel:(HotspotModel *)hotspotModel
+- (void)setHotspotModel:(DynamicHotspotModel *)hotspotModel
 {
-    self.textLabel.text = hotspotModel.hotspotTitel;
-    [self.image sd_setImageWithURL:[NSURL URLWithString:hotspotModel.hotspotImageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
+    self.textLabel.text = hotspotModel.title;
+    Image *image = hotspotModel.imagesUrl.firstObject;
+    [self.image sd_setImageWithURL:[NSURL URLWithString:image.imageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
 }
 
 @end

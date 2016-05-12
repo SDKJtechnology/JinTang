@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HotspotModel.h"
+#import "DynamicHotspotModel.h"
 
 @interface HotspotCell : UITableViewCell
 
-@property (nonatomic) HotspotModel *hotspotModel;
+@property (nonatomic) DynamicHotspotModel *hotspotModel;
 
 @end

@@ -127,6 +127,7 @@
     
     NSNumber *cacheHeight = [self heightCacheForIndexPath:indexPath];
     if (cacheHeight) {
+//        NSLog(@"%@",cacheHeight);
         return [cacheHeight floatValue];
     } else {
         if (!self.modelCell) {

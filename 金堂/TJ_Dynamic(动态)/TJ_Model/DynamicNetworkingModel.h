@@ -33,6 +33,12 @@ typedef void (^DynamicNetworkingBlock)(id data);
  *
  *  @param page 页码
  */
-- (void)getHotspotDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
+- (void)getHotspotDataWithDate:(NSString *)date success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
+/**
+ *  根据page获取动态活动页数据
+ *
+ *  @param page 页码
+ */
+- (void)getDynamicActivityDataWithID:(NSNumber *)ID success:(DynamicNetworkingBlock)success failure:(DynamicNetworkingBlock)failure;
 
 @end

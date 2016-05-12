@@ -8,7 +8,7 @@
 
 #import "TJ_DynamicActivityTableView.h"
 #import "ActivityBigImageCell.h"
-#import "ActivityModel.h"
+#import "DynamicNetworkingModel.h"
 
 @interface TJ_DynamicActivityTableView ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,9 +26,40 @@
         self.showsVerticalScrollIndicator = NO;
         
         [self registerClass:[ActivityBigImageCell class] forCellReuseIdentifier:NSStringFromClass([ActivityBigImageCell class])];
+        _dynamciActivityData = [NSMutableArray array];
     }
     
     return self;
+}
+
+- (void)loadDataWithView:(MJRefreshComponent *)view
+{
+    if (view == self.mj_header) {
+        [self getDynamciActivityDataWithID:@0];
+    }
+    if (view == self.mj_footer) {
+        
+        [self getDynamciActivityDataWithID:@0];
+    }
+}
+
+- (void)getDynamciActivityDataWithID:(NSNumber *)ID
+{
+    __block typeof(self) blockSelf = self;
+    [[DynamicNetworkingModel sharedObejct] getDynamicActivityDataWithID:ID success:^(id data) {
+        if (self.myRefreshView == self.mj_header) {
+            _dynamciActivityData = data;
+        }
+        if (self.myRefreshView == self.mj_footer) {
+            [_dynamciActivityData addObjectsFromArray:data];
+        }
+        [blockSelf reloadData];
+        [blockSelf.myRefreshView endRefreshing];
+    } failure:^(id data) {
+        NSLog(@"动态活动页数据加载错误。。。");
+        [self.myRefreshView endRefreshing];
+    }];
+
 }
 
 #pragma mark UITableViewDataSource
@@ -55,15 +86,14 @@
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityModel *hots = _dynamciActivityData[indexPath.section];
-    ((ActivityBigImageCell *)cell).header = hots.item.header;
+    DynamicActivityModel *hots = _dynamciActivityData[indexPath.section];
+    ((ActivityBigImageCell *)cell).activityModel = hots;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityModel *model = _dynamciActivityData[indexPath.section];
-    Body *body = model.item.header;
-    return [tableView cellHeightForIndexPath:indexPath model:body keyPath:@"header"cellClass:[ActivityBigImageCell class] contentViewWidth:self.width];
+    DynamicActivityModel *model = _dynamciActivityData[indexPath.section];
+    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"activityModel"cellClass:[ActivityBigImageCell class] contentViewWidth:self.width];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

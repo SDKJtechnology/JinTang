@@ -12,6 +12,7 @@
 #import "TJ_HeaderView.h"
 #import "DynamicNetworkingModel.h"
 #import "DynamicHotspotModel.h"
+#import "TJ_DynamicDetailController.h"
 
 @interface TJ_DynamicHotspotTableView()<UITableViewDataSource,UITableViewDelegate>
 
@@ -39,18 +40,22 @@
 - (void)loadDataWithView:(MJRefreshComponent *)view
 {
     if (self.mj_header == view) {
-        [self getDynamciHotspotDataWithID:@0];
+        [self getDynamciHotspotDataWithDate:@""];
     }
     if (self.mj_footer == view) {
-        DynamicHotspotModel *model = _dynamciHotspotData.firstObject;
-        [self getDynamciHotspotDataWithID:model.ID];
+        DynamicHotspotModel *model = _dynamciHotspotData.lastObject[0];
+        if (!model) {
+            [self.myRefreshView endRefreshing];
+            return;
+        }
+        [self getDynamciHotspotDataWithDate:model.createDate];
     }
 }
 
-- (void)getDynamciHotspotDataWithID:(NSNumber *)ID
+- (void)getDynamciHotspotDataWithDate:(NSString *)date
 {
     __block typeof(self) blockSelf = self;
-    [[DynamicNetworkingModel sharedObejct] getHotspotDataWithID:ID success:^(id data) {
+    [[DynamicNetworkingModel sharedObejct] getHotspotDataWithDate:date success:^(id data){
         if (blockSelf.myRefreshView == blockSelf.mj_footer) {
             [_dynamciHotspotData addObjectsFromArray:data];
         }
@@ -88,34 +93,44 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-    if (indexPath.row == 0)
+    if (indexPath.row == 0){
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AdCell class]) forIndexPath:indexPath];
+    }
     else
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HotspotCell class]) forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return _dynamciHotspotData.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    NSArray *array = _dynamciHotspotData[section];
+    return array.count;
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TJ_DynamicDetailController *VC = [[TJ_DynamicDetailController alloc] init];
+    VC.showBottomView = NO;
+    [_myVC presentViewController:VC animated:YES completion:nil];
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HotspotModel *model = [HotspotModel new];
-    ((HotspotCell *)cell).hotspotModel = model;
+    ((HotspotCell *)cell).hotspotModel = _dynamciHotspotData[indexPath.section][indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HotspotModel *model = [HotspotModel new];
+    DynamicHotspotModel *model = _dynamciHotspotData[indexPath.section][indexPath.row];
     
     if (indexPath.row == 0)
     {
@@ -128,6 +143,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
+    DynamicHotspotModel *model = _dynamciHotspotData[section][0];
+    NSString *string = [model.createDate substringWithRange:NSMakeRange(3, model.createDate.length - 3)];
+    view.dateLabel.text = string;
     return view;
 }
 

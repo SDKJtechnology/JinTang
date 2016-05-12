@@ -70,39 +70,6 @@
     self.scrollView.frame = self.bounds;
 }
 
-- (void)setupImageView
-{
-    NSMutableArray *imageArray = [NSMutableArray arrayWithArray:imageStrings];
-    titleLables = [NSMutableArray array];
-    if (self.imageGroup.count > 1 && self.cycleModel == TJ_CycleScrollViewCycleModel)
-    {
-        [imageArray addObject:imageStrings.firstObject];
-    }
-    NSInteger i = 0;
-    for (NSString *imageString in imageArray) {
-        self.imageView = [UIImageView new];
-        self.titelLabel = [UILabel new];
-//        self.titelLabel.text = @"临时当局分裂开始的肌肤";
-        [titleLables addObject:self.titelLabel];
-        if ([imageString hasPrefix:@"http"]) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"load"]];
-        }
-        else{
-            self.imageView.image = [UIImage imageNamed:imageString];
-        }
-        self.imageView.frame = CGRectMake(i * selfWidth, 0, selfWidth, selfHeight);
-        self.titelLabel.frame = CGRectMake(i * selfWidth, selfHeight - self.titleLabelHeight, selfWidth, self.titleLabelHeight);
-        self.titelLabel.textColor = self.titleLabelTextColor;
-        self.titelLabel.backgroundColor = self.titleLabelBackgroundColor;
-        self.titelLabel.font = self.titleLabelTextFont;
-        
-        [self.scrollView addSubview:self.imageView];
-        [self.scrollView addSubview:self.titelLabel];
-        i++;
-    }
-    self.scrollView.contentSize = CGSizeMake(i * selfWidth, selfHeight);
-}
-
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -153,7 +120,7 @@
     self.pageControl.hidden = !self.showPageControl;
     
     NSMutableArray *temp = [NSMutableArray new];
-    [imageGroup enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * stop) {
+    [imageGroup enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
         NSString *urlString;
         if ([obj isKindOfClass:[NSString class]]) {
             urlString = obj;
@@ -173,6 +140,40 @@
     self.pageControl.numberOfPages = imageGroup.count;
     [self setPageControllFrame:[self.pageControl sizeForNumberOfPages:imageGroup.count]];
 }
+
+- (void)setupImageView
+{
+    NSMutableArray *imageArray = [NSMutableArray arrayWithArray:imageStrings];
+    titleLables = [NSMutableArray array];
+    if (self.imageGroup.count > 1 && self.cycleModel == TJ_CycleScrollViewCycleModel)
+    {
+        [imageArray addObject:imageStrings.firstObject];
+    }
+    NSInteger i = 0;
+    for (NSString *imageString in imageArray) {
+        self.imageView = [UIImageView new];
+        self.titelLabel = [UILabel new];
+        //        self.titelLabel.text = @"临时当局分裂开始的肌肤";
+        [titleLables addObject:self.titelLabel];
+        if ([imageString hasPrefix:@"http"]) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"load"]];
+        }
+        else{
+            self.imageView.image = [UIImage imageNamed:imageString];
+        }
+        self.imageView.frame = CGRectMake(i * selfWidth, 0, selfWidth, selfHeight);
+        self.titelLabel.frame = CGRectMake(i * selfWidth, selfHeight - self.titleLabelHeight, selfWidth, self.titleLabelHeight);
+        self.titelLabel.textColor = self.titleLabelTextColor;
+        self.titelLabel.backgroundColor = self.titleLabelBackgroundColor;
+        self.titelLabel.font = self.titleLabelTextFont;
+        
+        [self.scrollView addSubview:self.imageView];
+        [self.scrollView addSubview:self.titelLabel];
+        i++;
+    }
+    self.scrollView.contentSize = CGSizeMake(i * selfWidth, selfHeight);
+}
+
 
 - (void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor
 {

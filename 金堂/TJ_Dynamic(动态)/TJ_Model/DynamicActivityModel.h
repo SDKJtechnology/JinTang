@@ -18,4 +18,6 @@
  */
 @property (nonatomic, strong) NSNumber *endDate;
 
+@property (nonatomic, strong) NSString *image_Url;
+
 @end

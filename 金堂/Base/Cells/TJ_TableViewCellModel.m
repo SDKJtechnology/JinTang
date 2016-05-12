@@ -151,7 +151,7 @@
     .widthIs(150)
     .heightIs(30);
     
-    [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
+//    [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
 }
 
 + (NSString *)identifierForModelAtRow:(id)Model

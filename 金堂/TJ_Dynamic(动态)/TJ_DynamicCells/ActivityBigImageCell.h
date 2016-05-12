@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivityModel.h"
+#import "DynamicActivityModel.h"
 #import "SDAutoLayout.h"
 #import <UIImageView+WebCache.h>
 
 @interface ActivityBigImageCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *image;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *stateLabel;
-@property (nonatomic, strong) UIButton *activityButton;
-@property (nonatomic, strong) Body *header;
+@property (nonatomic, strong) DynamicActivityModel *activityModel;
 
 @end

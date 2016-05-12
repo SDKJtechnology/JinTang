@@ -46,9 +46,11 @@
     return self;
 }
 
-- (void)setHotspotModel:(HotspotModel *)hotspotModel
+- (void)setHotspotModel:(DynamicHotspotModel *)hotspotModel
 {
-    self.cycleScrollView.imageGroup = @[hotspotModel.hotspotImageUrl,hotspotModel.hotspotImageUrl,@"beijing",@"beijing"];
+    Image *image = hotspotModel.imagesUrl.firstObject;
+    self.cycleScrollView.imageGroup = @[image.imageUrl];
+    self.cycleScrollView.titleArray = @[hotspotModel.title];
 }
 
 @end

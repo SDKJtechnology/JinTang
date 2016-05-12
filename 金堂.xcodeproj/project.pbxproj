@@ -92,14 +92,10 @@
 		DECFD37A1CE0A373001033A4 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD18F1CE0A371001033A4 /* AdCell.m */; };
 		DECFD37B1CE0A373001033A4 /* DynamicConcernNotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1911CE0A371001033A4 /* DynamicConcernNotImageCell.m */; };
 		DECFD37C1CE0A373001033A4 /* HotspotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1931CE0A371001033A4 /* HotspotCell.m */; };
-		DECFD37D1CE0A373001033A4 /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1961CE0A371001033A4 /* ActivityModel.m */; };
-		DECFD37E1CE0A373001033A4 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1981CE0A371001033A4 /* CommentModel.m */; };
 		DECFD37F1CE0A373001033A4 /* DynamicActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD19A1CE0A371001033A4 /* DynamicActivityModel.m */; };
 		DECFD3801CE0A373001033A4 /* DynamicConcernsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD19C1CE0A371001033A4 /* DynamicConcernsModel.m */; };
 		DECFD3811CE0A373001033A4 /* DynamicHotspotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD19E1CE0A371001033A4 /* DynamicHotspotModel.m */; };
-		DECFD3821CE0A373001033A4 /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1A01CE0A371001033A4 /* DynamicModel.m */; };
 		DECFD3831CE0A373001033A4 /* DynamicNetworkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1A21CE0A371001033A4 /* DynamicNetworkingModel.m */; };
-		DECFD3841CE0A373001033A4 /* HotspotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1A41CE0A371001033A4 /* HotspotModel.m */; };
 		DECFD3851CE0A373001033A4 /* TJ_DynamicActivityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1A71CE0A371001033A4 /* TJ_DynamicActivityTableView.m */; };
 		DECFD3861CE0A373001033A4 /* TJ_DynamicConcernTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1A91CE0A371001033A4 /* TJ_DynamicConcernTableView.m */; };
 		DECFD3871CE0A373001033A4 /* TJ_DynamicHotspotTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1AB1CE0A371001033A4 /* TJ_DynamicHotspotTableView.m */; };
@@ -485,6 +481,7 @@
 		DECFD5441CE0A409001033A4 /* TJ_TableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD5201CE0A409001033A4 /* TJ_TableViewModel.m */; };
 		DECFD5471CE0A45A001033A4 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD5461CE0A45A001033A4 /* UIView+SDExtension.m */; };
 		DED6D6AB1CC5D7990080B09F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */; };
+		DEDE87A81CE44B0C00E6016A /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDE87A71CE44B0C00E6016A /* CommentModel.m */; };
 		DEDF6A3B1CC5037800FDECA2 /* LX_enroll2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */; };
 		DEDF6A3C1CC5037800FDECA2 /* LX_enrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A341CC5037800FDECA2 /* LX_enrollViewController.m */; };
 		DEDF6A3D1CC5037800FDECA2 /* LX_foundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6A361CC5037800FDECA2 /* LX_foundViewController.m */; };
@@ -656,22 +653,14 @@
 		DECFD1911CE0A371001033A4 /* DynamicConcernNotImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicConcernNotImageCell.m; sourceTree = "<group>"; };
 		DECFD1921CE0A371001033A4 /* HotspotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotspotCell.h; sourceTree = "<group>"; };
 		DECFD1931CE0A371001033A4 /* HotspotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotspotCell.m; sourceTree = "<group>"; };
-		DECFD1951CE0A371001033A4 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
-		DECFD1961CE0A371001033A4 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
-		DECFD1971CE0A371001033A4 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
-		DECFD1981CE0A371001033A4 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		DECFD1991CE0A371001033A4 /* DynamicActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicActivityModel.h; sourceTree = "<group>"; };
 		DECFD19A1CE0A371001033A4 /* DynamicActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicActivityModel.m; sourceTree = "<group>"; };
 		DECFD19B1CE0A371001033A4 /* DynamicConcernsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicConcernsModel.h; sourceTree = "<group>"; };
 		DECFD19C1CE0A371001033A4 /* DynamicConcernsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicConcernsModel.m; sourceTree = "<group>"; };
 		DECFD19D1CE0A371001033A4 /* DynamicHotspotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHotspotModel.h; sourceTree = "<group>"; };
 		DECFD19E1CE0A371001033A4 /* DynamicHotspotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHotspotModel.m; sourceTree = "<group>"; };
-		DECFD19F1CE0A371001033A4 /* DynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
-		DECFD1A01CE0A371001033A4 /* DynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
 		DECFD1A11CE0A371001033A4 /* DynamicNetworkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicNetworkingModel.h; sourceTree = "<group>"; };
 		DECFD1A21CE0A371001033A4 /* DynamicNetworkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicNetworkingModel.m; sourceTree = "<group>"; };
-		DECFD1A31CE0A371001033A4 /* HotspotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotspotModel.h; sourceTree = "<group>"; };
-		DECFD1A41CE0A371001033A4 /* HotspotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotspotModel.m; sourceTree = "<group>"; };
 		DECFD1A61CE0A371001033A4 /* TJ_DynamicActivityTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicActivityTableView.h; sourceTree = "<group>"; };
 		DECFD1A71CE0A371001033A4 /* TJ_DynamicActivityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DynamicActivityTableView.m; sourceTree = "<group>"; };
 		DECFD1A81CE0A371001033A4 /* TJ_DynamicConcernTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DynamicConcernTableView.h; sourceTree = "<group>"; };
@@ -1152,6 +1141,8 @@
 		DECFD5451CE0A45A001033A4 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		DECFD5461CE0A45A001033A4 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		DED6D6AA1CC5D7990080B09F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DEDE87A61CE44B0C00E6016A /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		DEDE87A71CE44B0C00E6016A /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		DEDF6A311CC5037800FDECA2 /* LX_enroll2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX_enroll2ViewController.h; sourceTree = "<group>"; };
 		DEDF6A321CC5037800FDECA2 /* LX_enroll2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX_enroll2ViewController.m; sourceTree = "<group>"; };
 		DEDF6A331CC5037800FDECA2 /* LX_enrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX_enrollViewController.h; sourceTree = "<group>"; };
@@ -1567,10 +1558,10 @@
 		DECFD1831CE0A371001033A4 /* TJ_Dynamic(动态) */ = {
 			isa = PBXGroup;
 			children = (
-				DECFD1841CE0A371001033A4 /* TJ_Controller */,
-				DECFD18B1CE0A371001033A4 /* TJ_DynamicCells */,
 				DECFD1941CE0A371001033A4 /* TJ_Model */,
+				DECFD18B1CE0A371001033A4 /* TJ_DynamicCells */,
 				DECFD1A51CE0A371001033A4 /* TJ_Views */,
+				DECFD1841CE0A371001033A4 /* TJ_Controller */,
 			);
 			path = "TJ_Dynamic(动态)";
 			sourceTree = "<group>";
@@ -1591,14 +1582,14 @@
 		DECFD18B1CE0A371001033A4 /* TJ_DynamicCells */ = {
 			isa = PBXGroup;
 			children = (
-				DECFD18C1CE0A371001033A4 /* ActivityBigImageCell.h */,
-				DECFD18D1CE0A371001033A4 /* ActivityBigImageCell.m */,
-				DECFD18E1CE0A371001033A4 /* AdCell.h */,
-				DECFD18F1CE0A371001033A4 /* AdCell.m */,
 				DECFD1901CE0A371001033A4 /* DynamicConcernNotImageCell.h */,
 				DECFD1911CE0A371001033A4 /* DynamicConcernNotImageCell.m */,
+				DECFD18E1CE0A371001033A4 /* AdCell.h */,
+				DECFD18F1CE0A371001033A4 /* AdCell.m */,
 				DECFD1921CE0A371001033A4 /* HotspotCell.h */,
 				DECFD1931CE0A371001033A4 /* HotspotCell.m */,
+				DECFD18C1CE0A371001033A4 /* ActivityBigImageCell.h */,
+				DECFD18D1CE0A371001033A4 /* ActivityBigImageCell.m */,
 			);
 			path = TJ_DynamicCells;
 			sourceTree = "<group>";
@@ -1606,20 +1597,14 @@
 		DECFD1941CE0A371001033A4 /* TJ_Model */ = {
 			isa = PBXGroup;
 			children = (
-				DECFD1951CE0A371001033A4 /* ActivityModel.h */,
-				DECFD1961CE0A371001033A4 /* ActivityModel.m */,
-				DECFD1971CE0A371001033A4 /* CommentModel.h */,
-				DECFD1981CE0A371001033A4 /* CommentModel.m */,
-				DECFD1991CE0A371001033A4 /* DynamicActivityModel.h */,
-				DECFD19A1CE0A371001033A4 /* DynamicActivityModel.m */,
+				DEDE87A61CE44B0C00E6016A /* CommentModel.h */,
+				DEDE87A71CE44B0C00E6016A /* CommentModel.m */,
 				DECFD19B1CE0A371001033A4 /* DynamicConcernsModel.h */,
 				DECFD19C1CE0A371001033A4 /* DynamicConcernsModel.m */,
 				DECFD19D1CE0A371001033A4 /* DynamicHotspotModel.h */,
 				DECFD19E1CE0A371001033A4 /* DynamicHotspotModel.m */,
-				DECFD19F1CE0A371001033A4 /* DynamicModel.h */,
-				DECFD1A01CE0A371001033A4 /* DynamicModel.m */,
-				DECFD1A31CE0A371001033A4 /* HotspotModel.h */,
-				DECFD1A41CE0A371001033A4 /* HotspotModel.m */,
+				DECFD1991CE0A371001033A4 /* DynamicActivityModel.h */,
+				DECFD19A1CE0A371001033A4 /* DynamicActivityModel.m */,
 				DECFD1A11CE0A371001033A4 /* DynamicNetworkingModel.h */,
 				DECFD1A21CE0A371001033A4 /* DynamicNetworkingModel.m */,
 			);
@@ -1629,12 +1614,12 @@
 		DECFD1A51CE0A371001033A4 /* TJ_Views */ = {
 			isa = PBXGroup;
 			children = (
-				DECFD1A61CE0A371001033A4 /* TJ_DynamicActivityTableView.h */,
-				DECFD1A71CE0A371001033A4 /* TJ_DynamicActivityTableView.m */,
 				DECFD1A81CE0A371001033A4 /* TJ_DynamicConcernTableView.h */,
 				DECFD1A91CE0A371001033A4 /* TJ_DynamicConcernTableView.m */,
 				DECFD1AA1CE0A371001033A4 /* TJ_DynamicHotspotTableView.h */,
 				DECFD1AB1CE0A371001033A4 /* TJ_DynamicHotspotTableView.m */,
+				DECFD1A61CE0A371001033A4 /* TJ_DynamicActivityTableView.h */,
+				DECFD1A71CE0A371001033A4 /* TJ_DynamicActivityTableView.m */,
 				DECFD1AC1CE0A371001033A4 /* TJ_HeaderView.h */,
 				DECFD1AD1CE0A371001033A4 /* TJ_HeaderView.m */,
 				DECFD1AE1CE0A371001033A4 /* UILabel+new.h */,
@@ -2917,7 +2902,6 @@
 				DECFD4CA1CE0A373001033A4 /* NSString+MLExpression.m in Sources */,
 				DECFD4DF1CE0A373001033A4 /* UIView_extra.m in Sources */,
 				DECFD4C31CE0A373001033A4 /* MLEmojiLabel.m in Sources */,
-				DECFD37D1CE0A373001033A4 /* ActivityModel.m in Sources */,
 				9941FCE11CC9B9A300914DE4 /* LX_MendViewController.m in Sources */,
 				DECFD3801CE0A373001033A4 /* DynamicConcernsModel.m in Sources */,
 				DECFD5361CE0A409001033A4 /* PhotoPickerController.m in Sources */,
@@ -2968,6 +2952,7 @@
 				7A77966E1CC67BFE00D843D9 /* LX_ChatListViewController.m in Sources */,
 				DECFD53A1CE0A409001033A4 /* VideoPlayerController.m in Sources */,
 				DECFD5251CE0A409001033A4 /* AlbumNavigationController.m in Sources */,
+				DEDE87A81CE44B0C00E6016A /* CommentModel.m in Sources */,
 				DECFD37B1CE0A373001033A4 /* DynamicConcernNotImageCell.m in Sources */,
 				DECFD5241CE0A409001033A4 /* AlbumListTableViewCell.m in Sources */,
 				DECFD5401CE0A409001033A4 /* TJ_Emoji.m in Sources */,
@@ -2975,7 +2960,6 @@
 				DECFD5411CE0A409001033A4 /* TJ_EmojiView.m in Sources */,
 				DECFD38C1CE0A373001033A4 /* TJ_FansTableViewCell.m in Sources */,
 				DECFD4DD1CE0A373001033A4 /* TJ_SelectionList.m in Sources */,
-				DECFD37E1CE0A373001033A4 /* CommentModel.m in Sources */,
 				DECFD3681CE0A373001033A4 /* TJ_CircleHomeViewController.m in Sources */,
 				DECFD4D91CE0A373001033A4 /* NSObject+MJKeyValue.m in Sources */,
 				DECFD3781CE0A373001033A4 /* TJ_DynamicSearchController.m in Sources */,
@@ -3005,7 +2989,6 @@
 				DECFD4C41CE0A373001033A4 /* NSAttributedString+MLLabel.m in Sources */,
 				993294B01CDB1ED800FC95FA /* LX_HeaderView.m in Sources */,
 				DECFD5381CE0A409001033A4 /* PhotoPreviewCell.m in Sources */,
-				DECFD3821CE0A373001033A4 /* DynamicModel.m in Sources */,
 				DECFD4BD1CE0A373001033A4 /* UIScrollView+MJExtension.m in Sources */,
 				DECFD3661CE0A373001033A4 /* TJ_TopicTableViewCell.m in Sources */,
 				9996FD891CD99D1D007C6224 /* LX_editInformationViewController.m in Sources */,
@@ -3051,7 +3034,6 @@
 				DECFD4BF1CE0A373001033A4 /* UIView+MJExtension.m in Sources */,
 				DECFD4CC1CE0A373001033A4 /* MLLabel.m in Sources */,
 				DECFD3891CE0A373001033A4 /* UILabel+new.m in Sources */,
-				DECFD3841CE0A373001033A4 /* HotspotModel.m in Sources */,
 				DECFD4AE1CE0A373001033A4 /* MJRefreshBackFooter.m in Sources */,
 				993294B31CDB226B00FC95FA /* LX_homePageViewController.m in Sources */,
 				DECFD3671CE0A373001033A4 /* TJ_ RecommendViewController.m in Sources */,

@@ -60,8 +60,8 @@
         return;
     }
     
-    CGFloat itemH = [self itemWidthForPicPathArray:imageUrlArray];
-    
+    CGFloat itemW = [self itemWidthForPicPathArray:imageUrlArray];
+    CGFloat itemH = itemW;
     NSInteger perRowItemCount = [self perRowItemCountForPicPathArray:imageUrlArray];
     NSInteger idx = 0;
     for (NSString *obj in imageUrlArray)
@@ -76,7 +76,26 @@
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         imageView.clipsToBounds = YES;
         if ([obj hasPrefix:@"http"]){
-            [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"]];
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:obj];
+            if (image) {
+                imageView.image = image;
+                if (imageUrlArray.count == 1){
+                    itemH = imageView.image.size.height / imageView.image.size.width * itemW;
+                    self.fixedHeight = nil;
+                }
+            }
+            else{
+                
+                [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    
+                    UIView *view = self.superview.superview;
+                    if ([view isKindOfClass:[UITableViewCell class]]) {
+                        UITableView *tableView = (UITableView *)view.superview.superview;
+                        
+                        [tableView reloadData];
+                    }
+                }];
+            }
         }
         else if ([obj isKindOfClass:[UIImage class]]){
             imageView.image = (UIImage *)obj;
@@ -84,11 +103,8 @@
         else{
             imageView.image = [UIImage imageNamed:obj];
         }
-            
-        if (imageUrlArray.count == 1)
-            itemH = imageView.image.size.height / imageView.image.size.width * itemH;
-//        imageView.image = [UIImage imageNamed:obj];
-        imageView.frame = CGRectMake(columnIndex * (itemH + margin), rowIndex * (itemH + margin), itemH, itemH);
+
+        imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
         idx++;
     };
     CGFloat imageCount = imageUrlArray.count;

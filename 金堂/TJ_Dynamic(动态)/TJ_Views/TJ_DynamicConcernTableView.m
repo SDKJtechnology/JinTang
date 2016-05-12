@@ -39,7 +39,11 @@
         [self getDynamicConcernDataWithID:@0];
     }
     if (view == self.mj_footer) {
-        DynamicConcernsModel *model = _dynamicConcernListData.firstObject;
+        DynamicConcernsModel *model = _dynamicConcernListData.lastObject;
+        if (!model) {
+            [self.myRefreshView endRefreshing];
+            return;
+        }
         [self getDynamicConcernDataWithID:model.ID];
     }
 }
@@ -69,11 +73,12 @@
 {
     UITableViewCell *cell = nil;
     NSString *identifier = [DynamicConcernNotImageCell identifierForModelAtRow:_dynamicConcernListData[indexPath.row]];
-    cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%ld",indexPath.row]];
     if (!cell){
-        cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[DynamicConcernNotImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%ld",indexPath.row]];
     }
-    
+    cell.sd_tableView = tableView;
+    cell.sd_indexPath = indexPath;
     
     return cell;
 }
@@ -105,7 +110,8 @@
     // cell自适应设置
     DynamicConcernsModel * model = _dynamicConcernListData[indexPath.row];
     // 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）
-    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:self.width];
+//    NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:self.width]);
+    return [self cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[DynamicConcernNotImageCell class] contentViewWidth:self.width];
 }
 
 @end

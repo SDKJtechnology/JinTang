@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJ_TableViewModel.h"
 
-@interface TJ_DynamicActivityTableView : UITableView
+@interface TJ_DynamicActivityTableView : TJ_TableViewModel
 
-@property (nonatomic, strong) NSArray *dynamciActivityData;
+@property (nonatomic, strong) NSMutableArray *dynamciActivityData;
 
 @end

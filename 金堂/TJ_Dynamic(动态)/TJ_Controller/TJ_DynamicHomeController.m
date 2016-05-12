@@ -13,7 +13,6 @@
 #import "TJ_DynamicHotspotTableView.h"
 #import "TJ_DynamicActivityTableView.h"
 #import "TJ_DynamicDetailController.h"
-//#import "MJRefresh.h"
 
 #define VIEW_WIDTH self.view.frame.size.width
 #define VIEW_HEIGHT self.view.frame.size.height
@@ -99,6 +98,7 @@ const CGFloat tabBarHeight = 49;//tabBar高度
     
     frame.origin.x = Screen_Width;
     self.dynamicHotspotTableView = [[TJ_DynamicHotspotTableView alloc] initWithFrame:frame];
+    self.dynamicHotspotTableView.myVC = self;
     [self.contentView addSubview:self.dynamicHotspotTableView];
     
     frame.origin.x = Screen_Width * 2;
