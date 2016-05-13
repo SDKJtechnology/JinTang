@@ -58,22 +58,22 @@
         [self.contentView addSubview:self.sharedPhotoView];
         
         //分享按钮
-        self.shareButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
+        self.shareButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusCenter];
         [self.contentView addSubview:self.shareButton];
         [self.shareButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
         // 浏览人数
-        self.browseCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
+        self.browseCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusCenter];
         [self.browseCountButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.browseCountButton];
         
         //点赞人数
-        self.supportCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
+        self.supportCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusCenter];
         [self.supportCountButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.supportCountButton];
         
         //回复人数
-        self.replyCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusNormal];
+        self.replyCountButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusCenter];
         [self.replyCountButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.replyCountButton];
         

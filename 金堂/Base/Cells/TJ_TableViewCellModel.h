@@ -41,7 +41,6 @@
  *  发布人昵称
  */
 @property (nonatomic) TJ_BACustomButton *nameButton;
-
 /**
  *  浏览人数
  */

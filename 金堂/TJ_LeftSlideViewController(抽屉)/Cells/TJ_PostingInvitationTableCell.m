@@ -6,10 +6,10 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "TJ_InvitationTableViewCell.h"
+#import "TJ_PostingInvitationTableCell.h"
 #import "SDAutoLayout.h"
 
-@implementation TJ_InvitationTableViewCell
+@implementation TJ_PostingInvitationTableCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -9,7 +9,8 @@
 #import "TJ_InvitationViewController.h"
 #import "SDAutoLayout.h"
 #import "TJ_SelectionList.h"
-#import "DynamicConcernNotImageCell.h"
+#import "TJ_ReturnInvitaionTableCell.h"
+#import "DataModel+LefiSlide.h"
 #import "MJRefresh.h"
 
 @interface TJ_InvitationViewController()<UITableViewDelegate,UITableViewDataSource,TJ_SelectionListDelegate>
@@ -55,20 +56,85 @@ NSInteger returnInvitation = 101;
     
     for (NSInteger i = 0; i < selectionListTitles.count; i++) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.width * i, 0, self.view.width, self.scrollView.height) style:UITableViewStylePlain];
-        _scrollView.tag = postingInvitation + i;
+        _tableView.tag = postingInvitation + i;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.scrollView addSubview:self.tableView];
-        _tableView.bounces = NO;
+//        _tableView.bounces = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            NSLog(@"%ld",_tableView.tag);
-        }];
+        
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
+        header.tag = postingInvitation + i;
+        _tableView.mj_header = header;
         [_tableView.mj_header beginRefreshing];
+        
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
+        _tableView.mj_footer = footer;
+        footer.tag = postingInvitation + i;
+        
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_tableView registerClass:[TJ_ReturnInvitaionTableCell class] forCellReuseIdentifier:NSStringFromClass([TJ_ReturnInvitaionTableCell class])];
     }
-    
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-    [_tableView registerClass:[DynamicConcernNotImageCell class] forCellReuseIdentifier:NSStringFromClass([DynamicConcernNotImageCell class])];
+}
+
+- (void)loadNewData:(MJRefreshComponent *)refreshVeiw
+{
+    NSLog(@"-------%ld",refreshVeiw.tag);
+    if ([refreshVeiw isKindOfClass:[MJRefreshFooter class]]) {
+        DynamicConcernsModel *model = returnInvitationData.lastObject;
+        [[DataModel sharedObejct] getLefiSlideDataWithID:model.ID success:^(id data) {
+            if ([data isKindOfClass:[NSArray class]]){
+                [returnInvitationData addObjectsFromArray:data];
+            }
+            if (!data) {
+                MJRefreshFooter *footer = (MJRefreshFooter *)refreshVeiw;
+                [footer endRefreshingWithNoMoreData];
+            }
+            UITableView *tableView = [self.scrollView viewWithTag:refreshVeiw.tag];
+            [tableView reloadData];
+            [refreshVeiw endRefreshing];
+        } failure:^(id data) {
+            
+        }];
+        
+        if (refreshVeiw.tag == returnInvitation && returnInvitationData.count) {
+             DynamicConcernsModel *model = returnInvitationData.lastObject;
+        }
+    }
+    else{
+        [[DataModel sharedObejct] getLefiSlideDataWithID:@0 success:^(id data) {
+            if ([data isKindOfClass:[NSArray class]]){
+                returnInvitationData = data;
+            }
+            UITableView *tableView = [self.scrollView viewWithTag:refreshVeiw.tag];
+            [tableView reloadData];
+            [refreshVeiw endRefreshing];
+        } failure:^(id data) {
+            
+        }];
+    }
+}
+
+- (void)getReturnInvitationDataWithID:(NSNumber *)ID RefreshView:(MJRefreshComponent *)refreshView
+{
+    [[DataModel sharedObejct] getLefiSlideDataWithID:ID success:^(id data) {
+        if ([data isKindOfClass:[NSArray class]] && [ID integerValue]){
+            [returnInvitationData addObjectsFromArray:data];
+        }
+        else{
+            returnInvitationData = data;
+        }
+        if (!data && [refreshView isKindOfClass:[MJRefreshFooter class]]) {
+            MJRefreshFooter *footer = (MJRefreshFooter *)refreshView;
+            [footer endRefreshingWithNoMoreData];
+        }
+        UITableView *tableView = [self.scrollView viewWithTag:refreshView.tag];
+        [tableView reloadData];
+        [refreshView endRefreshing];
+    } failure:^(id data) {
+        NSLog(@"获取回帖列表数据失败。。。");
+    }];
+
 }
 
 #pragma mark TJ_SelectionListDelegate
@@ -102,32 +168,40 @@ NSInteger returnInvitation = 101;
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = [scrollView viewWithTag:scrollView.tag];
+        [tableView.mj_header endRefreshing];
+    }
+}
+
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == returnInvitation) {
         DynamicConcernsModel *model = returnInvitationData[indexPath.row];
-        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:DynamicConcernNotImageCell.class contentViewWidth: self.view.width];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:TJ_ReturnInvitaionTableCell.class contentViewWidth: self.view.width];
     }
     return 40;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 30;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 30;
+//}
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:10];
-    label.textColor = [UIColor colorWithWhite:0.661 alpha:1.000];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"没有更多内容了";
-    
-    return label;
-}
+//- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UILabel *label = [UILabel new];
+//    label.font = [UIFont systemFontOfSize:10];
+//    label.textColor = [UIColor colorWithWhite:0.661 alpha:1.000];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.text = @"没有更多内容了";
+//    
+//    return label;
+//}
 
 #pragma mark UITableViewDataSource
 
@@ -142,12 +216,12 @@ NSInteger returnInvitation = 101;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == returnInvitation) {
-        DynamicConcernNotImageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DynamicConcernNotImageCell class])];
+        TJ_ReturnInvitaionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_ReturnInvitaionTableCell class]) forIndexPath:indexPath];
         cell.dynamicConcernsModel = returnInvitationData[indexPath.row];
         return cell;
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:@"Bangladeshi"];
     cell.textLabel.text = @"路上看到减肥了";
 

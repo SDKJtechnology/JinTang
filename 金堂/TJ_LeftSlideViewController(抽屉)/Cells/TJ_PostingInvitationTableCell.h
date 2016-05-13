@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJ_InvitationTableViewCell : UITableViewCell
+@interface TJ_PostingInvitationTableCell : UITableViewCell
 
 @end

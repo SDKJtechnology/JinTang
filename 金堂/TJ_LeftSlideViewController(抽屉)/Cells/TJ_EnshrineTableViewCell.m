@@ -73,7 +73,7 @@
     
     self.supportCountButton.sd_layout
     .topSpaceToView(self.titleLabel, margin)
-    .rightSpaceToView(self.replyCountButton, margin / 2)
+    .rightSpaceToView(self.replyCountButton, margin)
     .heightRatioToView(self.replyCountButton, 1)
     .widthIs(10);
     self.supportCountButton.enabled = NO;

@@ -65,7 +65,7 @@
 @end
 
 /*! 定义宏：按钮中文本和图片的间隔 */
-#define BA_padding 7
+#define BA_padding 5
 #define BA_btnRadio 0.6
 /*! 获得按钮的大小 */
 #define BA_btnWidth       self.bounds.size.width

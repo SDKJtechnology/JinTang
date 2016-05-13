@@ -27,6 +27,10 @@
  */
 @property (nonatomic, strong) NSString *readNumber;
 /**
+ *  回复人数
+ */
+@property (nonatomic, strong) NSString *replyNumber;
+/**
  *  发布时间
  */
 @property (nonatomic, strong) NSString *createDate;
