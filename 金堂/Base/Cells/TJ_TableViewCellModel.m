@@ -154,9 +154,20 @@
 //    [self setupAutoHeightWithBottomView:self.browseCountButton bottomMargin:margin / 2];
 }
 
+- (NSMutableAttributedString *)getAttributedStringWithText:(NSString *)text HeadIndent:(CGFloat)pointSize
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    [paragraphStyle setFirstLineHeadIndent:pointSize];//首行缩进两个字体
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    
+    return attributedString;
+}
+
 + (NSString *)identifierForModelAtRow:(id)Model
 {
-    return NSStringFromClass([TJ_TableViewCellModel class]);
+    return NSStringFromClass([self class]);
 }
 
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel

@@ -9,10 +9,15 @@
 #import "TJ_EnshrineViewController.h"
 #import "SDAutoLayout.h"
 #import "TJ_EnshrineTableViewCell.h"
+#import "DataModel+LefiSlide.h"
+#import "TJ_TableViewModel.h"
 
 @interface TJ_EnshrineViewController()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *enshrineInvitationData;
+}
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) TJ_TableViewModel *tableView;
 
 @end
 
@@ -21,32 +26,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStyleGrouped];
+    
+    enshrineInvitationData = [NSMutableArray array];
+    
+    self.tableView = [[TJ_TableViewModel alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    self.tableView.bounces = NO;
+//    self.tableView.bounces = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    __weak typeof(self) weakSelf = self;
+    self.tableView.refreshFinishBlock = ^(MJRefreshComponent *refreshView)
+    {
+        [weakSelf getEnshrineInvitationDataWithView:refreshView];
+    };
+    
+}
+//获取收藏的帖子列表数据
+- (void)getEnshrineInvitationDataWithView:(MJRefreshComponent *)refreshView
+{
+    NSNumber *ID = @0;
+    if ([refreshView isKindOfClass:[MJRefreshFooter class]]) {
+        DynamicConcernsModel *model = enshrineInvitationData.lastObject;
+        ID = model.ID;
+    }
+    __block typeof (self) blockSelf = self;
+    [[DataModel sharedObejct] getEnshrineInvitationDataWithID:ID success:^(id data) {
+        if ([ID integerValue] && [data isKindOfClass:[NSArray class]]) {
+            [enshrineInvitationData addObjectsFromArray:data];
+        }
+        else if ([data isKindOfClass:[NSArray class]]){
+            enshrineInvitationData = data;
+        }
+        [blockSelf.tableView reloadData];
+        [refreshView endRefreshing];
+    } failure:^(id data) {
+        NSLog(@"getEnshrineInvitationDataWithView");
+        [refreshView endRefreshing];
+    }];
 }
 
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:self.view.width tableView:tableView];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.01;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if (self.enshrineArray.count == section) {
-        return 30;
-    }
-    return 5;
+    DynamicConcernsModel *model = enshrineInvitationData[indexPath.row];
+    
+    return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[TJ_EnshrineTableViewCell class] contentViewWidth:self.view.width];
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -65,20 +92,21 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ((TJ_EnshrineTableViewCell *)cell).dynamicConcernsModel = enshrineInvitationData[indexPath.row];
 }
 
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return enshrineInvitationData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TJ_EnshrineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[TJ_EnshrineTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[TJ_EnshrineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
 //    cell.imageView.image = [UIImage imageNamed:@"Bangladeshi"];

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import "TJ_TableViewCellModel.h"
+#import "TJ_ReturnInvitaionTableCell.h"
 
-@interface TJ_EnshrineTableViewCell : TJ_TableViewCellModel
+@interface TJ_EnshrineTableViewCell : TJ_ReturnInvitaionTableCell
 
 @end

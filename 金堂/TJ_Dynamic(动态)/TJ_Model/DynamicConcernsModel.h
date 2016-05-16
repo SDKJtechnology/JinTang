@@ -38,6 +38,10 @@
  *  多图片数组<Image>
  */
 @property (nonatomic, strong) NSArray *imagesUrl;
+/**
+ *  单张图片地址
+ */
+@property (nonatomic, strong) NSString *image_url;
 
 @end
 

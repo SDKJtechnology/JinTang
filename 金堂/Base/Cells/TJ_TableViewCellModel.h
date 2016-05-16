@@ -65,6 +65,15 @@
  *  照片分享视图
  */
 @property (nonatomic) TJ__SharedPhotoView *sharedPhotoView;
+/**
+ *  用给定的text和缩紧大小构建AttributedString
+ *
+ *  @param text      文本字符串
+ *  @param pointSize 头部缩减大小
+ *
+ *  @return 返回构建后的字符串
+ */
+- (NSMutableAttributedString *)getAttributedStringWithText:(NSString *)text HeadIndent:(CGFloat)pointSize;
 
 + (NSString *)identifierForModelAtRow:(id)Model;
 

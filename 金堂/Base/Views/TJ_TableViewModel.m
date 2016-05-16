@@ -18,12 +18,16 @@
         MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             blockSelf.myRefreshView = blockSelf.mj_footer;
             [blockSelf loadDataWithView:blockSelf.mj_footer];
+            blockSelf.refreshFinishBlock(blockSelf.mj_footer);
         }];
         self.mj_footer = footer;
         
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             blockSelf.myRefreshView = blockSelf.mj_header;
             [blockSelf loadDataWithView:blockSelf.mj_header];
+            if (blockSelf.refreshFinishBlock) {
+                blockSelf.refreshFinishBlock(blockSelf.mj_header);
+            }
         }];
         [self.mj_header beginRefreshing];
     }

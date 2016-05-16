@@ -49,8 +49,7 @@
 
 - (void)setHotspotModel:(DynamicHotspotModel *)hotspotModel
 {
-    Image *image = hotspotModel.imagesUrl.firstObject;
-    self.cycleScrollView.imageGroup = @[image.imageUrl];
+    self.cycleScrollView.imageGroup = @[hotspotModel.image_url];
     self.cycleScrollView.titleArray = @[hotspotModel.title];
 }
 

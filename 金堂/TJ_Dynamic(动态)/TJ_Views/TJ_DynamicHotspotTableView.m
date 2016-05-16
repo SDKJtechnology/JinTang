@@ -145,7 +145,7 @@
 {
     TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
     DynamicHotspotModel *model = _dynamciHotspotData[section][0];
-    NSString *string = [model.createDate substringWithRange:NSMakeRange(3, model.createDate.length - 3)];
+    NSString *string = [model.createDate substringWithRange:NSMakeRange(5, model.createDate.length - 5)];
     view.dateLabel.text = string;
     return view;
 }

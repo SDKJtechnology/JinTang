@@ -57,6 +57,7 @@
         if (success)
         {
             NSDictionary *dic = [responseObject mj_JSONObject];
+//            NSLog(@"%@",dic);
             if (![dic[@"code"] intValue]) {
                 NSArray *array = [DynamicHotspotModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
                 NSInteger i = 0;
@@ -98,7 +99,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [responseObject mj_JSONObject];
         if (![dic[@"code"] integerValue]) {
-            NSLog(@"%@",dic);
+//            NSLog(@"%@",dic);
             NSArray *array = [DynamicActivityModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
             success(array);
         }

@@ -19,7 +19,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [responseObject mj_JSONObject];
         if (![dic[@"code"] integerValue]) {
-            NSLog(@"%@",dic);
+//            NSLog(@"%@",dic);
             
         }
         else

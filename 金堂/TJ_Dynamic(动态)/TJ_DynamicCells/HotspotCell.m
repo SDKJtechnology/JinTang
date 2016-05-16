@@ -51,8 +51,7 @@
 - (void)setHotspotModel:(DynamicHotspotModel *)hotspotModel
 {
     self.textLabel.text = hotspotModel.title;
-    Image *image = hotspotModel.imagesUrl.firstObject;
-    [self.image sd_setImageWithURL:[NSURL URLWithString:image.imageUrl] placeholderImage:[UIImage imageNamed:@"load"]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:hotspotModel.image_url] placeholderImage:[UIImage imageNamed:@"load"]];
 }
 
 @end

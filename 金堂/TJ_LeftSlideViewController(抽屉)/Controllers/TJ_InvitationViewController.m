@@ -10,6 +10,7 @@
 #import "SDAutoLayout.h"
 #import "TJ_SelectionList.h"
 #import "TJ_ReturnInvitaionTableCell.h"
+#import "TJ_PostingInvitationTableCell.h"
 #import "DataModel+LefiSlide.h"
 #import "MJRefresh.h"
 
@@ -18,6 +19,12 @@
     NSArray *selectionListTitles;
     
     NSMutableArray *returnInvitationData;
+    
+    NSMutableArray *postingInvitationData;
+    
+    MJRefreshBackNormalFooter *footer;
+    
+    MJRefreshNormalHeader *header;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -39,6 +46,7 @@ NSInteger returnInvitation = 101;
     
     selectionListTitles = @[@"发帖",@"回帖"];
     returnInvitationData = [NSMutableArray array];
+    postingInvitationData = [NSMutableArray array];
     
     _selectionList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 40)];
     _selectionList.delegate = self;
@@ -63,78 +71,97 @@ NSInteger returnInvitation = 101;
 //        _tableView.bounces = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
+        header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
         header.tag = postingInvitation + i;
         _tableView.mj_header = header;
         [_tableView.mj_header beginRefreshing];
         
-        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
+        footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData:)];
         _tableView.mj_footer = footer;
         footer.tag = postingInvitation + i;
         
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
         [_tableView registerClass:[TJ_ReturnInvitaionTableCell class] forCellReuseIdentifier:NSStringFromClass([TJ_ReturnInvitaionTableCell class])];
+        [_tableView registerClass:[TJ_PostingInvitationTableCell class] forCellReuseIdentifier:NSStringFromClass([TJ_PostingInvitationTableCell class])];
     }
 }
-
+//开始刷新调用
 - (void)loadNewData:(MJRefreshComponent *)refreshVeiw
 {
     NSLog(@"-------%ld",refreshVeiw.tag);
-    if ([refreshVeiw isKindOfClass:[MJRefreshFooter class]]) {
-        DynamicConcernsModel *model = returnInvitationData.lastObject;
-        [[DataModel sharedObejct] getLefiSlideDataWithID:model.ID success:^(id data) {
-            if ([data isKindOfClass:[NSArray class]]){
-                [returnInvitationData addObjectsFromArray:data];
-            }
-            if (!data) {
-                MJRefreshFooter *footer = (MJRefreshFooter *)refreshVeiw;
-                [footer endRefreshingWithNoMoreData];
-            }
-            UITableView *tableView = [self.scrollView viewWithTag:refreshVeiw.tag];
-            [tableView reloadData];
-            [refreshVeiw endRefreshing];
-        } failure:^(id data) {
-            
-        }];
-        
-        if (refreshVeiw.tag == returnInvitation && returnInvitationData.count) {
-             DynamicConcernsModel *model = returnInvitationData.lastObject;
+    if (refreshVeiw.tag == returnInvitation) {
+        if ([refreshVeiw isKindOfClass:[MJRefreshFooter class]] && returnInvitationData.count) {
+            DynamicConcernsModel *model = returnInvitationData.lastObject;
+            [self getReturnInvitationDataWithID:model.ID RefreshView:refreshVeiw];
+        }
+        else{
+            [self getReturnInvitationDataWithID:@0 RefreshView:refreshVeiw];
         }
     }
-    else{
-        [[DataModel sharedObejct] getLefiSlideDataWithID:@0 success:^(id data) {
-            if ([data isKindOfClass:[NSArray class]]){
-                returnInvitationData = data;
-            }
-            UITableView *tableView = [self.scrollView viewWithTag:refreshVeiw.tag];
-            [tableView reloadData];
-            [refreshVeiw endRefreshing];
-        } failure:^(id data) {
-            
-        }];
+    
+    if (refreshVeiw.tag == postingInvitation) {
+        if ([refreshVeiw isKindOfClass:[MJRefreshFooter class]] && returnInvitationData.count) {
+            DynamicConcernsModel *model = returnInvitationData.lastObject;
+            [self getPostingInvitationDataWithID:model.ID RefreshView:refreshVeiw];
+        }
+        else{
+            [self getPostingInvitationDataWithID:@0 RefreshView:refreshVeiw];
+        }
     }
+    
+}
+//获取发帖数据
+- (void)getPostingInvitationDataWithID:(NSNumber *)ID RefreshView:(MJRefreshComponent *)refreshView
+{
+    [[DataModel sharedObejct] getPostingInvitationDataWithID:ID success:^(id data) {
+        
+        if (!data && [refreshView isKindOfClass:[MJRefreshFooter class]]) {
+            [footer endRefreshingWithNoMoreData];
+        }
+        
+        if ([data isKindOfClass:[NSArray class]]) {
+            if ([ID integerValue]) {
+                [postingInvitationData addObjectsFromArray:data];
+            }
+            else{
+                postingInvitationData = data;
+            }
+        }
+        
+        [self reloadDataWithView:refreshView];
+    } failure:^(id data) {
+        [refreshView endRefreshing];
+        NSLog(@"%@",data);
+    }];
 }
 
+//获取回帖数据
 - (void)getReturnInvitationDataWithID:(NSNumber *)ID RefreshView:(MJRefreshComponent *)refreshView
 {
-    [[DataModel sharedObejct] getLefiSlideDataWithID:ID success:^(id data) {
+    [[DataModel sharedObejct] getReturnInvitationDataWithID:ID success:^(id data) {
         if ([data isKindOfClass:[NSArray class]] && [ID integerValue]){
             [returnInvitationData addObjectsFromArray:data];
         }
-        else{
+        else if ([data isKindOfClass:[NSArray class]]){
+            [footer resetNoMoreData];
             returnInvitationData = data;
         }
         if (!data && [refreshView isKindOfClass:[MJRefreshFooter class]]) {
-            MJRefreshFooter *footer = (MJRefreshFooter *)refreshView;
             [footer endRefreshingWithNoMoreData];
         }
-        UITableView *tableView = [self.scrollView viewWithTag:refreshView.tag];
-        [tableView reloadData];
-        [refreshView endRefreshing];
+        [self reloadDataWithView:refreshView];
     } failure:^(id data) {
         NSLog(@"获取回帖列表数据失败。。。");
+        [refreshView endRefreshing];
     }];
 
+}
+//刷新视图
+- (void)reloadDataWithView:(MJRefreshComponent *)refreshView
+{
+    UITableView *tableView = [self.scrollView viewWithTag:refreshView.tag];
+    [tableView reloadData];
+    [refreshView endRefreshing];
 }
 
 #pragma mark TJ_SelectionListDelegate
@@ -182,9 +209,13 @@ NSInteger returnInvitation = 101;
 {
     if (tableView.tag == returnInvitation) {
         DynamicConcernsModel *model = returnInvitationData[indexPath.row];
-        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:TJ_ReturnInvitaionTableCell.class contentViewWidth: self.view.width];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[TJ_ReturnInvitaionTableCell class] contentViewWidth: self.view.width];
     }
-    return 40;
+    if (tableView.tag == postingInvitation) {
+        DynamicConcernsModel *model = postingInvitationData[indexPath.row];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"dynamicConcernsModel" cellClass:[TJ_PostingInvitationTableCell class] contentViewWidth: self.view.width];
+    }
+    return 0;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -210,7 +241,10 @@ NSInteger returnInvitation = 101;
     if (tableView.tag == returnInvitation) {
         return returnInvitationData.count;
     }
-    return 10;
+    if (tableView.tag == postingInvitation) {
+        return postingInvitationData.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,6 +252,11 @@ NSInteger returnInvitation = 101;
     if (tableView.tag == returnInvitation) {
         TJ_ReturnInvitaionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_ReturnInvitaionTableCell class]) forIndexPath:indexPath];
         cell.dynamicConcernsModel = returnInvitationData[indexPath.row];
+        return cell;
+    }
+    if (tableView.tag == postingInvitation) {
+        TJ_PostingInvitationTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TJ_PostingInvitationTableCell class]) forIndexPath:indexPath];
+        cell.dynamicConcernsModel = postingInvitationData[indexPath.row];
         return cell;
     }
     

@@ -10,9 +10,28 @@
 
 @interface DataModel (LefiSlide)
 /**
- *  根据ID获取动态关注数据
+ *  根据ID获取我的回帖列表数据
  *
+ *  @param success 访问成功后回调
+ *  @param failure 访问失败回调
  *  @param ID 帖子ID
  */
-- (void)getLefiSlideDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
+- (void)getReturnInvitationDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
+/**
+ *  根据ID获取我的发帖列表数据
+ *
+ *  @param ID      帖子ID
+ *  @param success 访问成功后回调
+ *  @param failure 访问失败回调
+ */
+- (void)getPostingInvitationDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
+/**
+ *  根据ID获取我收藏帖子列表数据
+ *
+ *  @param ID      帖子ID
+ *  @param success 访问成功后回调
+ *  @param failure 访问失败回调
+ */
+- (void)getEnshrineInvitationDataWithID:(NSNumber *)ID success:(DataModelBlock)success failure:(DataModelBlock)failure;
+
 @end

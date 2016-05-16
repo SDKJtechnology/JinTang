@@ -19,11 +19,11 @@
         .rightSpaceToView(self.contentView, margin)
         .autoHeightRatio(0);
         
-        self.nameButton.sd_layout
+        self.timeLabel.sd_layout
         .topSpaceToView(self.titleLabel, margin)
         .leftSpaceToView(self.contentView, margin)
-        .heightIs(30)
-        .widthIs(100);
+        .autoHeightRatio(0);
+        [self.timeLabel setSingleLineAutoResizeWithMaxWidth:self.contentView.width * 0.5f];
         
         self.browseCountButton.sd_layout
         .rightSpaceToView(self.contentView, margin)
@@ -36,7 +36,7 @@
         UIView *lineView = [UIView new];
         [self.contentView addSubview:lineView];
         lineView.sd_layout
-        .topSpaceToView(self.nameButton, margin)
+        .topSpaceToView(self.timeLabel, margin)
         .leftSpaceToView(self.contentView, margin * 0.5f)
         .rightSpaceToView(self.contentView, margin * 0.5f)
         .heightIs(0.5);
@@ -52,8 +52,7 @@
 {
     self.titleLabel.text = dynamicConcernsModel.title;
     
-    [self.nameButton setTitle:dynamicConcernsModel.name forState:UIControlStateNormal];
-    [self.nameButton setButtonTruthWidth];
+    self.timeLabel.text = dynamicConcernsModel.createDate;
     
     [self.browseCountButton setTitle:dynamicConcernsModel.readNumber forState:UIControlStateNormal];
     [self.browseCountButton setImage:[UIImage imageNamed:@"kan"] forState:UIControlStateNormal];

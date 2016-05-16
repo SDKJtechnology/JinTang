@@ -6,8 +6,8 @@
 //  Copyright © 2016年 luxia. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJ_ReturnInvitaionTableCell.h"
 
-@interface TJ_PostingInvitationTableCell : UITableViewCell
+@interface TJ_PostingInvitationTableCell : TJ_ReturnInvitaionTableCell
 
 @end
