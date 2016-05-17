@@ -28,7 +28,7 @@
         //默认字和颜色
         self.placeholder = @"";
         self.placeholderColor = [UIColor lightGrayColor];
-        
+        self.font = [UIFont systemFontOfSize:17];
     }
     return self;
 }
@@ -48,7 +48,7 @@
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.lineBreakMode = NSLineBreakByWordWrapping;
         
-        [self.placeholder drawInRect:placeholderRect withAttributes:@{NSParagraphStyleAttributeName:style}];
+        [self.placeholder drawInRect:placeholderRect withAttributes:@{NSParagraphStyleAttributeName:style,NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.placeholderColor}];
         
     }
 }

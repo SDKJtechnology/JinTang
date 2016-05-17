@@ -64,6 +64,7 @@
 		D27B858ABBE05EBE31EF8876 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FCEF84EADC805EF927E3C6 /* libPods.a */; };
 		DE23FFA51CE5B18B009F5A02 /* TJ_ReturnInvitaionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE23FFA41CE5B18B009F5A02 /* TJ_ReturnInvitaionTableCell.m */; };
 		DEA469E71CE48F1A006CEB71 /* DataModel+LefiSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA469E61CE48F1A006CEB71 /* DataModel+LefiSlide.m */; };
+		DEB350AB1CEAE56F0065ED48 /* TJ_CommunityReleaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB350AA1CEAE56F0065ED48 /* TJ_CommunityReleaseController.m */; };
 		DEB69A421CE1B008006BD506 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */; };
 		DECFD3601CE0A373001033A4 /* TJ_CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */; };
 		DECFD3611CE0A373001033A4 /* TJ_CommetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DECFD1521CE0A371001033A4 /* TJ_CommetView.m */; };
@@ -602,6 +603,8 @@
 		DE23FFA41CE5B18B009F5A02 /* TJ_ReturnInvitaionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_ReturnInvitaionTableCell.m; sourceTree = "<group>"; };
 		DEA469E51CE48F1A006CEB71 /* DataModel+LefiSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataModel+LefiSlide.h"; sourceTree = "<group>"; };
 		DEA469E61CE48F1A006CEB71 /* DataModel+LefiSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataModel+LefiSlide.m"; sourceTree = "<group>"; };
+		DEB350A91CEAE56F0065ED48 /* TJ_CommunityReleaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommunityReleaseController.h; sourceTree = "<group>"; };
+		DEB350AA1CEAE56F0065ED48 /* TJ_CommunityReleaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CommunityReleaseController.m; sourceTree = "<group>"; };
 		DEB69A411CE1B008006BD506 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
 		DECFD14F1CE0A371001033A4 /* TJ_CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CommentTableViewCell.h; sourceTree = "<group>"; };
 		DECFD1501CE0A371001033A4 /* TJ_CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CommentTableViewCell.m; sourceTree = "<group>"; };
@@ -2372,6 +2375,8 @@
 			children = (
 				DEDE87B11CE45C6500E6016A /* TJ_CommunityViewController.h */,
 				DEDE87B21CE45C6500E6016A /* TJ_CommunityViewController.m */,
+				DEB350A91CEAE56F0065ED48 /* TJ_CommunityReleaseController.h */,
+				DEB350AA1CEAE56F0065ED48 /* TJ_CommunityReleaseController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3070,6 +3075,7 @@
 				DECFD36C1CE0A373001033A4 /* TJ_TarentoTableView.m in Sources */,
 				DECFD3901CE0A373001033A4 /* TJ_FansViewController.m in Sources */,
 				DECFD3981CE0A373001033A4 /* NSSet Chinese.m in Sources */,
+				DEB350AB1CEAE56F0065ED48 /* TJ_CommunityReleaseController.m in Sources */,
 				DECFD4CB1CE0A373001033A4 /* MLLabelLayoutManager.m in Sources */,
 				DECFD5341CE0A409001033A4 /* PhotoPickerCell.m in Sources */,
 				DEDF6B131CC5115C00FDECA2 /* UIView+TL.m in Sources */,

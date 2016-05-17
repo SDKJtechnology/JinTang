@@ -9,6 +9,7 @@
 #import "TJ_CommunityViewController.h"
 #import "TJ_CommunityclassificationTableView.h"
 #import "TJ_ClassificationListTableView.h"
+#import "TJ_CommunityReleaseController.h"
 
 @interface TJ_CommunityViewController ()
 
@@ -25,7 +26,7 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.title = @"全部分类";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"pencil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"pencil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(didClickRightButton:)];
     
     CGFloat y = statusBarFrame.size.height + navigationBarFrame.size.height;
     CGFloat height = self.view.height - self.tabBarController.tabBar.height - y;
@@ -47,6 +48,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Actions
+
+- (void)didClickRightButton:(UIButton *)sender
+{
+    TJ_CommunityReleaseController *VC = [[TJ_CommunityReleaseController alloc] init];
+    
+    [self presentViewController:VC animated:YES completion:nil];
 }
 
 /*

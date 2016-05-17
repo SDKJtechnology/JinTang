@@ -158,6 +158,7 @@
     _textView.layer.borderWidth = _sendButton.layer.borderWidth;
     _textView.layer.cornerRadius = 5;
     _textView.placeholder = @"回复楼主";
+    _textView.font = _rightLabel.font;
     _textView.delegate = self;
     
     _photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
