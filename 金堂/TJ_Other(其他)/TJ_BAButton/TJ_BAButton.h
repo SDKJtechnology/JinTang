@@ -5,7 +5,10 @@
 //  Created by 博爱 on 16/3/31.
 //  Copyright © 2016年 博爱之家. All rights reserved.
 //
-
+/**
+ 本库因项目需要在《博爱》大神的基础上加以修改
+ 博爱：https://github.com/boai/BAButton
+ */
 #import <UIKit/UIKit.h>
 
 /*! 自定义按钮1: */
