@@ -191,7 +191,6 @@
 		DECFD3DF1CE0A373001033A4 /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21A1CE0A371001033A4 /* dongtai.png */; };
 		DECFD3E01CE0A373001033A4 /* downlaod_picture_fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21B1CE0A371001033A4 /* downlaod_picture_fail@2x.png */; };
 		DECFD3E11CE0A373001033A4 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21C1CE0A371001033A4 /* download.png */; };
-		DECFD3E21CE0A373001033A4 /* emoji_btn_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21D1CE0A371001033A4 /* emoji_btn_delete@2x.png */; };
 		DECFD3E31CE0A373001033A4 /* emoji_btn_send_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21E1CE0A371001033A4 /* emoji_btn_send_bg@2x.png */; };
 		DECFD3E41CE0A373001033A4 /* emoji_pagecontrol_normol@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD21F1CE0A371001033A4 /* emoji_pagecontrol_normol@2x.png */; };
 		DECFD3E51CE0A373001033A4 /* emoji_pagecontrol_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DECFD2201CE0A371001033A4 /* emoji_pagecontrol_selected@2x.png */; };
@@ -783,7 +782,6 @@
 		DECFD21A1CE0A371001033A4 /* dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dongtai.png; sourceTree = "<group>"; };
 		DECFD21B1CE0A371001033A4 /* downlaod_picture_fail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downlaod_picture_fail@2x.png"; sourceTree = "<group>"; };
 		DECFD21C1CE0A371001033A4 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
-		DECFD21D1CE0A371001033A4 /* emoji_btn_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_btn_delete@2x.png"; sourceTree = "<group>"; };
 		DECFD21E1CE0A371001033A4 /* emoji_btn_send_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_btn_send_bg@2x.png"; sourceTree = "<group>"; };
 		DECFD21F1CE0A371001033A4 /* emoji_pagecontrol_normol@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_pagecontrol_normol@2x.png"; sourceTree = "<group>"; };
 		DECFD2201CE0A371001033A4 /* emoji_pagecontrol_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_pagecontrol_selected@2x.png"; sourceTree = "<group>"; };
@@ -1807,7 +1805,6 @@
 				DECFD21A1CE0A371001033A4 /* dongtai.png */,
 				DECFD21B1CE0A371001033A4 /* downlaod_picture_fail@2x.png */,
 				DECFD21C1CE0A371001033A4 /* download.png */,
-				DECFD21D1CE0A371001033A4 /* emoji_btn_delete@2x.png */,
 				DECFD21E1CE0A371001033A4 /* emoji_btn_send_bg@2x.png */,
 				DECFD21F1CE0A371001033A4 /* emoji_pagecontrol_normol@2x.png */,
 				DECFD2201CE0A371001033A4 /* emoji_pagecontrol_selected@2x.png */,
@@ -2863,7 +2860,6 @@
 				DECFD48D1CE0A373001033A4 /* voice_unread@2x.png in Resources */,
 				DECFD3A51CE0A373001033A4 /* accept_btn_normal@3x.png in Resources */,
 				DECFD3D71CE0A373001033A4 /* default_portrait_msg@3x.png in Resources */,
-				DECFD3E21CE0A373001033A4 /* emoji_btn_delete@2x.png in Resources */,
 				DECFD3DF1CE0A373001033A4 /* dongtai.png in Resources */,
 				997143A41CCF14250000B44A /* shengji.png in Resources */,
 				DECFD4171CE0A373001033A4 /* kongbai.png in Resources */,

@@ -9,18 +9,37 @@
 #import "TJ_CommunityReleaseController.h"
 #import "SDAutoLayout.h"
 #import "BCTextView.h"
+#import "TJ_EmojiView.h"
+#import "TJ_ImagePickerView.h"
 
-@interface TJ_CommunityReleaseController ()<UITextViewDelegate>
+@interface TJ_CommunityReleaseController ()<UITextViewDelegate,TJ_EmojiViewDelegate>
 {
-    CGRect keyboardFrame;
-    BOOL isKeyboardShowd;
+    CGRect keyboardFrame;//键盘的frame
+    
+    BOOL isKeyboardShowd;//键盘是否已经显示
+    
+    UITextView *currentTextView;//当前textView，默认为titleTextView
 }
-
-@property (nonatomic, strong) UIButton *rightButton;
-
+/**
+ *  发布按钮
+ */
+@property (nonatomic, strong) UIButton *releaseButton;
+/**
+ *  标题编辑视图
+ */
 @property (nonatomic, strong) BCTextView *titleTextView;
-
+/**
+ *  内容编辑视图
+ */
 @property (nonatomic, strong) BCTextView *contentTextView;
+/**
+ *  表情选项按钮
+ */
+@property (nonatomic, strong) UIButton *emojiButton;
+/**
+ *  照片选项按钮
+ */
+@property (nonatomic, strong) UIButton *photoButton;
 
 @end
 
@@ -29,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor colorWithWhite:0.738 alpha:1.000];
     
     UIView *starView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
@@ -44,18 +63,19 @@
     [self.view addSubview:leftButton];
     [leftButton addTarget:self action:@selector(didClickLeftButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_rightButton setTitle:@"发布" forState:UIControlStateNormal];
-    _rightButton.titleLabel.font = [UIFont systemFontOfSize:10];
-    [_rightButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    _rightButton.frame = CGRectMake(self.view.width - 44, 27, 40, 30);
-    [self.view addSubview:_rightButton];
-    _rightButton.layer.masksToBounds = YES;
-    _rightButton.layer.borderColor = [[UIColor grayColor] CGColor];
-    _rightButton.layer.borderWidth = 0.5f;
-    _rightButton.layer.cornerRadius = 3;
+    _releaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _releaseButton.adjustsImageWhenHighlighted = NO;
+    [_releaseButton setTitle:@"发布" forState:UIControlStateNormal];
+    _releaseButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    [_releaseButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    _releaseButton.frame = CGRectMake(self.view.width - 44, 27, 40, 30);
+    [self.view addSubview:_releaseButton];
+    _releaseButton.layer.masksToBounds = YES;
+    _releaseButton.layer.borderColor = [[UIColor grayColor] CGColor];
+    _releaseButton.layer.borderWidth = 0.5f;
+    _releaseButton.layer.cornerRadius = 3;
     
-    [_rightButton addTarget:self action:@selector(didClickRightButton:) forControlEvents:UIControlEventTouchUpInside];
+    [_releaseButton addTarget:self action:@selector(didClickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     
     _titleTextView = [BCTextView new];
     [self.view addSubview:_titleTextView];
@@ -82,22 +102,58 @@
     _contentTextView.textColor = [UIColor grayColor];
     _contentTextView.delegate = self;
     
+    _photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:_photoButton];
+    _photoButton.adjustsImageWhenHighlighted = NO;
+    _photoButton.sd_layout
+    .leftSpaceToView(self.view, 10)
+    .bottomSpaceToView(self.view, 15)
+    .widthIs(30)
+    .heightIs(30);
+//    _photoButton.backgroundColor = [UIColor redColor];
+    [_photoButton addTarget:self action:@selector(didClickPhotoButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [_photoButton setImage:[[UIImage imageNamed:@"actionbar_picture_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    
+    _emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:_emojiButton];
+    _emojiButton.adjustsImageWhenHighlighted = NO;
+    _emojiButton.sd_layout
+    .leftSpaceToView(_photoButton, 10)
+    .bottomSpaceToView(self.view, 15)
+    .heightRatioToView(_photoButton, 1)
+    .widthRatioToView(_photoButton, 1);
+    [_emojiButton addTarget:self action:@selector(didClickEmojiButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_emojiButton setImage:[[UIImage imageNamed:@"chatting_biaoqing_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [_emojiButton setImage:[[UIImage imageNamed:@"chat_setmode_key_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+//    _emojiButton.backgroundColor = [UIColor blueColor];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoardNotification:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [_titleTextView becomeFirstResponder];
 }
 
 #pragma mark UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    currentTextView = textView;
+    if (self.emojiButton.selected) {
+        self.emojiButton.selected = NO;
+    }
+    textView.inputView = nil;
+}
 
 - (void)textViewDidChange:(UITextView *)textView
 {
     if (![_contentTextView.text isEqualToString:@""] && ![_titleTextView.text isEqualToString:@""])
     {
-        _rightButton.backgroundColor = [UIColor blueColor];
-        [_rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _releaseButton.backgroundColor = [UIColor blueColor];
+        [_releaseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else{
-        [_rightButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        _rightButton.backgroundColor = self.view.backgroundColor;
+        [_releaseButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        _releaseButton.backgroundColor = self.view.backgroundColor;
     }
 }
 
@@ -115,14 +171,71 @@
         return YES;
     }
     if ([text isEqualToString:@"\n"]) {
-        [self didClickRightButton:_rightButton];
+        [self didClickRightButton:_releaseButton];
         return NO;
     }
     
     return YES;
 }
 
+#pragma mark TJ_EmojiViewDelegate
+- (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath isDelete:(BOOL)deleted
+{
+    if ([currentTextView.text isEqualToString:@""]) {
+        currentTextView.text = @"";
+    }
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:currentTextView.attributedText];
+    
+    if (deleted) {
+        if (text.length){
+            [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+            //            NSLog(@"asdfasfsadf%ld",text.length);
+            currentTextView.attributedText = text;
+        }
+        if (!text.length){
+            currentTextView.text = @"";
+        }
+    }else{
+        UIImage *image = [UIImage imageNamed:emojiImagePath];
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.image = image;
+        NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
+        [text appendAttributedString:string];
+        currentTextView.attributedText = text;
+    }
+}
+
 #pragma mark Actions
+
+- (void)didClickPhotoButtonAction
+{
+    isKeyboardShowd = YES;
+    [currentTextView resignFirstResponder];
+    
+    TJ_ImagePickerView *view = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    currentTextView.inputView = view;
+    
+    [currentTextView becomeFirstResponder];
+}
+
+- (void)didClickEmojiButtonAction
+{
+    self.emojiButton.selected = !self.emojiButton.selected;
+    
+    isKeyboardShowd = YES;
+    [currentTextView resignFirstResponder];
+    if (self.emojiButton.selected) {
+        TJ_EmojiView *view = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
+        view.delegateEmojiView = self;
+        currentTextView.inputView = view;
+    }
+    else{
+        currentTextView.inputView = nil;
+    }
+    
+    [currentTextView becomeFirstResponder];
+}
 
 - (void)didClickLeftButtonAction
 {
@@ -143,6 +256,7 @@
     }
 }
 
+#pragma mark Others
 //添加提示视图
 - (void)addPromptViewText:(NSString *)text
 {
@@ -177,14 +291,35 @@
     CGRect frame = _contentTextView.frame;
     frame.size.height = keyboardFrame.origin.y - _titleTextView.bottom;
     _contentTextView.frame = frame;
+    
+    [self updateSubviewsBigingEditing:YES];
 }
 
 //键盘将要回收
 - (void)willHideKeyBoardNotification:(NSNotification *)notification
 {
-    CGRect frame = _contentTextView.frame;
-    frame.size.height = self.view.height - _titleTextView.bottom;
-    _contentTextView.frame = frame;
+    NSLog(@"");
+    if (!isKeyboardShowd){
+        CGRect frame = _contentTextView.frame;
+        frame.size.height = self.view.height - _titleTextView.bottom;
+        _contentTextView.frame = frame;
+        
+        [self updateSubviewsBigingEditing:NO];
+    }
+    isKeyboardShowd = NO;
+}
+
+//根据编辑状态改变控件frame
+- (void)updateSubviewsBigingEditing:(BOOL)editing
+{
+    CGFloat keyBoardH = keyboardFrame.size.height;
+    if (editing){
+        _photoButton.sd_layout.bottomSpaceToView(self.view, keyBoardH + 10);
+        _emojiButton.sd_layout.bottomSpaceToView(self.view, keyBoardH + 10);
+    }else{
+        _photoButton.sd_layout.bottomSpaceToView(self.view, 10);
+        _emojiButton.sd_layout.bottomSpaceToView(self.view, 10);
+    }
 }
 
 @end

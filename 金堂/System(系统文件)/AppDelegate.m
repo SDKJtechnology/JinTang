@@ -151,7 +151,7 @@
     [self.window makeKeyAndVisible];
 
     TJ_CycleScrollView *startView = [[TJ_CycleScrollView alloc] initWithFrame:self.window.bounds];
-    startView.interval = 1;
+    startView.interval = 0.5;
     startView.cycleModel = TJ_CycleScrollViewStartPageModel;
     startView.imageGroup = @[@"start",@"start2"];
     [self.window addSubview:startView];

@@ -10,6 +10,4 @@
 
 @interface TJ_ImagePickerView : UICollectionView
 
-@property (nonatomic, strong) UIViewController *currentVC;
-
 @end

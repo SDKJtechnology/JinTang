@@ -69,7 +69,7 @@
     NSInteger i = indexPath.item / 21;
     UIImage *image;
     if (indexPath.item == ((i + 1) * 21 - 1) || indexPath.item == (emojiArray.count + emojiArray.count / 21)) {
-        image = [UIImage imageNamed:@"emoji_btn_delete"];
+        image = [UIImage imageNamed:@"faceDelete"];
     }
     else{
         image = [UIImage imageNamed:emojiArray[indexPath.item - i]];

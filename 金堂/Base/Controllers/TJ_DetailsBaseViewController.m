@@ -20,7 +20,8 @@
 {
     UITapGestureRecognizer *tapGestureRecognizer;
     CGRect keyboardFrame;
-    UIView *inputView;
+    
+    BOOL isShowInputView;
 }
 
 @property (nonatomic, strong) BCTextView *textView;
@@ -60,7 +61,7 @@
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoard) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoardNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -69,6 +70,8 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark 添加设置子视图
 
 - (void)setup
 {
@@ -99,7 +102,7 @@
     _bottomView = [[UIView alloc] init];
     _bottomView.layer.borderColor = [[UIColor grayColor] CGColor];
     _bottomView.layer.borderWidth = 1;
-    _bottomView.backgroundColor = [UIColor whiteColor];
+    _bottomView.backgroundColor = [UIColor colorWithWhite:0.857 alpha:1.000];
     _bottomView.hidden = !self.showBottomView;
     [self.view addSubview:_bottomView];
     _bottomView.sd_layout
@@ -109,7 +112,8 @@
     .heightIs(BottonView_H);
     [_bottomView updateLayout];
     
-    _supportButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _supportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _supportButton.adjustsImageWhenHighlighted = NO;
     [_bottomView addSubview:_supportButton];
     _supportButton.sd_layout
     .topSpaceToView(_bottomView, 10)
@@ -117,7 +121,12 @@
     .widthIs(BottonView_H - 20)
     .heightEqualToWidth();
     _supportButton.sd_cornerRadiusFromWidthRatio = @0.5;
-    _supportButton.backgroundColor = [UIColor yellowColor];
+//    _supportButton.backgroundColor = [UIColor yellowColor];
+    _supportButton.layer.masksToBounds = YES;
+    _supportButton.layer.borderColor = [UIColor grayColor].CGColor;
+    _supportButton.layer.borderWidth = 1.0f;
+    [_supportButton setImage:[[UIImage imageNamed:@"zan"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    
     [_supportButton addTarget: self action:@selector(didCilckSupportButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     _rightLabel= [[UILabel alloc] init];
@@ -132,6 +141,7 @@
     _rightLabel.text = @"已有0条回复";
     
     _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _sendButton.adjustsImageWhenHighlighted = NO;
     [_bottomView addSubview:_sendButton];
     _sendButton.sd_layout
     .topEqualToView(_supportButton)
@@ -162,27 +172,34 @@
     _textView.delegate = self;
     
     _photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _photoButton.adjustsImageWhenHighlighted = NO;
     [_bottomView addSubview:_photoButton];
     _photoButton.sd_layout
     .leftEqualToView(_supportButton)
-    .topSpaceToView(_bottomView, 15)
-    .bottomSpaceToView(_bottomView, 15)
+    .topSpaceToView(_bottomView, 5)
+    .bottomSpaceToView(_bottomView, 5)
     .widthEqualToHeight();
     _photoButton.hidden = YES;
     [_photoButton addTarget:self action:@selector(didCilckPhotoButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    _photoButton.backgroundColor = [UIColor blueColor];
+//    _photoButton.backgroundColor = [UIColor blueColor];
+    [_photoButton setImage:[[UIImage imageNamed:@"actionbar_picture_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     
     _emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _emojiButton.adjustsImageWhenHighlighted = NO;
     [_bottomView addSubview:_emojiButton];
     _emojiButton.sd_layout
     .leftSpaceToView(_photoButton, 10)
-    .topEqualToView(_photoButton)
-    .bottomSpaceToView(_bottomView, 15)
+    .topSpaceToView(_bottomView, 10)
+    .bottomSpaceToView(_bottomView, 10)
     .widthEqualToHeight();
     _emojiButton.hidden = YES;
     _emojiButton.sd_cornerRadiusFromWidthRatio = @0.5;
     [_emojiButton addTarget:self action:@selector(didCilckEmojiButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    _emojiButton.backgroundColor = [UIColor redColor];
+//    _emojiButton.backgroundColor = [UIColor redColor];
+    [_emojiButton setImage:[[UIImage imageNamed:@"chatting_biaoqing_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [_emojiButton setImage:[[UIImage imageNamed:@"chat_setmode_key_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    
+    
 }
 
 //获取默认表情数组
@@ -197,7 +214,7 @@
 //    }
 //    return array;
 //}
-
+#pragma mark seting
 - (void)setShowBottomView:(BOOL)showBottomView
 {
     _showBottomView = showBottomView;
@@ -209,16 +226,13 @@
 //已经开始编辑
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    _supportButton.sd_layout.widthIs(0);
-    _sendButton.sd_layout.widthIs(40);
-    _photoButton.hidden = NO;
-    _emojiButton.hidden = NO;
-    _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_emojiButton, 10);
     _textView.placeholder = @"我来说一句...";
     if ([_textView.text isEqualToString:@""]) {
         _textView.text = @"";
     }
     _rightLabel.hidden = YES;
+    
+    [self updateSubviewsBigingEditing:YES];
     return YES;
 }
 
@@ -229,7 +243,7 @@
     if ([text isEqualToString:@"\n"]) {
         if (![_textView.text isEqualToString:@""])
         {
-            [self willHideKeyBoard];
+            [_textView resignFirstResponder];
         }
         else
         {
@@ -276,7 +290,6 @@
 //点击左侧按钮
 - (void)didClickLeftButtonAction
 {
-    [inputView removeFromSuperview];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -289,47 +302,34 @@
 //点击图片按钮
 - (void)didCilckPhotoButtonAction
 {
-    _imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
-    _imagePickerView.currentVC = self;
-    [self showInputView:_imagePickerView];
+    isShowInputView = YES;
     [_textView resignFirstResponder];
+    _imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    [self showInputView:_imagePickerView];
 }
 
 //点击表情按钮
 - (void)didCilckEmojiButtonAction
 {
+    isShowInputView = YES;
     _emojiButton.selected = !_emojiButton.selected;
+    [_textView resignFirstResponder];
     
     if (_emojiButton.selected) {
         _emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
         _emojiView.delegateEmojiView = self;
         [self showInputView:_emojiView];
-        [_textView resignFirstResponder];
     }
     else{
         [self showInputView:nil];
-        [_textView becomeFirstResponder];
     }
-}
-//显示制定的输入视图
-- (void)showInputView:(UIView *)view
-{
-    if (![inputView isEqual:view]) {
-        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
-        [[UIApplication sharedApplication].keyWindow addSubview:view];
-    }
-    if (inputView) {
-        [inputView removeFromSuperview];
-    }
-    inputView = view;
 }
 
 //点击发送按钮
 - (void)didClickSendButtonAction
 {
     if (![_textView.text isEqualToString:@""]) {
-        [self willHideKeyBoard];
-
+        [_textView resignFirstResponder];
         NSLog(@"发送");
     }
     else
@@ -339,6 +339,13 @@
 }
 
 #pragma mark Others
+//显示制定的输入视图
+- (void)showInputView:(UIView *)view
+{
+    _textView.inputView = view;
+    [_textView becomeFirstResponder];
+}
+
 //添加提示视图
 - (void)addPromptView
 {
@@ -367,40 +374,51 @@
 //    NSLog(@"%@",notification.userInfo);
      keyboardFrame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
-    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willHideKeyBoard)];
-    [self.view.subviews.firstObject addGestureRecognizer:tapGestureRecognizer];
+//    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(willHideKeyBoard)];
+//    [[UIApplication sharedApplication].keyWindow addGestureRecognizer:tapGestureRecognizer];
 }
 
-//点击空白收起键盘
-- (void)willHideKeyBoard
+//键盘即将移除
+- (void)willHideKeyBoardNotification:(NSNotification *)notification
 {
-    [_textView resignFirstResponder];
+    if (!isShowInputView){
+        keyboardFrame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+        _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
     
-    [self didEndComment];
+//    [self.view removeGestureRecognizer:tapGestureRecognizer];
     
-    [UIView animateWithDuration:0.3 animations:^{
-        _bottomView.origin =  CGPointMake(0, self.view.height - BottonView_H);
-        inputView.origin = CGPointMake(0, self.view.height);
-    } completion:^(BOOL finished) {
-        [inputView removeFromSuperview];
-    }];
-    
-    [self.view removeGestureRecognizer:tapGestureRecognizer];
+        [self updateSubviewsBigingEditing:NO];
+        _textView.inputView = nil;
+    }
+    isShowInputView = NO;
 }
 
-//已经结束评论，改变控件frame
-- (void)didEndComment
+
+//根据编辑状态改变控件frame
+- (void)updateSubviewsBigingEditing:(BOOL)editing
 {
-    _sendButton.sd_layout.widthIs(0);
-    _supportButton.sd_layout.widthIs(BottonView_H - 20);
-    _photoButton.hidden = YES;
-    _emojiButton.hidden = YES;
-    _emojiButton.selected = NO;
-    
-    _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
-    _textView.text = @"";
-    _textView.placeholder = @"回复楼主";
-    _rightLabel.hidden = NO;
+    if (editing){
+        _supportButton.sd_layout.widthIs(0);
+        _sendButton.sd_layout.widthIs(40);
+        _photoButton.hidden = NO;
+        _emojiButton.hidden = NO;
+        _textView.sd_layout.rightSpaceToView(_sendButton, 10).leftSpaceToView(_emojiButton, 10);
+    }else{
+        _sendButton.sd_layout.widthIs(0);
+        _supportButton.sd_layout.widthIs(BottonView_H - 20);
+        _photoButton.hidden = YES;
+        _emojiButton.hidden = YES;
+        _emojiButton.selected = NO;
+        _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
+        
+        _textView.text = @"";
+        _textView.placeholder = @"回复楼主";
+        _rightLabel.hidden = NO;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            _bottomView.origin =  CGPointMake(0, self.view.height - BottonView_H);
+        } completion:nil];
+    }
 }
 
 @end

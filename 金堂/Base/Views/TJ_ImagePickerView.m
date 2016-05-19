@@ -111,7 +111,7 @@
     // imagePickerVc.allowPickingVideo = NO;
     //     imagePickerVc.allowPickingOriginalPhoto = NO;
     
-    [self.currentVC presentViewController:navigation animated:YES completion:nil];
+    [[self getCurrentViewController] presentViewController:navigation animated:YES completion:nil];
 }
 
 #pragma mark - 用户点击了取消
@@ -141,6 +141,18 @@
     [_selectedPhotos addObjectsFromArray:@[coverImage]];
     [self reloadData];
 //    _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
+}
+
+/** 获取当前View的控制器对象 */
+-(UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
 }
 
 @end
