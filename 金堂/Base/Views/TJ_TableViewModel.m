@@ -18,7 +18,9 @@
         MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             blockSelf.myRefreshView = blockSelf.mj_footer;
             [blockSelf loadDataWithView:blockSelf.mj_footer];
-            blockSelf.refreshFinishBlock(blockSelf.mj_footer);
+            if (blockSelf.refreshFinishBlock) {
+                blockSelf.refreshFinishBlock(blockSelf.mj_footer);
+            }
         }];
         self.mj_footer = footer;
         

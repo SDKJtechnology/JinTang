@@ -111,7 +111,22 @@
     }];
     
     [dataTask resume];
+    [self gei];
 }
 
+- (void)gei
+{
+    NSString *url = @"http://e1q4925944.iask.in/database/TopNumber?pages=1";
+    
+    NSURLSessionDataTask *dataTask = [[AFHTTPSessionManager manager] POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",[responseObject mj_JSONObject]);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+    
+    [dataTask resume];
+}
 
 @end

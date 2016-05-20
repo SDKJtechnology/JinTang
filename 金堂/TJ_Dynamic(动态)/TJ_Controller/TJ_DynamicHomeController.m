@@ -63,19 +63,19 @@ const CGFloat tabBarHeight = 49;//tabBar高度
 
 - (void)setup
 {
-    self.selectList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, yNavigationBarBelow, VIEW_WIDTH, selectListHeight)];
+    self.selectList = [[TJ_SelectionList alloc] initWithFrame:CGRectMake(0, statusBarFrame.size.height + navigationBarFrame.size.height, VIEW_WIDTH, selectListHeight)];
     self.selectList.delegate = self;
     self.selectList.seletedTitleColor = [UIColor blackColor];
     self.selectList.indicatorColor = [UIColor blueColor];
     self.selectList.titleColor = [UIColor grayColor];
     
     self.contentView = [[UIScrollView alloc] init];
-    self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + yNavigationBarBelow, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
+    self.contentView.frame = CGRectMake(0, self.selectList.frame.size.height + self.navigationController.navigationBar.bottom, VIEW_WIDTH, VIEW_HEIGHT - yNavigationBarBelow - tabBarHeight - selectListHeight);
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.showsHorizontalScrollIndicator = NO;
     self.contentView.canCancelContentTouches = NO;
     self.contentView.delaysContentTouches = NO;
-    self.contentView.bounces = NO;
+//    self.contentView.bounces = NO;
     self.contentView.delegate = self;
     
     [self.view insertSubview:self.selectList atIndex:1];

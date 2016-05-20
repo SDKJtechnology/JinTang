@@ -48,7 +48,7 @@
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
         style.lineBreakMode = NSLineBreakByWordWrapping;
         
-        [self.placeholder drawInRect:placeholderRect withAttributes:@{NSParagraphStyleAttributeName:style,NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.placeholderColor}];
+        [self.placeholder drawInRect:placeholderRect withAttributes:@{NSParagraphStyleAttributeName:style,NSFontAttributeName:!self.placeholderFont ? self.font : self.placeholderFont,NSForegroundColorAttributeName:self.placeholderColor}];
         
     }
 }

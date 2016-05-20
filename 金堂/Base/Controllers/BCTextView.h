@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BCTextView : UITextView
-@property (nonatomic, retain) NSString *placeholder;
-@property (nonatomic, retain) UIColor *placeholderColor;
+@property (nullable,nonatomic, retain) NSString *placeholder;
+@property (nullable,nonatomic, retain) UIColor *placeholderColor;
+@property(nullable,nonatomic,strong) UIFont *placeholderFont;
 @end

@@ -18,7 +18,12 @@
     
     BOOL isKeyboardShowd;//键盘是否已经显示
     
+    TJ_EmojiView *emojiView;
+    
+    TJ_ImagePickerView *imagePickerView;
+    
     UITextView *currentTextView;//当前textView，默认为titleTextView
+    UIFont *currentTextViewFont;//当前textViewFont，默认为titleTextView.font
 }
 /**
  *  发布按钮
@@ -86,6 +91,7 @@
     .heightIs(40);
     _titleTextView.placeholder = @"标题（必填）";
     _titleTextView.font = [UIFont fontWithName:TJFont size:22];
+    _titleTextView.placeholderFont = _titleTextView.font;
     _titleTextView.delegate = self;
     
     [_titleTextView updateLayout];
@@ -99,6 +105,7 @@
     _contentTextView.placeholder = @"正文（必填）";
     _contentTextView.text = @"";
     _contentTextView.font = [UIFont fontWithName:TJFont size:15];
+    _contentTextView.placeholderFont = _contentTextView.font;
     _contentTextView.textColor = [UIColor grayColor];
     _contentTextView.delegate = self;
     
@@ -134,14 +141,25 @@
     [_titleTextView becomeFirstResponder];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [currentTextView becomeFirstResponder];
+}
+
 #pragma mark UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    currentTextView = textView;
-    if (self.emojiButton.selected) {
+    if (![textView isEqual:currentTextView]) {
+        [textView resignFirstResponder];
         self.emojiButton.selected = NO;
+        currentTextView = textView;
+        textView.inputView = nil;
+        [textView becomeFirstResponder];
     }
-    textView.inputView = nil;
+    currentTextView = textView;
+    currentTextViewFont = textView.font;
 }
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -194,6 +212,7 @@
             currentTextView.attributedText = text;
         }
         if (!text.length){
+            currentTextView.font = currentTextViewFont;
             currentTextView.text = @"";
         }
     }else{
@@ -210,7 +229,6 @@
 
 - (void)didClickPhotoButtonAction
 {
-    isKeyboardShowd = YES;
     [currentTextView resignFirstResponder];
     
     TJ_ImagePickerView *view = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
@@ -223,7 +241,6 @@
 {
     self.emojiButton.selected = !self.emojiButton.selected;
     
-    isKeyboardShowd = YES;
     [currentTextView resignFirstResponder];
     if (self.emojiButton.selected) {
         TJ_EmojiView *view = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
@@ -293,6 +310,8 @@
     _contentTextView.frame = frame;
     
     [self updateSubviewsBigingEditing:YES];
+    
+    isKeyboardShowd = YES;
 }
 
 //键盘将要回收
