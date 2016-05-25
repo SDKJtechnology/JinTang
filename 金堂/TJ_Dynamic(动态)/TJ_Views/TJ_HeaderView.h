@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJ_HeaderView : UIView
-
-@property (nonatomic) UILabel *dateLabel;
+@interface TJ_HeaderView : UITableViewHeaderFooterView
 
 @end

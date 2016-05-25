@@ -12,6 +12,9 @@
 #import "TJ_EmojiView.h"
 #import "TJ_ImagePickerView.h"
 
+#define titleTextViewFont [UIFont fontWithName:TJFont size:22]
+#define contentTextViewFont [UIFont fontWithName:TJFont size:15]
+
 @interface TJ_CommunityReleaseController ()<UITextViewDelegate,TJ_EmojiViewDelegate>
 {
     CGRect keyboardFrame;//键盘的frame
@@ -23,7 +26,7 @@
     TJ_ImagePickerView *imagePickerView;
     
     UITextView *currentTextView;//当前textView，默认为titleTextView
-    UIFont *currentTextViewFont;//当前textViewFont，默认为titleTextView.font
+    
 }
 /**
  *  发布按钮
@@ -37,6 +40,7 @@
  *  内容编辑视图
  */
 @property (nonatomic, strong) BCTextView *contentTextView;
+@property (nonatomic, strong) UIFont *currentTextViewFont;//当前textViewFont，默认为titleTextView.font
 /**
  *  表情选项按钮
  */
@@ -90,7 +94,7 @@
     .rightSpaceToView(self.view, 0)
     .heightIs(40);
     _titleTextView.placeholder = @"标题（必填）";
-    _titleTextView.font = [UIFont fontWithName:TJFont size:22];
+    _titleTextView.font = titleTextViewFont;
     _titleTextView.placeholderFont = _titleTextView.font;
     _titleTextView.delegate = self;
     
@@ -104,7 +108,7 @@
     .heightIs(self.view.height - _titleTextView.bottom);
     _contentTextView.placeholder = @"正文（必填）";
     _contentTextView.text = @"";
-    _contentTextView.font = [UIFont fontWithName:TJFont size:15];
+    _contentTextView.font = contentTextViewFont;
     _contentTextView.placeholderFont = _contentTextView.font;
     _contentTextView.textColor = [UIColor grayColor];
     _contentTextView.delegate = self;
@@ -159,7 +163,6 @@
         [textView becomeFirstResponder];
     }
     currentTextView = textView;
-    currentTextViewFont = textView.font;
 }
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -178,27 +181,34 @@
 // 点击键盘上Return按钮时候调用
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-        NSLog(@"%@",textView.text);
-    
-    if (![_contentTextView.text isEqualToString:@""] && ![_titleTextView.text isEqualToString:@""]){
-        
-        if ([text isEqualToString:@"\n"]) {
-            [textView resignFirstResponder];
-        }
-        
-        return YES;
+
+    if ([_titleTextView isEqual:textView]) {
+        currentTextView.font = titleTextViewFont;
     }
-    if ([text isEqualToString:@"\n"]) {
-        [self didClickRightButton:_releaseButton];
+    else
+    {
+        currentTextView.font = contentTextViewFont;
+    }
+
+    if ([text isEqualToString:@"\n"] && [currentTextView.text isEqualToString:@""]) {
+        currentTextView.text = @"";
         return NO;
     }
-    
+
     return YES;
 }
 
 #pragma mark TJ_EmojiViewDelegate
 - (void)didSelectedEmojiImagePath:(NSString *)emojiImagePath isDelete:(BOOL)deleted
 {
+    if ([_titleTextView isEqual:currentTextView]) {
+        currentTextView.font = titleTextViewFont;
+    }
+    else
+    {
+        currentTextView.font = contentTextViewFont;
+    }
+    
     if ([currentTextView.text isEqualToString:@""]) {
         currentTextView.text = @"";
     }
@@ -207,12 +217,17 @@
     
     if (deleted) {
         if (text.length){
-            [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+            if (currentTextView.selectedRange.length) {
+                [text deleteCharactersInRange:currentTextView.selectedRange];
+            }
+            else
+            {
+                [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+            }
             //            NSLog(@"asdfasfsadf%ld",text.length);
             currentTextView.attributedText = text;
         }
         if (!text.length){
-            currentTextView.font = currentTextViewFont;
             currentTextView.text = @"";
         }
     }else{
@@ -220,32 +235,40 @@
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = image;
         NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
-        [text appendAttributedString:string];
+        [text replaceCharactersInRange:currentTextView.selectedRange withAttributedString:string];
+        
         currentTextView.attributedText = text;
     }
+    NSLog(@"%@",_currentTextViewFont);
 }
 
 #pragma mark Actions
-
+//点击图片按钮
 - (void)didClickPhotoButtonAction
 {
     [currentTextView resignFirstResponder];
     
-    TJ_ImagePickerView *view = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
-    currentTextView.inputView = view;
+    if (!imagePickerView) {
+        imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    }
+    
+    currentTextView.inputView = imagePickerView;
     
     [currentTextView becomeFirstResponder];
 }
-
+//点击表情按钮
 - (void)didClickEmojiButtonAction
 {
     self.emojiButton.selected = !self.emojiButton.selected;
     
     [currentTextView resignFirstResponder];
     if (self.emojiButton.selected) {
-        TJ_EmojiView *view = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
-        view.delegateEmojiView = self;
-        currentTextView.inputView = view;
+        if (!emojiView) {
+            emojiView = [[TJ_EmojiView alloc] initWithFrame:keyboardFrame];
+        }
+        
+        emojiView.delegateEmojiView = self;
+        currentTextView.inputView = emojiView;
     }
     else{
         currentTextView.inputView = nil;
@@ -253,15 +276,17 @@
     
     [currentTextView becomeFirstResponder];
 }
-
+//点击左侧返回按钮
 - (void)didClickLeftButtonAction
 {
+    [currentTextView resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+//点击发布按钮
 - (void)didClickRightButton:(UIButton *)sender
 {
     NSLog(@"发布");
+    [currentTextView resignFirstResponder];
     if ([_titleTextView.text isEqualToString:@""]) {
         [self addPromptViewText:@"标题内容不能为空"];
     }
@@ -338,6 +363,7 @@
     }else{
         _photoButton.sd_layout.bottomSpaceToView(self.view, 10);
         _emojiButton.sd_layout.bottomSpaceToView(self.view, 10);
+        _contentTextView.sd_layout.bottomSpaceToView(self.view, 0);
     }
 }
 

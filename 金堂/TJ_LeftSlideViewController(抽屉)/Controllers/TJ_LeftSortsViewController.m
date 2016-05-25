@@ -252,7 +252,13 @@
     NSString *titel = nil;
     switch (sender.tag) {
         case TJ_BACustomButtonTagLandingButton:
-            myClass = NSClassFromString(@"LX_login2ViewController");
+            
+            if (@"登陆成功") {
+                
+            }
+            else{
+                myClass = NSClassFromString(@"LX_login2ViewController");
+            }
             NSLog(@"landingButton  %ld  %@",TJ_BACustomButtonTagLandingButton,sender.currentTitle);
             break;
         case TJ_BACustomButtonTagConcernButton:

@@ -75,7 +75,7 @@ const CGFloat tabBarHeight = 49;//tabBar高度
     self.contentView.showsHorizontalScrollIndicator = NO;
     self.contentView.canCancelContentTouches = NO;
     self.contentView.delaysContentTouches = NO;
-//    self.contentView.bounces = NO;
+    self.contentView.bounces = NO;
     self.contentView.delegate = self;
     
     [self.view insertSubview:self.selectList atIndex:1];

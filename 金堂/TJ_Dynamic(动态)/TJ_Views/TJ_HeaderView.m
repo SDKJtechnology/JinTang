@@ -13,22 +13,22 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.dateLabel = [UILabel new];
-        [self addSubview:self.dateLabel];
-        self.dateLabel.frame = CGRectMake(0, 10, 70, 30);
-        CGPoint p = self.dateLabel.center;
-        p.x = [UIScreen mainScreen].bounds.size.width / 2;
-        self.dateLabel.center = p;
-        self.dateLabel.textAlignment = NSTextAlignmentCenter;
-        self.dateLabel.backgroundColor = [UIColor colorWithWhite:0.670 alpha:1.000];
-        self.dateLabel.font = [UIFont systemFontOfSize:17];
-        self.dateLabel.textColor = [UIColor whiteColor];
-        self.dateLabel.layer.masksToBounds = YES;
-        self.dateLabel.layer.cornerRadius = 6;
-        self.dateLabel.text = @"4-12";
+        
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.textLabel.backgroundColor = [UIColor colorWithWhite:0.670 alpha:1.000];
+        self.textLabel.font = [UIFont systemFontOfSize:17];
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.layer.masksToBounds = YES;
+        self.textLabel.layer.cornerRadius = 6;
     }
     
     return self;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    self.textLabel.center = self.contentView.center;
 }
 
 /*

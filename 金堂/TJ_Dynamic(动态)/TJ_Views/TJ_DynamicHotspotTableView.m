@@ -14,6 +14,8 @@
 #import "DynamicHotspotModel.h"
 #import "TJ_DynamicDetailController.h"
 
+#define sectionHeaderHeight  50
+
 @interface TJ_DynamicHotspotTableView()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -31,6 +33,7 @@
         
         [self registerClass:[AdCell class] forCellReuseIdentifier:NSStringFromClass([AdCell class])];
         [self registerClass:[HotspotCell class] forCellReuseIdentifier:NSStringFromClass([HotspotCell class])];
+        [self registerClass:[TJ_HeaderView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([TJ_HeaderView class])];
         _dynamciHotspotData = [NSMutableArray array];
     }
     
@@ -70,21 +73,20 @@
     }];
 }
 
-/*让headerView跟着cell滚动*/
-#pragma mark - Scroll
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat sectionHeaderHeight = 50;
-//    NSLog(@"%f",scrollView.contentOffset.y);
+#pragma mark - UIScrollViewDelegate
+//去掉UItableview headerview黏性
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    //固定section 随着cell滚动而滚动
-    if (scrollView.contentOffset.y < 100 && !self.myRefreshView.isRefreshing) {
-        
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        
-    } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-        UIEdgeInsets edgeInsets = scrollView.contentInset;
-        edgeInsets.top = -sectionHeaderHeight;
-        scrollView.contentInset = edgeInsets;
+    if (scrollView == self)
+    {
+        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+            
+        } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
     }
 }
 
@@ -132,7 +134,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DynamicHotspotModel *model = _dynamciHotspotData[indexPath.section][indexPath.row];
-    
+
     if (indexPath.row == 0)
     {
         return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[AdCell class] contentViewWidth:self.width];
@@ -140,19 +142,30 @@
     else return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"hotspotModel"cellClass:[HotspotCell class] contentViewWidth:self.width];
 
 }
-
+// 自定义headerView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    TJ_HeaderView *view = [[TJ_HeaderView alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
     DynamicHotspotModel *model = _dynamciHotspotData[section][0];
-    NSString *string = [model.createDate substringWithRange:NSMakeRange(5, model.createDate.length - 5)];
-    view.dateLabel.text = string;
+    NSString *createDate = [model.createDate substringWithRange:NSMakeRange(5, model.createDate.length - 5)];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy";
+    NSString *currentDeyar = [formatter stringFromDate:[NSDate date]];
+    
+    if (![currentDeyar isEqualToString:[model.createDate substringWithRange:NSMakeRange(0, 4)]]) {
+        createDate = model.createDate;
+    }
+    
+    TJ_HeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([TJ_HeaderView class])];
+    view.textLabel.center = view.center;
+    view.textLabel.text = createDate;
+    
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return sectionHeaderHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;

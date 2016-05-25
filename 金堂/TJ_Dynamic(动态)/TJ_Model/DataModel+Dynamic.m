@@ -50,7 +50,7 @@
     NSString *url = @"http://192.168.0.110/Article/get_hot_list";
     NSDictionary *params = @{@"date":date,@"days":@20};
     
-    NSURLSessionDataTask *dataTask = [self.manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
@@ -85,7 +85,6 @@
         }
     }];
     
-    [dataTask resume];
 }
 
 

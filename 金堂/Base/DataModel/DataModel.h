@@ -28,4 +28,14 @@ typedef void (^DataModelBlock)(id data);
  *  @return dynamicNetworkingModel Obejct
  */
 + (instancetype)sharedObejct;
+/**
+ *  图片上传
+ *
+ *  @param picsArray 图片数组
+ *  @param parameter 所需参数
+ *  @param urlString url字符串
+ *  @param success   上传成功回调
+ *  @param failure   上传失败回调
+ */
+- (void)mutiPic:(NSArray<UIImage *> *)picsArray parameterDic:(NSDictionary *)parameter urlString:(NSString *)urlString success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError* error))failure;
 @end

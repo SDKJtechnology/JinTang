@@ -8,6 +8,7 @@
 
 #import "TJ_SetingViewController.h"
 #import "TJ_ CalculateCache.h"
+#import "UIView_extra.h"
 
 typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 {
@@ -43,6 +44,7 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
     isPush = YES;
     isNotImage = NO;
     
+    //获取缓存路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     cachePath = [paths lastObject];
     CGFloat size = [[TJ_CalculateCache sharedCalculateCache] getFolderSizeAtPath:cachePath];
@@ -83,6 +85,8 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.textLabel.text isEqualToString:@"清除缓存"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"NS_DEPRECATED_IOS" preferredStyle:UIAlertControllerStyleActionSheet];
+        [self presentViewController:alertController animated:YES completion:nil];
         [[TJ_CalculateCache sharedCalculateCache] clearCache:cachePath];
         cacheSize = @"0.00MB";
         [tableView reloadData];

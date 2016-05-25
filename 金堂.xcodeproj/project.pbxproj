@@ -1691,12 +1691,12 @@
 				DECFD1C21CE0A371001033A4 /* TJ_InvitationViewController.m */,
 				DECFD1BD1CE0A371001033A4 /* TJ_EnshrineViewController.h */,
 				DECFD1BE1CE0A371001033A4 /* TJ_EnshrineViewController.m */,
+				DECFD1C71CE0A371001033A4 /* TJ_SetingViewController.h */,
+				DECFD1C81CE0A371001033A4 /* TJ_SetingViewController.m */,
 				DECFD1C31CE0A371001033A4 /* TJ_LeftSlideViewController.h */,
 				DECFD1C41CE0A371001033A4 /* TJ_LeftSlideViewController.m */,
 				DECFD1C51CE0A371001033A4 /* TJ_LeftSortsViewController.h */,
 				DECFD1C61CE0A371001033A4 /* TJ_LeftSortsViewController.m */,
-				DECFD1C71CE0A371001033A4 /* TJ_SetingViewController.h */,
-				DECFD1C81CE0A371001033A4 /* TJ_SetingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
