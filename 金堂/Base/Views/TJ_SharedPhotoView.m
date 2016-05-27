@@ -88,12 +88,14 @@
                 
                 [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     
-                    UIView *view = self.superview.superview;
-                    if ([view isKindOfClass:[UITableViewCell class]]) {
-                        UITableView *tableView = (UITableView *)view.superview.superview;
-                        
-                        [tableView reloadData];
+                    for (UIResponder *nextResponder = self.nextResponder; nextResponder ; nextResponder = nextResponder.nextResponder) {
+                        if ([nextResponder isKindOfClass:[UITableView class]]) {
+                            UITableView *tableView = (UITableView *)nextResponder;
+                            
+                            [tableView reloadData];
+                        }
                     }
+                    
                 }];
             }
         }

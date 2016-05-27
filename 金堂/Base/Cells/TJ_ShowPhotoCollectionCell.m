@@ -26,7 +26,8 @@
         [self addSubview:_imageView];
         
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteButton.backgroundColor = [UIColor redColor];
+        [_deleteButton setImage:[UIImage imageNamed:@"delete_member_tip"] forState:UIControlStateNormal];
+        _deleteButton.adjustsImageWhenHighlighted = NO;
         [_deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_deleteButton];
         _isShowDeleteButton = YES;

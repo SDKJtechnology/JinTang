@@ -10,6 +10,12 @@
 
 @interface UILabel (new)
 
-@property (nonatomic) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat fontSize;
+
+- (CGRect)getLabelFrame;
+/**
+ *  设置Label的真实宽度（在上数据后调用）
+ */
+- (void)setLabelTruthWidth;
 
 @end

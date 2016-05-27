@@ -110,10 +110,10 @@
         [self.contentView addSubview:self.indicatorView];
         
         self.indicatorView.sd_layout
-        .topSpaceToView(self.contentView, 0)
+        .topSpaceToView(self.contentView, 5)
         .leftSpaceToView(self.contentView, 0)
         .widthIs(3)
-        .bottomSpaceToView(self.contentView, 0);
+        .bottomSpaceToView(self.contentView, 5);
         self.indicatorView.backgroundColor = self.backgroundColor;
     }
     

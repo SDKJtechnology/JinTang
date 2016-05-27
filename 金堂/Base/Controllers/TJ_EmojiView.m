@@ -43,16 +43,10 @@
         emojiDictionary = [TJ_Emoji getEmojiDictionary];
         NSString *bundle = [[NSBundle mainBundle] resourcePath];
         emojiArray = [NSMutableArray array];
-        NSString *s = @"";
         for (NSString *name in array) {
-            NSString *string = emojiDictionary[name];
-            NSString *st =[NSString stringWithFormat:@"%@@2x.png,%@\n",string,name];
-            s = [s stringByAppendingString:st];
-//            printf("%s","sdfsdf");
             NSString *path = [bundle stringByAppendingPathComponent:[NSString stringWithFormat:@"MLEmoji_Expression.bundle/%@",emojiDictionary[name]]];
             [emojiArray addObject:path];
         }
-        NSLog(@"%@",s);
     }
     
     return self;

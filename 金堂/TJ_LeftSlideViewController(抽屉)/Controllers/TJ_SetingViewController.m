@@ -9,6 +9,7 @@
 #import "TJ_SetingViewController.h"
 #import "TJ_ CalculateCache.h"
 #import "UIView_extra.h"
+#import "LEEAlert.h"
 
 typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 {
@@ -85,11 +86,16 @@ typedef NS_ENUM(NSInteger, TJ_SwitchTagValue)
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.textLabel.text isEqualToString:@"清除缓存"]) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"NS_DEPRECATED_IOS" preferredStyle:UIAlertControllerStyleActionSheet];
-        [self presentViewController:alertController animated:YES completion:nil];
-        [[TJ_CalculateCache sharedCalculateCache] clearCache:cachePath];
-        cacheSize = @"0.00MB";
-        [tableView reloadData];
+        
+        [LEEAlert alert].system.config
+        .LeeTitle(@"")
+        .LeeContent(@"确定要清除缓存？")
+        .LeeAddButton(@"确认", ^(){
+            [[TJ_CalculateCache sharedCalculateCache] clearCache:cachePath];
+            cacheSize = @"0.00MB";
+            [tableView reloadData];
+        })
+        .LeeShow();
     }
 }
 

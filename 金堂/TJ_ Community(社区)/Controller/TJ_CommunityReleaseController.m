@@ -58,17 +58,16 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithWhite:0.738 alpha:1.000];
+    self.view.backgroundColor = [UIColor grayColor];
     
-    UIView *starView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
-    starView.backgroundColor = [UIColor colorWithWhite:0.964 alpha:1.000];
+    UIView *starView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
+    starView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:starView];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [leftButton setTitle:@"<" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:25];
+    [leftButton setImage:[[UIImage imageNamed:@"xiaoyufu_02"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 20, 44, 44);
+    leftButton.frame = CGRectMake(10, 32, 20, 20);
     [self.view addSubview:leftButton];
     [leftButton addTarget:self action:@selector(didClickLeftButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -89,7 +88,7 @@
     _titleTextView = [BCTextView new];
     [self.view addSubview:_titleTextView];
     _titleTextView.sd_layout
-    .topSpaceToView(leftButton, 0)
+    .topSpaceToView(starView, 0)
     .leftSpaceToView(self.view, 0)
     .rightSpaceToView(self.view, 0)
     .heightIs(40);
@@ -123,7 +122,7 @@
     .heightIs(30);
 //    _photoButton.backgroundColor = [UIColor redColor];
     [_photoButton addTarget:self action:@selector(didClickPhotoButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [_photoButton setImage:[[UIImage imageNamed:@"actionbar_picture_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [_photoButton setImage:[[UIImage imageNamed:@"tupian_01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     
     _emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_emojiButton];
@@ -235,11 +234,12 @@
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = image;
         NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
-        [text replaceCharactersInRange:currentTextView.selectedRange withAttributedString:string];
+        NSRange range = currentTextView.selectedRange;
+        [text replaceCharactersInRange:range withAttributedString:string];
         
         currentTextView.attributedText = text;
+        currentTextView.selectedRange = NSMakeRange(range.location + 1, 0);
     }
-    NSLog(@"%@",_currentTextViewFont);
 }
 
 #pragma mark Actions
@@ -286,7 +286,6 @@
 - (void)didClickRightButton:(UIButton *)sender
 {
     NSLog(@"发布");
-    [currentTextView resignFirstResponder];
     if ([_titleTextView.text isEqualToString:@""]) {
         [self addPromptViewText:@"标题内容不能为空"];
     }
@@ -294,6 +293,7 @@
         [self addPromptViewText:@"内容不能为空"];
     }
     else{
+        [currentTextView resignFirstResponder];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

@@ -19,10 +19,16 @@
 @interface TJ_DetailsBaseViewController ()<UITextViewDelegate,TJ_EmojiViewDelegate>
 {
     UITapGestureRecognizer *tapGestureRecognizer;
+    
     CGRect keyboardFrame;
+    
+    UIView *currentInputView;
+    
+    NSAttributedString *_didEditingText;
     
     BOOL isShowInputView;
 }
+//@property (nonatomic, strong) NSAttributedString *didEditingText;
 
 @property (nonatomic, strong) BCTextView *textView;
 
@@ -50,23 +56,28 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    currentInputView = nil;
+    _didEditingText = nil;
     
     [self setup];
 
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyBoardNotification:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyBoardNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidAppear:animated];
+    
+    _textView.attributedText = _didEditingText;
+    [self showInputView:currentInputView];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [self didReceiveMemoryWarning];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -79,20 +90,20 @@
     [self.view addSubview:titleLabel];
     titleLabel.backgroundColor = [UIColor colorWithWhite:0.920 alpha:1.000];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.font = [UIFont systemFontOfSize:20];
     titleLabel.text = self.titelString;
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [leftButton setTitle:@"<" forState:UIControlStateNormal];
+    [leftButton setImage:[[UIImage imageNamed:@"xiaoyufu_02"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:25];
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 20, 44, 44);
+    leftButton.frame = CGRectMake(10, 32, 20, 20);
     [self.view addSubview:leftButton];
     [leftButton addTarget:self action:@selector(didClickLeftButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     _rightButton = [[TJ_BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusCenter];
     [_rightButton setTitle:@"● ● ●" forState:UIControlStateNormal];
-    _rightButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    _rightButton.titleLabel.font = [UIFont systemFontOfSize:13];
     [_rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _rightButton.frame = CGRectMake(self.view.width - 44, 20, 44, 44);
     [self.view addSubview:_rightButton];
@@ -182,7 +193,7 @@
     _photoButton.hidden = YES;
     [_photoButton addTarget:self action:@selector(didCilckPhotoButtonAction) forControlEvents:UIControlEventTouchUpInside];
 //    _photoButton.backgroundColor = [UIColor blueColor];
-    [_photoButton setImage:[[UIImage imageNamed:@"actionbar_picture_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [_photoButton setImage:[[UIImage imageNamed:@"tupian_01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     
     _emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _emojiButton.adjustsImageWhenHighlighted = NO;
@@ -198,8 +209,6 @@
 //    _emojiButton.backgroundColor = [UIColor redColor];
     [_emojiButton setImage:[[UIImage imageNamed:@"chatting_biaoqing_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [_emojiButton setImage:[[UIImage imageNamed:@"chat_setmode_key_btn_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
-    
-    
 }
 
 //获取默认表情数组
@@ -226,10 +235,12 @@
 //已经开始编辑
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    _textView.placeholder = @"我来说一句...";
+    
     if ([_textView.text isEqualToString:@""]) {
+        _textView.placeholder = @"我来说一句...";
         _textView.text = @"";
     }
+    
     _rightLabel.hidden = YES;
     
     [self updateSubviewsBigingEditing:YES];
@@ -239,7 +250,7 @@
 // 点击键盘上Return按钮时候调用
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-//    NSLog(@"%@",text);
+//    NSLog(@"%@",textView.attributedText.string);
     if ([text isEqualToString:@"\n"]) {
         if (![_textView.text isEqualToString:@""])
         {
@@ -266,8 +277,14 @@
     
     if (deleted) {
         if (text.length){
-            [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
-//            NSLog(@"asdfasfsadf%ld",text.length);
+            if (_textView.selectedRange.length) {
+                [text deleteCharactersInRange:_textView.selectedRange];
+            }
+            else
+            {
+                [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+            }
+            //            NSLog(@"asdfasfsadf%ld",text.length);
             _textView.attributedText = text;
         }
         if (!text.length){
@@ -278,9 +295,12 @@
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = image;
         NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attachment];
-        [text appendAttributedString:string];
+        NSRange range = _textView.selectedRange;
+        [text replaceCharactersInRange:range withAttributedString:string];
         _textView.attributedText = text;
+        _textView.selectedRange = NSMakeRange(range.location + 1, 0);
     }
+//    NSLog(@"%ld  %ld",_textView.selectedRange.location,_textView.selectedRange.length);
 }
 
 #pragma mark Actions
@@ -290,6 +310,8 @@
 //点击左侧按钮
 - (void)didClickLeftButtonAction
 {
+    [_textView resignFirstResponder];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -304,7 +326,10 @@
 {
     isShowInputView = YES;
     [_textView resignFirstResponder];
-    _imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    if (!_imagePickerView) {
+        _imagePickerView = [[TJ_ImagePickerView alloc] initWithFrame:keyboardFrame];
+    }
+    
     [self showInputView:_imagePickerView];
 }
 
@@ -329,8 +354,12 @@
 - (void)didClickSendButtonAction
 {
     if (![_textView.text isEqualToString:@""]) {
+        NSLog(@"发送选择%ld:张图",_imagePickerView.selectedPhotos.count);
+
+        _imagePickerView = nil;
+        _didEditingText = nil;
+        _textView.text = @"";
         [_textView resignFirstResponder];
-        NSLog(@"发送");
     }
     else
     {
@@ -344,6 +373,7 @@
 {
     _textView.inputView = view;
     [_textView becomeFirstResponder];
+    currentInputView = view;
 }
 
 //添加提示视图
@@ -381,6 +411,8 @@
 //键盘即将移除
 - (void)willHideKeyBoardNotification:(NSNotification *)notification
 {
+    _didEditingText = _textView.attributedText;
+
     if (!isShowInputView){
         keyboardFrame = [[notification.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
         _bottomView.origin =  CGPointMake(keyboardFrame.origin.x, keyboardFrame.origin.y - BottonView_H);
@@ -411,7 +443,7 @@
         _emojiButton.selected = NO;
         _textView.sd_layout.rightSpaceToView(_sendButton, 0).leftSpaceToView(_supportButton, 10);
         
-        _textView.text = @"";
+        _textView.attributedText = _didEditingText;
         _textView.placeholder = @"回复楼主";
         _rightLabel.hidden = NO;
         

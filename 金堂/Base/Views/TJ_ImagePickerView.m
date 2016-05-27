@@ -11,8 +11,6 @@
 #import "TJ_ShowPhotoCollectionCell.h"
 
 @interface TJ_ImagePickerView()<AlbumNavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegate,TJ_ShowPhotoCollectionCellDelegate> {
-    NSMutableArray *_selectedPhotos;
-    NSMutableArray *_selectedAssets;
     
     CGFloat _itemWH;
     CGFloat _margin;

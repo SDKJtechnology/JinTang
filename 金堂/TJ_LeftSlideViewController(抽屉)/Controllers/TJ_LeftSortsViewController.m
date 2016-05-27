@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SDAutoLayout.h"
 #import "TJ_BAButton.h"
+#import "TJ_PersonalCenterController.h"
 
 @interface TJ_LeftSortsViewController ()
 
@@ -254,7 +255,11 @@
         case TJ_BACustomButtonTagLandingButton:
             
             if (@"登陆成功") {
-                
+                TJ_PersonalCenterController *viewController = [TJ_PersonalCenterController new];
+                viewController.view.backgroundColor = [UIColor whiteColor];
+                self.closeLeftVC(viewController);
+                [self presentViewController:viewController animated:NO completion:nil];
+                return;
             }
             else{
                 myClass = NSClassFromString(@"LX_login2ViewController");
@@ -303,14 +308,28 @@
 //弹出视图
 - (void)presentViewController:(UIViewController *)viewController
 {
-    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+    //设置状态栏颜色 
+    UIView *starView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
+    starView.backgroundColor = [UIColor grayColor];
+    [viewController.view addSubview:starView];
+    
+    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
+    
     [viewController.view addSubview:navigationBar];
+    
     navigationBar.barStyle = UIBarStyleDefault;
+    
     UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:viewController.navigationItem.title];
-    item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismissViewController)];
+    
+    item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"xiaoyufu_01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(dismissViewController)];
+    
+    item.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(5, 0, 5, 0);
+    
     [navigationBar pushNavigationItem:item animated:YES];
+    
     navigationBar.barTintColor = [UIColor colorWithWhite:0.693 alpha:1.000];
     navigationBar.tintColor = [UIColor whiteColor];
+    
     [navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-BoldOblique" size:19],
        NSForegroundColorAttributeName:[UIColor whiteColor]}];

@@ -157,7 +157,9 @@
     [self.window addSubview:startView];
     [self.window bringSubviewToFront:startView];
     
-
+    //修改状态栏字体颜色为白色（View controller-based status bar appearance == NO）info.plist
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     return YES;
 }
 

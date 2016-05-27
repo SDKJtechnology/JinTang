@@ -97,7 +97,7 @@
     [self.supportCountButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.shareButton.enabled = YES;
-    [self.shareButton setImage:[UIImage imageNamed:@"fenxiang"] forState:UIControlStateNormal];
+    [self.shareButton setImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
     [self.shareButton setTitle:@"分享" forState:UIControlStateNormal];
     [self.shareButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
 }

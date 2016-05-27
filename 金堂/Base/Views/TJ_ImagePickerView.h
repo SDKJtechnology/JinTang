@@ -10,4 +10,7 @@
 
 @interface TJ_ImagePickerView : UICollectionView
 
+@property (nonatomic, strong) NSMutableArray *selectedPhotos;
+@property (nonatomic, strong) NSMutableArray *selectedAssets;
+
 @end
