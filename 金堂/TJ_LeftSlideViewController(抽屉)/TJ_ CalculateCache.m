@@ -30,7 +30,7 @@
     
     if([fileManager fileExistsAtPath:path]){
         
-        NSUInteger size = [fileManager attributesOfItemAtPath:path error:nil].fileSize;
+        unsigned long long size = [fileManager attributesOfItemAtPath:path error:nil].fileSize;
         // 返回值是字节 B K M
         
         return size/1024.0/1024.0;

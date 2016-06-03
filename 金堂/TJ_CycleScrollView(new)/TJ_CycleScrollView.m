@@ -150,16 +150,30 @@
         [imageArray addObject:imageStrings.firstObject];
     }
     NSInteger i = 0;
-    for (NSString *imageString in imageArray) {
+    for (id obj in imageArray) {
         self.imageView = [UIImageView new];
         self.titelLabel = [UILabel new];
         //        self.titelLabel.text = @"临时当局分裂开始的肌肤";
         [titleLables addObject:self.titelLabel];
-        if ([imageString hasPrefix:@"http"]) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"load"]];
+        if ([obj isKindOfClass:[NSString class]]) {
+            if ([obj hasPrefix:@"http"]) {
+                //            从磁盘缓存查找图片
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:obj];
+                if (image) {
+                    self.imageView.image = image;
+                }
+                else
+                {
+                    [self.imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"load"]];
+                }
+            }
+            else{
+                self.imageView.image = [UIImage imageNamed:obj];
+            }
         }
-        else{
-            self.imageView.image = [UIImage imageNamed:imageString];
+        else if ([obj isKindOfClass:[UIImage class]])
+        {
+            self.imageView.image = obj;
         }
         self.imageView.frame = CGRectMake(i * selfWidth, 0, selfWidth, selfHeight);
         self.titelLabel.frame = CGRectMake(i * selfWidth, selfHeight - self.titleLabelHeight, selfWidth, self.titleLabelHeight);

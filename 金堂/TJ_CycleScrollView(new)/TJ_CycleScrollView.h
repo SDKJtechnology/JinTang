@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, TJ_CycleScrollViewPageControlStyle)
  */
 @property (nonatomic, assign) TJ_CycleScrollViewModel cycleModel;
 /**
- *  图片数组(可以是@“imageName”或者@"https://")
+ *  图片数组(可以是@“imageName”或者@"https://"或者UIImage)
  */
 @property (nonatomic, strong) NSArray *imageGroup;
 /**

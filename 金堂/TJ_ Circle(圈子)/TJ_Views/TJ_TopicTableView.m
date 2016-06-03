@@ -102,7 +102,7 @@
         if (indexPath.row < 3)
         {
             ((TJ_TopicTableViewCell *)cell).identifierImage.hidden = NO;
-            ((TJ_TopicTableViewCell *)cell).identifierImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",indexPath.row + 1]];
+            ((TJ_TopicTableViewCell *)cell).identifierImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",indexPath.row + 1]];
         }
     }
     
